@@ -1,0 +1,9 @@
+[build]
+  base    = ""
+  publish = "fixtures/build"
+  command = "yarn build --type=UMD_DEV && cd fixtures/ && yarn && yarn prestart && yarn build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
