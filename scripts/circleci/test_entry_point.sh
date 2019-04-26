@@ -1,7 +1,5 @@
 #!/bin/bash
 
-printf "Node #%s (%s total). " "$CIRCLE_NODE_INDEX" "$CIRCLE_NODE_TOTAL"
-
 set -e
 
 ./scripts/circleci/set_up_github_keys.sh
