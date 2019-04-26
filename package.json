@@ -38,6 +38,8 @@
     "coffee-script": "^1.8.0",
     "cross-env": "^5.1.1",
     "coveralls": "^2.11.6",
+    "glob": "^6.0.4",
+    "glob-stream": "^6.1.0",
     "danger": "^3.0.4",
     "eslint": "^4.1.0",
     "eslint-config-fbjs": "^1.1.1",
