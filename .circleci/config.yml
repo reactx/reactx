@@ -3,7 +3,7 @@ jobs:
   build:
 
     docker:
-      - image: circleci/node:8
+      - image: circleci/openjdk:8-jdk-node-browsers
 
     environment:
       TZ: /usr/share/zoneinfo/America/Los_Angeles
@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Test Packages
-          command: ./scripts/circleci/test_entry_point.sh
+          command: bash ./scripts/circleci/test_entry_point.sh
 
       - save_cache:
           name: Save node_modules cache
