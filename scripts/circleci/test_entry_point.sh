@@ -5,6 +5,7 @@ set -e
 ./scripts/circleci/set_up_github_keys.sh
 
 COMMANDS_TO_RUN=()
+echo 'Node = ' $CIRCLE_NODE_INDEX >> "$CIRCLE_NODE_INDEX"
 
 if [ $((0 % CIRCLE_NODE_TOTAL)) -eq "$CIRCLE_NODE_INDEX" ]; then
   COMMANDS_TO_RUN+=('node ./scripts/prettier/index')
