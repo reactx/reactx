@@ -1,0 +1,30 @@
+{
+  "name": "react-components",
+  "description": "The standard React Components",
+  "version": "0.0.1",
+  "author": "Behzad Abbasi <overafaik.com>",
+  "bugs": {
+    "url": "https://github.com/reactx/reactx/issues"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-components#readme",
+  "keywords": [
+    "reactx",
+    "components"    
+  ],
+  "license": "MIT",
+  "files": [
+    "README.md",
+    "alert.js"    
+  ],
+  "main": "index.js",
+  "repository": "https://github.com/reactx/reactx/tree/master/packages/react-components",
+  "scripts": {
+    "build": "babel src --out-dir . --ignore **/__tests__",
+    "prepare": "cross-env NODE_ENV=production npm run build",
+    "watch": "babel -w src --out-dir . --ignore **/__tests__"
+  }
+}
