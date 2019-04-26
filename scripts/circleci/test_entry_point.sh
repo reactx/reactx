@@ -2,7 +2,7 @@
 
 set -e
 
-./scripts/circleci/set_up_github_keys.sh
+bash ./scripts/circleci/set_up_github_keys.sh
 
 COMMANDS_TO_RUN=()
 
