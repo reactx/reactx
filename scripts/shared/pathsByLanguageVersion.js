@@ -14,7 +14,7 @@ const esNextPaths = [
   'packages/*/src/**/*.js',
   'packages/events/**/*.js',
   'packages/shared/**/*.js',
-  ];
+];
 
 // Files that we distribute on npm that should be ES5-only.
 const es5Paths = ['packages/*/npm/**/*.js'];

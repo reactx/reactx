@@ -63,11 +63,7 @@ function transform(file, enc, cb) {
   });
 }
 
-gs([
-  'packages/**/*.js',
-  '!**/__tests__/**/*.js',
-  '!**/__mocks__/**/*.js',
-]).pipe(
+gs(['packages/**/*.js', '!**/__tests__/**/*.js', '!**/__mocks__/**/*.js']).pipe(
   through.obj(transform, cb => {
     process.stdout.write(
       Array.from(warnings)
