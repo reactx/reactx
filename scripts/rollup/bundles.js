@@ -40,20 +40,20 @@ const bundles = [
     externals: [],
   },
 
-  {
-    bundleTypes: [
-      UMD_DEV,
-      UMD_PROD,
-      NODE_DEV,
-      NODE_PROD,
-      RN_OSS_DEV,
-      RN_OSS_PROD,
-    ],
-    moduleType: COMPONENT,
-    entry: 'reactx-components/alert',
-    global: 'ReactxComponents',
-    externals: [],
-  },
+  // {
+  //   bundleTypes: [
+  //     UMD_DEV,
+  //     UMD_PROD,
+  //     NODE_DEV,
+  //     NODE_PROD,
+  //     RN_OSS_DEV,
+  //     RN_OSS_PROD,
+  //   ],
+  //   moduleType: COMPONENT,
+  //   entry: 'reactx-components/alert',
+  //   global: 'ReactxComponents',
+  //   externals: [],
+  // },
 ];
 
 // Based on deep-freeze by substack (public domain)
