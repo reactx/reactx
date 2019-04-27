@@ -506,8 +506,8 @@ async function buildEverything() {
     await createBundle(bundle, UMD_PROD);
     await createBundle(bundle, NODE_DEV);
     await createBundle(bundle, NODE_PROD);
-    await createBundle(bundle, RN_OSS_DEV);
-    await createBundle(bundle, RN_OSS_PROD);
+    // await createBundle(bundle, RN_OSS_DEV);
+    // await createBundle(bundle, RN_OSS_PROD);
   }
 
   await Packaging.copyAllShims();
