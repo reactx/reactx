@@ -20,4 +20,4 @@ yarn build --extract-errors
 # See https://github.com/facebook/react/pull/11655.
 
 # Do a sanity check on bundles
-yarn lint-build
+#yarn lint-build

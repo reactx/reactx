@@ -54,13 +54,27 @@ function checkFilesExist(bundle) {
 }
 
 const bundles = [
-  {
-    format: 'cjs',
-    filePatterns: [
-      `./build/node_modules/*/*.js`,
-      `./build/node_modules/*/cjs/*.js`,
-    ],
-  },
+  // {
+  //   format: 'fb',
+  //   filePatterns: [`./build/reactx-www/*.js`],
+  // },
+  // {
+  //   format: 'rn',
+  //   filePatterns: [
+
+  //   ],
+  // },
+  // {
+  //   format: 'umd',
+  //   filePatterns: [`./build/node_modules/*/umd/*.js`],
+  // },
+  // {
+  //   format: 'cjs',
+  //   filePatterns: [
+  //     `./build/node_modules/*/*.js`,
+  //     `./build/node_modules/*/cjs/*.js`,
+  //   ],
+  // },
 ];
 
 bundles.map(checkFilesExist).map(lint);
