@@ -221,12 +221,8 @@ function getPlugins(
 ) {
   const findAndRecordErrorCodes = extractErrorCodes(errorCodeOpts);
   const isProduction = isProductionBundleType(bundleType);
-  const isUMDBundle =
-    bundleType === UMD_DEV ||
-    bundleType === UMD_PROD;
-  const isRNBundle =
-    bundleType === RN_OSS_DEV ||
-    bundleType === RN_OSS_PROD;
+  const isUMDBundle = bundleType === UMD_DEV || bundleType === UMD_PROD;
+  const isRNBundle = bundleType === RN_OSS_DEV || bundleType === RN_OSS_PROD;
   const shouldStayReadable = isRNBundle || forcePrettyOutput;
   return [
     // Extract error codes from invariant() messages into a file.
@@ -357,8 +353,7 @@ async function createBundle(bundle, bundleType) {
   let resolvedEntry = require.resolve(bundle.entry);
 
   const shouldBundleDependencies =
-    bundleType === UMD_DEV ||
-    bundleType === UMD_PROD;
+    bundleType === UMD_DEV || bundleType === UMD_PROD;
   const peerGlobals = Modules.getPeerGlobals(bundle.externals, bundleType);
   let externals = Object.keys(peerGlobals);
   if (!shouldBundleDependencies) {

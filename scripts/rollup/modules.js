@@ -27,8 +27,7 @@ function getPeerGlobals(externals, bundleType) {
   externals.forEach(name => {
     if (
       !knownGlobals[name] &&
-      (bundleType === UMD_DEV ||
-        bundleType === UMD_PROD)
+      (bundleType === UMD_DEV || bundleType === UMD_PROD)
     ) {
       throw new Error('Cannot build UMD without a global name for: ' + name);
     }
