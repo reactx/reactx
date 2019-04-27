@@ -10,7 +10,6 @@
 'use strict';
 
 let React;
-let ReactFeatureFlags;
 let ReactDOM;
 let Alert;
 
@@ -34,16 +33,23 @@ describe('Alert', () => {
   });
 
   describe('onCloseAlert', () => {
-    let onClose, ref;
+    let onClose;
 
     beforeEach(() => {
       onClose = jest.fn();
-      const element = <Alert onSwipeStart={onClose}>Alert Me!</Alert>;
-      ReactDOM.render(element, container);
     });
 
+    function Component() {
+      return (
+        <Alert onSwipeStart={onClose}>
+          <span> Alert Me!</span>
+        </Alert>
+      );
+    }
+
+    ReactDOM.render(Component, container);
+
     it('check', () => {
-      debugger;
       expect(true).toBe(true);
     });
   });

@@ -9,6 +9,6 @@
 
 'use strict';
 
-const Alert = require('./Alert/Alert');
+const Alert = require('./src/Alert/Alert');
 
 module.exports = Alert.default || Alert;

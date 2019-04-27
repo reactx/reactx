@@ -48,6 +48,7 @@
     "eslint-plugin-jest": "^21.6.1",
     "eslint-plugin-no-for-of-loops": "^1.0.0",
     "eslint-plugin-react": "^6.7.1",
+    "eslint-plugin-reactx-internal": "link:./scripts/eslint-rules/",
     "fbjs-scripts": "^0.8.3",
     "flow-bin": "^0.72.0",
     "jest": "^23.1.0",

@@ -7,4 +7,4 @@
  * @flow
  */
 
-export {default as Alert} from './Alert/Alert';
+export {default as Alert} from './src/Alert/Alert';

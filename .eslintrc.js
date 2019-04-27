@@ -9,7 +9,7 @@ const OFF = 0;
 const ERROR = 2;
 
 module.exports = {
-  extends: 'rx',
+  extends: 'fbjs',
 
   // Stop ESLint from looking for a configuration file in parent folders
   'root': true,
@@ -17,7 +17,8 @@ module.exports = {
   plugins: [
     'jest',
     'no-for-of-loops',
-    'reactx'
+    'react',
+    'reactx-internal',
   ],
 
   parser: 'espree',
@@ -82,6 +83,12 @@ module.exports = {
     // Prevent for...of loops because they require a Symbol polyfill.
     // You can disable this rule for code that isn't shipped (e.g. build scripts and tests).
     'no-for-of-loops/no-for-of-loops': ERROR,
+
+        // CUSTOM RULES
+    // the second argument of warning/invariant should be a literal string
+    'reactx-internal/no-primitive-constructors': ERROR,
+    'reactx-internal/no-to-warn-dev-within-to-throw': ERROR,
+    'reactx-internal/warning-and-invariant-args': ERROR,
   },
 
   overrides: [
