@@ -14,6 +14,8 @@ const esNextPaths = [
   'packages/*/src/**/*.js',
   'packages/events/**/*.js',
   'packages/shared/**/*.js',
+  // Shims and Flow environment
+  'scripts/rollup/shims/**/*.js',
 ];
 
 // Files that we distribute on npm that should be ES5-only.

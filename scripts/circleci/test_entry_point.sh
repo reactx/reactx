@@ -19,8 +19,13 @@ if [ $((1 % CIRCLE_NODE_TOTAL)) -eq "$CIRCLE_NODE_INDEX" ]; then
 fi
 
 if [ $((2 % CIRCLE_NODE_TOTAL)) -eq "$CIRCLE_NODE_INDEX" ]; then
+  # COMMANDS_TO_RUN+=('bash ./scripts/circleci/add_build_info_json.sh')
+  COMMANDS_TO_RUN+=('bash ./scripts/circleci/build.sh')
   COMMANDS_TO_RUN+=('yarn test-build --maxWorkers=2')
   COMMANDS_TO_RUN+=('yarn test-build-prod --maxWorkers=2')
+  # COMMANDS_TO_RUN+=('node ./scripts/tasks/danger')
+  # COMMANDS_TO_RUN+=('bash ./scripts/circleci/upload_build.sh')
+  # COMMANDS_TO_RUN+=('bash ./scripts/circleci/pack_and_store_artifact.sh')
 fi
 
 if [ $((3 % CIRCLE_NODE_TOTAL)) -eq "$CIRCLE_NODE_INDEX" ]; then

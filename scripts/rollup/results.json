@@ -1,0 +1,18 @@
+{
+  "bundleSizes": [
+    {
+      "filename": "react-components.development.js",
+      "bundleType": "UMD_DEV",
+      "packageName": "reactx",
+      "size": 103860,
+      "gzip": 26948
+    },
+    {
+      "filename": "react-components.production.min.js",
+      "bundleType": "UMD_PROD",
+      "packageName": "reactx",
+      "size": 12346,
+      "gzip": 4735
+    }
+  ]
+}
