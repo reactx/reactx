@@ -55,16 +55,6 @@ function checkFilesExist(bundle) {
 
 const bundles = [
   {
-    format: 'fb',
-    filePatterns: [`./build/reactx-www/*.js`],
-  },
-  {
-    format: 'rn',
-    filePatterns: [
-
-    ],
-  },
-  {
     format: 'umd',
     filePatterns: [`./build/node_modules/*/umd/*.js`],
   },
