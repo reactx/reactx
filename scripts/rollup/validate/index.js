@@ -55,10 +55,6 @@ function checkFilesExist(bundle) {
 
 const bundles = [
   {
-    format: 'umd',
-    filePatterns: [`./build/node_modules/*/umd/*.js`],
-  },
-  {
     format: 'cjs',
     filePatterns: [
       `./build/node_modules/*/*.js`,
