@@ -37,17 +37,10 @@ describe('Alert', () => {
 
     beforeEach(() => {
       onClose = jest.fn();
+
+      const element = <Alert onClose={onClose}>Alert Me!</Alert>;
+      ReactDOM.render(element, container);
     });
-
-    function Component() {
-      return (
-        <Alert onSwipeStart={onClose}>
-          <span> Alert Me!</span>
-        </Alert>
-      );
-    }
-
-    ReactDOM.render(Component, container);
 
     it('check', () => {
       expect(true).toBe(true);
