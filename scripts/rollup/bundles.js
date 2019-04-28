@@ -37,7 +37,7 @@ const bundles = [
     moduleType: COMPONENT,
     entry: 'react-components',
     global: 'Reactx',
-    externals: [],
+    externals: ['react','react-dom'],
   },
 
   // {
