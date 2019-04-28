@@ -18,6 +18,10 @@ module.exports = {
   moduleFileExtensions: ['js', 'json', 'node', 'coffee', 'ts'],
   rootDir: process.cwd(),
   roots: ['<rootDir>/packages', '<rootDir>/scripts'],
-  collectCoverageFrom: ['packages/**/*.js'],
+  collectCoverageFrom: [
+    'packages/**/*.js',
+    '!packages/**/npm/*.js',
+    '!packages/**/index.js',
+  ],
   timers: 'fake',
 };

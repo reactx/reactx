@@ -8,6 +8,10 @@
     "react": "16.9.0-alpha.0",
     "react-dom": "16.9.0-alpha.0"
   },
+  
+  "jest": {
+    "testRegex": "/scripts/jest/dont-run-jest-directly\\.js$"
+  },
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-code-frame": "^6.26.0",
@@ -96,7 +100,6 @@
   "devEngines": {
     "node": "8.x || 9.x || 10.x || 11.x"
   },
-  "jest": {},
   "scripts": {
     "build": "node ./scripts/rollup/build.js",
     "linc": "node ./scripts/tasks/linc.js",
