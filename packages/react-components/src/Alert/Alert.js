@@ -14,14 +14,15 @@ type AlertEvent = {|
 
 type AlertProps = {
   onClose: (e: AlertEvent) => void,
+  text: string,
 };
 
 export default function Alert(props: AlertProps) {
   return (
     <div className="alert">
-      <div className="text">{props.children}</div>
+      <div className="text">{props.text}</div>
       {props.onClose && (
-        <button className="close" onClick={props.handleClose}>
+        <button className="close" onClick={props.onClose}>
           X
         </button>
       )}
