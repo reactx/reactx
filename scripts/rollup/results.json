@@ -55,6 +55,34 @@
       "packageName": "react-svg-components",
       "size": 817,
       "gzip": 479
+    },
+    {
+      "filename": "react-dragdrop.development.js",
+      "bundleType": "UMD_DEV",
+      "packageName": "react-dragdrop",
+      "size": 729,
+      "gzip": 425
+    },
+    {
+      "filename": "react-dragdrop.production.min.js",
+      "bundleType": "UMD_PROD",
+      "packageName": "react-dragdrop",
+      "size": 570,
+      "gzip": 371
+    },
+    {
+      "filename": "react-dragdrop.development.js",
+      "bundleType": "NODE_DEV",
+      "packageName": "react-dragdrop",
+      "size": 515,
+      "gzip": 351
+    },
+    {
+      "filename": "react-dragdrop.production.min.js",
+      "bundleType": "NODE_PROD",
+      "packageName": "react-dragdrop",
+      "size": 383,
+      "gzip": 286
     }
   ]
 }

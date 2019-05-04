@@ -18,10 +18,12 @@ const RN_OSS_PROD = bundleTypes.RN_OSS_PROD;
 
 const moduleTypes = {
   COMPONENT: 'COMPONENT',
+  UI: 'UI',
 };
 
 // React Components
 const COMPONENT = moduleTypes.COMPONENT;
+const UI = moduleTypes.UI;
 
 const bundles = [
   /******* React Components (experimental) *******/
@@ -53,6 +55,14 @@ const bundles = [
     entry: 'react-svg-components',
     global: 'ReactSVG',
     externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
+  },
+  /******* Drag And Drop (experimental) *******/
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD, NODE_DEV, NODE_PROD],
+    moduleType: UI,
+    entry: 'react-dragdrop',
+    global: 'ReactDnD',
+    externals: ['react', 'react-dom', 'react-dnd'],
   },
 ];
 

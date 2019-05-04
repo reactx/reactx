@@ -21,6 +21,7 @@ const knownGlobals = Object.freeze({
   'react-dom': 'ReactDOM',
   'react-dom/server': 'ReactDOMServer',
   'prop-types': 'PropTypes',
+  'react-dnd': 'ReactDnD',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.

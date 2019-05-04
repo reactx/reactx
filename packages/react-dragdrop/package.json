@@ -1,17 +1,17 @@
 {
-  "name": "react-svg-components",
+  "name": "react-dragdrop",
   "private": true,
-  "description": "The standard React SVG Components",
+  "description": "Drag and Drop for React",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
   },
-  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-svg-components#readme",
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-dragdrop#readme",
   "keywords": [
     "reactx",
     "components",
-    "svg"
+    "dnd"
   ],
   "license": "MIT",
   "files": [
@@ -26,10 +26,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory": "packages/react-svg-components"
+    "directory": "packages/react-dragdrop"
   },
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-svg": "^9.0.4"
+    "react-dnd": "^7.4.5"
   }
 }
