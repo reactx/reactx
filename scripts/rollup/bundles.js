@@ -52,14 +52,14 @@ const bundles = [
     moduleType: COMPONENT,
     entry: 'react-svg-components',
     global: 'ReactSVG',
-    externals: ['react', 'react-dom', 'react-dom/server','prop-types'],
+    externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
   },
 ];
 
 // Based on deep-freeze by substack (public domain)
 function deepFreeze(o) {
   Object.freeze(o);
-  Object.getOwnPropertyNames(o).forEach(function (prop) {
+  Object.getOwnPropertyNames(o).forEach(function(prop) {
     if (
       o[prop] !== null &&
       (typeof o[prop] === 'object' || typeof o[prop] === 'function') &&
