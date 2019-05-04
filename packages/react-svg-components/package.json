@@ -1,16 +1,17 @@
 {
-  "name": "react-components",
+  "name": "react-svg-components",
   "private": true,
-  "description": "The standard React Components",
+  "description": "The standard React SVG Components",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
   },
-  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-components#readme",
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-svg-components#readme",
   "keywords": [
     "reactx",
-    "components"
+    "components",
+    "svg"
   ],
   "license": "MIT",
   "files": [
@@ -25,6 +26,6 @@
   "repository": {
     "type":"git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory":"packages/react-components"
+    "directory":"packages/react-svg-components"
   }
 }

@@ -11,6 +11,8 @@ const reactVersion = require('../../package.json').version;
 const versions = {
   'packages/react-components/package.json': require('../../packages/react-components/package.json')
     .version,
+  'packages/react-svg-components/package.json': require('../../packages/react-svg-components/package.json')
+    .version,
 };
 
 let allVersionsMatch = true;

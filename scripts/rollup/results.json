@@ -27,6 +27,34 @@
       "packageName": "react-components",
       "size": 550,
       "gzip": 364
+    },
+    {
+      "filename": "react-svg-components.development.js",
+      "bundleType": "UMD_DEV",
+      "packageName": "react-svg-components",
+      "size": 995,
+      "gzip": 526
+    },
+    {
+      "filename": "react-svg-components.production.min.js",
+      "bundleType": "UMD_PROD",
+      "packageName": "react-svg-components",
+      "size": 728,
+      "gzip": 446
+    },
+    {
+      "filename": "react-svg-components.development.js",
+      "bundleType": "NODE_DEV",
+      "packageName": "react-svg-components",
+      "size": 790,
+      "gzip": 452
+    },
+    {
+      "filename": "react-svg-components.production.min.js",
+      "bundleType": "NODE_PROD",
+      "packageName": "react-svg-components",
+      "size": 550,
+      "gzip": 364
     }
   ]
 }
