@@ -756,6 +756,13 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.4.4":
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
+  integrity sha512-w0+uT71b6Yi7i5SE0co4NioIpSYS6lLiXvCzWzGSKvpK5vdQtCbICHMj+gbAKAOtxiV6HsVh/MBdaF9EQ6faSg==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.2.2", "@babel/template@^7.4.0":
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.0.tgz#12474e9c077bae585c5d835a95c0b0b790c25c8b"
@@ -912,6 +919,13 @@
     "@svgr/plugin-jsx" "^4.1.0"
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
+
+"@tanem/svg-injector@^7.0.17":
+  version "7.0.17"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-7.0.17.tgz#f7433ec5e1cbaa4ad4d2a3c13cfca7149a3a3b2d"
+  integrity sha512-UfFFkaX3M3bNOVzK+fdFyvlZbFwYtf5OucXpUSfmi1aQdE93H/PeTGNbaodB17PihlMEQNMiPHn59n+k4prB0w==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
 
 "@types/node@*":
   version "11.13.7"
@@ -8179,7 +8193,7 @@ prompts@^0.1.9:
     kleur "^2.0.1"
     sisteransi "^0.1.1"
 
-prop-types@^15.6.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   dependencies:
@@ -8459,6 +8473,15 @@ react-scripts@2.1.8:
   optionalDependencies:
     fsevents "1.2.4"
 
+react-svg@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-9.0.4.tgz#a2d0cb10ea8d57a0bf0843b77a23b49bd1993e95"
+  integrity sha512-w5YaEO8hUa0WMQ9AR+404Qcc4fBHzQsW2Qh+nFS7tQVT7OOuFGJBhvNRQGu71LkQvPAg5cZbLI5q9Rzbps8zqg==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@tanem/svg-injector" "^7.0.17"
+    prop-types "^15.7.2"
+
 react@16.9.0-alpha.0:
   version "16.9.0-alpha.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.9.0-alpha.0.tgz#e350f3d8af36e3251079cbc90d304620e2f78ccb"
@@ -8563,6 +8586,11 @@ regenerator-runtime@^0.11.0:
 regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"

@@ -19,6 +19,8 @@ const importSideEffects = Object.freeze({
 const knownGlobals = Object.freeze({
   react: 'React',
   'react-dom': 'ReactDOM',
+  'react-dom/server': 'ReactDOMServer',
+  'prop-types': 'PropTypes',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.

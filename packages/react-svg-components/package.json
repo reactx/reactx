@@ -24,8 +24,14 @@
   ],
   "main": "index.js",
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory":"packages/react-svg-components"
+    "directory": "packages/react-svg-components"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "16.9.0-alpha.0",
+    "react-dom": "16.9.0-alpha.0",
+    "react-svg": "^9.0.4"
   }
 }
