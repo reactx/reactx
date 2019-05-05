@@ -7,4 +7,5 @@
  * @flow
  */
 
-export {default as init} from './src/init';
+const DragSource = require('./src/DragSource/DragSource');
+module.exports = DragSource.default || DragSource;
