@@ -3,6 +3,7 @@
 const chalk = require('chalk');
 const util = require('util');
 const shouldIgnoreConsoleError = require('./shouldIgnoreConsoleError');
+const {createPrettyHtmlMatchers} = require('jest-prettyhtml-matchers');
 
 if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
   // Inside the class equivalence tester, we have a custom environment, let's
@@ -48,6 +49,13 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
     ...require('./matchers/toWarnDev'),
     ...require('./matchers/reactTestMatchers'),
   });
+  expect.extend(
+    createPrettyHtmlMatchers({
+      singleQuote: true,
+      sortAttributes: true,
+      wrapAttributes: true,
+    })
+  );
 
   // We have a Babel transform that inserts guards against infinite loops.
   // If a loop runs for too many iterations, we throw an error and set this

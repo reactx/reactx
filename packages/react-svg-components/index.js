@@ -7,4 +7,5 @@
  * @flow
  */
 
-export {default as Task} from './src/Task/Task';
+const Task = require('./src/Task/Task');
+module.exports = Task.default || Task;
