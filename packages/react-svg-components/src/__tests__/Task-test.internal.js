@@ -68,12 +68,34 @@ describe('while running in a browser environment', () => {
         className="wrapper-class-name"
         src={`https://this_is_a_fake_url.svg`}
         svgClassName="svg-class-name"
-        svgStyle={{width: 200}}
+        style={{height: 200}}
       />,
     );
 
     requests[0].respond(200, {}, source);
     jest.runAllTimers();
+
+    expect(wrapper.html()).toMatchPrettyHtmlSnapshot();
+  });
+
+  it('should update correctly', () => {
+    wrapper = mount(
+      <Task
+        className="wrapper-class-name"
+        src={`https://this_is_a_fake_url.svg`}
+        svgClassName="svg-class-name"
+        style={{height: 200}}
+      />,
+    );
+
+    requests[0].respond(200, {}, source);
+    jest.runAllTimers();
+
+    wrapper.setProps({
+      className: 'updated-wrapper-class-name',
+      svgClassName: 'updated-svg-class-name',
+      style: {height: 100},
+    });
 
     expect(wrapper.html()).toMatchPrettyHtmlSnapshot();
   });

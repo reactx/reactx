@@ -41,9 +41,7 @@ type DefaultTaskProps = {
   wrapper: Wrapper,
 };
 
-const defaultStyles: React.CSSProperties = {
-  width: 200,
-};
+const defaultStyles: React.CSSProperties = {};
 
 function createDefaultProps(): DefaultTaskProps {
   return {
@@ -58,7 +56,8 @@ function createDefaultProps(): DefaultTaskProps {
 }
 
 export default function Task(userProps: TaskProps) {
-  const [onClick, onInjected] = useTask(userProps);
+  debugger;
+  const {onClick, onInjected} = useTask(userProps);
   let props: TaskProps = Object.assign(
     {},
     {...createDefaultProps()},
@@ -87,11 +86,11 @@ export default function Task(userProps: TaskProps) {
 
 export const useTask = (props: TaskProps) => {
   function onClick(e: TaskEvent): void {
-    props.onClick(e);
+    if (props.onClick) props.onClick(e);
   }
 
   function onInjected(error, svg): void {
-    props.onInjected(error, svg);
+    if (props.onInjected) props.onInjected(error, svg);
   }
 
   return {
