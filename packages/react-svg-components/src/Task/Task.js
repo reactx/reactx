@@ -56,7 +56,6 @@ function createDefaultProps(): DefaultTaskProps {
 }
 
 export default function Task(userProps: TaskProps) {
-  debugger;
   const {onClick, onInjected} = useTask(userProps);
   let props: TaskProps = Object.assign(
     {},
@@ -86,11 +85,15 @@ export default function Task(userProps: TaskProps) {
 
 export const useTask = (props: TaskProps) => {
   function onClick(e: TaskEvent): void {
-    if (props.onClick) props.onClick(e);
+    if (props.onClick) {
+      props.onClick(e);
+    }
   }
 
   function onInjected(error, svg): void {
-    if (props.onInjected) props.onInjected(error, svg);
+    if (props.onInjected) {
+      props.onInjected(error, svg);
+    }
   }
 
   return {
