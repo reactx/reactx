@@ -8,7 +8,7 @@
  */
 import React from 'react';
 import ReactSVG from 'react-svg';
-import {Errback} from '../../inline-typed';
+import type {Errback} from '../ReactSVG';
 
 type TaskEvent = {|
   target: Element | Document,
@@ -23,12 +23,12 @@ type TaskProps = {
   onInjected: Errback,
   fallback?: (e: TaskEvent) => void,
   src: string,
-  loading?: string | object,
+  loading?: string | Object,
   renumerateIRIElements?: boolean,
   evalScripts?: EvalScript,
   className?: string,
   svgClassName?: string,
-  style?: React.CSSProperties,
+  style?: string | Object,
   wrapper?: Wrapper,
 };
 type DefaultTaskProps = {
@@ -37,11 +37,11 @@ type DefaultTaskProps = {
   evalScripts: EvalScript,
   className: string,
   svgClassName: string,
-  style?: React.CSSProperties,
+  style?: string | Object,
   wrapper: Wrapper,
 };
 
-const defaultStyles: React.CSSProperties = {};
+const defaultStyles: string | Object = {};
 
 function createDefaultProps(): DefaultTaskProps {
   return {
@@ -90,7 +90,7 @@ export const useTask = (props: TaskProps) => {
     }
   }
 
-  function onInjected(error, svg): void {
+  function onInjected(error: Error | null, svg?: Element): void {
     if (props.onInjected) {
       props.onInjected(error, svg);
     }

@@ -13,4 +13,4 @@
 // imported directly in code. Instead, our Flow configuration uses this entry
 // point for the currently checked renderer (the one you passed to `yarn flow`).
 
-export type Errback = (error: Error | null, svg?: Element) => void;
+export * from './src/ReactSVG';
