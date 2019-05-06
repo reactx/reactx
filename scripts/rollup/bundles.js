@@ -62,7 +62,7 @@ const bundles = [
     moduleType: UI,
     entry: 'react-dragdrop',
     global: 'ReactDnD',
-    externals: ['react', 'react-dom', 'react-dnd'],
+    externals: ['react', 'react-dom'],
   },
 ];
 

@@ -11,7 +11,8 @@
   "keywords": [
     "reactx",
     "components",
-    "dnd"
+    "dnd",
+    "dragdrop"
   ],
   "license": "MIT",
   "files": [
@@ -27,8 +28,5 @@
     "type": "git",
     "url": "https://github.com/reactx/reactx.git",
     "directory": "packages/react-dragdrop"
-  },
-  "dependencies": {
-    "react-dnd": "^7.4.5"
   }
 }

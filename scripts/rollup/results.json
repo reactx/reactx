@@ -32,57 +32,57 @@
       "filename": "react-svg-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-svg-components",
-      "size": 17342,
-      "gzip": 4885
+      "size": 19970,
+      "gzip": 5728
     },
     {
       "filename": "react-svg-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-svg-components",
-      "size": 8031,
-      "gzip": 3269
+      "size": 9051,
+      "gzip": 3684
     },
     {
       "filename": "react-svg-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-svg-components",
-      "size": 1312,
-      "gzip": 629
+      "size": 3984,
+      "gzip": 1592
     },
     {
       "filename": "react-svg-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-svg-components",
-      "size": 817,
-      "gzip": 479
+      "size": 1870,
+      "gzip": 969
     },
     {
       "filename": "react-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-dragdrop",
-      "size": 729,
-      "gzip": 425
+      "size": 3470,
+      "gzip": 1435
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-dragdrop",
-      "size": 570,
-      "gzip": 371
+      "size": 1100,
+      "gzip": 647
     },
     {
       "filename": "react-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dragdrop",
-      "size": 515,
-      "gzip": 351
+      "size": 3289,
+      "gzip": 1388
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-dragdrop",
-      "size": 383,
-      "gzip": 286
+      "size": 924,
+      "gzip": 567
     }
   ]
 }

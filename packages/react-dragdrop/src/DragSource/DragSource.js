@@ -7,26 +7,27 @@
  * @flow
  */
 
-import React from 'react';
-import {DragSource} from 'react-dnd';
+import React, {type Element} from 'react';
+import {connectDragSource} from '../HTML5Backend';
 
-function DragSourceComponent(props) {
-  return <Component {...props} />;
-}
-
-function Component({isDragging, dragSource, props}) {
-  return dragSource(<div>{props.children}</div>);
-}
-
-const Source = {
-  beginDrag: props => ({...props}),
+export type DragSourceProps = {
+  index: number,
+  componentType: string,
+  children(): Element<any>,
+  clonable: boolean,
 };
 
-function collect(connect, monitor) {
-  return {
-    dragSource: connect.dragSource(),
-    isDragging: monitor.isDragging(),
-  };
-}
+export default function DragSource(props: DragSourceProps) {
+  const dropEffect = props.clonable ? 'copy' : 'move';
+  const sourceType = props.componentType
+    ? props.componentType
+    : 'UnknownTarget';
 
-export default DragSource('CP', Source, collect)(DragSourceComponent);
+  const refCallback = element => {
+    if (element) {
+      return connectDragSource(element, sourceType, {dropEffect});
+    }
+  };
+
+  return <div ref={refCallback}>{props.children}</div>;
+}
