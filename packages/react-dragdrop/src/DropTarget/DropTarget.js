@@ -17,7 +17,7 @@ export type DragSourceProps = {
   clonable: boolean,
 };
 
-export default function DragSource(props: DragSourceProps) {
+export default function DropTarget(props: DragSourceProps) {
   const dropEffect = props.clonable ? 'copy' : 'move';
   const sourceType = props.componentType
     ? props.componentType

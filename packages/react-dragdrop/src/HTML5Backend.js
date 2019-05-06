@@ -9,6 +9,9 @@
 const sourceNodes: Map<string, Element> = new Map();
 const sourceNodeOptions: Map<string, any> = new Map();
 const dragStartSourceIds: string[] = [];
+const dropTargetIds: string[] = [];
+const dragEnterTargetIds: string[] = [];
+const dragOverTargetIds: string[] = [];
 
 export function connectDragSource(
   node: Element,
@@ -33,6 +36,34 @@ export function connectDragSource(
     node.removeEventListener('selectstart', handleSelectStart);
     node.setAttribute('draggable', 'false');
   };
+}
+
+export function connectDropTarget(targetId: string, node: HTMLElement) {
+  const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, targetId);
+  const handleDragOver = (e: DragEvent) => HandleDragOver(e, targetId);
+  const handleDrop = (e: DragEvent) => HandleDrop(e, targetId);
+
+  node.addEventListener('dragenter', handleDragEnter);
+  node.addEventListener('dragover', handleDragOver);
+  node.addEventListener('drop', handleDrop);
+
+  return () => {
+    node.removeEventListener('dragenter', handleDragEnter);
+    node.removeEventListener('dragover', handleDragOver);
+    node.removeEventListener('drop', handleDrop);
+  };
+}
+
+function HandleDragEnter(e: DragEvent, targetId: string) {
+  dragEnterTargetIds.unshift(targetId);
+}
+
+function HandleDragOver(e: DragEvent, targetId: string) {
+  dragOverTargetIds.unshift(targetId);
+}
+
+function HandleDrop(e: DragEvent, targetId: string) {
+  dropTargetIds.unshift(targetId);
 }
 
 function HandleDragStart(e: DragEvent, sourceId: string) {
