@@ -1,4 +1,12 @@
 /*eslint max-len: off*/
+
+describe('Fixture', () => {
+  //this id for avoid  to faild test
+  it('avoid', () => {
+    expect(true).toBe(true);
+  });
+});
+
 const source = `
   <svg
     height='26'
