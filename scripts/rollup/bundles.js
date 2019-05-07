@@ -64,6 +64,21 @@ const bundles = [
     global: 'ReactDnD',
     externals: ['react', 'react-dom'],
   },
+  /******* Viewer (experimental) *******/
+  {
+    bundleTypes: [
+      UMD_DEV,
+      UMD_PROD,
+      NODE_DEV,
+      NODE_PROD,
+      RN_OSS_DEV,
+      RN_OSS_PROD,
+    ],
+    moduleType: COMPONENT,
+    entry: 'react-viewer-components',
+    global: 'ReactViewer',
+    externals: ['react', 'react-dom'],
+  },
 ];
 
 // Based on deep-freeze by substack (public domain)
