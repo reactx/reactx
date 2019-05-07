@@ -15,7 +15,7 @@ configure({adapter: new Adapter()});
 
 let React;
 let ReactDOM;
-let DragSource;
+let DropTarget;
 
 describe('while running in a browser environment', () => {
   let container, wrapper;
@@ -24,7 +24,7 @@ describe('while running in a browser environment', () => {
     jest.resetModules();
     React = require('react');
     ReactDOM = require('react-dom');
-    DragSource = require('react-dragdrop');
+    DropTarget = require('react-dragdrop');
 
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -39,9 +39,9 @@ describe('while running in a browser environment', () => {
   it('should render correctly', () => {
     // let ref = React.createRef();
     wrapper = (
-      <DragSource index={1} componentType="ITEM">
-        <div>Drag Me!</div>
-      </DragSource>
+      <DropTarget index={1} componentType="ITEM">
+        <div>Drop Here!</div>
+      </DropTarget>
     );
     ReactDOM.render(wrapper, container);
 

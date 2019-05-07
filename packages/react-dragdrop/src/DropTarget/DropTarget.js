@@ -8,26 +8,24 @@
  */
 
 import React, {useCallback, type Element} from 'react';
-import {connectDragSource} from '../HTML5Backend';
+import {connectDropTarget} from '../HTML5Backend';
 
-export type DragSourceProps = {
+export type DropTargetProps = {
   index: number,
   componentType: string,
   children(): Element<any>,
-  clonable: boolean,
 };
 
-export default function DropTarget(props: DragSourceProps) {
-  const dropEffect = props.clonable ? 'copy' : 'move';
+export default function DropTarget(props: DropTargetProps) {
   const sourceType = props.componentType
     ? props.componentType
     : 'UnknownTarget';
 
-  const draggableRef = useCallback(node => {
+  const droppableRef = useCallback(node => {
     if (node !== null) {
-      return connectDragSource(node, sourceType, {dropEffect});
+      return connectDropTarget(node, sourceType);
     }
   }, []);
 
-  return <div ref={draggableRef}>{props.children}</div>;
+  return <div ref={droppableRef}>{props.children}</div>;
 }

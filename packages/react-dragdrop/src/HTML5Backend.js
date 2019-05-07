@@ -38,7 +38,7 @@ export function connectDragSource(
   };
 }
 
-export function connectDropTarget(targetId: string, node: HTMLElement) {
+export function connectDropTarget(node: HTMLElement, targetId: string) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, targetId);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, targetId);
   const handleDrop = (e: DragEvent) => HandleDrop(e, targetId);
