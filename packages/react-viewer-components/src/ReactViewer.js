@@ -7,7 +7,10 @@
  * @flow
  */
 
-import React from 'react';
-export function SmoothViewer(props) {
-  return <div>{props.children}</div>;
-}
+import SVGViewer from './SVGViewer/SVGViewer';
+
+const ReactViewer = {
+  SVGViewer,
+};
+
+export default ReactViewer;

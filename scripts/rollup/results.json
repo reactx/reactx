@@ -88,29 +88,29 @@
       "filename": "react-viewer-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-viewer-components",
-      "size": 830,
-      "gzip": 454
+      "size": 1027,
+      "gzip": 535
     },
     {
       "filename": "react-viewer-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-viewer-components",
-      "size": 556,
-      "gzip": 365
+      "size": 597,
+      "gzip": 395
     },
     {
       "filename": "react-viewer-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-viewer-components",
-      "size": 646,
-      "gzip": 389
+      "size": 843,
+      "gzip": 473
     },
     {
       "filename": "react-viewer-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-viewer-components",
-      "size": 378,
-      "gzip": 284
+      "size": 414,
+      "gzip": 309
     }
   ]
 }

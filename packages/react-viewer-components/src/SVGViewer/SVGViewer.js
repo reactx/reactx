@@ -6,9 +6,8 @@
  *
  * @flow
  */
-'use strict';
 
-const ReactViewer = require('./src/ReactViewer');
-
-// This is hacky but makes it work with both Rollup and Jest.
-module.exports = ReactViewer.default || ReactViewer;
+import React from 'react';
+export default function SVGViewer(props) {
+  return <div>{props.children}</div>;
+}

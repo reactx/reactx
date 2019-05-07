@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import {SmoothViewer} from 'react-viewer-components';
+import {SVGViewer} from 'react-viewer-components';
 import {DropTarget, DragSource} from 'react-dragdrop';
 import {Rect} from 'react-svg-components';
 
@@ -13,11 +13,11 @@ function App() {
           <Rect className="wrapper-class-name" />
         </DragSource>
         <DropTarget componentType="ITEM">
-          <SmoothViewer>
+          <SVGViewer>
             <p>
               Edit <code>src/App.js</code> and save to reload.
             </p>
-          </SmoothViewer>
+          </SVGViewer>
         </DropTarget>
 
         <DragSource index={1} componentType="ITEM">
