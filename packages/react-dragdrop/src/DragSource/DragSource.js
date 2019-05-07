@@ -15,7 +15,6 @@ export type DragSourceProps = {
   componentType: string,
   children(): Element<any>,
   clonable: boolean,
-  onDrag(): 
 };
 
 export default function DragSource(props: DragSourceProps) {

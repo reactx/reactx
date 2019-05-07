@@ -6,12 +6,20 @@
  *
  */
 
+export type XYCoord = {|
+  x: number,
+  y: number,
+|};
+
 import DragSource from './DragSource/DragSource';
 import DropTarget from './DropTarget/DropTarget';
+import Setup, {Teardown} from './HTML5Backend';
 
 const ReactDnD = {
   DragSource,
   DropTarget,
+  Setup,
+  Teardown,
 };
 
 export default ReactDnD;
