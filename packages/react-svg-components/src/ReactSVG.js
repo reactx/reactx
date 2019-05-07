@@ -8,3 +8,13 @@
  */
 
 export type Errback = (error: Error | null, svg?: Element) => void;
+
+import Task from './Task/Task';
+import Rect from './Rect/Rect';
+
+const ReactSVG = {
+  Task,
+  Rect,
+};
+
+export default ReactSVG;

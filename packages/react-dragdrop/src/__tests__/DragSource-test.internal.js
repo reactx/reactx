@@ -8,23 +8,19 @@
  */
 
 'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {DragSource} from 'react-dragdrop';
 
 configure({adapter: new Adapter()});
 
-let React;
-let ReactDOM;
-let DragSource;
-
 describe('while running in a browser environment', () => {
-  let container, wrapper;
+  let container;
 
   beforeEach(() => {
     jest.resetModules();
-    React = require('react');
-    ReactDOM = require('react-dom');
-    DragSource = require('react-dragdrop');
 
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -38,12 +34,16 @@ describe('while running in a browser environment', () => {
 
   it('should render correctly', () => {
     // let ref = React.createRef();
-    wrapper = (
-      <DragSource index={1} componentType="ITEM">
-        <div>Drag Me!</div>
-      </DragSource>
-    );
-    ReactDOM.render(wrapper, container);
+    function App() {
+      return (
+        <div>
+          <DragSource index={1} componentType="ITEM">
+            <div>Drag Me!</div>
+          </DragSource>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, container);
 
     // expect(wrapper.html()).toMatchPrettyHtmlSnapshot();
   });

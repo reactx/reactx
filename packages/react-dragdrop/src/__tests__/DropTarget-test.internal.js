@@ -8,24 +8,18 @@
  */
 
 'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {DropTarget} from 'react-dragdrop';
 
 configure({adapter: new Adapter()});
-
-let React;
-let ReactDOM;
-let DropTarget;
-
 describe('while running in a browser environment', () => {
   let container, wrapper;
 
   beforeEach(() => {
     jest.resetModules();
-    React = require('react');
-    ReactDOM = require('react-dom');
-    DropTarget = require('react-dragdrop');
-
     container = document.createElement('div');
     document.body.appendChild(container);
   });

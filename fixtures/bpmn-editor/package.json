@@ -1,0 +1,35 @@
+{
+  "name": "bpmn-editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "16.9.0-alpha.0",
+    "react-dom": "16.9.0-alpha.0",
+    "react-dragdrop": "link:../../build/node_modules/react-dragdrop",
+    "react-scripts": "^3.0.0",
+    "react-svg": "^9.0.4",
+    "react-svg-components": "link:../../build/node_modules/react-svg-components",
+    "react-viewer-components": "link:../../build/node_modules/react-viewer-components"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build ",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

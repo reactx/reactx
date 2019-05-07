@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {useCallback, type Element} from 'react';
+import React, {type Element} from 'react';
 import {connectDropTarget} from '../HTML5Backend';
 
 export type DropTargetProps = {
@@ -21,11 +21,13 @@ export default function DropTarget(props: DropTargetProps) {
     ? props.componentType
     : 'UnknownTarget';
 
-  const droppableRef = useCallback(node => {
+  //TODO: useCallback hook
+  //__EXPERIMENTAL_DND_HOOKS_THAT_MAY_CHANGE_AND_BREAK_MY_BUILD__
+  const droppableRef = node => {
     if (node !== null) {
       return connectDropTarget(node, sourceType);
     }
-  }, []);
+  };
 
   return <div ref={droppableRef}>{props.children}</div>;
 }

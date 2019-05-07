@@ -32,85 +32,85 @@
       "filename": "react-svg-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-svg-components",
-      "size": 19970,
-      "gzip": 5728
+      "size": 21098,
+      "gzip": 6084
     },
     {
       "filename": "react-svg-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-svg-components",
-      "size": 9051,
-      "gzip": 3684
+      "size": 9619,
+      "gzip": 3885
     },
     {
       "filename": "react-svg-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-svg-components",
-      "size": 3984,
-      "gzip": 1592
+      "size": 5074,
+      "gzip": 1987
     },
     {
       "filename": "react-svg-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-svg-components",
-      "size": 1870,
-      "gzip": 969
+      "size": 2385,
+      "gzip": 1192
     },
     {
       "filename": "react-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-dragdrop",
-      "size": 2640,
-      "gzip": 1056
+      "size": 4204,
+      "gzip": 1347
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-dragdrop",
-      "size": 1286,
-      "gzip": 694
+      "size": 1768,
+      "gzip": 767
     },
     {
       "filename": "react-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dragdrop",
-      "size": 2459,
-      "gzip": 1003
+      "size": 4023,
+      "gzip": 1296
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-dragdrop",
-      "size": 1103,
-      "gzip": 624
+      "size": 1576,
+      "gzip": 697
     },
     {
       "filename": "react-viewer-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-viewer-components",
-      "size": 890,
-      "gzip": 462
+      "size": 830,
+      "gzip": 454
     },
     {
       "filename": "react-viewer-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-viewer-components",
-      "size": 572,
-      "gzip": 376
+      "size": 556,
+      "gzip": 365
     },
     {
       "filename": "react-viewer-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-viewer-components",
-      "size": 706,
-      "gzip": 398
+      "size": 646,
+      "gzip": 389
     },
     {
       "filename": "react-viewer-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-viewer-components",
-      "size": 393,
-      "gzip": 293
+      "size": 378,
+      "gzip": 284
     }
   ]
 }

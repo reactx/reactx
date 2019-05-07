@@ -6,6 +6,9 @@
  *
  * @flow
  */
+'use strict';
 
-const Task = require('./src/Task/Task');
-module.exports = Task.default || Task;
+const ReactSVG = require('./src/ReactSVG');
+
+// This is hacky but makes it work with both Rollup and Jest.
+module.exports = ReactSVG.default || ReactSVG;

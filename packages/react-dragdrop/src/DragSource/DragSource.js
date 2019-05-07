@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {useCallback, type Element} from 'react';
+import React, {type Element} from 'react';
 import {connectDragSource} from '../HTML5Backend';
 
 export type DragSourceProps = {
@@ -23,11 +23,13 @@ export default function DragSource(props: DragSourceProps) {
     ? props.componentType
     : 'UnknownTarget';
 
-  const draggableRef = useCallback(node => {
+  //TODO: useCallback hook
+  //__EXPERIMENTAL_DND_HOOKS_THAT_MAY_CHANGE_AND_BREAK_MY_BUILD__
+  const draggableRef = node => {
     if (node !== null) {
       return connectDragSource(node, sourceType, {dropEffect});
     }
-  }, []);
+  };
 
   return <div ref={draggableRef}>{props.children}</div>;
 }

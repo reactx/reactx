@@ -8,4 +8,4 @@
  */
 
 const SmoothViewer = require('./src/SmoothViewer/SmoothViewer');
-module.exports = SmoothViewer.default || SmoothViewer;
+module.exports = SmoothViewer;

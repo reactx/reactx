@@ -4,10 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
  */
 
-import React from 'react';
-export function SmoothViewer(props) {
-  return <div>{props.children}</div>;
-}
+import DragSource from './DragSource/DragSource';
+import DropTarget from './DropTarget/DropTarget';
+
+const ReactDnD = {
+  DragSource,
+  DropTarget,
+};
+
+export default ReactDnD;

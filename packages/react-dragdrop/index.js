@@ -7,5 +7,9 @@
  * @flow
  */
 
-const DragSource = require('./src/DragSource/DragSource');
-module.exports = DragSource.default || DragSource;
+'use strict';
+
+const ReactDnD = require('./src/ReactDnD');
+
+// This is hacky but makes it work with both Rollup and Jest.
+module.exports = ReactDnD.default || ReactDnD;
