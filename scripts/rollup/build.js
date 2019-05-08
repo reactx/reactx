@@ -237,7 +237,7 @@ function getPlugins(
     // Use Node resolution mechanism.
     resolve({
       skip: externals,
-      preferBuiltins: false
+      preferBuiltins: false,
     }),
     // Remove license headers from individual modules
     stripBanner({

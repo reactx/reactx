@@ -92,7 +92,7 @@ const bundles = [
     moduleType: COMPONENT,
     entry: 'react-bpmn',
     global: 'ReactBPMN',
-    externals: ['react', 'react-dom','bpmn-js/lib/Modeler'],
+    externals: ['react', 'react-dom', 'bpmn-js/lib/Modeler'],
   },
 ];
 

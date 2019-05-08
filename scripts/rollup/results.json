@@ -116,29 +116,29 @@
       "filename": "react-bpmn.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-bpmn",
-      "size": 3909,
+      "size": 3908,
       "gzip": 1617
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-bpmn",
-      "size": 1883,
-      "gzip": 1003
+      "size": 1882,
+      "gzip": 1001
     },
     {
       "filename": "react-bpmn.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-bpmn",
-      "size": 3691,
-      "gzip": 1561
+      "size": 3690,
+      "gzip": 1560
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-bpmn",
-      "size": 1665,
-      "gzip": 917
+      "size": 1664,
+      "gzip": 915
     }
   ]
 }
