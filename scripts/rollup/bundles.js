@@ -91,8 +91,8 @@ const bundles = [
     ],
     moduleType: COMPONENT,
     entry: 'react-bpmn',
-    global: 'ReactViewer',
-    externals: ['react', 'react-dom'],
+    global: 'ReactBPMN',
+    externals: ['react', 'react-dom','bpmn-js/lib/Modeler'],
   },
 ];
 

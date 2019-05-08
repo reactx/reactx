@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bpmn-font": "^0.8.0",
+    "bpmn-js": "^3.4.1",
+    "bpmn-js-properties-panel": "^0.30.0",
+    "camunda-bpmn-moddle": "^3.2.0",
     "react": "16.9.0-alpha.0",
+    "react-bpmn": "link:../../build/node_modules/react-bpmn",
     "react-dom": "16.9.0-alpha.0",
     "react-dragdrop": "link:../../build/node_modules/react-dragdrop",
-    "react-scripts": "^3.0.0",
-    "react-svg": "^9.0.4",
-    "react-svg-components": "link:../../build/node_modules/react-svg-components",
-    "react-viewer-components": "link:../../build/node_modules/react-viewer-components"
+    "react-scripts": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
