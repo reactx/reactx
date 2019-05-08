@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import { SVGViewer } from 'react-viewer-components';
-import { DropTarget, DragSource, Setup } from 'react-dragdrop';
-import { Rect } from 'react-svg-components';
+import {SVGViewer} from 'react-viewer-components';
+import {DropTarget, DragSource, Setup} from 'react-dragdrop';
+import {Rect} from 'react-svg-components';
 
 function App() {
-  debugger
+  debugger;
   Setup();
 
   return (
@@ -18,13 +18,12 @@ function App() {
         {/* <DragSource index={1} componentType="ITEM">
           <input type="text" />
         </DragSource> */}
-        <div style={{ 'height': '200px', 'background': 'blueviolet' }}>
-
+        <div style={{height: '200px', background: 'blueviolet'}}>
           <DropTarget componentType="ITEM">
-            <SVGViewer >
+            <SVGViewer>
               <p>
                 Edit <code>src/App.js</code> and save to reload.
-            </p>
+              </p>
             </SVGViewer>
           </DropTarget>
         </div>
