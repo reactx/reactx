@@ -7,8 +7,8 @@
  * @flow
  */
 
-import React, {type Element} from 'react';
-import {connectDropTarget} from '../HTML5Backend';
+import React, { type Element } from 'react';
+import { connectDropTarget } from '../DropUtils';
 
 export type DropTargetProps = {
   index: number,
@@ -25,7 +25,7 @@ export default function DropTarget(props: DropTargetProps) {
   //__EXPERIMENTAL_DND_HOOKS_THAT_MAY_CHANGE_AND_BREAK_MY_BUILD__
   const droppableRef = node => {
     if (node !== null) {
-      return connectDropTarget(node, sourceType);
+      return connectDropTarget(node, {});
     }
   };
 
