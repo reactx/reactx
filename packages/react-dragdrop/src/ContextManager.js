@@ -8,10 +8,10 @@
  */
 
 import React from 'react';
-import DragDropManager from './DragDropManager'
+import DragDropManager from './DragDropManager';
 type DragDropProviderProps = {|
-  children: Element < any >,
-|}
+  children: Element<any>,
+|};
 
 export const DragDropContext = React.createContext({});
 export default function DragDropProvider(props: DragDropProviderProps) {
@@ -20,7 +20,7 @@ export default function DragDropProvider(props: DragDropProviderProps) {
     <DragDropContext.Provider value={manager}>
       {props.children}
     </DragDropContext.Provider>
-  )
+  );
 }
 
 export const DragDropConsumer = DragDropContext.Consumer;

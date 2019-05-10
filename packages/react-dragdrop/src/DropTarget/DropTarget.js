@@ -1,4 +1,4 @@
-  /**
+/**
  * Copyright (c) ReactX and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
@@ -7,9 +7,9 @@
  * @flow
  */
 
-import React, { type Element, type Node } from 'react';
-import { connectDropTarget } from '../DropUtils';
-import { DragDropContext } from '../ContextManager'
+import React, {type Element, type Node} from 'react';
+import {connectDropTarget} from '../DropUtils';
+import {DragDropContext} from '../ContextManager';
 
 export type DropTargetProps = {
   index: number,
@@ -20,30 +20,29 @@ export type DropTargetProps = {
 export function useDrop() {
   const context = React.useContext(DragDropContext);
   function drop(e: Node) {
-    debugger
+    debugger;
     let a = context.dragDropManager;
   }
   function dragEnter(e: Node) {
-    debugger
+    debugger;
     let a = context.getCurrentNode();
   }
 
   function dragOver(e: Node) {
-    debugger
+    debugger;
     let a = context.getCurrentNode();
   }
   return [drop, dragOver, dragEnter];
 }
 
 export default function DropTarget(props: DropTargetProps) {
-
   const [drop, dragOver, dragEnter] = useDrop();
 
   const droppableRef = React.useCallback(node => {
     if (node !== null) {
-      return connectDropTarget(node, { drop, dragEnter, dragOver });
+      return connectDropTarget(node, {drop, dragEnter, dragOver});
     }
-  },[]);
+  }, []);
 
   return <div ref={droppableRef}>{props.children}</div>;
 }

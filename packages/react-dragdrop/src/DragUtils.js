@@ -6,8 +6,8 @@
  *
  * @flow
  */
-import type { Node } from 'react';
-import { getEventClientOffset, getDragPreviewOffset } from './OffsetUtils';
+import type {Node} from 'react';
+import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
@@ -32,14 +32,10 @@ export function connectDragSource(node: Node, options: DragOptions) {
 
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   const clientOffset = getEventClientOffset(e);
-  const { dataTransfer } = e;
+  const {dataTransfer} = e;
 
   if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
-    dataTransfer.setDragImage(
-      e.target,
-      clientOffset.x,
-      clientOffset.y,
-    );
+    dataTransfer.setDragImage(e.target, clientOffset.x, clientOffset.y);
   }
   try {
     // Firefox won't drag without setting data

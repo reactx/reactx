@@ -1,11 +1,11 @@
-import type { Node } from 'react';
+import type {Node} from 'react';
 
 export type DragDropManagerType = {|
   getCurrentNode(): Node,
   updateCurrentNode(target: Node): void,
-  |}
+|};
 
-export default function DragDropManager() : DragDropManagerType {
+export default function DragDropManager(): DragDropManagerType {
   let node: Node | null = null;
 
   function getCurrentNode(): Node | null {
@@ -18,6 +18,6 @@ export default function DragDropManager() : DragDropManagerType {
 
   return {
     updateCurrentNode,
-    getCurrentNode
-  }
+    getCurrentNode,
+  };
 }

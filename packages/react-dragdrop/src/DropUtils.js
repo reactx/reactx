@@ -6,14 +6,14 @@
  *
  * @flow
  */
-import type { Node } from 'react';
-import { getEventClientOffset, getDragPreviewOffset } from './OffsetUtils';
+import type {Node} from 'react';
+import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
-    dragOver(e: Node): void,
-      dragEnter(e: Node): void,
-        drop(e: Node): void,
+  dragOver(e: Node): void,
+  dragEnter(e: Node): void,
+  drop(e: Node): void,
 |};
 
 export function connectDropTarget(node: Node, options: DragOptions) {
@@ -36,9 +36,9 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'none'
+    e.dataTransfer.dropEffect = 'none';
   }
-  
+
   if (options.dragOver) {
     options.dragOver(e.target);
   }
@@ -48,7 +48,7 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'copy'
+    e.dataTransfer.dropEffect = 'copy';
   }
 
   if (options.dragEnter) {

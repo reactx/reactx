@@ -7,9 +7,9 @@
  * @flow
  */
 
-import React, { type Element, type Node } from 'react';
-import { connectDragSource } from '../DragUtils';
-import { DragDropContext } from '../ContextManager'
+import React, {type Element, type Node} from 'react';
+import {connectDragSource} from '../DragUtils';
+import {DragDropContext} from '../ContextManager';
 export type DragSourceProps = {
   index: number,
   cssTarget: any,
@@ -28,16 +28,16 @@ export function useDrag() {
 
 export default function DragSource(props: DragSourceProps) {
   const dropEffect = props.clonable ? 'copy' : 'move';
-  
+
   const [dragStart] = useDrag();
   const draggableRef = React.useCallback(node => {
     if (node !== null) {
-      return connectDragSource(node, { dropEffect, dragStart });
+      return connectDragSource(node, {dropEffect, dragStart});
     }
   }, []);
 
   return (
-    <div style={{ display: 'inline', ...props.cssTarget }} ref={draggableRef}>
+    <div style={{display: 'inline', ...props.cssTarget}} ref={draggableRef}>
       {props.children}
     </div>
   );
