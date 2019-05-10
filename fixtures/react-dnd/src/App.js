@@ -1,23 +1,26 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import './App.css';
 
-import { DragSource, DropTarget } from 'react-dragdrop';
+import { DragSource, DropTarget, DragDropProvider } from 'react-dragdrop';
 
+// const A = React.createContext({
+//   current: null
+// });
 function App() {
   return (
-    <>
-    <DragSource>
-      <span>Drag Me!</span>
-    </DragSource>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <div style={{ height: 200, width: 200, backgroundColor: 'red' }}>
-      <DropTarget />
-    </div>
-    </>
+    <DragDropProvider>
+      <DragSource>
+        <span>Drag Me!</span>
+      </DragSource>
+      <br />
+      <br />
+      <br />
+      <br />
+      <DropTarget >
+        <div style={{ height: 200, width: 200, backgroundColor: 'red' }}>
+        </div>
+      </DropTarget >
+    </DragDropProvider>
   );
 }
 

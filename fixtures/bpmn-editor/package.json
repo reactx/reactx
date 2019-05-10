@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react": "link:../../node_modules/react",
+    "react-dom": "link:../../node_modules/react-dom",
+    "react-bpmn": "link:../../build/node_modules/react-bpmn",
     "bpmn-font": "^0.8.0",
     "bpmn-js": "^3.4.1",
     "bpmn-js-properties-panel": "^0.30.0",
-    "camunda-bpmn-moddle": "^3.2.0",
-    "react": "16.9.0-alpha.0",
-    "react-bpmn": "link:../../build/node_modules/react-bpmn",
-    "react-dom": "16.9.0-alpha.0",
-    "react-dragdrop": "link:../../build/node_modules/react-dragdrop",
+    "camunda-bpmn-moddle": "^3.2.0"
+  },
+  "devDependencies": {
     "react-scripts": "^3.0.0"
   },
   "scripts": {

@@ -1,4 +1,4 @@
-/**
+  /**
  * Copyright (c) ReactX and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
@@ -7,27 +7,43 @@
  * @flow
  */
 
-import React, { type Element } from 'react';
+import React, { type Element, type Node } from 'react';
 import { connectDropTarget } from '../DropUtils';
+import { DragDropContext } from '../ContextManager'
 
 export type DropTargetProps = {
   index: number,
   componentType: string,
-  children(): Element<any>,
+  children: Element<any>,
 };
 
-export default function DropTarget(props: DropTargetProps) {
-  const sourceType = props.componentType
-    ? props.componentType
-    : 'UnknownTarget';
+export function useDrop() {
+  const context = React.useContext(DragDropContext);
+  function drop(e: Node) {
+    debugger
+    let a = context.dragDropManager;
+  }
+  function dragEnter(e: Node) {
+    debugger
+    let a = context.getCurrentNode();
+  }
 
-  //TODO: useCallback hook
-  //__EXPERIMENTAL_DND_HOOKS_THAT_MAY_CHANGE_AND_BREAK_MY_BUILD__
-  const droppableRef = node => {
+  function dragOver(e: Node) {
+    debugger
+    let a = context.getCurrentNode();
+  }
+  return [drop, dragOver, dragEnter];
+}
+
+export default function DropTarget(props: DropTargetProps) {
+
+  const [drop, dragOver, dragEnter] = useDrop();
+
+  const droppableRef = React.useCallback(node => {
     if (node !== null) {
-      return connectDropTarget(node, {});
+      return connectDropTarget(node, { drop, dragEnter, dragOver });
     }
-  };
+  },[]);
 
   return <div ref={droppableRef}>{props.children}</div>;
 }

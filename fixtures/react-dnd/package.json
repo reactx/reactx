@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "16.9.0-alpha.0",
-    "react-dom": "16.9.0-alpha.0",
+    "react": "link:../../node_modules/react",
+    "react-dom": "link:../../node_modules/react-dom",
     "react-dragdrop": "link:../../build/node_modules/react-dragdrop",
     "react-scripts": "^3.0.0"
   },

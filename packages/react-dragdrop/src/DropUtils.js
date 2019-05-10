@@ -11,12 +11,15 @@ import { getEventClientOffset, getDragPreviewOffset } from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
+    dragOver(e: Node): void,
+      dragEnter(e: Node): void,
+        drop(e: Node): void,
 |};
 
 export function connectDropTarget(node: Node, options: DragOptions) {
-  const handleDragEnter = (e: DragEvent) => HandleDragEnter(e);
-  const handleDragOver = (e: DragEvent) => HandleDragOver(e);
-  const handleDrop = (e: DragEvent) => HandleDrop(e);
+  const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
+  const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);
+  const handleDrop = (e: DragEvent) => HandleDrop(e, options);
 
   node.addEventListener('dragenter', handleDragEnter);
   node.addEventListener('dragover', handleDragOver);
@@ -29,23 +32,34 @@ export function connectDropTarget(node: Node, options: DragOptions) {
   };
 }
 
-function HandleDragOver(e: DragEvent) {
-  e.preventDefault()
+function HandleDragOver(e: DragEvent, options: DragOptions) {
+  e.preventDefault();
+  //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'copy'
+    e.dataTransfer.dropEffect = 'none'
+  }
+  
+  if (options.dragOver) {
+    options.dragOver(e.target);
   }
 }
 
-function HandleDragEnter(e: DragEvent) {
-  e.preventDefault()
+function HandleDragEnter(e: DragEvent, options: DragOptions) {
+  e.preventDefault();
+  //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     e.dataTransfer.dropEffect = 'copy'
   }
-}
 
+  if (options.dragEnter) {
+    options.dragEnter(e.target);
+  }
+}
 
 function HandleDrop(e: DragEvent, options: DragOptions) {
-  debugger
   e.preventDefault();
-  var data = e.dataTransfer.getData("Text");
+  //TODO: check native and electron, flutter
+  if (options.drop) {
+    options.drop(e.target);
+  }
 }

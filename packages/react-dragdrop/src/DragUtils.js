@@ -6,11 +6,12 @@
  *
  * @flow
  */
-import type {Node} from 'react';
-import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
+import type { Node } from 'react';
+import { getEventClientOffset, getDragPreviewOffset } from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
+  dragStart(e: Node): void,
 |};
 
 export function connectDragSource(node: Node, options: DragOptions) {
@@ -31,7 +32,7 @@ export function connectDragSource(node: Node, options: DragOptions) {
 
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   const clientOffset = getEventClientOffset(e);
-  const {dataTransfer} = e;
+  const { dataTransfer } = e;
 
   if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
     dataTransfer.setDragImage(
@@ -48,6 +49,10 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   } catch (err) {
     // IE doesn't support MIME types in setData
   }
+  //TODO: check native and electron, flutter
   dataTransfer.effectAllowed = options.dropEffect;
-  
+
+  if (options.dragStart) {
+    options.dragStart(e.target);
+  }
 }
