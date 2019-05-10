@@ -9,7 +9,7 @@
 
 import React, {type Element, type Node} from 'react';
 import {connectDropTarget} from '../DropUtils';
-import {DragDropContext} from '../ContextManager';
+// import {DragDropContext} from '../ContextManager';
 
 export type DropTargetProps = {
   index: number,
@@ -18,19 +18,12 @@ export type DropTargetProps = {
 };
 
 export function useDrop() {
-  const context = React.useContext(DragDropContext);
-  function drop(e: Node) {
-    debugger;
-    let a = context.dragDropManager;
-  }
-  function dragEnter(e: Node) {
-    debugger;
-    let a = context.getCurrentNode();
-  }
+  // const context = React.useContext(DragDropContext);
+  function drop(target: Node) {}
+  function dragEnter(target: Node) {}
 
-  function dragOver(e: Node) {
-    debugger;
-    let a = context.getCurrentNode();
+  function dragOver(target: Node) {
+    // let source = context.getCurrentNode();
   }
   return [drop, dragOver, dragEnter];
 }

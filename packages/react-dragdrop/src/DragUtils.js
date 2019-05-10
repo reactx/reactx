@@ -7,7 +7,7 @@
  * @flow
  */
 import type {Node} from 'react';
-import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
+import {getEventClientOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
@@ -29,6 +29,8 @@ export function connectDragSource(node: Node, options: DragOptions) {
     node.setAttribute('draggable', 'false');
   };
 }
+
+function HandleSelectStart(e: DragEvent, options: DragOptions) {}
 
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   const clientOffset = getEventClientOffset(e);

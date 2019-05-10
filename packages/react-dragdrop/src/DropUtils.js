@@ -7,7 +7,6 @@
  * @flow
  */
 import type {Node} from 'react';
-import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
