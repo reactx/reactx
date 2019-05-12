@@ -11,6 +11,8 @@ function App() {
     <DragDropProvider>
       <DragSource>
         <span>Drag Me!</span>
+        <span>Drag Me!</span>
+        <span>Drag Me!</span>
       </DragSource>
       <br />
       <br />
