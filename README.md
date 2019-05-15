@@ -4,3 +4,25 @@
 [![CircleCI Status](https://circleci.com/gh/facebook/react.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/reactx/reactx)
 
 Amazingly React components for ReactDOM and React Native with next level abstraction!
+
+## Installation
+ReactX has been designed for gradual adoption from the start, and you can use as little or as much as you need:
+
+ - use [online playground](https://codesandbox.io) to get a taste of ReactX [comming soon].
+
+ ## Documentation
+ You can find the React documentation [on the website](https://github.com/reactx/Documentation) (Comming soon)
+
+ Check out the Getting Started page for a quick overview.
+
+The documentation is divided into several sections:
+
+ - (Tutorial)[https://github.com/reactx/Documentation]
+ - (Advanced Guides)[https://github.com/reactx/Documentation]
+ - (API Reference)[https://github.com/reactx/Documentation]
+ - (Where to Get Support)[https://github.com/reactx/Documentation]
+ - (Contributing Guide)[https://github.com/reactx/Documentation]
+
+
+License
+ReactX is [MIT licensed](https://github.com/reactx/reactx/blob/master/LICENSE).
