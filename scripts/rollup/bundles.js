@@ -26,37 +26,37 @@ const COMPONENT = moduleTypes.COMPONENT;
 const UI = moduleTypes.UI;
 
 const bundles = [
-  /******* React Components (experimental) *******/
-  {
-    bundleTypes: [
-      UMD_DEV,
-      UMD_PROD,
-      NODE_DEV,
-      NODE_PROD,
-      RN_OSS_DEV,
-      RN_OSS_PROD,
-    ],
-    moduleType: COMPONENT,
-    entry: 'react-components',
-    global: 'ReactComponents',
-    externals: ['react', 'react-dom'],
-  },
-  /******* React SVG Components (experimental) *******/
-  {
-    bundleTypes: [
-      UMD_DEV,
-      UMD_PROD,
-      NODE_DEV,
-      NODE_PROD,
-      RN_OSS_DEV,
-      RN_OSS_PROD,
-    ],
-    moduleType: COMPONENT,
-    entry: 'react-svg-components',
-    global: 'ReactSVG',
-    externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
-  },
-  /******* Drag And Drop (experimental) *******/
+  // /******* React Components (experimental) *******/
+  // {
+  //   bundleTypes: [
+  //     UMD_DEV,
+  //     UMD_PROD,
+  //     NODE_DEV,
+  //     NODE_PROD,
+  //     RN_OSS_DEV,
+  //     RN_OSS_PROD,
+  //   ],
+  //   moduleType: COMPONENT,
+  //   entry: 'react-components',
+  //   global: 'ReactComponents',
+  //   externals: ['react', 'react-dom'],
+  // },
+  // /******* React SVG Components (experimental) *******/
+  // {
+  //   bundleTypes: [
+  //     UMD_DEV,
+  //     UMD_PROD,
+  //     NODE_DEV,
+  //     NODE_PROD,
+  //     RN_OSS_DEV,
+  //     RN_OSS_PROD,
+  //   ],
+  //   moduleType: COMPONENT,
+  //   entry: 'react-svg-components',
+  //   global: 'ReactSVG',
+  //   externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
+  // },
+  // /******* Drag And Drop (experimental) *******/
   {
     bundleTypes: [UMD_DEV, UMD_PROD, NODE_DEV, NODE_PROD],
     moduleType: UI,
@@ -64,36 +64,36 @@ const bundles = [
     global: 'ReactDnD',
     externals: ['react', 'react-dom'],
   },
-  /******* Viewer (experimental) *******/
-  {
-    bundleTypes: [
-      UMD_DEV,
-      UMD_PROD,
-      NODE_DEV,
-      NODE_PROD,
-      RN_OSS_DEV,
-      RN_OSS_PROD,
-    ],
-    moduleType: COMPONENT,
-    entry: 'react-viewer-components',
-    global: 'ReactViewer',
-    externals: ['react', 'react-dom'],
-  },
-  /******* BPMN based on bpmn.io *******/
-  {
-    bundleTypes: [
-      UMD_DEV,
-      UMD_PROD,
-      NODE_DEV,
-      NODE_PROD,
-      RN_OSS_DEV,
-      RN_OSS_PROD,
-    ],
-    moduleType: COMPONENT,
-    entry: 'react-bpmn',
-    global: 'ReactBPMN',
-    externals: ['react', 'react-dom', 'bpmn-js/lib/Modeler'],
-  },
+  // /******* Viewer (experimental) *******/
+  // {
+  //   bundleTypes: [
+  //     UMD_DEV,
+  //     UMD_PROD,
+  //     NODE_DEV,
+  //     NODE_PROD,
+  //     RN_OSS_DEV,
+  //     RN_OSS_PROD,
+  //   ],
+  //   moduleType: COMPONENT,
+  //   entry: 'react-viewer-components',
+  //   global: 'ReactViewer',
+  //   externals: ['react', 'react-dom'],
+  // },
+  // /******* BPMN based on bpmn.io *******/
+  // {
+  //   bundleTypes: [
+  //     UMD_DEV,
+  //     UMD_PROD,
+  //     NODE_DEV,
+  //     NODE_PROD,
+  //     RN_OSS_DEV,
+  //     RN_OSS_PROD,
+  //   ],
+  //   moduleType: COMPONENT,
+  //   entry: 'react-bpmn',
+  //   global: 'ReactBPMN',
+  //   externals: ['react', 'react-dom', 'bpmn-js/lib/Modeler'],
+  // },
 ];
 
 // Based on deep-freeze by substack (public domain)

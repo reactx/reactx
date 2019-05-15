@@ -7,10 +7,10 @@
  * @flow
  */
 
-import React, {type Element, type Node} from 'react';
-import {connectDropTarget} from '../DropUtils';
+import React, { type Element, type Node } from 'react';
+import { connectDropTarget } from '../DropUtils';
 import { DragDropContext } from '../ContextManager';
-import { FindReactElement} from '../ElementUtils';
+import { FindReactElement } from '../ElementUtils';
 
 export type DropTargetProps = {
   index: number,
@@ -18,42 +18,46 @@ export type DropTargetProps = {
   children: Element<any>,
 };
 
-export function useDrop(childrens) {
+var index = 1;
+
+export function useDrop(target) {
   const context = React.useContext(DragDropContext);
-  const [children, setChildren] = React.useState((childrens));
+  const [children, setChildren] = React.useState(target);
   function drop(e: Node) {
     debugger;
-    let a = context.dragDropManager;
-  }
-  var index = 1;
-  function dragEnter(e: Node) {
-    debugger;
-    let a = context.getCurrentNode();
-    let reactNode = FindReactElement(a);
-    // React.Children.map(FindReactElement(e.parentElement).memoizedProps.children, child => {
-    let newelement = React.cloneElement(
-      reactNode,
+    
+    const currentReactNode = FindReactElement(context.getCurrentNode());
+    const newReactEmenet = React.cloneElement(
+      currentReactNode,
       {
         key: ++index,
         ref: (node) => {
-          const { ref } = reactNode;
+          const { ref } = currentReactNode;
           if (typeof ref === 'function') {
             ref(node);
           }
         }
       },
-      [...reactNode.memoizedProps.children]
+      [...currentReactNode.memoizedProps.children]
     );
 
-    childrens = [].concat(([].concat(FindReactElement(e.parentElement).memoizedProps.children),[].concat(childrens)),newelement)
-    setChildren(childrens);
+    const preparedTarget = React.Children.map(target, Target => {
+      let elements = React.Children.toArray(FindReactElement(e).memoizedProps.children);
+      //TODO: define target based on offset
+      return React.cloneElement(Target, { children: [...elements, newReactEmenet] });
+    });
+
+    setChildren(preparedTarget);
+  }
+  function dragEnter(e: Node) {
+    // debugger;
+    //  e.preventDefaultValue();
     // })
     // connectDropTarget(newelement.ref, { drop, dragEnter, dragOver });
   }
 
-  function dragOver(e: Node) {
-    debugger;
-    let a = context.getCurrentNode();
+  function dragOver(event: Node) {
+    // event.preventDefault();
   }
   return [drop, dragOver, dragEnter, children];
 }
@@ -68,5 +72,5 @@ export default function DropTarget(props: DropTargetProps) {
   }, []);
 
   return <div ref={droppableRef}>{children}</div>;
-   
+
 }

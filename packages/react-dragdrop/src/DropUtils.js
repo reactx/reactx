@@ -32,10 +32,11 @@ export function connectDropTarget(node: Node, options: DragOptions) {
 }
 
 function HandleDragOver(e: DragEvent, options: DragOptions) {
+  // Show user-specified drop effect.
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'none';
+    e.dataTransfer.dropEffect = 'move';
   }
 
   if (options.dragOver) {
@@ -47,7 +48,7 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'copy';
+    e.dataTransfer.dropEffect = 'move';
   }
 
   if (options.dragEnter) {
