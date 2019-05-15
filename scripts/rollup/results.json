@@ -60,29 +60,29 @@
       "filename": "react-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-dragdrop",
-      "size": 20995,
-      "gzip": 6095
+      "size": 22045,
+      "gzip": 6371
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-dragdrop",
-      "size": 6373,
-      "gzip": 2724
+      "size": 6840,
+      "gzip": 2915
     },
     {
       "filename": "react-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dragdrop",
-      "size": 20814,
-      "gzip": 6058
+      "size": 21864,
+      "gzip": 6333
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-dragdrop",
-      "size": 6197,
-      "gzip": 2665
+      "size": 6665,
+      "gzip": 2851
     },
     {
       "filename": "react-viewer-components.development.js",
@@ -116,29 +116,29 @@
       "filename": "react-bpmn.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-bpmn",
-      "size": 3908,
-      "gzip": 1617
+      "size": 4113,
+      "gzip": 1675
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-bpmn",
-      "size": 1882,
-      "gzip": 1001
+      "size": 1924,
+      "gzip": 1027
     },
     {
       "filename": "react-bpmn.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-bpmn",
-      "size": 3690,
-      "gzip": 1560
+      "size": 3895,
+      "gzip": 1619
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-bpmn",
-      "size": 1664,
-      "gzip": 915
+      "size": 1706,
+      "gzip": 944
     }
   ]
 }

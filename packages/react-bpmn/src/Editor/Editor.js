@@ -12,21 +12,22 @@ import BpmnModeler from 'bpmn-js/lib/Modeler';
 
 type EditorOptions = {|
   keyboard: any,
-  additionalModules: any[],
-  moddleExtensions: any,
+    additionalModules: any[],
+      moddleExtensions: any,
 |};
 
 type EditorProps = {|
   id: string,
-  showPropPanel: boolean,
-  options: EditorOptions,
-  cssViewer: any,
-  cssProperty: any,
-  onInitialize(): () => {},
+    showPropPanel: boolean,
+      options: EditorOptions,
+        cssViewer: any,
+          cssProperty: any,
+            onInitialize(): () => { },
 |};
 
 export default function Editor(props: EditorProps) {
   let container = props.id || '_bpmnviewer';
+  const [modeler, setModeler] = React.useState(null);
 
   let options = {
     ...props.options,
@@ -41,11 +42,14 @@ export default function Editor(props: EditorProps) {
 
   const draggableRef = node => {
     if (node !== null) {
-      // This is hacky but makes it work with Rollup.
-      let ModelerClass = BpmnModeler.default || BpmnModeler;
-      const modeler = new ModelerClass(options);
-      if (props.onInitialize) {
-        props.onInitialize(modeler);
+      if (!modeler) {
+        // This is hacky but makes it work with Rollup.
+        let ModelerClass = BpmnModeler.default || BpmnModeler;
+        let tempModeler = new ModelerClass(options);
+        setModeler(tempModeler);
+        if (props.onInitialize) {
+          props.onInitialize(tempModeler);
+        }
       }
     }
   };
