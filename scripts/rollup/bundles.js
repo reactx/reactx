@@ -26,59 +26,59 @@ const COMPONENT = moduleTypes.COMPONENT;
 const UI = moduleTypes.UI;
 
 const bundles = [
-  // /******* React Components (experimental) *******/
-  // {
-  //   bundleTypes: [
-  //     UMD_DEV,
-  //     UMD_PROD,
-  //     NODE_DEV,
-  //     NODE_PROD,
-  //     RN_OSS_DEV,
-  //     RN_OSS_PROD,
-  //   ],
-  //   moduleType: COMPONENT,
-  //   entry: 'react-components',
-  //   global: 'ReactComponents',
-  //   externals: ['react', 'react-dom'],
-  // },
-  // /******* React SVG Components (experimental) *******/
-  // {
-  //   bundleTypes: [
-  //     UMD_DEV,
-  //     UMD_PROD,
-  //     NODE_DEV,
-  //     NODE_PROD,
-  //     RN_OSS_DEV,
-  //     RN_OSS_PROD,
-  //   ],
-  //   moduleType: COMPONENT,
-  //   entry: 'react-svg-components',
-  //   global: 'ReactSVG',
-  //   externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
-  // },
-  // /******* Drag And Drop (experimental) *******/
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD, NODE_DEV, NODE_PROD],
-  //   moduleType: UI,
-  //   entry: 'react-dragdrop',
-  //   global: 'ReactDnD',
-  //   externals: ['react', 'react-dom'],
-  // },
-  // /******* Viewer (experimental) *******/
-  // {
-  //   bundleTypes: [
-  //     UMD_DEV,
-  //     UMD_PROD,
-  //     NODE_DEV,
-  //     NODE_PROD,
-  //     RN_OSS_DEV,
-  //     RN_OSS_PROD,
-  //   ],
-  //   moduleType: COMPONENT,
-  //   entry: 'react-viewer-components',
-  //   global: 'ReactViewer',
-  //   externals: ['react', 'react-dom'],
-  // },
+  /******* React Components (experimental) *******/
+  {
+    bundleTypes: [
+      UMD_DEV,
+      UMD_PROD,
+      NODE_DEV,
+      NODE_PROD,
+      RN_OSS_DEV,
+      RN_OSS_PROD,
+    ],
+    moduleType: COMPONENT,
+    entry: 'react-components',
+    global: 'ReactComponents',
+    externals: ['react', 'react-dom'],
+  },
+  /******* React SVG Components (experimental) *******/
+  {
+    bundleTypes: [
+      UMD_DEV,
+      UMD_PROD,
+      NODE_DEV,
+      NODE_PROD,
+      RN_OSS_DEV,
+      RN_OSS_PROD,
+    ],
+    moduleType: COMPONENT,
+    entry: 'react-svg-components',
+    global: 'ReactSVG',
+    externals: ['react', 'react-dom', 'react-dom/server', 'prop-types'],
+  },
+  /******* Drag And Drop (experimental) *******/
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD, NODE_DEV, NODE_PROD],
+    moduleType: UI,
+    entry: 'react-dragdrop',
+    global: 'ReactDnD',
+    externals: ['react', 'react-dom'],
+  },
+  /******* Viewer (experimental) *******/
+  {
+    bundleTypes: [
+      UMD_DEV,
+      UMD_PROD,
+      NODE_DEV,
+      NODE_PROD,
+      RN_OSS_DEV,
+      RN_OSS_PROD,
+    ],
+    moduleType: COMPONENT,
+    entry: 'react-viewer-components',
+    global: 'ReactViewer',
+    externals: ['react', 'react-dom'],
+  },
   /******* BPMN based on bpmn.io *******/
   {
     bundleTypes: [
