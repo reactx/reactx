@@ -1,14 +1,14 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 
-import { Editor } from 'react-bpmn';
+import {Editor} from 'react-bpmn';
 import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css';
 import 'bpmn-js/dist/assets/diagram-js.css';
 import 'bpmn-font/dist/css/bpmn-embedded.css';
 import propertiesPanelModule from 'bpmn-js-properties-panel';
 import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
 import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda';
-import { emptyBpmn } from './empty';
+import {emptyBpmn} from './empty';
 
 function App() {
   let modeler = null;
@@ -32,12 +32,9 @@ function App() {
 
       modeler.get('canvas').zoom('fit-viewport');
       //item added after drop
-      modeler.on('shape.added', (e) => {
-      });
+      modeler.on('shape.added', e => {});
       //item removed
-      modeler.on('shape.removed', (e) => {
-
-      });
+      modeler.on('shape.removed', e => {});
     });
   }
 
@@ -51,8 +48,8 @@ function App() {
         options={options}
         onInitialize={Init}
         // showPropPanel={true}
-        cssViewer={{ width: '100%', height: '98vh', float: 'left' }}
-      // cssProperty={{ width: '25%', height: '98vh', float: 'right', maxHeight: '98vh', overflowX: 'auto' }}
+        cssViewer={{width: '100%', height: '98vh', float: 'left'}}
+        // cssProperty={{ width: '25%', height: '98vh', float: 'right', maxHeight: '98vh', overflowX: 'auto' }}
       />
     </div>
   );

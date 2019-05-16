@@ -6,12 +6,12 @@
  *
  * @flow
  */
-import type { Node } from 'react';
-import { getEventClientOffset } from './OffsetUtils';
+import type {Node} from 'react';
+import {getEventClientOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dropEffect: string,
-    dragStart(e: Node): void,
+  dragStart(e: Node): void,
 |};
 
 export function connectDragSource(node: Node, options: DragOptions) {
@@ -30,13 +30,13 @@ export function connectDragSource(node: Node, options: DragOptions) {
   };
 }
 
-function HandleSelectStart(e: DragEvent, options: DragOptions) { }
+function HandleSelectStart(e: DragEvent, options: DragOptions) {}
 
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   // We'll handle this event so first stop bubbling up
   e.stopPropagation();
   const clientOffset = getEventClientOffset(e);
-  const { dataTransfer } = e;
+  const {dataTransfer} = e;
 
   try {
     // Firefox won't drag without setting data
@@ -48,7 +48,7 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   }
   //TODO: check native and electron, flutter
   // Now setup our dataTransfer object properly
-  // First we'll allow a move action — this is used for the cursor
+  // First we'll allow a move action this is used for the cursor
   e.dataTransfer.effectAllowed = options.dropEffect || 'move';
 
   if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {

@@ -1,4 +1,4 @@
-import React, {useCallback, useContext} from 'react';
+import React from 'react';
 import './App.css';
 
 import {DragSource, DropTarget, DragDropProvider} from 'react-dragdrop';
@@ -15,8 +15,7 @@ function App() {
         <span>Drag Me!</span>
       </DragSource>
       <DragSource>
-        <span style={{backgroundColor:'white'}}>Drag Me Too!</span>
-
+        <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
       </DragSource>
       <br />
       <br />

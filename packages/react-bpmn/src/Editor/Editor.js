@@ -12,17 +12,17 @@ import BpmnModeler from 'bpmn-js/lib/Modeler';
 
 type EditorOptions = {|
   keyboard: any,
-    additionalModules: any[],
-      moddleExtensions: any,
+  additionalModules: any[],
+  moddleExtensions: any,
 |};
 
 type EditorProps = {|
   id: string,
-    showPropPanel: boolean,
-      options: EditorOptions,
-        cssViewer: any,
-          cssProperty: any,
-            onInitialize(): () => { },
+  showPropPanel: boolean,
+  options: EditorOptions,
+  cssViewer: any,
+  cssProperty: any,
+  onInitialize(): () => {},
 |};
 
 export default function Editor(props: EditorProps) {
