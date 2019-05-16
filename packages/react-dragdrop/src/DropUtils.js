@@ -6,16 +6,14 @@
  *
  * @flow
  */
-import type {Node} from 'react';
-
-type DragOptions = {|
+export type DragOptions = {|
   dropEffect: string,
-  dragOver(e: Node): void,
-  dragEnter(e: Node): void,
-  drop(e: Node): void,
+  dragOver(e: EventTarget): void,
+  dragEnter(e: EventTarget): void,
+  drop(e: EventTarget): void,
 |};
 
-export function connectDropTarget(node: Node, options: DragOptions) {
+export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);
   const handleDrop = (e: DragEvent) => HandleDrop(e, options);

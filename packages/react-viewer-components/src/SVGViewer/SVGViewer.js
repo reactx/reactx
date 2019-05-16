@@ -8,6 +8,6 @@
  */
 
 import React from 'react';
-export default function SVGViewer(props) {
+export default function SVGViewer(props: any) {
   return <div>{props.children}</div>;
 }

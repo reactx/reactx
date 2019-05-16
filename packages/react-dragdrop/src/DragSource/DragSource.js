@@ -7,19 +7,20 @@
  * @flow
  */
 
-import React, {type Element, type Node} from 'react';
+import React, {type Element as RElement} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {DragDropContext} from '../ContextManager';
 export type DragSourceProps = {
   index: number,
   cssTarget: any,
-  children: Element<any>,
+  children: RElement<any>,
+  handler?: Element,
   clonable: boolean,
 };
 
 export function useDrag() {
   const context = React.useContext(DragDropContext);
-  function dragStart(e: Node) {
+  function dragStart(e: EventTarget) {
     context.updateCurrentNode(e);
   }
 
@@ -32,7 +33,11 @@ export default function DragSource(props: DragSourceProps) {
   const [dragStart] = useDrag();
   const draggableRef = React.useCallback(node => {
     if (node !== null) {
-      return connectDragSource(node, {dropEffect, dragStart});
+      return connectDragSource(node, {
+        dropEffect,
+        dragStart,
+        dragImage: props.handler,
+      });
     }
   }, []);
 

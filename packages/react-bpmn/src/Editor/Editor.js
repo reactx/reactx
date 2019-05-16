@@ -14,6 +14,7 @@ type EditorOptions = {|
   keyboard: any,
   additionalModules: any[],
   moddleExtensions: any,
+  propertiesPanel: any,
 |};
 
 type EditorProps = {|
@@ -22,7 +23,7 @@ type EditorProps = {|
   options: EditorOptions,
   cssViewer: any,
   cssProperty: any,
-  onInitialize(): () => {},
+  onInitialize(modeler: any): () => {},
 |};
 
 export default function Editor(props: EditorProps) {

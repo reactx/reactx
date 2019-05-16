@@ -7,20 +7,22 @@
  * @flow
  */
 
-import React, {type Element, type Node} from 'react';
+import React, {type Element} from 'react';
 import {connectDropTarget} from '../DropUtils';
 import {DragDropContext} from '../ContextManager';
 import {FindReactElement} from '../ElementUtils';
+import type {DragDropManagerType} from '../DragDropManager';
 
-export type DropTargetProps = {
+export type DropTargetProps = {|
   index: number,
   componentType: string,
   children: Element<any>,
-};
+  dropEffect: string,
+|};
 
-export function useDrop(context, stateCallback) {
+export function useDrop(context: DragDropManagerType, stateCallback: Function) {
   let index = 1;
-  function drop(e: Node) {
+  function drop(event: EventTarget) {
     const currentReactNode = FindReactElement(context.getCurrentNode());
     const newReactEmenet = React.cloneElement(
       currentReactNode,
@@ -38,14 +40,14 @@ export function useDrop(context, stateCallback) {
 
     stateCallback(newReactEmenet);
   }
-  function dragEnter(e: Node) {
+  function dragEnter(event: EventTarget) {
     // debugger;
     //  e.preventDefaultValue();
     // })
     // connectDropTarget(newelement.ref, { drop, dragEnter, dragOver });
   }
 
-  function dragOver(event: Node) {
+  function dragOver(event: EventTarget) {
     // event.preventDefault();
   }
   return [drop, dragOver, dragEnter];
@@ -69,7 +71,12 @@ export default function DropTarget(props: DropTargetProps) {
   const droppableRef = React.useCallback(node => {
     if (node !== null) {
       const [drop, dragOver, dragEnter] = useDrop(context, stateCallback);
-      return connectDropTarget(node, {drop, dragEnter, dragOver});
+      return connectDropTarget(node, {
+        drop,
+        dragEnter,
+        dragOver,
+        dropEffect: props.dropEffect || 'move',
+      });
     }
   }, []);
 

@@ -6,17 +6,17 @@
  *
  * @flow
  */
-import type {Node} from 'react';
 import {getEventClientOffset} from './OffsetUtils';
 
 type DragOptions = {|
+  dragImage?: Element,
   dropEffect: string,
-  dragStart(e: Node): void,
+  dragStart(e: EventTarget): void,
 |};
 
-export function connectDragSource(node: Node, options: DragOptions) {
+export function connectDragSource(node: Element, options: DragOptions) {
   const handleDragStart = (e: any) => HandleDragStart(e, options);
-  const handleSelectStart = (e: any) => HandleSelectStart(e);
+  const handleSelectStart = (e: any) => HandleSelectStart(e, options);
 
   node.setAttribute('draggable', 'true');
   node.addEventListener('dragstart', handleDragStart);
@@ -41,18 +41,25 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   try {
     // Firefox won't drag without setting data
     if (dataTransfer) {
-      dataTransfer.dataTransfer.setData('application/json', {});
+      dataTransfer.setData('plain/text', 'dummmy_data');
     }
   } catch (err) {
     // IE doesn't support MIME types in setData
   }
-  //TODO: check native and electron, flutter
-  // Now setup our dataTransfer object properly
-  // First we'll allow a move action this is used for the cursor
-  e.dataTransfer.effectAllowed = options.dropEffect || 'move';
 
-  if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
-    dataTransfer.setDragImage(e.target, clientOffset.x, clientOffset.y);
+  if (dataTransfer) {
+    //TODO: check native and electron, flutter
+    // Now setup our dataTransfer object properly
+    // First we'll allow a move action this is used for the cursor
+    dataTransfer.effectAllowed = options.dropEffect || 'move';
+
+    if (typeof dataTransfer.setDragImage === 'function') {
+      dataTransfer.setDragImage(
+        options.dragImage || (e.target: any),
+        clientOffset.x,
+        clientOffset.y,
+      );
+    }
   }
 
   if (options.dragStart) {

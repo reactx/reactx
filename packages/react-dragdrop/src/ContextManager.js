@@ -7,13 +7,14 @@
  * @flow
  */
 
-import React from 'react';
-import DragDropManager from './DragDropManager';
+import React, {type Portal, type Element} from 'react';
+import DragDropManager, {type DragDropManagerType} from './DragDropManager';
+
 type DragDropProviderProps = {|
-  children: Element<any>,
+  children: Element<any> | Portal,
 |};
 
-export const DragDropContext = React.createContext({});
+export const DragDropContext = React.createContext<DragDropManagerType>({});
 export default function DragDropProvider(props: DragDropProviderProps) {
   const manager = DragDropManager();
   return (
