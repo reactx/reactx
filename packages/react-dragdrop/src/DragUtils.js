@@ -30,7 +30,30 @@ export function connectDragSource(node: Element, options: DragOptions) {
   };
 }
 
-function HandleSelectStart(e: DragEvent, options: DragOptions) {}
+function HandleSelectStart(e: DragEvent, options: DragOptions) {
+  const target: any = e.target;
+
+  // Only IE requires us to explicitly say
+  // we want drag drop operation to start
+  if (typeof target.dragDrop !== 'function') {
+    return;
+  }
+
+  // Inputs and textareas should be selectable
+  if (
+    target.tagName === 'INPUT' ||
+    target.tagName === 'SELECT' ||
+    target.tagName === 'TEXTAREA' ||
+    target.isContentEditable
+  ) {
+    return;
+  }
+
+  // For other targets, ask IE
+  // to enable drag and drop
+  e.preventDefault();
+  target.dragDrop();
+}
 
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   // We'll handle this event so first stop bubbling up

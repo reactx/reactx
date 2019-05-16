@@ -4,17 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *
  */
 
 import React, {type Portal, type Element} from 'react';
-import DragDropManager, {type DragDropManagerType} from './DragDropManager';
+import DragDropManager from './DragDropManager';
 
 type DragDropProviderProps = {|
   children: Element<any> | Portal,
 |};
 
-export const DragDropContext = React.createContext<DragDropManagerType>({});
+export const DragDropContext = React.createContext({});
 export default function DragDropProvider(props: DragDropProviderProps) {
   const manager = DragDropManager();
   return (

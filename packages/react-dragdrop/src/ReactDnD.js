@@ -13,14 +13,11 @@ export type XYCoord = {|
 
 import DragSource from './DragSource/DragSource';
 import DropTarget from './DropTarget/DropTarget';
-import Setup, {Teardown} from './HTML5Backend';
 import DragDropProvider from './ContextManager';
 
 const ReactDnD = {
   DragSource,
   DropTarget,
-  Setup,
-  Teardown,
   DragDropProvider,
   // DragDropContext,
   // DragDropConsumer,
