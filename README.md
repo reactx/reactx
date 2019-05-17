@@ -10,6 +10,14 @@ ReactX has been designed for gradual adoption from the start, and you can use as
 
  - use [online playground](https://codesandbox.io) to get a taste of ReactX [comming soon].
 
+## Run in Docker
+Follow these steps:
+```
+ $docker image build -t reactx:app .
+ 
+ $docker container run -it -v $(pwd):/app reactx:app [command]
+```
+
  ## Documentation
  You can find the React documentation [on the website](https://github.com/reactx/Documentation) (Comming soon)
 
