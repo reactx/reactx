@@ -1,4 +1,4 @@
-From node:10
+FROM node:10
 
 ADD yarn.lock /yarn.lock
 
