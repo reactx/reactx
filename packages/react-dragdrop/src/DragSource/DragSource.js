@@ -16,34 +16,57 @@ export type DragSourceProps = {
   children: RElement<any>,
   handler?: Element,
   clonable: boolean,
+  onDragStart(e: EventTarget): void,
 };
 
-export function useDrag() {
+export function useDrag(props) {
   const context = React.useContext(DragDropContext);
   function dragStart(e: EventTarget) {
-    context.updateCurrentNode(e);
+    if (typeof context.updateCurrentNode === 'function') {
+      context.updateCurrentNode(e);
+    }
+
+    if (props.onDragStart) {
+      props.onDragStart(e);
+    }
   }
 
   return [dragStart];
 }
 
-export default function DragSource(props: DragSourceProps) {
+function Component(props: DragSourceProps) {
   const dropEffect = props.clonable ? 'copy' : 'move';
 
-  const [dragStart] = useDrag();
-  const draggableRef = React.useCallback(node => {
+  const [dragStart] = useDrag(props);
+
+  const refDraggable = React.useCallback(node => {
     if (node !== null) {
-      return connectDragSource(node, {
+      if (props.forwardedRef) {
+        props.forwardedRef.current = node;
+      }
+
+      connectDragSource(node, {
         dropEffect,
         dragStart,
         dragImage: props.handler,
       });
     }
+    return node;
   }, []);
 
   return (
-    <div style={{display: 'inline', ...props.cssTarget}} ref={draggableRef}>
+    <div style={{display: 'inline', ...props.cssTarget}} ref={refDraggable}>
       {props.children}
     </div>
   );
 }
+
+const DragSource = React.forwardRef((props: DragSourceProps, ref) => {
+  return (
+    <Component {...props} forwardedRef={ref}>
+      {props.children}
+    </Component>
+  );
+});
+
+export default DragSource;

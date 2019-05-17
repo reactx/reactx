@@ -41,7 +41,6 @@ export function useDrop(context: DragDropManagerType, stateCallback: Function) {
     stateCallback(newReactEmenet);
   }
   function dragEnter(event: EventTarget) {
-    // debugger;
     //  e.preventDefaultValue();
     // })
     // connectDropTarget(newelement.ref, { drop, dragEnter, dragOver });

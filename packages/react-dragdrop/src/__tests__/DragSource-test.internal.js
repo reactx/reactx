@@ -10,14 +10,11 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {configure} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {DragSource} from 'react-dragdrop';
-
-configure({adapter: new Adapter()});
+import {DragSource, DragDropProvider} from 'react-dragdrop';
+import renderer from 'react-test-renderer';
 
 describe('while running in a browser environment', () => {
-  let container;
+  let container, wrapper;
 
   beforeEach(() => {
     jest.resetModules();
@@ -33,18 +30,75 @@ describe('while running in a browser environment', () => {
   });
 
   it('should render correctly', () => {
-    // let ref = React.createRef();
-    function App() {
-      return (
+    wrapper = renderer
+      .create(
         <div>
-          <DragSource index={1} componentType="ITEM">
-            <div>Drag Me!</div>
+          <DragSource>
+            <span>Drag Me!</span>
           </DragSource>
-        </div>
-      );
-    }
-    ReactDOM.render(<App />, container);
+        </div>,
+      )
+      .toJSON();
 
-    // expect(wrapper.html()).toMatchPrettyHtmlSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render correctly with provider', () => {
+    wrapper = renderer
+      .create(
+        <DragDropProvider>
+          <DragSource>
+            <span>Drag Me!</span>
+          </DragSource>
+        </DragDropProvider>,
+      )
+      .toJSON();
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should multiple and nested render correctly', () => {
+    wrapper = renderer
+      .create(
+        <div>
+          <DragSource>
+            <div>
+              <span>Drag Me!</span>
+              <DragSource>
+                <span>Drag Me!</span>
+              </DragSource>
+            </div>
+          </DragSource>
+          <DragSource>
+            <span>Drag Me!</span>
+          </DragSource>
+        </div>,
+      )
+      .toJSON();
+
+    expect(wrapper).toMatchSnapshot();
+  });
+  describe('while running in a browser environment', () => {
+    it('should support onDragStart', () => {
+      let divRef = React.createRef();
+      let handleOnDragStart = jest.fn();
+
+      function Component() {
+        return (
+          <DragDropProvider>
+            <DragSource ref={divRef} onDragStart={handleOnDragStart}>
+              <div>Drag me!</div>
+            </DragSource>
+          </DragDropProvider>
+        );
+      }
+
+      ReactDOM.render(<Component />, container);
+
+      const mouseOverEvent = document.createEvent('Event');
+      mouseOverEvent.initEvent('dragstart', true, true);
+      divRef.current.dispatchEvent(mouseOverEvent);
+      expect(handleOnDragStart).toHaveBeenCalledTimes(1);
+    });
   });
 });

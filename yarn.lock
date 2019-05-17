@@ -10068,7 +10068,7 @@ react-svg@^9.0.4:
     "@tanem/svg-injector" "^7.0.17"
     prop-types "^15.7.2"
 
-react-test-renderer@^16.0.0-0:
+react-test-renderer@^16.0.0-0, react-test-renderer@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.8.6.tgz#188d8029b8c39c786f998aa3efd3ffe7642d5ba1"
   dependencies:
