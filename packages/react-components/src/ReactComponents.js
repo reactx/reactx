@@ -7,8 +7,10 @@
  * @flow
  */
 
-'use strict';
+import Sidebar from './Sidebar/Sidebar';
 
-const Alert = require('./src/Alert/Alert');
+const ReactComponents = {
+  Sidebar,
+};
 
-module.exports = Alert.default || Alert;
+export default ReactComponents;

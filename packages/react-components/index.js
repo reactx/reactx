@@ -6,5 +6,9 @@
  *
  * @flow
  */
+'use strict';
 
-export {default as Alert} from './src/Alert/Alert';
+const ReactComponents = require('./src/ReactComponents');
+
+// This is hacky but makes it work with both Rollup and Jest.
+module.exports = ReactComponents.default || ReactComponents;
