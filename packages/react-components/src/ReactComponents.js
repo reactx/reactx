@@ -7,7 +7,7 @@
  * @flow
  */
 
-import Sidebar from './Sidebar/Sidebar';
+import Sidebar from './SideBar/SideBar';
 
 const ReactComponents = {
   Sidebar,
