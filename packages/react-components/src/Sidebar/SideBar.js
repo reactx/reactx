@@ -11,10 +11,10 @@ import defaultStyles from './styles';
 
 type StylesType = {|
   sidebar: any,
-  content: any,
-  overlay: any,
-  root: any,
-  dragHandle: any,
+    content: any,
+      overlay: any,
+        root: any,
+          dragHandle: any,
 |};
 
 type SidebarProps = {
@@ -64,8 +64,8 @@ type SidebarProps = {
 
 type TouchStateType = {|
   touchStartX: number,
-  sidebarWidth: number,
-  touchCurrentX: number,
+    sidebarWidth: number,
+      touchCurrentX: number,
 |};
 
 type DefaultSidebarProps = {
@@ -160,7 +160,7 @@ function OnTouchEnd(
   //   touchCurrentX: null
   // });
 }
-function OnScroll() {}
+function OnScroll() { }
 
 function createDefaultProps(): DefaultSidebarProps {
   return {
@@ -172,17 +172,18 @@ function createDefaultProps(): DefaultSidebarProps {
     pullRight: false,
     shadow: true,
     dragToggleDistance: 30,
-    onSetOpen: () => {},
+    onSetOpen: () => { },
     styles: {},
     defaultSidebarWidth: 0,
   };
 }
 
 export default function SideBar(userProps: SidebarProps) {
-  let props: TaskProps = Object.assign(
+  debugger
+  const props: TaskProps = Object.assign(
     {},
-    {...createDefaultProps()},
-    {...userProps},
+    { ...createDefaultProps() },
+    { ...userProps },
   );
 
   const [dragSupported, setDragSupported] = React.useState(false);
@@ -193,13 +194,13 @@ export default function SideBar(userProps: SidebarProps) {
   const [touchStartX, setTouchStartX] = React.useState(null);
   const [touchCurrentX, setTouchCurrentX] = React.useState(null);
 
-  React.useEffect(()=>{
-    const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : "");
-    setDragSupported(typeof window === "object" && "ontouchstart" in window && !isIos)
-  })
-
   const useTouch = dragSupported && props.touch;
   const isTouching = touchIdentifier !== null;
+
+  React.useEffect(() => {
+    const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : "");
+    setDragSupported(typeof window === "object" && "ontouchstart" in window && !isIos)
+  });
 
   const sidebarStyle = {
     ...defaultStyles.sidebar,
@@ -216,17 +217,17 @@ export default function SideBar(userProps: SidebarProps) {
   };
   const rootProps = {
     className: props.rootClassName,
-    style: {...defaultStyles.root, ...props.styles.root},
+    style: { ...defaultStyles.root, ...props.styles.root },
     role: 'navigation',
     id: props.rootId,
   };
 
-  const sidebarRef = React.useCallback((ev)=>{
-    if(ev != null){
+  const sidebarRefCallback = (ev) => {
+    if (ev != null) {
       const width = ev.offsetWidth;
       setSidebarWidth(width);
     }
-  },[])
+  };
 
   let dragHandle;
 
@@ -341,7 +342,7 @@ export default function SideBar(userProps: SidebarProps) {
       <div
         className={props.sidebarClassName}
         style={sidebarStyle}
-        ref={sidebarRef}
+        ref={sidebarRefCallback}
         id={props.sidebarId}>
         {props.sidebar}
       </div>

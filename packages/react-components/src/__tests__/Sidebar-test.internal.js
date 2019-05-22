@@ -10,15 +10,15 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Sidebar} from 'react-components';
+import { Sidebar } from 'react-components';
 import renderer from 'react-test-renderer';
 
 describe('while running in a browser environment', () => {
-  let container, wrapper;
+  let container, wrapper, onSetOpen;
 
   beforeEach(() => {
     jest.resetModules();
-
+    onSetOpen = jest.fn();
     container = document.createElement('div');
     document.body.appendChild(container);
   });
@@ -30,13 +30,22 @@ describe('while running in a browser environment', () => {
   });
 
   it('should render correctly', () => {
+    debugger
     wrapper = renderer
       .create(
         <div>
-          <Sidebar>
+          <Sidebar
+            onSetOpen={onSetOpen}
+            open={true}
+            sidebar={
+              <div>
+                <a key={1} href="#">
+                  Mock menu item {1}
+                </a>
+              </div>}>
             <p>salam</p>
           </Sidebar>
-        </div>,
+        </div >,
       )
       .toJSON();
 

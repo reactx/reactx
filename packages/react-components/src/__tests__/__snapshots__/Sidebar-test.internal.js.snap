@@ -6,20 +6,30 @@ exports[`while running in a browser environment should render correctly 1`] = `
     <div
       style={
         Object {
-          "WebkitTransform": "translateX(-100%)",
+          "WebkitTransform": "translateX(0%)",
           "WebkitTransition": "-webkit-transform .3s ease-out",
           "bottom": 0,
+          "boxShadow": "2px 2px 4px rgba(0, 0, 0, 0.15)",
           "left": 0,
           "overflowY": "auto",
           "position": "absolute",
           "top": 0,
-          "transform": "translateX(-100%)",
+          "transform": "translateX(0%)",
           "transition": "transform .3s ease-out",
           "willChange": "transform",
           "zIndex": 2,
         }
       }
-    />
+    >
+      <div>
+        <a
+          href="#"
+        >
+          Mock menu item 
+          1
+        </a>
+      </div>
+    </div>
     <div
       onClick={[Function]}
       style={
@@ -27,12 +37,12 @@ exports[`while running in a browser environment should render correctly 1`] = `
           "backgroundColor": "rgba(0,0,0,.3)",
           "bottom": 0,
           "left": 0,
-          "opacity": 0,
+          "opacity": 1,
           "position": "fixed",
           "right": 0,
           "top": 0,
           "transition": "opacity .3s ease-out, visibility .3s ease-out",
-          "visibility": "hidden",
+          "visibility": "visible",
           "zIndex": 1,
         }
       }
