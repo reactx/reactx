@@ -31,24 +31,22 @@ describe('while running in a browser environment', () => {
 
   it('should render correctly', () => {
     debugger
-    wrapper = renderer
-      .create(
-        <div>
-          <Sidebar
-            onSetOpen={onSetOpen}
-            open={true}
-            sidebar={
-              <div>
-                <a key={1} href="#">
-                  Mock menu item {1}
-                </a>
-              </div>}>
-            <p>salam</p>
-          </Sidebar>
-        </div >,
-      )
-      .toJSON();
 
-    expect(wrapper).toMatchSnapshot();
+    wrapper = (<div>
+      <Sidebar
+        onSetOpen={onSetOpen}
+        open={true}
+        sidebar={
+          <div>
+            <a key={1} href="#">
+              Mock menu item {1}
+            </a>
+          </div>}>
+        <p>salam</p>
+      </Sidebar>
+    </div >);
+
+    ReactDOM.render(wrapper, container)
+    expect(renderer.create(wrapper).toJSON()).toMatchSnapshot();
   });
 });

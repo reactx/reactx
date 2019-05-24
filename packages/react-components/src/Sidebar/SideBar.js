@@ -91,6 +91,7 @@ function OverlayClicked(cb: Function) {
 
 // calculate the sidebarWidth based on current touch info
 function TouchSidebarWidth(props: SidebarProps, state: TouchStateType) {
+  debugger
   // if the sidebar is open and start point of drag is inside the sidebar
   // we will only drag the distance they moved their finger
   // otherwise we will move the sidebar to be below the finger.
@@ -119,47 +120,6 @@ function TouchSidebarWidth(props: SidebarProps, state: TouchStateType) {
   return Math.min(state.touchCurrentX, state.sidebarWidth);
 }
 
-function OnTouchStart(ev: Element, TouchStartCB: Function) {
-  const touch = ev.targetTouches[0];
-  TouchStartCB({
-    touchIdentifier: touch.identifier,
-    touchStartX: touch.clientX,
-    touchCurrentX: touch.clientX,
-  });
-  p;
-}
-function OnTouchMove(ev: Element, TouchMoveCB: Function) {
-  for (let ind = 0; ind < ev.targetTouches.length; ind++) {
-    // we only care about the finger that we are tracking
-    if (ev.targetTouches[ind].identifier === this.state.touchIdentifier) {
-      TouchMoveCB({
-        touchCurrentX: ev.targetTouches[ind].clientX,
-      });
-      break;
-    }
-  }
-}
-function OnTouchEnd(
-  ev: Element,
-  TouchEndCB: Function,
-  props: any,
-  sidebarWidth: number,
-) {
-  // const touchWidth = this.touchSidebarWidth();
-  // if (
-  //   (props.open &&
-  //     touchWidth <
-  //       sidebarWidth - props.dragToggleDistance) ||
-  //   (!props.open && touchWidth > props.dragToggleDistance)
-  // ) {
-  //   props.onSetOpen(!props.open);
-  // }
-  // TouchEndCB({
-  //   touchIdentifier: null,
-  //   touchStartX: null,
-  //   touchCurrentX: null
-  // });
-}
 function OnScroll() { }
 
 function createDefaultProps(): DefaultSidebarProps {
@@ -178,6 +138,55 @@ function createDefaultProps(): DefaultSidebarProps {
   };
 }
 
+function useTouch() {
+  const [touchIdentifier, setTouchIdentifier] = React.useState(null);
+  const [touchStartX, setTouchStartX] = React.useState(null);
+  const [touchCurrentX, setTouchCurrentX] = React.useState(null);
+
+  const OnTouchMove = (ev: Element) => {
+    for (let ind = 0; ind < ev.targetTouches.length; ind++) {
+      // we only care about the finger that we are tracking
+      if (ev.targetTouches[ind].identifier === touchIdentifier) {
+        setTouchCurrentX(ev.targetTouches[ind].clientX)
+        break;
+      }
+    }
+  }
+
+  const OnTouchStart = (ev: Element) => {
+    const touch = ev.targetTouches[0];
+    setTouchIdentifier(touch.identifier);
+    setTouchStartX(touch.clientX);
+    setTouchCurrentX(touch.clientX);
+  }
+
+  const OnTouchEnd = (ev: Element) => {
+    // const touchWidth = TouchSidebarWidth();
+    // if (
+    //   (props.open &&
+    //     touchWidth <
+    //       sidebarWidth - props.dragToggleDistance) ||
+    //   (!props.open && touchWidth > props.dragToggleDistance)
+    // ) {
+    //   props.onSetOpen(!props.open);
+    // }
+    // TouchEndCB({
+    //   touchIdentifier: null,
+    //   touchStartX: null,
+    //   touchCurrentX: null
+    // });
+  }
+
+  return [
+    OnTouchMove,
+    OnTouchStart,
+    OnTouchEnd,
+    touchIdentifier,
+    touchCurrentX,
+    touchStartX,
+  ];
+}
+
 export default function SideBar(userProps: SidebarProps) {
   debugger
   const props: TaskProps = Object.assign(
@@ -185,22 +194,9 @@ export default function SideBar(userProps: SidebarProps) {
     { ...createDefaultProps() },
     { ...userProps },
   );
-
-  const [dragSupported, setDragSupported] = React.useState(false);
-  const [touchIdentifier, setTouchIdentifier] = React.useState(null);
-  const [sidebarWidth, setSidebarWidth] = React.useState(
-    props.defaultSidebarWidth,
-  );
-  const [touchStartX, setTouchStartX] = React.useState(null);
-  const [touchCurrentX, setTouchCurrentX] = React.useState(null);
-
-  const useTouch = dragSupported && props.touch;
-  const isTouching = touchIdentifier !== null;
-
-  React.useEffect(() => {
-    const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : "");
-    setDragSupported(typeof window === "object" && "ontouchstart" in window && !isIos)
-  });
+  const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : "");
+  const dragSupported = typeof window === "object" && "ontouchstart" in window && !isIos;
+  const usingTouch = dragSupported && props.touch;
 
   const sidebarStyle = {
     ...defaultStyles.sidebar,
@@ -222,6 +218,8 @@ export default function SideBar(userProps: SidebarProps) {
     id: props.rootId,
   };
 
+
+  const [sidebarWidth, setSidebarWidth] = React.useState(props.defaultSidebarWidth);
   const sidebarRefCallback = (ev) => {
     if (ev != null) {
       const width = ev.offsetWidth;
@@ -229,10 +227,12 @@ export default function SideBar(userProps: SidebarProps) {
     }
   };
 
-  let dragHandle;
+  const [OnTouchMove, OnTouchStart, OnTouchEnd, touchIdentifier] = useTouch();
 
-  const hasBoxShadow =
-    props.shadow && (isTouching || props.open || props.docked);
+  const isTouching = touchIdentifier !== null;
+  const hasBoxShadow = props.shadow && (isTouching || props.open || props.docked);
+
+  let dragHandle;
   // sidebarStyle right/left
   if (props.pullRight) {
     sidebarStyle.right = 0;
@@ -287,7 +287,6 @@ export default function SideBar(userProps: SidebarProps) {
     overlayStyle.opacity = 1;
     overlayStyle.visibility = 'visible';
   }
-
   if (isTouching || !props.transitions) {
     sidebarStyle.transition = 'none';
     sidebarStyle.WebkitTransition = 'none';
@@ -295,19 +294,10 @@ export default function SideBar(userProps: SidebarProps) {
     overlayStyle.transition = 'none';
   }
 
-  const onTouchStartCallback = (touch: any) => {
-    setTouchIdentifier(touch.identifier);
-    setTouchStartX(touch.clientX);
-    setTouchCurrentX(touch.clientX);
-  };
-  const onTouchMoveCallback = (touch: any) => {
-    setTouchCurrentX(touch.touchCurrentX);
-  };
-
-  if (useTouch) {
+  if (usingTouch) {
     if (props.open) {
-      rootProps.onTouchStart = e => OnTouchStart(e, onTouchStartCallback);
-      rootProps.onTouchMove = e => OnTouchMove(e, onTouchMoveCallback);
+      rootProps.onTouchStart = OnTouchStart
+      rootProps.onTouchMove = OnTouchMove;
       rootProps.onTouchEnd = OnTouchEnd;
       rootProps.onTouchCancel = OnTouchEnd;
       rootProps.onScroll = OnScroll;
@@ -328,8 +318,8 @@ export default function SideBar(userProps: SidebarProps) {
       dragHandle = (
         <div
           style={dragHandleStyle}
-          onTouchStart={e => OnTouchStart(e, onTouchStartCallback)}
-          onTouchMove={e => OnTouchMove(e, onTouchMoveCallback)}
+          onTouchStart={OnTouchStart}
+          onTouchMove={OnTouchMove}
           onTouchEnd={OnTouchEnd}
           onTouchCancel={OnTouchEnd}
         />
@@ -338,11 +328,11 @@ export default function SideBar(userProps: SidebarProps) {
   }
 
   return (
-    <div {...props.rootProps}>
+    <div ref={sidebarRefCallback} {...rootProps} >
       <div
         className={props.sidebarClassName}
         style={sidebarStyle}
-        ref={sidebarRefCallback}
+        
         id={props.sidebarId}>
         {props.sidebar}
       </div>
