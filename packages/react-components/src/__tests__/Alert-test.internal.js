@@ -9,16 +9,16 @@
 
 'use strict';
 
-let React;
+// let React;
 let ReactDOM;
-let Alert;
+// let Alert;
 
 describe('Alert', () => {
   let container;
 
   beforeEach(() => {
     jest.resetModules();
-    React = require('react');
+    // React = require('react');
     ReactDOM = require('react-dom');
     // Alert = require('react-components/alert');
 

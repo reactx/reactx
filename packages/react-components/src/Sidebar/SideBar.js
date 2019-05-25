@@ -192,7 +192,7 @@ function useTouch() {
   };
 }
 
-export default function SideBar(userProps: SidebarProps) {
+export default function Sidebar(userProps: SidebarProps) {
   const props: SidebarProps = Object.assign(
     {},
     {...createDefaultProps()},
