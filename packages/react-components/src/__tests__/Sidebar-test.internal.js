@@ -10,7 +10,7 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Sidebar } from 'react-components';
+import {Sidebar} from 'react-components';
 import renderer from 'react-test-renderer';
 
 describe('while running in a browser environment', () => {
@@ -30,23 +30,24 @@ describe('while running in a browser environment', () => {
   });
 
   it('should render correctly', () => {
-    debugger
+    wrapper = (
+      <div>
+        <Sidebar
+          onSetOpen={onSetOpen}
+          open={true}
+          sidebar={
+            <div>
+              <a key={1} href="#">
+                Mock menu item {1}
+              </a>
+            </div>
+          }>
+          <p>salam</p>
+        </Sidebar>
+      </div>
+    );
 
-    wrapper = (<div>
-      <Sidebar
-        onSetOpen={onSetOpen}
-        open={true}
-        sidebar={
-          <div>
-            <a key={1} href="#">
-              Mock menu item {1}
-            </a>
-          </div>}>
-        <p>salam</p>
-      </Sidebar>
-    </div >);
-
-    ReactDOM.render(wrapper, container)
+    ReactDOM.render(wrapper, container);
     expect(renderer.create(wrapper).toJSON()).toMatchSnapshot();
   });
 });

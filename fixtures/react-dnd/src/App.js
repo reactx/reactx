@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
-import { DragSource, DropTarget, DragDropProvider } from 'react-dragdrop';
-import { Sidebar } from 'react-components';
+import {DragSource, DropTarget, DragDropProvider} from 'react-dragdrop';
+import {Sidebar} from 'react-components';
 
 const mstyles = {
   root: {
     fontFamily:
       '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
-    fontWeight: 300
+    fontWeight: 300,
   },
   header: {
-    backgroundColor: "#03a9f4",
-    color: "white",
-    padding: "16px",
-    fontSize: "1.5em"
-  }
+    backgroundColor: '#03a9f4',
+    color: 'white',
+    padding: '16px',
+    fontSize: '1.5em',
+  },
 };
 
 const MaterialTitlePanel = props => {
   const rootStyle = props.style
-    ? { ...mstyles.root, ...props.style }
+    ? {...mstyles.root, ...props.style}
     : mstyles.root;
 
   return (
@@ -33,28 +33,28 @@ const MaterialTitlePanel = props => {
 const sstyles = {
   sidebar: {
     width: 256,
-    height: "100%"
+    height: '100%',
   },
   sidebarLink: {
-    display: "block",
-    padding: "16px 0px",
-    color: "#757575",
-    textDecoration: "none"
+    display: 'block',
+    padding: '16px 0px',
+    color: '#757575',
+    textDecoration: 'none',
   },
   divider: {
-    margin: "8px 0",
+    margin: '8px 0',
     height: 1,
-    backgroundColor: "#757575"
+    backgroundColor: '#757575',
   },
   content: {
-    padding: "16px",
-    height: "100%",
-    backgroundColor: "white"
-  }
+    padding: '16px',
+    height: '100%',
+    backgroundColor: 'white',
+  },
 };
 const SidebarContent = props => {
   const style = props.style
-    ? { ...sstyles.sidebar, ...props.style }
+    ? {...sstyles.sidebar, ...props.style}
     : sstyles.sidebar;
 
   const links = [];
@@ -83,8 +83,6 @@ const SidebarContent = props => {
   );
 };
 
-
-
 function renderPropNumber(prop) {
   const setMethod = ev => {
     const newState = {};
@@ -94,7 +92,7 @@ function renderPropNumber(prop) {
 
   return (
     <p key={prop}>
-      {prop}{" "}
+      {prop}{' '}
       <input type="number" onChange={setMethod} value={this.state[prop]} />
     </p>
   );
@@ -104,47 +102,42 @@ function renderPropNumber(prop) {
 //   current: null
 // });
 function App() {
-
   const [open, setOpen] = useState(false);
   const [docked, setDocked] = useState(false);
   const [pullRight, setPullRight] = useState(false);
-  const [checkState, setCheckState] = useState({})
+  const [checkState, setCheckState] = useState({});
 
   const sidebar = <SidebarContent />;
 
-
-  const contentHeader = (
-
-    <span>salaaaam</span>
-  );
+  const contentHeader = <span>salaaaam</span>;
   const styles = {
     root: {
       fontFamily:
         '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
-      fontWeight: 300
+      fontWeight: 300,
     },
     header: {
-      backgroundColor: "#03a9f4",
-      color: "white",
-      padding: "16px",
-      fontSize: "1.5em"
-    }
+      backgroundColor: '#03a9f4',
+      color: 'white',
+      padding: '16px',
+      fontSize: '1.5em',
+    },
   };
-  debugger
+  debugger;
   const sidebarProps = {
     sidebar,
     docked,
     open,
     pullRight,
-    sidebarClassName: "custom-sidebar-class",
-    contentId: "custom-sidebar-content-id",
+    sidebarClassName: 'custom-sidebar-class',
+    contentId: 'custom-sidebar-content-id',
     touch: true,
     // shadow: this.state.shadow,
     // pullRight: this.state.pullRight,
     touchHandleWidth: 20,
     dragToggleDistance: 30,
     // transitions: this.state.transitions,
-    onSetOpen: setOpen
+    onSetOpen: setOpen,
   };
   return (
     <>
@@ -158,17 +151,21 @@ function App() {
                 <span>Drag Me!</span>
               </DragSource>
               <DragSource>
-                <span style={{ backgroundColor: 'white' }}>Drag Me Too!</span>
+                <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
               </DragSource>
               <br />
               <br />
               <br />
               <br />
               <DropTarget>
-                <div style={{ height: 200, width: 200, backgroundColor: 'red' }} />
+                <div
+                  style={{height: 200, width: 200, backgroundColor: 'red'}}
+                />
               </DropTarget>
               <DropTarget>
-                <div style={{ height: 200, width: 200, backgroundColor: 'blue' }} />
+                <div
+                  style={{height: 200, width: 200, backgroundColor: 'blue'}}
+                />
               </DropTarget>
             </DragDropProvider>
             <p>
@@ -190,7 +187,7 @@ function App() {
               <li>
                 <a href="https://github.com/balloob/react-sidebar">
                   Source on GitHub
-                </a>{" "}
+                </a>{' '}
                 (MIT license)
               </li>
               <li>Only dependency is React</li>
@@ -205,19 +202,19 @@ function App() {
             </p>
             <input
               type="checkbox"
-              onChange={(ev) => setOpen(ev.target.checked)}
+              onChange={ev => setOpen(ev.target.checked)}
               checked={open}
             />
             open
             <input
               type="checkbox"
-              onChange={(ev) => setDocked(ev.target.checked)}
+              onChange={ev => setDocked(ev.target.checked)}
               checked={docked}
             />
             docked
             <input
               type="checkbox"
-              onChange={(ev) => setPullRight(ev.target.checked)}
+              onChange={ev => setPullRight(ev.target.checked)}
               checked={pullRight}
             />
             pull right
@@ -230,11 +227,9 @@ function App() {
               "shadow",
               "pullRight"
             ].map(renderPropCheckbox)} */}
-
           </MaterialTitlePanel>
         </div>
       </Sidebar>
-
     </>
   );
 }
