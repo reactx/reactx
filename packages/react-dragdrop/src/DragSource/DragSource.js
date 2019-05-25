@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {type Element as RElement, type Ref} from 'react';
+import React, {type Element as RElement} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {DragDropContext} from '../ContextManager';
 export type DragSourceProps = {
@@ -16,7 +16,7 @@ export type DragSourceProps = {
   children: RElement<any>,
   handler?: Element,
   clonable?: boolean,
-  forwardedRef?: Ref<any>,
+  forwardedRef: any,
   onDragStart(e: EventTarget): void,
 };
 
@@ -40,7 +40,7 @@ function Component(props: DragSourceProps) {
 
   const [dragStart] = useDrag(props);
 
-  const refDraggable = React.useCallback(node => {
+  const refDraggable = React.useCallback((node: any) => {
     if (node !== null) {
       if (props.forwardedRef) {
         props.forwardedRef.current = node;
@@ -62,7 +62,7 @@ function Component(props: DragSourceProps) {
   );
 }
 
-const DragSource = React.forwardRef((props: DragSourceProps, ref: Ref<any>) => {
+const DragSource: any = React.forwardRef((props: DragSourceProps, ref: any) => {
   return (
     <Component {...props} forwardedRef={ref}>
       {props.children}
