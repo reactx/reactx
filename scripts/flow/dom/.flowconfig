@@ -1,4 +1,5 @@
 [ignore]
+
 # These shims are copied into external projects:
 .*/rollup/shims/reactx-www/.*
 .*/rollup/shims/react-native/.*
