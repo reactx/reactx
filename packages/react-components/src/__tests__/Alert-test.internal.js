@@ -20,7 +20,7 @@ describe('Alert', () => {
     jest.resetModules();
     React = require('react');
     ReactDOM = require('react-dom');
-    Alert = require('react-components/alert');
+    // Alert = require('react-components/alert');
 
     container = document.createElement('div');
     document.body.appendChild(container);
@@ -33,14 +33,14 @@ describe('Alert', () => {
   });
 
   describe('onCloseAlert', () => {
-    let onClose;
+    //   let onClose;
 
-    beforeEach(() => {
-      onClose = jest.fn();
+    //   beforeEach(() => {
+    //     onClose = jest.fn();
 
-      const element = <Alert onClose={onClose}>Alert Me!</Alert>;
-      ReactDOM.render(element, container);
-    });
+    //     const element = <Alert onClose={onClose}>Alert Me!</Alert>;
+    //     ReactDOM.render(element, container);
+    //   });
 
     it('check', () => {
       expect(true).toBe(true);
