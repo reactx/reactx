@@ -16,10 +16,12 @@ export type DragOptions = {|
 export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);
+  const handleDragLeave = (e: DragEvent) => HandleDragLeave(e, options);
   const handleDrop = (e: DragEvent) => HandleDrop(e, options);
 
   node.addEventListener('dragenter', handleDragEnter);
   node.addEventListener('dragover', handleDragOver);
+  node.addEventListener('dragleave', handleDragLeave);
   node.addEventListener('drop', handleDrop);
 
   return () => {
@@ -39,6 +41,18 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
 
   if (options.dragOver) {
     options.dragOver(e.target);
+  }
+}
+function HandleDragLeave(e: DragEvent, options: DragOptions) {
+  // Show user-specified drop effect.
+  e.preventDefault();
+  //TODO: check native and electron, flutter
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = 'move';
+  }
+
+  if (options.dragLeave) {
+    options.dragLeave(e.target);
   }
 }
 

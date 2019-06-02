@@ -344,10 +344,11 @@ export default function Sidebar(userProps: SidebarProps) {
   }
 
   return (
-    <div ref={sidebarRefCallback} {...rootProps}>
+    <div {...rootProps}>
       <div
         className={props.sidebarClassName}
         style={sidebarStyle}
+        ref={sidebarRefCallback}
         id={props.sidebarId}>
         {props.sidebar}
       </div>

@@ -6,7 +6,7 @@
  *
  * @flow
  */
-import {getEventClientOffset} from './OffsetUtils';
+import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dragImage?: Element,
@@ -77,10 +77,21 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
     dataTransfer.effectAllowed = options.dropEffect || 'move';
 
     if (typeof dataTransfer.setDragImage === 'function') {
+      const anchorPoint = {anchorX: 0.5, anchorY: 0.5};
+      //TODO: get offsetX and offsetY from options
+      const offsetPoint = {offsetX: e.offsetX, offsetY: e.offsetY};
+
+      const dragPreviewOffset = getDragPreviewOffset(
+        e.target,
+        e.target,
+        clientOffset,
+        anchorPoint,
+        offsetPoint,
+      );
       dataTransfer.setDragImage(
         options.dragImage || (e.target: any),
-        clientOffset.x,
-        clientOffset.y,
+        dragPreviewOffset.x,
+        dragPreviewOffset.y,
       );
     }
   }

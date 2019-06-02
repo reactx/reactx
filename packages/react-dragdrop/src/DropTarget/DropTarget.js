@@ -18,9 +18,18 @@ export type DropTargetProps = {|
   componentType: string,
   children: Element<any>,
   dropEffect: string,
+  style: any,
+  onDragLeave: (event: EventTarget) => void,
+  onDragOver: (event: EventTarget) => void,
+  onDragEnter: (event: EventTarget) => void,
+  onDrop: (event: EventTarget) => void,
 |};
 
-export function useDrop(context: DragDropManagerType, stateCallback: Function) {
+export function useDrop(
+  context: DragDropManagerType,
+  stateCallback: Function,
+  props: DropTargetProps,
+) {
   let index = 1;
   function drop(event: EventTarget) {
     const currentReactNode = FindReactElement(context.getCurrentNode());
@@ -39,23 +48,36 @@ export function useDrop(context: DragDropManagerType, stateCallback: Function) {
     );
 
     stateCallback(newReactEmenet);
+    if (props.onDrop) {
+      props.onDrop(event);
+    }
   }
   function dragEnter(event: EventTarget) {
-    //  e.preventDefaultValue();
-    // })
-    // connectDropTarget(newelement.ref, { drop, dragEnter, dragOver });
+    if (props.onDragEnter) {
+      props.onDragEnter(event);
+    }
   }
-
   function dragOver(event: EventTarget) {
+    if (props.onDragOver) {
+      props.onDragOver(event);
+    }
     // event.preventDefault();
   }
-  return [drop, dragOver, dragEnter];
+  function dragLeave(event: EventTarget) {
+    if (props.onDragLeave) {
+      props.onDragLeave(event);
+    }
+    // event.preventDefault();
+  }
+  return [drop, dragOver, dragEnter, dragLeave];
 }
 
 function CloningElement(target, children) {
   return React.Children.map(target, Target => {
     //TODO: define target based on offset
-    return React.cloneElement(Target, {children});
+    return React.cloneElement(Target, {
+      children: [target.props.children, ...children],
+    });
   });
 }
 
@@ -69,17 +91,24 @@ export default function DropTarget(props: DropTargetProps) {
 
   const droppableRef = React.useCallback(node => {
     if (node !== null) {
-      const [drop, dragOver, dragEnter] = useDrop(context, stateCallback);
+      const [drop, dragOver, dragEnter, dragLeave] = useDrop(
+        context,
+        stateCallback,
+        props,
+      );
       return connectDropTarget(node, {
         drop,
         dragEnter,
         dragOver,
+        dragLeave,
         dropEffect: props.dropEffect || 'move',
       });
     }
   }, []);
 
   return (
-    <div ref={droppableRef}>{CloningElement(props.children, children)}</div>
+    <div style={props.style} ref={droppableRef}>
+      {CloningElement(props.children, children)}
+    </div>
   );
 }

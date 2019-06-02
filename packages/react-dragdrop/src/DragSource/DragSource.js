@@ -56,7 +56,7 @@ function Component(props: DragSourceProps) {
   }, []);
 
   return (
-    <div style={{display: 'inline', ...props.cssTarget}} ref={refDraggable}>
+    <div style={props.cssTarget} ref={refDraggable}>
       {props.children}
     </div>
   );

@@ -158,15 +158,15 @@ function App() {
               <br />
               <br />
               <DropTarget>
-                <div
-                  style={{height: 200, width: 200, backgroundColor: 'red'}}
-                />
+                <div style={{height: 200, width: 200, backgroundColor: 'red'}}>
+                  asljfaskob
+                </div>
               </DropTarget>
-              <DropTarget>
+              {/* <DropTarget>
                 <div
                   style={{height: 200, width: 200, backgroundColor: 'blue'}}
                 />
-              </DropTarget>
+              </DropTarget> */}
             </DragDropProvider>
             <p>
               React Sidebar is a sidebar component for React. It offers the
