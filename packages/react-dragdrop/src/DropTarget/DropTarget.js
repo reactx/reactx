@@ -22,7 +22,11 @@ export type DropTargetProps = {|
   onDragLeave: (event: EventTarget) => void,
   onDragOver: (event: EventTarget) => void,
   onDragEnter: (event: EventTarget) => void,
-  onDrop: (event: EventTarget) => void,
+  onDrop: (
+    event: EventTarget,
+    source: EventTarget,
+    sourceElement: ReactElement,
+  ) => void,
 |};
 
 export function useDrop(
@@ -49,7 +53,7 @@ export function useDrop(
 
     stateCallback(newReactEmenet);
     if (props.onDrop) {
-      props.onDrop(event);
+      props.onDrop(event, context.getCurrentNode(), newReactEmenet);
     }
   }
   function dragEnter(event: EventTarget) {
