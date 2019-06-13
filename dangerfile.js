@@ -95,8 +95,9 @@ function git(args) {
   await git('fetch upstream');
   const mergeBaseCommit = await git(`merge-base HEAD upstream/${upstreamRef}`);
 
+  //TODO: change result json address to another server
   const commitURL = sha =>
-    `http://react.zpao.com/builds/master/_commits/${sha}/results.json`;
+    `https://raw.githubusercontent.com/reactx/reactx/master/scripts/rollup/results.json`;
   const response = await fetch(commitURL(mergeBaseCommit));
 
   // Take the JSON of the build response and
