@@ -2,37 +2,19 @@
 
 exports[`while running in a browser environment should multiple and nested render correctly 1`] = `
 <div>
-  <div
-    style={
-      Object {
-        "display": "inline",
-      }
-    }
-  >
+  <div>
     <div>
       <span>
         Drag Me!
       </span>
-      <div
-        style={
-          Object {
-            "display": "inline",
-          }
-        }
-      >
+      <div>
         <span>
           Drag Me!
         </span>
       </div>
     </div>
   </div>
-  <div
-    style={
-      Object {
-        "display": "inline",
-      }
-    }
-  >
+  <div>
     <span>
       Drag Me!
     </span>
@@ -42,13 +24,7 @@ exports[`while running in a browser environment should multiple and nested rende
 
 exports[`while running in a browser environment should render correctly 1`] = `
 <div>
-  <div
-    style={
-      Object {
-        "display": "inline",
-      }
-    }
-  >
+  <div>
     <span>
       Drag Me!
     </span>
@@ -57,13 +33,7 @@ exports[`while running in a browser environment should render correctly 1`] = `
 `;
 
 exports[`while running in a browser environment should render correctly with provider 1`] = `
-<div
-  style={
-    Object {
-      "display": "inline",
-    }
-  }
->
+<div>
   <span>
     Drag Me!
   </span>
