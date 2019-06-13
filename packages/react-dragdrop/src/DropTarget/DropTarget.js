@@ -24,8 +24,8 @@ export type DropTargetProps = {|
   onDragEnter: (event: EventTarget) => void,
   onDrop: (
     event: EventTarget,
-    source: EventTarget,
-    sourceElement: ReactElement,
+    source: EventTarget | null,
+    sourceElement: Element<any>,
   ) => void,
 |};
 

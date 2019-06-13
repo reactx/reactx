@@ -10,6 +10,7 @@ export type DragOptions = {|
   dropEffect: string,
   dragOver(e: EventTarget): void,
   dragEnter(e: EventTarget): void,
+  dragLeave(e: EventTarget): void,
   drop(e: EventTarget): void,
 |};
 
