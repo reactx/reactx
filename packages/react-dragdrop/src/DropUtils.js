@@ -6,8 +6,10 @@
  *
  * @flow
  */
+import type {DragDropManagerType} from './DragDropManager';
+
 export type DragOptions = {|
-  dropEffect: string,
+  context: DragDropManagerType,
   dragOver(e: EventTarget): void,
   dragEnter(e: EventTarget): void,
   dragLeave(e: EventTarget): void,
@@ -25,6 +27,7 @@ export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
   node.addEventListener('dragleave', handleDragLeave);
   node.addEventListener('drop', handleDrop);
 
+  //Clean garbage collector
   return () => {
     node.removeEventListener('dragenter', handleDragEnter);
     node.removeEventListener('dragover', handleDragOver);
@@ -32,12 +35,19 @@ export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
   };
 }
 
+function getCurrentDropEffect(context: DragDropManagerType): string {
+  return context.getCurrentNode()
+    ? context.getCurrentNode().dropEffect
+    : 'move';
+}
+
 function HandleDragOver(e: DragEvent, options: DragOptions) {
   // Show user-specified drop effect.
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'move';
+    const {dataTransfer} = e;
+    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
   }
 
   if (options.dragOver) {
@@ -49,7 +59,8 @@ function HandleDragLeave(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'move';
+    const {dataTransfer} = e;
+    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
   }
 
   if (options.dragLeave) {
@@ -61,7 +72,8 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
-    e.dataTransfer.dropEffect = 'move';
+    const {dataTransfer} = e;
+    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
   }
 
   if (options.dragEnter) {

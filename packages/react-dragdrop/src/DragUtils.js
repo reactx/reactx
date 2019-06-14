@@ -10,8 +10,8 @@ import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
 
 type DragOptions = {|
   dragImage?: Element,
-  dropEffect: string,
-  dragStart(e: EventTarget): void,
+  dragStart(e: any /*EventTarget*/ & {dropEffect: string, props: any}): void,
+  props: any, //DragSourceProps
 |};
 
 export function connectDragSource(node: Element, options: DragOptions) {
@@ -58,6 +58,8 @@ function HandleSelectStart(e: DragEvent, options: DragOptions) {
 function HandleDragStart(e: DragEvent, options: DragOptions) {
   // We'll handle this event so first stop bubbling up
   e.stopPropagation();
+
+  const dropEffect = options.props.clonable ? 'copy' : 'move';
   const clientOffset = getEventClientOffset(e);
   const {dataTransfer} = e;
 
@@ -70,33 +72,26 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
     // IE doesn't support MIME types in setData
   }
 
-  if (dataTransfer) {
-    //TODO: check native and electron, flutter
-    // Now setup our dataTransfer object properly
-    // First we'll allow a move action this is used for the cursor
-    dataTransfer.effectAllowed = options.dropEffect || 'move';
+  if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
+    const anchorPoint = {anchorX: 0.5, anchorY: 0.5};
+    //TODO: get offsetX and offsetY from options
+    const offsetPoint = {offsetX: e.offsetX, offsetY: e.offsetY};
 
-    if (typeof dataTransfer.setDragImage === 'function') {
-      const anchorPoint = {anchorX: 0.5, anchorY: 0.5};
-      //TODO: get offsetX and offsetY from options
-      const offsetPoint = {offsetX: e.offsetX, offsetY: e.offsetY};
-
-      const dragPreviewOffset = getDragPreviewOffset(
-        e.target,
-        e.target,
-        clientOffset,
-        anchorPoint,
-        offsetPoint,
-      );
-      dataTransfer.setDragImage(
-        options.dragImage || (e.target: any),
-        dragPreviewOffset.x,
-        dragPreviewOffset.y,
-      );
-    }
+    const dragPreviewOffset = getDragPreviewOffset(
+      e.target,
+      e.target,
+      clientOffset,
+      anchorPoint,
+      offsetPoint,
+    );
+    dataTransfer.setDragImage(
+      options.dragImage || (e.target: any),
+      dragPreviewOffset.x,
+      dragPreviewOffset.y,
+    );
   }
 
   if (options.dragStart) {
-    options.dragStart(e.target);
+    options.dragStart({...e.target, dropEffect, props: options.props});
   }
 }
