@@ -22,7 +22,7 @@ export type DragSourceProps = {
 
 export function useDrag(props: DragSourceProps) {
   const context = React.useContext(DragDropContext);
-  function dragStart(e: EventTarget) {
+  function dragStart(e: EventTarget & {dropEffect: string, props: any}) {
     if (typeof context.updateCurrentNode === 'function') {
       context.updateCurrentNode(e);
     }
@@ -36,20 +36,21 @@ export function useDrag(props: DragSourceProps) {
 }
 
 function Component(props: DragSourceProps) {
-  const dropEffect = props.clonable ? 'copy' : 'move';
-
   const [dragStart] = useDrag(props);
 
-  const refDraggable = React.useCallback((node: any) => {
+  const refDraggable = React.useCallback((node: any, dynamicPops) => {
+    //dynamicPops is type of DragSourceProps
     if (node !== null) {
-      if (props.forwardedRef) {
-        props.forwardedRef.current = node;
+      const useProps = {...props, ...dynamicPops};
+
+      if (useProps.forwardedRef) {
+        useProps.forwardedRef.current = node;
       }
 
       connectDragSource(node, {
-        dropEffect,
-        dragStart,
         dragImage: props.handler,
+        dragStart,
+        props: useProps,
       });
     }
     return node;
@@ -62,6 +63,7 @@ function Component(props: DragSourceProps) {
   );
 }
 
+//TODO:Change to memoizable CP
 const DragSource: any = React.forwardRef((props: DragSourceProps, ref: any) => {
   return (
     <Component {...props} forwardedRef={ref}>

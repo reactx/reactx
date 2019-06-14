@@ -15,6 +15,18 @@ import Adapter from 'enzyme-adapter-react-16';
 import {DropTarget} from 'react-dragdrop';
 
 configure({adapter: new Adapter()});
+
+// const createEvent = (type, data) => {
+//   const event = document.createEvent('MouseEvents');
+//   event.initEvent(type, true, true);
+//   if (data != null) {
+//     Object.entries(data).forEach(([key, value]) => {
+//       event[key] = value;
+//     });
+//   }
+//   return event;
+// };
+
 describe('while running in a browser environment', () => {
   let container, wrapper;
 
@@ -41,4 +53,37 @@ describe('while running in a browser environment', () => {
 
     // expect(wrapper.html()).toMatchPrettyHtmlSnapshot();
   });
+  //use act(...)
+  // describe('onDrop', ()=>{
+  //   let onDrop,divDragRef,divDropRef;
+  //   let events;
+  //   beforeEach(() => {
+  //     divDragRef = React.createRef();
+  //    divDropRef = React.createRef();
+  //    events = [];
+
+  //    onDrop =  ()=>{
+  //     events.push('dropped')
+  //           }
+
+  //       const element = (
+  //         <DragDropProvider>
+  //       <DragSource>
+  //       <div ref={divDragRef}>Drag Me!</div>
+  //     </DragSource>
+  //     <DropTarget onDrop={onDrop}>
+  //       <div ref={divDropRef}>Drop Here!</div>
+  //     </DropTarget>
+  //   </DragDropProvider>
+  //     );
+  //     ReactDOM.render(element, container);
+
+  //   });
+
+  // it('should support onDrop', () => {
+  //   divDragRef.current.dispatchEvent(createEvent('dragstart'));
+  //   divDropRef.current.dispatchEvent(createEvent('drop'));
+  //   expect(events).toHaveLength(1);
+  // });
+  // });
 });

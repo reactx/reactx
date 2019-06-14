@@ -145,10 +145,10 @@ function App() {
         <div title={contentHeader}>
           <MaterialTitlePanel style={styles.content}>
             <DragDropProvider>
-              <DragSource>
+              <DragSource clonable={true}>
                 <span>Drag Me!</span>
-                <span>Drag Me!</span>
-                <span>Drag Me!</span>
+                {/* <span>Drag Me!</span> */}
+                {/* <span>Drag Me!</span> */}
               </DragSource>
               <DragSource>
                 <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
@@ -162,11 +162,11 @@ function App() {
                   asljfaskob
                 </div>
               </DropTarget>
-              {/* <DropTarget>
+              <DropTarget>
                 <div
                   style={{height: 200, width: 200, backgroundColor: 'blue'}}
                 />
-              </DropTarget> */}
+              </DropTarget>
             </DragDropProvider>
             <p>
               React Sidebar is a sidebar component for React. It offers the

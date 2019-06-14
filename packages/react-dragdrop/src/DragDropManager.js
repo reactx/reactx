@@ -7,19 +7,21 @@
  * @flow
  */
 
+type NodeEventType = EventTarget & {dropEffect: string};
+
 export type DragDropManagerType = {
-  getCurrentNode(): EventTarget | null,
-  updateCurrentNode(target: EventTarget): void,
+  getCurrentNode(): NodeEventType,
+  updateCurrentNode(target: NodeEventType): void,
 };
 
 export default function DragDropManager(): DragDropManagerType {
-  let node: EventTarget | null = null;
+  let node: NodeEventType;
 
-  function getCurrentNode(): EventTarget | null {
+  function getCurrentNode(): NodeEventType {
     return node;
   }
 
-  function updateCurrentNode(target: EventTarget) {
+  function updateCurrentNode(target: NodeEventType) {
     node = target;
   }
 
