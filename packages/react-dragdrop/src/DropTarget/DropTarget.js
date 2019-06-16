@@ -38,7 +38,12 @@ export function useDrop(props: DropTargetProps, stateCallback: Function) {
     const newReactEmenet = React.cloneElement(
       currentReactNode,
       {
+        //TODO: use uuid
         key: ++index,
+        localkey:
+          currentNode.dropEffect === 'move'
+            ? currentReactNode.memoizedProps.localkey
+            : index++,
         ref: node => {
           const {ref} = currentReactNode;
           if (typeof ref === 'function') {
@@ -51,15 +56,16 @@ export function useDrop(props: DropTargetProps, stateCallback: Function) {
       },
       [...currentReactNode.memoizedProps.children],
     );
-
+    
     stateCallback(newReactEmenet);
-
+        
+    if (props.onDrop) {
+      props.onDrop(event, currentReactNode, newReactEmenet);
+    }
+    
+    
     if (currentNode.dropEffect === 'move') {
       currentReactNode.stateNode.remove();
-    }
-
-    if (props.onDrop) {
-      props.onDrop(event, context.getCurrentNode(), newReactEmenet);
     }
   }
   function dragEnter(event: EventTarget) {

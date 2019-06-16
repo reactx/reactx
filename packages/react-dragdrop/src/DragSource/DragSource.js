@@ -9,7 +9,7 @@
 
 import React, {type Element as RElement} from 'react';
 import {connectDragSource} from '../DragUtils';
-import {DragDropContext} from '../ContextManager';
+import {useDragDropContext} from '../ContextManager';
 export type DragSourceProps = {
   index?: number,
   cssTarget?: any,
@@ -37,6 +37,7 @@ export function useDrag(props: DragSourceProps) {
 
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
+  const [dnd, dispatch] = useDragDropContext();
 
   const refDraggable = React.useCallback((node: any, dynamicPops) => {
     //dynamicPops is type of DragSourceProps
