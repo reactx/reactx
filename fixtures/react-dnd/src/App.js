@@ -145,12 +145,15 @@ function App() {
         <div title={contentHeader}>
           <MaterialTitlePanel style={styles.content}>
             <DragDropProvider>
-              <DragSource clonable={true}>
+              <DragSource category={'itm'} clonable={true}>
                 <span>Drag Me!</span>
                 {/* <span>Drag Me!</span> */}
                 {/* <span>Drag Me!</span> */}
               </DragSource>
-              <DragSource>
+              <DragSource category={'itm'}>
+                <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
+              </DragSource>
+              <DragSource category={'itm2'}>
                 <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
               </DragSource>
               <br />

@@ -7,72 +7,72 @@
  *
  */
 
-import React, { type Portal, type Element } from 'react';
+import React, {type Portal, type Element} from 'react';
+import without from 'lodash/without';
+import {type State, type Action} from '../inline-typed';
+import {Actions} from './ActionTypes';
 
-const without = require('lodash/without');
 type DragDropProviderProps = {|
   children: Element<any> | Portal,
 |};
 
-type State = {
-  item: any,
-  sourceId: string | null,
-  targetId: string,
-  targetIds: string[],
-  didDrop: boolean
-};
-
-type Action = {
-  item: any,
-  sourceId: string,
-  targetId: string,
-  type: String,
-};
-
 const initialState = {};
-const dndReducer = (state: State, action: Action>) => {
-  const { payload } = action;
+const dndReducer = (state: State, action: Action) => {
+  const {payload} = action;
   switch (action.type) {
-    case 'BEGIN_DRAG':
+    case Actions.BEGIN_DRAG:
       return {
         ...state,
-        item: payload.item,
+        source: payload.source,
         sourceId: payload.sourceId,
+        clonable: payload.clonable || false,
         didDrop: false,
-      }
-    case 'REMOVE_TARGET':
+      };
+    case Actions.REMOVE_TARGET:
       if (state.targetIds.indexOf(payload.targetId) === -1) {
-        return state
+        return state;
       }
       return {
         ...state,
         targetIds: without(state.targetIds, payload.targetId),
-      }
-    case 'DROP':
-        return {
-          ...state,
-          didDrop: true,
-          targetIds: [],
-        }
+      };
+    case Actions.DRAG_ENTER:
+      return {
+        ...state,
+        sourceId: payload.sourceId,
+        source: payload.source,
+        targetId: payload.targetId,
+        target: payload.target,
+      };
+    case Actions.DROP:
+      return {
+        ...state,
+        newItem: payload.newItem,
+        sourceId: payload.sourceId,
+        source: payload.source,
+        targetId: payload.targetId,
+        target: payload.target,
+        didDrop: true,
+        targetIds: [],
+      };
     default:
-      return state
+      return state;
   }
 };
 
-export const DragDropContext = React.createContext({});
+const DragDropContext = React.createContext(initialState);
+
 export default function DragDropProvider(props: DragDropProviderProps) {
-  const contextValue = useReducer(dndReducer, initialState);
+  const context = React.useReducer(dndReducer, initialState);
+
   return (
-    <DragDropContext.Provider value={contextValue}>
+    <DragDropContext.Provider value={context}>
       {props.children}
     </DragDropContext.Provider>
   );
 }
 
 export const useDragDropContext = () => {
-  const contextValue = useContext(DragDropContext);
-  return contextValue;
+  const [contextValue, dispatch] = React.useContext(DragDropContext);
+  return [contextValue, dispatch];
 };
-
-
-export const DragDropConsumer = DragDropContext.Consumer;

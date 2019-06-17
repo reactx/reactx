@@ -5,9 +5,10 @@
     "packages/*"
   ],
   "dependencies": {
+    "lodash": "^4.17.11",
     "react": "16.9.0-alpha.0",
     "react-dom": "16.9.0-alpha.0",
-    "react-test-renderer": "^16.8.6"
+    "uuid": "^3.3.2"
   },
   "jest": {
     "testRegex": "/scripts/jest/dont-run-jest-directly\\.js$"
@@ -90,6 +91,7 @@
     "random-seed": "^0.3.0",
     "react-lifecycles-compat": "^3.0.2",
     "react-scripts": "^3.0.0",
+    "react-test-renderer": "^16.8.6",
     "rimraf": "^2.6.1",
     "rollup": "^0.52.1",
     "rollup-plugin-babel": "^3.0.1",

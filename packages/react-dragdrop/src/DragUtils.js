@@ -7,11 +7,12 @@
  * @flow
  */
 import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
+import {type DragSourceProps} from '../inline-typed';
 
 type DragOptions = {|
   dragImage?: Element,
-  dragStart(e: any /*EventTarget*/ & {dropEffect: string, props: any}): void,
-  props: any, //DragSourceProps
+  dragStart(e: EventTarget): void,
+  props: DragSourceProps,
 |};
 
 export function connectDragSource(node: Element, options: DragOptions) {
@@ -59,7 +60,6 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   // We'll handle this event so first stop bubbling up
   e.stopPropagation();
 
-  const dropEffect = options.props.clonable ? 'copy' : 'move';
   const clientOffset = getEventClientOffset(e);
   const {dataTransfer} = e;
 
@@ -92,6 +92,6 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragStart) {
-    options.dragStart({...e.target, dropEffect, props: options.props});
+    options.dragStart(e.target);
   }
 }

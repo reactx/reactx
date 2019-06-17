@@ -5,12 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-
-export type XYCoord = {|
-  x: number,
-  y: number,
-|};
-
 import DragSource from './DragSource/DragSource';
 import DropTarget from './DropTarget/DropTarget';
 import DragDropProvider from './ContextManager';
@@ -19,8 +13,6 @@ const ReactDnD = {
   DragSource,
   DropTarget,
   DragDropProvider,
-  // DragDropContext,
-  // DragDropConsumer,
 };
 
 export default ReactDnD;

@@ -6,17 +6,16 @@
  *
  * @flow
  */
-import type {DragDropManagerType} from './DragDropManager';
 
 export type DragOptions = {|
-  context: DragDropManagerType,
-  dragOver(e: EventTarget): void,
-  dragEnter(e: EventTarget): void,
-  dragLeave(e: EventTarget): void,
-  drop(e: EventTarget): void,
+  dragOver(e: EventTarget, targetId: string | null): void,
+  dragEnter(e: EventTarget, targetId: string | null): void,
+  dragLeave(e: EventTarget, targetId: string | null): void,
+  drop(e: EventTarget, targetId: string | null): void,
+  targetId: string | null,
 |};
 
-export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
+export function connectDropTarget(node: any, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);
   const handleDragLeave = (e: DragEvent) => HandleDragLeave(e, options);
@@ -35,10 +34,12 @@ export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
   };
 }
 
-function getCurrentDropEffect(context: DragDropManagerType): string {
-  return context.getCurrentNode()
-    ? context.getCurrentNode().dropEffect
-    : 'move';
+function getCurrentDropEffect(): string {
+  return 'move';
+
+  // context.getCurrentNode()
+  //   ? context.getCurrentNode().dropEffect
+  //   : 'move';
 }
 
 function HandleDragOver(e: DragEvent, options: DragOptions) {
@@ -47,11 +48,11 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
-    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
+    dataTransfer.dropEffect = getCurrentDropEffect();
   }
 
   if (options.dragOver) {
-    options.dragOver(e.target);
+    options.dragOver(e.target, options.targetId);
   }
 }
 function HandleDragLeave(e: DragEvent, options: DragOptions) {
@@ -60,11 +61,11 @@ function HandleDragLeave(e: DragEvent, options: DragOptions) {
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
-    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
+    dataTransfer.dropEffect = getCurrentDropEffect();
   }
 
   if (options.dragLeave) {
-    options.dragLeave(e.target);
+    options.dragLeave(e.target, options.targetId);
   }
 }
 
@@ -73,11 +74,11 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
-    dataTransfer.dropEffect = getCurrentDropEffect(options.context);
+    dataTransfer.dropEffect = getCurrentDropEffect();
   }
 
   if (options.dragEnter) {
-    options.dragEnter(e.target);
+    options.dragEnter(e.target, options.targetId);
   }
 }
 
@@ -85,6 +86,6 @@ function HandleDrop(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (options.drop) {
-    options.drop(e.target);
+    options.drop(e.target, options.targetId);
   }
 }
