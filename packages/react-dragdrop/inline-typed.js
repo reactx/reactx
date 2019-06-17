@@ -55,6 +55,7 @@ export type DropTargetProps = {|
   children: ReactElement<any>,
   style: any,
   forwardedref?: any,
+  ref?: any,
   canDropFrom: string[],
   onDragLeave: (event: EventTarget) => void,
   onDragOver: (event: EventTarget) => void,
@@ -62,7 +63,7 @@ export type DropTargetProps = {|
   onDrop: (
     event: EventTarget,
     source: EventTarget | null,
-    sourceElement: ReactElement<any>,
+    payload: any,
   ) => void,
 |};
 

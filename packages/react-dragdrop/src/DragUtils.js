@@ -11,7 +11,7 @@ import {type DragSourceProps} from '../inline-typed';
 
 type DragOptions = {|
   dragImage?: Element,
-  dragStart(e: EventTarget): void,
+  dragStart(e: EventTarget, props: DragSourceProps): void,
   props: DragSourceProps,
 |};
 

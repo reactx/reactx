@@ -16,16 +16,16 @@ import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps) {
-  const [dnd, dispatch] = useDragDropContext();
+  const context = useDragDropContext();
 
   function dragStart(e: EventTarget, dynamicProps: any) {
-    const useProps = {...props, ...dynamicProps}
+    const useProps = {...props, ...dynamicProps};
     let payload = {
       source: e,
       clonable: useProps.clonable,
       sourceId: useProps.sourceId || uuid.v4(),
     };
-    dispatch({
+    context.dispatch({
       type: Actions.BEGIN_DRAG,
       payload,
     });
@@ -49,7 +49,7 @@ function Component(props: DragSourceProps) {
       return connectDragSource(node, {
         dragImage: props.handler,
         dragStart,
-        props: {...props,...dynamicProps},
+        props: {...props, ...dynamicProps},
       });
     }
   }, []);

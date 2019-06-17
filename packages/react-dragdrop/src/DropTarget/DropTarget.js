@@ -25,7 +25,7 @@ export function useDrop(props: DropTargetProps) {
     const newReactEmenet = React.cloneElement(
       currentReactNode,
       {
-        key: uuid.v4(),     
+        key: uuid.v4(),
         ref: node => {
           const {ref} = currentReactNode;
           if (typeof ref === 'function') {
