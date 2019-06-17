@@ -26,6 +26,7 @@ untyped-type-import=error
 [options]
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
+esproposal.optional_chaining=enable
 
 munge_underscores=false
 

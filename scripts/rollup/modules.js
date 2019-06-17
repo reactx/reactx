@@ -22,7 +22,7 @@ const knownGlobals = Object.freeze({
   'react-dom/server': 'ReactDOMServer',
   'prop-types': 'PropTypes',
   'bpmn-js/lib/Modeler': 'BpmnModeler',
-  'crypto': 'crypto',
+  crypto: 'crypto',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.

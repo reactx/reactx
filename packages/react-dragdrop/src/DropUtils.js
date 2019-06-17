@@ -8,14 +8,14 @@
  */
 
 export type DragOptions = {|
-  dragOver(e: EventTarget): void,
-  dragEnter(e: EventTarget): void,
-  dragLeave(e: EventTarget): void,
-  drop(e: EventTarget): void,
-  targetId: string,
+  dragOver(e: EventTarget, targetId: string | null): void,
+  dragEnter(e: EventTarget, targetId: string | null): void,
+  dragLeave(e: EventTarget, targetId: string | null): void,
+  drop(e: EventTarget, targetId: string | null): void,
+  targetId: string | null,
 |};
 
-export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
+export function connectDropTarget(node: any, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);
   const handleDragLeave = (e: DragEvent) => HandleDragLeave(e, options);
@@ -36,7 +36,7 @@ export function connectDropTarget(node: HTMLDivElement, options: DragOptions) {
 
 function getCurrentDropEffect(): string {
   return 'move';
-  
+
   // context.getCurrentNode()
   //   ? context.getCurrentNode().dropEffect
   //   : 'move';

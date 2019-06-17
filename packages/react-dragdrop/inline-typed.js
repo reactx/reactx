@@ -13,4 +13,58 @@
 // imported directly in code. Instead, our Flow configuration uses this entry
 // point for the currently checked renderer (the one you passed to `yarn flow`).
 
+import {type Element as ReactElement} from 'react';
+
+export type XYCoord = {|
+  x: number,
+  y: number,
+|};
+
+export type State = {
+  item: any,
+  sourceId: string | null,
+  source: EventTarget | null,
+  targetId: string,
+  targetIds: string[],
+  didDrop: boolean,
+  clonable: boolean,
+  newItem: ReactElement<any> | null,
+};
+
+export type Action = {
+  item: any,
+  sourceId: string,
+  targetId: string,
+  type: String,
+};
+
+export type DragSourceProps = {
+  index?: number,
+  cssTarget?: any,
+  children: ReactElement<any>,
+  handler?: Element,
+  forwardedref: any,
+  clonable?: boolean,
+  ref?: any,
+  onDragStart(e: EventTarget): void,
+};
+
+export type DropTargetProps = {|
+  index: number,
+  componentType: string,
+  children: ReactElement<any>,
+  style: any,
+  forwardedref?: any,
+  ref?: any,
+  canDropFrom: string[],
+  onDragLeave: (event: EventTarget) => void,
+  onDragOver: (event: EventTarget) => void,
+  onDragEnter: (event: EventTarget) => void,
+  onDrop: (
+    event: EventTarget,
+    source: EventTarget | null,
+    sourceElement: ReactElement<any>,
+  ) => void,
+|};
+
 export * from './src/ReactDnD';

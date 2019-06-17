@@ -7,10 +7,12 @@
  * @flow
  */
 import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
+import {type DragSourceProps} from '../inline-typed';
 
 type DragOptions = {|
   dragImage?: Element,
   dragStart(e: EventTarget): void,
+  props: DragSourceProps,
 |};
 
 export function connectDragSource(node: Element, options: DragOptions) {
