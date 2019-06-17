@@ -41,6 +41,12 @@ export function useDrop(props: DropTargetProps) {
       {
         //TODO: use uuid
         key: item.sourceId,        
+        ref: (node)=>{
+          const {ref} = currentReactNode;
+          if (typeof ref === 'function') {
+            ref(node);
+          }
+        }
       },
       [...currentReactNode.memoizedProps.children],
     );

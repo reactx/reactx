@@ -45,20 +45,26 @@ export function useDrag(props: DragSourceProps) {
 
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
-  const [item] = useDragDropContext();
-  const dragRef = React.createRef(null);
+  const [ref, setRef] = React.useState(null);
+  // const [item] = useDragDropContext();
+  // const dragRef = React.createRef(null);
+
+  const dragRefCallback = React.useCallback(node=>{
+    if(node !== null)
+    setRef(node);
+  },[]);
 
  React.useEffect(() => {
   if(props.forwardedref){
-    props.forwardedref = dragRef;
+    props.forwardedref = ref;
   }
-    
-  return connectDragSource(item.source || dragRef.current, {
+  if(ref !== null)
+  return connectDragSource(ref, {
     dragImage: props.handler,
     dragStart,
     props: props,
   });  
-}, [item]);
+}, [ref]);
 
 //Clean Unknown Props
 const userProps = Object.assign({},props);
@@ -66,7 +72,7 @@ delete userProps.clonable;
 delete userProps.handler;
 
   return (
-    <div ref={dragRef} {...userProps} style={props.cssTarget}>
+    <div ref={dragRefCallback} {...userProps} style={props.cssTarget}>
       {props.children}
     </div>
   );
