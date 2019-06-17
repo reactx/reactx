@@ -10,25 +10,33 @@
 import React, {type Element as RElement} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {useDragDropContext} from '../ContextManager';
+import uuid from 'uuid';
+
+import {Actions} from '../../inline-typed'
+
 export type DragSourceProps = {
   index?: number,
   cssTarget?: any,
   children: RElement<any>,
   handler?: Element,
   clonable?: boolean,
-  forwardedRef: any,
   onDragStart(e: EventTarget): void,
 };
 
 export function useDrag(props: DragSourceProps) {
-  const context = React.useContext(DragDropContext);
-  function dragStart(e: EventTarget & {dropEffect: string, props: any}) {
-    if (typeof context.updateCurrentNode === 'function') {
-      context.updateCurrentNode(e);
+  const [dnd,dispatch] = useDragDropContext();
+  
+  function dragStart(e: EventTarget) {  
+    let payload = {
+      source: e,
+      sourceId: uuid.v4()    
     }
-
+    dispatch({
+      type: Actions.BEGIN_DRAG,
+      payload,
+    });
     if (props.onDragStart) {
-      props.onDragStart(e);
+      props.onDragStart(payload);
     }
   }
 
@@ -37,37 +45,37 @@ export function useDrag(props: DragSourceProps) {
 
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
-  const [dnd, dispatch] = useDragDropContext();
+  const [item] = useDragDropContext();
+  const dragRef = React.createRef(null);
 
-  const refDraggable = React.useCallback((node: any, dynamicPops) => {
-    //dynamicPops is type of DragSourceProps
-    if (node !== null) {
-      const useProps = {...props, ...dynamicPops};
+ React.useEffect(() => {
+  if(props.forwardedref){
+    props.forwardedref = dragRef;
+  }
+    
+  return connectDragSource(item.source || dragRef.current, {
+    dragImage: props.handler,
+    dragStart,
+    props: props,
+  });  
+}, [item]);
 
-      if (useProps.forwardedRef) {
-        useProps.forwardedRef.current = node;
-      }
-
-      connectDragSource(node, {
-        dragImage: props.handler,
-        dragStart,
-        props: useProps,
-      });
-    }
-    return node;
-  }, []);
+//Clean Unknown Props
+const userProps = Object.assign({},props);
+delete userProps.clonable;
+delete userProps.handler;
 
   return (
-    <div style={props.cssTarget} ref={refDraggable}>
+    <div ref={dragRef} {...userProps} style={props.cssTarget}>
       {props.children}
     </div>
   );
 }
 
 //TODO:Change to memoizable CP
-const DragSource: any = React.forwardRef((props: DragSourceProps, ref: any) => {
+const DragSource: any = React.memo((props: DragSourceProps) => {
   return (
-    <Component {...props} forwardedRef={ref}>
+    <Component {...props} forwardedref={props.ref}>
       {props.children}
     </Component>
   );
