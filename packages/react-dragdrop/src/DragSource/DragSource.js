@@ -16,13 +16,14 @@ import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps) {
-  const [dispatch] = useDragDropContext();
+  const [dnd, dispatch] = useDragDropContext();
 
-  function dragStart(e: EventTarget) {
+  function dragStart(e: EventTarget, dynamicProps: any) {
+    const useProps = {...props, ...dynamicProps}
     let payload = {
       source: e,
-      clonable: props.clonable,
-      sourceId: uuid.v4(),
+      clonable: useProps.clonable,
+      sourceId: useProps.sourceId || uuid.v4(),
     };
     dispatch({
       type: Actions.BEGIN_DRAG,
@@ -39,7 +40,7 @@ export function useDrag(props: DragSourceProps) {
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
 
-  const dragRefCallback = React.useCallback((node: any) => {
+  const dragRefCallback = React.useCallback((node: any, dynamicProps: any) => {
     if (node !== null) {
       if (props.forwardedref) {
         props.forwardedref.current = node;
@@ -48,7 +49,7 @@ function Component(props: DragSourceProps) {
       return connectDragSource(node, {
         dragImage: props.handler,
         dragStart,
-        props: props,
+        props: {...props,...dynamicProps},
       });
     }
   }, []);
