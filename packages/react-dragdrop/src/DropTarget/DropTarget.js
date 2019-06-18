@@ -17,7 +17,7 @@ import {type DropTargetProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrop(props: DropTargetProps) {
-  const [item, dispatch] = useDragDropContext();
+  const {item, dispatch} = useDragDropContext();
 
   function drop(event: EventTarget, targetId: string | null) {
     const currentReactNode = FindReactElement(item.source);
@@ -86,7 +86,7 @@ function CloningElement(target, children) {
 
 function Component(props: DropTargetProps) {
   const [targetId, setTargetId] = React.useState(null);
-  const [item] = useDragDropContext();
+  const {item} = useDragDropContext();
   const [children, setChildren] = React.useState([]);
   const dropRef = React.useRef(null);
 

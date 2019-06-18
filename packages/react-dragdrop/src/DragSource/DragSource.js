@@ -16,21 +16,22 @@ import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps) {
-  const context = useDragDropContext();
+  const {dispatch} = useDragDropContext();
 
   function dragStart(e: EventTarget, dynamicProps: any) {
     const useProps = {...props, ...dynamicProps};
+    const sourceId = useProps.sourceId || uuid.v4();
     let payload = {
       source: e,
       clonable: useProps.clonable,
-      sourceId: useProps.sourceId || uuid.v4(),
+      sourceId,
     };
-    context.dispatch({
+    dispatch({
       type: Actions.BEGIN_DRAG,
       payload,
     });
     if (props.onDragStart) {
-      props.onDragStart(e);
+      props.onDragStart(e, sourceId);
     }
   }
 
@@ -44,6 +45,11 @@ function Component(props: DragSourceProps) {
     if (node !== null) {
       if (props.forwardedref) {
         props.forwardedref.current = node;
+      }
+
+      //We are tracking cloned elements by sourceId
+      if (dynamicProps && dynamicProps.sourceId) {
+        node.setAttribute('sourceId', dynamicProps.sourceId);
       }
 
       return connectDragSource(node, {
