@@ -20,7 +20,7 @@ export function useDrag(props: DragSourceProps) {
 
   function dragStart(e: EventTarget, dynamicProps: any) {
     const useProps = {...props, ...dynamicProps};
-    const sourceId = useProps.sourceId || uuid.v4();
+    const sourceId: string = useProps.sourceId || uuid.v4();
     let payload = {
       source: e,
       clonable: useProps.clonable,

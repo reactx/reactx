@@ -60,8 +60,8 @@
       "filename": "react-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-dragdrop",
-      "size": 60555,
-      "gzip": 15356
+      "size": 60553,
+      "gzip": 15348
     },
     {
       "filename": "react-dragdrop.production.min.js",
@@ -74,8 +74,8 @@
       "filename": "react-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dragdrop",
-      "size": 60356,
-      "gzip": 15308
+      "size": 60354,
+      "gzip": 15300
     },
     {
       "filename": "react-dragdrop.production.min.js",
