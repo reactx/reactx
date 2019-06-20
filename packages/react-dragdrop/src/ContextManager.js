@@ -73,6 +73,6 @@ export default function DragDropProvider(props: DragDropProviderProps) {
 }
 
 export const useDragDropContext = () => {
-  const [contextValue, dispatch] = React.useContext(DragDropContext);
-  return [contextValue, dispatch];
+  const [item, dispatch] = React.useContext(DragDropContext);
+  return {item, dispatch};
 };

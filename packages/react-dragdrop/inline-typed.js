@@ -46,7 +46,7 @@ export type DragSourceProps = {
   forwardedref: any,
   clonable?: boolean,
   ref?: any,
-  onDragStart(e: EventTarget): void,
+  onDragStart(e: EventTarget, sourceId: string): void,
 };
 
 export type DropTargetProps = {|
@@ -63,7 +63,7 @@ export type DropTargetProps = {|
   onDrop: (
     event: EventTarget,
     source: EventTarget | null,
-    sourceElement: ReactElement<any>,
+    payload: any,
   ) => void,
 |};
 

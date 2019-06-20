@@ -11,7 +11,7 @@ import {type DragSourceProps} from '../inline-typed';
 
 type DragOptions = {|
   dragImage?: Element,
-  dragStart(e: EventTarget): void,
+  dragStart(e: EventTarget, props: DragSourceProps): void,
   props: DragSourceProps,
 |};
 
@@ -92,6 +92,6 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragStart) {
-    options.dragStart(e.target);
+    options.dragStart(e.target, options.props);
   }
 }

@@ -16,20 +16,22 @@ import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps) {
-  const [dispatch] = useDragDropContext();
+  const {dispatch} = useDragDropContext();
 
-  function dragStart(e: EventTarget) {
+  function dragStart(e: EventTarget, dynamicProps: any) {
+    const useProps = {...props, ...dynamicProps};
+    const sourceId: string = useProps.sourceId || uuid.v4();
     let payload = {
       source: e,
-      clonable: props.clonable,
-      sourceId: uuid.v4(),
+      clonable: useProps.clonable,
+      sourceId,
     };
     dispatch({
       type: Actions.BEGIN_DRAG,
       payload,
     });
     if (props.onDragStart) {
-      props.onDragStart(e);
+      props.onDragStart(e, sourceId);
     }
   }
 
@@ -39,16 +41,21 @@ export function useDrag(props: DragSourceProps) {
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
 
-  const dragRefCallback = React.useCallback((node: any) => {
+  const dragRefCallback = React.useCallback((node: any, dynamicProps: any) => {
     if (node !== null) {
       if (props.forwardedref) {
         props.forwardedref.current = node;
       }
 
+      //We are tracking cloned elements by sourceId
+      if (dynamicProps && dynamicProps.sourceId) {
+        node.setAttribute('sourceId', dynamicProps.sourceId);
+      }
+
       return connectDragSource(node, {
         dragImage: props.handler,
         dragStart,
-        props: props,
+        props: {...props, ...dynamicProps},
       });
     }
   }, []);

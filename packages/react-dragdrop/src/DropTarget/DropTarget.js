@@ -17,7 +17,7 @@ import {type DropTargetProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrop(props: DropTargetProps) {
-  const [item, dispatch] = useDragDropContext();
+  const {item, dispatch} = useDragDropContext();
 
   function drop(event: EventTarget, targetId: string | null) {
     const currentReactNode = FindReactElement(item.source);
@@ -25,20 +25,16 @@ export function useDrop(props: DropTargetProps) {
     const newReactEmenet = React.cloneElement(
       currentReactNode,
       {
-        key: item.sourceId,
+        key: uuid.v4(),
         ref: node => {
           const {ref} = currentReactNode;
           if (typeof ref === 'function') {
-            ref(node);
+            ref(node, {...props, clonable: false, sourceId: item.sourceId});
           }
         },
       },
       [...currentReactNode.memoizedProps.children],
     );
-
-    if (props.onDrop) {
-      props.onDrop(event, currentReactNode, newReactEmenet);
-    }
 
     let payload = {
       newItem: newReactEmenet,
@@ -48,12 +44,16 @@ export function useDrop(props: DropTargetProps) {
       targetId,
     };
 
+    if (props.onDrop) {
+      props.onDrop(event, currentReactNode, payload);
+    }
+
     dispatch({
       type: Actions.DROP,
       payload,
     });
 
-    if (item.clonable === true) {
+    if (item.clonable !== true) {
       currentReactNode.stateNode.remove();
     }
   }
@@ -66,13 +66,11 @@ export function useDrop(props: DropTargetProps) {
     if (props.onDragOver) {
       props.onDragOver(event);
     }
-    // event.preventDefault();
   }
   function dragLeave(event: EventTarget, targetId: string | null) {
     if (props.onDragLeave) {
       props.onDragLeave(event);
     }
-    // event.preventDefault();
   }
   return [drop, dragOver, dragEnter, dragLeave];
 }
@@ -88,9 +86,9 @@ function CloningElement(target, children) {
 
 function Component(props: DropTargetProps) {
   const [targetId, setTargetId] = React.useState(null);
-  const [item] = useDragDropContext();
+  const {item} = useDragDropContext();
   const [children, setChildren] = React.useState([]);
-  const dropRef = React.useRef<Element | null>(null);
+  const dropRef = React.useRef(null);
 
   const [drop, dragOver, dragEnter, dragLeave] = useDrop(props);
 
@@ -119,7 +117,7 @@ function Component(props: DropTargetProps) {
   }, [item]);
 
   return (
-    <div {...props} style={props.style} ref={dropRef}>
+    <div style={props.style} ref={dropRef}>
       {CloningElement(props.children, children)}
     </div>
   );
