@@ -153,14 +153,16 @@ function App() {
               <DragSource category={'itm'}>
                 <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
               </DragSource>
-              <DragSource category={'itm2'}>
-                <span style={{backgroundColor: 'white'}}>Drag Me Too!</span>
+              <DragSource className="a b c">
+                <span style={{backgroundColor: 'white'}}>
+                  Drag Me Too By className!
+                </span>
               </DragSource>
               <br />
               <br />
               <br />
               <br />
-              <DropTarget>
+              <DropTarget canDropByClassNames="a">
                 <div style={{height: 200, width: 200, backgroundColor: 'red'}}>
                   asljfaskob
                 </div>

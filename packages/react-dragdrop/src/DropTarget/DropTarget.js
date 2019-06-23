@@ -20,11 +20,25 @@ export function useDrop(props: DropTargetProps) {
   const {item, dispatch} = useDragDropContext();
 
   function drop(event: EventTarget, targetId: string | null) {
+    if (!item.source) {
+      return;
+    }
+
+    if (
+      props.canDropByClassNames &&
+      Array.from(item.source.classList).filter(c =>
+        props.canDropByClassNames.includes(c),
+      ).length === 0
+    ) {
+      return;
+    }
+
     const currentReactNode = FindReactElement(item.source);
 
     const newReactEmenet = React.cloneElement(
       currentReactNode,
       {
+        ...currentReactNode.memoizedProps,
         key: uuid.v4(),
         ref: node => {
           const {ref} = currentReactNode;
