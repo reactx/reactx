@@ -7,7 +7,7 @@ set -e
 # We don't do it for pull requests because those are compared against
 # the merge base by Dangerfile instead. See https://github.com/facebook/react/pull/12606.
 if [ -z "$CI_PULL_REQUEST" ]; then
-  curl -o scripts/rollup/results.json http://react.zpao.com/builds/master/latest/results.json
+  curl -o scripts/rollup/results.json https://raw.githubusercontent.com/reactx/reactx/master/scripts/rollup/results.json
 else
   # If build fails, cause danger to fail/abort too
   rm scripts/rollup/results.json
