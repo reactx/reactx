@@ -56,7 +56,7 @@ export type DropTargetProps = {|
   style: any,
   forwardedref?: any,
   ref?: any,
-  canDropFrom: string[],
+  canDropByClassNames: string[],
   onDragLeave: (event: EventTarget) => void,
   onDragOver: (event: EventTarget) => void,
   onDragEnter: (event: EventTarget) => void,
