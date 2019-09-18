@@ -127,5 +127,6 @@
     "prettier": "node ./scripts/prettier/index.js write-changed",
     "prettier-all": "node ./scripts/prettier/index.js write",
     "version-check": "node ./scripts/tasks/version-check.js"
-  }
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/@reactx" }
 }
