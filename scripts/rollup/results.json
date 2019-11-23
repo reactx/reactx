@@ -26,7 +26,7 @@
       "bundleType": "NODE_PROD",
       "packageName": "react-components",
       "size": 5109,
-      "gzip": 2032
+      "gzip": 2033
     },
     {
       "filename": "react-svg-components.development.js",
@@ -60,8 +60,8 @@
       "filename": "react-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-dragdrop",
-      "size": 60837,
-      "gzip": 15431
+      "size": 60839,
+      "gzip": 15439
     },
     {
       "filename": "react-dragdrop.production.min.js",
@@ -74,15 +74,15 @@
       "filename": "react-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-dragdrop",
-      "size": 60638,
-      "gzip": 15380
+      "size": 60640,
+      "gzip": 15389
     },
     {
       "filename": "react-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-dragdrop",
       "size": 14564,
-      "gzip": 5753
+      "gzip": 5754
     },
     {
       "filename": "react-viewer-components.development.js",
@@ -96,7 +96,7 @@
       "bundleType": "UMD_PROD",
       "packageName": "react-viewer-components",
       "size": 597,
-      "gzip": 395
+      "gzip": 396
     },
     {
       "filename": "react-viewer-components.development.js",
@@ -116,29 +116,29 @@
       "filename": "react-bpmn.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-bpmn",
-      "size": 4113,
-      "gzip": 1675
+      "size": 4223,
+      "gzip": 1705
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-bpmn",
-      "size": 1924,
-      "gzip": 1027
+      "size": 1989,
+      "gzip": 1052
     },
     {
       "filename": "react-bpmn.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-bpmn",
-      "size": 3895,
-      "gzip": 1619
+      "size": 4005,
+      "gzip": 1647
     },
     {
       "filename": "react-bpmn.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-bpmn",
-      "size": 1706,
-      "gzip": 944
+      "size": 1771,
+      "gzip": 966
     }
   ]
 }

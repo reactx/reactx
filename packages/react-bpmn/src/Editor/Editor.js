@@ -9,6 +9,7 @@
 
 import React from 'react';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
+var BpmnViewer = require('bpmn-js/lib/NavigatedViewer');
 
 type EditorOptions = {|
   keyboard: any,
@@ -19,6 +20,7 @@ type EditorOptions = {|
 
 type EditorProps = {|
   id: string,
+  isViewer: boolean,
   showPropPanel: boolean,
   options: EditorOptions,
   cssViewer: any,
@@ -45,7 +47,9 @@ export default function Editor(props: EditorProps) {
     if (node !== null) {
       if (!modeler) {
         // This is hacky but makes it work with Rollup.
-        let ModelerClass = BpmnModeler.default || BpmnModeler;
+        var ModelerClass = props.isViewer
+          ? BpmnViewer.default || BpmnViewer
+          : BpmnModeler.default || BpmnModeler;
         let tempModeler = new ModelerClass(options);
         setModeler(tempModeler);
         if (props.onInitialize) {
