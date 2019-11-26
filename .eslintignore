@@ -5,4 +5,10 @@
 build/
 coverage/
 fixtures/
+scripts/
 scripts/bench/benchmarks/**/*.js
+
+projects/**/scripts/bench/benchmarks/**/*.js
+projects/**/scripts/
+
+dangerfile.js

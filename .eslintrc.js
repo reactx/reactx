@@ -21,9 +21,9 @@ module.exports = {
     'reactx-internal',
   ],
 
-  parser: 'espree',
+  parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 8,
     sourceType: 'script',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
@@ -40,8 +40,8 @@ module.exports = {
     'dot-location': [ERROR, 'property'],
     'dot-notation': ERROR,
     'eol-last': ERROR,
-    'eqeqeq': [ERROR, 'allow-null'],
-    'indent': OFF,
+    eqeqeq: [ERROR, 'allow-null'],
+    indent: OFF,
     'jsx-quotes': [ERROR, 'prefer-double'],
     'keyword-spacing': [ERROR, {after: true, before: true}],
     'no-bitwise': OFF,
@@ -65,13 +65,18 @@ module.exports = {
     'no-var': ERROR,
     strict: ERROR,
 
+    // Enforced by Prettier
+    // TODO: Prettier doesn't handle long strings or long comments. Not a big
+    // deal. But I turned it off because loading the plugin causes some obscure
+    // syntax error and it didn't seem worth investigating.
+    'max-len': OFF,
+
     // React & JSX
     // Our transforms set this automatically
     'react/jsx-boolean-value': [ERROR, 'always'],
     'react/jsx-no-undef': ERROR,
     // We don't care to do this
     'react/jsx-sort-prop-types': OFF,
-    'react/jsx-space-before-closing': ERROR,
     'react/jsx-uses-react': ERROR,
     'react/no-is-mounted': OFF,
     // This isn't useful in our test code
@@ -112,6 +117,7 @@ module.exports = {
       files: esNextPaths,
       parser: 'babel-eslint',
       parserOptions: {
+        ecmaVersion: 8,
         sourceType: 'module',
       },
       rules: {
@@ -124,15 +130,21 @@ module.exports = {
       rules: {
         // https://github.com/jest-community/eslint-plugin-jest
         'jest/no-focused-tests': ERROR,
-      }
+        'jest/valid-expect': ERROR,
+        'jest/valid-expect-in-promise': ERROR,
+      },
     }
   ],
 
   globals: {
+    SharedArrayBuffer: true,
+    
     spyOnDev: true,
     spyOnDevAndProd: true,
     spyOnProd: true,
     __PROFILE__: true,
     __UMD__: true,
+    __EXPERIMENTAL__: true,
+    trustedTypes: true,
   },
 };
