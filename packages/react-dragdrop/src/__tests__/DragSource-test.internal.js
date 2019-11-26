@@ -11,7 +11,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {DragSource, DragDropProvider} from 'react-dragdrop';
-import renderer from 'react-test-renderer';
 
 describe('while running in a browser environment', () => {
   let container, wrapper;
@@ -30,17 +29,15 @@ describe('while running in a browser environment', () => {
   });
 
   it('should render correctly', () => {
-    wrapper = renderer
-      .create(
-        <div>
-          <DragSource>
-            <div>Drop Here</div>
-          </DragSource>
-        </div>,
-      )
-      .toJSON();
+    wrapper = (
+      <div>
+        <DragSource>
+          <div>Drop Here</div>
+        </DragSource>
+      </div>
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
   });
 
   it('should render correctly with provider', () => {
@@ -74,26 +71,25 @@ describe('while running in a browser environment', () => {
   });
 
   it('should multiple and nested render correctly', () => {
-    wrapper = renderer
-      .create(
-        <div>
-          <DragSource>
-            <div>
-              <span>Drag Me!</span>
-              <DragSource>
-                <span>Drag Me!</span>
-              </DragSource>
-            </div>
-          </DragSource>
-          <DragSource>
+    wrapper = (
+      <div>
+        <DragSource>
+          <div>
             <span>Drag Me!</span>
-          </DragSource>
-        </div>,
-      )
-      .toJSON();
+            <DragSource>
+              <span>Drag Me!</span>
+            </DragSource>
+          </div>
+        </DragSource>
+        <DragSource>
+          <span>Drag Me!</span>
+        </DragSource>
+      </div>
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
   });
+
   describe('while running in a browser environment', () => {
     // it('should support onDragStart', () => {
     //   let divRef = React.createRef();

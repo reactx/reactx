@@ -10,7 +10,7 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Sidebar} from 'react-components';
+import {Collapse} from 'react-components';
 
 describe('while running in a browser environment', () => {
   let container, wrapper, onSetOpen;
@@ -31,21 +31,11 @@ describe('while running in a browser environment', () => {
   it('should render correctly', () => {
     wrapper = (
       <div>
-        <Sidebar
-          onSetOpen={onSetOpen}
-          open={true}
-          sidebar={
-            <div>
-              <a key={1} href="#">
-                Mock menu item {1}
-              </a>
-            </div>
-          }>
+        <Collapse>
           <p>salam</p>
-        </Sidebar>
+        </Collapse>
       </div>
     );
-
     expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
   });
 });

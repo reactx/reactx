@@ -8,9 +8,11 @@
  */
 
 import Sidebar from './Sidebar/Sidebar';
+import Collapse from './Collapse/Collapse';
 
 const ReactComponents = {
   Sidebar,
+  Collapse,
 };
 
 export default ReactComponents;

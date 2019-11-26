@@ -4,34 +4,10 @@ exports[`while running in a browser environment should render correctly 1`] = `
 <div>
   <div
     role="navigation"
-    style={
-      Object {
-        "bottom": 0,
-        "left": 0,
-        "overflow": "hidden",
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
+    style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: hidden;"
   >
     <div
-      style={
-        Object {
-          "WebkitTransform": "translateX(0%)",
-          "WebkitTransition": "-webkit-transform .3s ease-out",
-          "bottom": 0,
-          "boxShadow": "2px 2px 4px rgba(0, 0, 0, 0.15)",
-          "left": 0,
-          "overflowY": "auto",
-          "position": "absolute",
-          "top": 0,
-          "transform": "translateX(0%)",
-          "transition": "transform .3s ease-out",
-          "willChange": "transform",
-          "zIndex": 2,
-        }
-      }
+      style="z-index: 2; position: absolute; top: 0px; bottom: 0px; transition: transform .3s ease-out; will-change: transform; overflow-y: auto; left: 0px; transform: translateX(0%); box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);"
     >
       <div>
         <a
@@ -43,35 +19,10 @@ exports[`while running in a browser environment should render correctly 1`] = `
       </div>
     </div>
     <div
-      onClick={[Function]}
-      style={
-        Object {
-          "backgroundColor": "rgba(0,0,0,.3)",
-          "bottom": 0,
-          "left": 0,
-          "opacity": 1,
-          "position": "fixed",
-          "right": 0,
-          "top": 0,
-          "transition": "opacity .3s ease-out, visibility .3s ease-out",
-          "visibility": "visible",
-          "zIndex": 1,
-        }
-      }
+      style="z-index: 1; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; opacity: 1; visibility: visible; transition: opacity .3s ease-out, visibility .3s ease-out; background-color: rgba(0, 0, 0, 0.3);"
     />
     <div
-      style={
-        Object {
-          "WebkitOverflowScrolling": "touch",
-          "bottom": 0,
-          "left": 0,
-          "overflowY": "auto",
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-          "transition": "left .3s ease-out, right .3s ease-out",
-        }
-      }
+      style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow-y: auto; transition: left .3s ease-out, right .3s ease-out;"
     >
       <p>
         salam
