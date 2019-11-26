@@ -35,6 +35,9 @@ packages.forEach(name => {
 module.exports = Object.assign({}, baseConfig, {
   // Redirect imports to the compiled bundles
   moduleNameMapper,
+  modulePathIgnorePatterns: [...baseConfig.modulePathIgnorePatterns],
+  // Redirect imports to the compiled bundles
+  moduleNameMapper,
   // Don't run bundle tests on -test.internal.* files
   testPathIgnorePatterns: ['/node_modules/', '-test.internal.js$'],
   // Exclude the build output from transforms
