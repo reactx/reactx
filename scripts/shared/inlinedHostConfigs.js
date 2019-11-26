@@ -21,10 +21,5 @@ module.exports = [
     shortName: 'native',
     entryPoints: ['react-components', 'react-svg-components'],
     isFlowTyped: true,
-  },
-  {
-    shortName: 'projects',
-    entryPoints: ['eform'],
-    isFlowTyped: true,
-  },
+  }
 ];
