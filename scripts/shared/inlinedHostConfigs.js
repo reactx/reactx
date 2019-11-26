@@ -22,4 +22,9 @@ module.exports = [
     entryPoints: ['react-components', 'react-svg-components'],
     isFlowTyped: true,
   },
+  {
+    shortName: 'projects',
+    entryPoints: ['eform'],
+    isFlowTyped: true,
+  },
 ];
