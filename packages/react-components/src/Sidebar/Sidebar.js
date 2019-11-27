@@ -6,7 +6,7 @@
  *
  * @flow
  */
-import React, { type Element as ReactElement, useMemo } from "react";
+import React, {type Element as ReactElement, useMemo, useState} from 'react';
 import defaultStyles from './styles';
 
 type StylesType = {|
@@ -144,9 +144,9 @@ function createDefaultProps(): DefaultSidebarProps {
 }
 
 function useTouch() {
-  const [touchIdentifier, setTouchIdentifier] = React.useState(null);
-  const [touchStartX, setTouchStartX] = React.useState(null);
-  const [touchCurrentX, setTouchCurrentX] = React.useState(null);
+  const [touchIdentifier, setTouchIdentifier] = useState(null);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchCurrentX, setTouchCurrentX] = useState(null);
 
   const OnTouchMove = (ev: TouchEvent) => {
     for (let ind = 0; ind < ev.targetTouches.length; ind++) {
@@ -194,14 +194,14 @@ function useTouch() {
 
 export default function Sidebar(userProps: SidebarProps) {
   const defaultProps = useMemo(() => {
-    return { ...createDefaultProps() };
+    return {...createDefaultProps()};
   }, []);
   const props: SidebarProps = Object.assign(
     {},
-    { ...defaultProps },
-    { ...userProps }
+    {...defaultProps},
+    {...userProps},
   );
-  
+
   const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : '');
   const dragSupported =
     typeof window === 'object' && 'ontouchstart' in window && !isIos;
@@ -227,7 +227,7 @@ export default function Sidebar(userProps: SidebarProps) {
     id: props.rootId,
   };
 
-  const [sidebarWidth, setSidebarWidth] = React.useState(
+  const [sidebarWidth, setSidebarWidth] = useState(
     props.defaultSidebarWidth,
   );
   const sidebarRefCallback = ev => {

@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 var BpmnViewer = require('bpmn-js/lib/NavigatedViewer');
 
@@ -30,7 +30,7 @@ type EditorProps = {|
 
 export default function Editor(props: EditorProps) {
   let container = props.id || '_bpmnviewer';
-  const [modeler, setModeler] = React.useState(null);
+  const [modeler, setModeler] = useState(null);
 
   let options = {
     ...props.options,
@@ -60,11 +60,11 @@ export default function Editor(props: EditorProps) {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div ref={draggableRef} id={container} style={props.cssViewer} />
       {props.showPropPanel && (
         <div id={container + '_property'} style={props.cssProperty} />
       )}
-    </React.Fragment>
+    </>
   );
 }

@@ -7,7 +7,13 @@
  *
  */
 
-import React, {type Portal, type Element} from 'react';
+import React, {
+  type Portal,
+  type Element,
+  createContext,
+  useContext,
+  useReducer,
+} from 'react';
 import without from 'lodash/without';
 import {type State, type Action} from '../inline-typed';
 import {Actions} from './ActionTypes';
@@ -60,10 +66,10 @@ const dndReducer = (state: State, action: Action) => {
   }
 };
 
-const DragDropContext = React.createContext(initialState);
+const DragDropContext = createContext(initialState);
 
 export default function DragDropProvider(props: DragDropProviderProps) {
-  const context = React.useReducer(dndReducer, initialState);
+  const context = useReducer(dndReducer, initialState);
 
   return (
     <DragDropContext.Provider value={context}>
@@ -73,6 +79,6 @@ export default function DragDropProvider(props: DragDropProviderProps) {
 }
 
 export const useDragDropContext = () => {
-  const [item, dispatch] = React.useContext(DragDropContext);
+  const [item, dispatch] = useContext(DragDropContext);
   return {item, dispatch};
 };

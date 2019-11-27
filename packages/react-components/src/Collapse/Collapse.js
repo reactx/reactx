@@ -7,7 +7,13 @@
  * @flow
  */
 
-import React, {type Element as ReactElement, useEffect, useMemo} from 'react';
+import React, {
+  type Element as ReactElement,
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 
 const WAITING = 'WAITING';
 const RESIZING = 'RESIZING';
@@ -52,7 +58,7 @@ export default function Collapse(userProps: CollapsePropsType) {
     {...defaultProps},
     {...userProps},
   );
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     currentState: IDLING,
     from: 0,
     to: 0,
@@ -76,7 +82,7 @@ export default function Collapse(userProps: CollapsePropsType) {
     return {overflow: 'hidden', height: Math.max(0, height)};
   };
 
-  const onContentRefCallback = React.useCallback(content => {
+  const onContentRefCallback = useCallback(content => {
     if (content === null) {
       return;
     }
@@ -87,7 +93,7 @@ export default function Collapse(userProps: CollapsePropsType) {
     });
   }, []);
 
-  const onWrapperRefCallback = React.useCallback(wrapper => {
+  const onWrapperRefCallback = useCallback(wrapper => {
     if (wrapper === null) {
       return;
     }

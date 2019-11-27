@@ -11,9 +11,9 @@ const gzip = require('gzip-size');
 module.exports = function sizes(options) {
   return {
     name: 'scripts/rollup/plugins/sizes-plugin',
-    ongenerate(bundle, obj) {
-      const size = Buffer.byteLength(obj.code);
-      const gzipSize = gzip.sync(obj.code);
+    generateBundle(bundle, obj) {
+      const size = Buffer.byteLength(obj[options.filename].code);
+      const gzipSize = gzip.sync(obj[options.filename].code);
 
       options.getSize(size, gzipSize);
     },

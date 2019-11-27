@@ -5,7 +5,7 @@ const babel = require('rollup-plugin-babel');
 const closure = require('./plugins/closure-plugin');
 const commonjs = require('rollup-plugin-commonjs');
 const prettier = require('rollup-plugin-prettier');
-const replace = require('rollup-plugin-replace');
+const replace = require('@rollup/plugin-replace');
 const stripBanner = require('rollup-plugin-strip-banner');
 const chalk = require('chalk');
 const path = require('path');
@@ -111,8 +111,6 @@ function getBabelConfig(updateBabelOptions, bundleType, filename) {
     case NODE_PROD:
       return Object.assign({}, options, {
         plugins: options.plugins.concat([
-          // Use object-assign polyfill in open source
-          path.resolve('./scripts/babel/transform-object-assign-require'),
           // Minify invariant messages
           require('../error-codes/minify-error-messages'),
           // Wrap warning() calls in a __DEV__ check so they are stripped from production.
@@ -236,8 +234,8 @@ function getPlugins(
     forbidFBJSImports(),
     // Use Node resolution mechanism.
     resolve({
-      skip: externals,
-      preferBuiltins: false,
+      external: externals,
+      // preferBuiltins: false,
     }),
     // Remove license headers from individual modules
     stripBanner({
@@ -277,10 +275,10 @@ function getPlugins(
     // Note that this plugin must be called after closure applies DCE.
     isProduction && stripUnusedImports(pureExternalModules),
     // Add the whitespace back if necessary.
-    shouldStayReadable && prettier({parser: 'babel'}),
+    shouldStayReadable && prettier({parser: 'babylon'}),
     // License and haste headers, top-level `if` blocks.
     {
-      transformBundle(source) {
+      renderChunk(source) {
         return Wrappers.wrapBundle(
           source,
           bundleType,
@@ -292,6 +290,7 @@ function getPlugins(
     },
     // Record bundle size.
     sizes({
+      filename,
       getSize: (size, gzip) => {
         const currentSizes = Stats.currentBuildResults.bundleSizes;
         const recordIndex = currentSizes.findIndex(
@@ -393,7 +392,7 @@ async function createBundle(bundle, bundleType) {
       pureExternalModules
     ),
     // We can't use getters in www.
-    legacy: false,
+    // legacy: false,
   };
   const [mainOutputPath, ...otherOutputPaths] = Packaging.getBundleOutputPaths(
     bundleType,
@@ -496,14 +495,27 @@ async function buildEverything() {
 
   // Run them serially for better console output
   // and to avoid any potential race conditions.
+  let bundles = [];
   // eslint-disable-next-line no-for-of-loops/no-for-of-loops
   for (const bundle of Bundles.bundles) {
-    await createBundle(bundle, UMD_DEV);
-    await createBundle(bundle, UMD_PROD);
-    await createBundle(bundle, NODE_DEV);
-    await createBundle(bundle, NODE_PROD);
-    // await createBundle(bundle, RN_OSS_DEV);
-    // await createBundle(bundle, RN_OSS_PROD);
+    bundles.push(
+      [bundle, UMD_DEV],
+      [bundle, UMD_PROD],
+      [bundle, NODE_DEV],
+      [bundle, NODE_PROD]
+    );
+  }
+
+  if (!shouldExtractErrors && process.env.CIRCLE_NODE_TOTAL) {
+    // In CI, parallelize bundles across multiple tasks.
+    const nodeTotal = parseInt(process.env.CIRCLE_NODE_TOTAL, 10);
+    const nodeIndex = parseInt(process.env.CIRCLE_NODE_INDEX, 10);
+    bundles = bundles.filter((_, i) => i % nodeTotal === nodeIndex);
+  }
+
+  // eslint-disable-next-line no-for-of-loops/no-for-of-loops
+  for (const [bundle, bundleType] of bundles) {
+    await createBundle(bundle, bundleType);
   }
 
   await Packaging.copyAllShims();

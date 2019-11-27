@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, {useCallback, memo} from 'react';
 import uuid from 'uuid';
 
 import {connectDragSource} from '../DragUtils';
@@ -41,7 +41,7 @@ export function useDrag(props: DragSourceProps) {
 function Component(props: DragSourceProps) {
   const [dragStart] = useDrag(props);
 
-  const dragRefCallback = React.useCallback((node: any, dynamicProps: any) => {
+  const dragRefCallback = useCallback((node: any, dynamicProps: any) => {
     if (node !== null) {
       if (props.forwardedref) {
         props.forwardedref.current = node;
@@ -72,7 +72,7 @@ function Component(props: DragSourceProps) {
   );
 }
 
-const DragSource: any = React.memo((props: DragSourceProps) => {
+const DragSource: any = memo((props: DragSourceProps) => {
   return (
     <Component {...props} forwardedref={props.ref}>
       {props.children}

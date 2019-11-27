@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, {cloneElement, useState, useRef, useEffect, memo, Children} from 'react';
 import uuid from 'uuid';
 
 import {connectDropTarget} from '../DropUtils';
@@ -35,7 +35,7 @@ export function useDrop(props: DropTargetProps) {
 
     const currentReactNode = FindReactElement(item.source);
 
-    const newReactEmenet = React.cloneElement(
+    const newReactEmenet = cloneElement(
       currentReactNode,
       {
         ...currentReactNode.memoizedProps,
@@ -90,23 +90,23 @@ export function useDrop(props: DropTargetProps) {
 }
 
 function CloningElement(target, children) {
-  return React.Children.map(target, Target => {
+  return Children.map(target, Target => {
     //TODO: define target based on offset
-    return React.cloneElement(Target, {
+    return cloneElement(Target, {
       children: [target.props.children, ...children],
     });
   });
 }
 
 function Component(props: DropTargetProps) {
-  const [targetId, setTargetId] = React.useState(null);
+  const [targetId, setTargetId] = useState(null);
   const {item} = useDragDropContext();
-  const [children, setChildren] = React.useState([]);
-  const dropRef = React.useRef(null);
+  const [children, setChildren] = useState([]);
+  const dropRef = useRef(null);
 
   const [drop, dragOver, dragEnter, dragLeave] = useDrop(props);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (props.forwardedref) {
       props.forwardedref = dropRef;
     }
@@ -137,7 +137,7 @@ function Component(props: DropTargetProps) {
   );
 }
 
-const DropTarget: any = React.memo((props: DropTargetProps) => {
+const DropTarget: any = memo((props: DropTargetProps) => {
   return (
     <Component {...props} forwardedref={props.ref}>
       {props.children}
