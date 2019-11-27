@@ -6,7 +6,7 @@
  *
  * @flow
  */
-import React, {type Element as ReactElement} from 'react';
+import React, { type Element as ReactElement, useMemo } from "react";
 import defaultStyles from './styles';
 
 type StylesType = {|
@@ -193,11 +193,15 @@ function useTouch() {
 }
 
 export default function Sidebar(userProps: SidebarProps) {
+  const defaultProps = useMemo(() => {
+    return { ...createDefaultProps() };
+  }, []);
   const props: SidebarProps = Object.assign(
     {},
-    {...createDefaultProps()},
-    {...userProps},
+    { ...defaultProps },
+    { ...userProps }
   );
+  
   const isIos = /iPad|iPhone|iPod/.test(navigator ? navigator.userAgent : '');
   const dragSupported =
     typeof window === 'object' && 'ontouchstart' in window && !isIos;

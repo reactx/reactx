@@ -6,7 +6,7 @@
  *
  * @flow
  */
-import React from 'react';
+import React, {useMemo} from 'react';
 import ReactSVG from 'react-svg';
 import type {Errback} from '../ReactSVG';
 
@@ -57,9 +57,12 @@ function createDefaultProps(): DefaultTaskProps {
 
 export default function Task(userProps: TaskProps) {
   const {onClick, onInjected} = useTask(userProps);
-  let props: TaskProps = Object.assign(
+  const defaultProps = useMemo(() => {
+    return {...createDefaultProps()};
+  }, []);
+  const props: SidebarProps = Object.assign(
     {},
-    {...createDefaultProps()},
+    {...defaultProps},
     {...userProps},
   );
 

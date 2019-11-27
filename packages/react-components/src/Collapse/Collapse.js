@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {type Element as ReactElement, useEffect} from 'react';
+import React, {type Element as ReactElement, useEffect, useMemo} from 'react';
 
 const WAITING = 'WAITING';
 const RESIZING = 'RESIZING';
@@ -44,13 +44,14 @@ function createDefaultProps(): DefaultSidebarProps {
 }
 
 export default function Collapse(userProps: CollapsePropsType) {
-  debugger;
-  const props: CollapsePropsType = Object.assign(
+  const defaultProps = useMemo(() => {
+    return {...createDefaultProps()};
+  }, []);
+  const props: SidebarProps = Object.assign(
     {},
-    {...createDefaultProps()},
+    {...defaultProps},
     {...userProps},
   );
-
   const [state, setState] = React.useState({
     currentState: IDLING,
     from: 0,
