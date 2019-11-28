@@ -4,29 +4,29 @@
       "filename": "react-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "react-components",
-      "size": 12816,
-      "gzip": 3109
+      "size": 15574,
+      "gzip": 3672
     },
     {
       "filename": "react-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "react-components",
-      "size": 5654,
-      "gzip": 2022
+      "size": 7030,
+      "gzip": 2444
     },
     {
       "filename": "react-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "react-components",
-      "size": 11874,
-      "gzip": 3026
+      "size": 14733,
+      "gzip": 3683
     },
     {
       "filename": "react-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "react-components",
-      "size": 5533,
-      "gzip": 1957
+      "size": 6915,
+      "gzip": 2395
     },
     {
       "filename": "react-svg-components.development.js",

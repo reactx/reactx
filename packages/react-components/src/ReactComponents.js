@@ -9,10 +9,14 @@
 
 import Sidebar from './Sidebar/Sidebar';
 import Collapse from './Collapse/Collapse';
+import {Tab, TabPanel, Tabs} from './Tab';
 
 const ReactComponents = {
   Sidebar,
   Collapse,
+  Tab,
+  TabPanel,
+  Tabs,
 };
 
 export default ReactComponents;
