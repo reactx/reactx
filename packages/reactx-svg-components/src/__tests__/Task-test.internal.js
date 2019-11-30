@@ -43,7 +43,7 @@ describe('while running in a browser environment', () => {
     jest.resetModules();
     // React = require('react');
     ReactDOM = require('react-dom');
-    // Task = require('react-svg-components');
+    // Task = require('reactx-svg-components');
 
     fakeXHR = sinon.useFakeXMLHttpRequest();
     requests = [];

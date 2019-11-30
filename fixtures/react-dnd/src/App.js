@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import {DragSource, DropTarget, DragDropProvider} from 'react-dragdrop';
-import {Sidebar} from 'react-components';
+import {DragSource, DropTarget, DragDropProvider} from 'reactx-dragdrop';
+import {Sidebar} from 'reactx-components';
 
 const mstyles = {
   root: {

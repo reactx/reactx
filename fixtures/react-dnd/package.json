@@ -5,8 +5,8 @@
   "dependencies": {
     "react": "link:../../node_modules/react",
     "react-dom": "link:../../node_modules/react-dom",
-    "react-dragdrop": "link:../../build/node_modules/react-dragdrop",
-    "react-components": "link:../../build/node_modules/react-components",
+    "reactx-dragdrop": "link:../../build/node_modules/reactx-dragdrop",
+    "reactx-components": "link:../../build/node_modules/reactx-components",
     "react-scripts": "^3.0.0"
   },
   "scripts": {

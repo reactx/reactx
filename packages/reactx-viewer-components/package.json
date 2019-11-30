@@ -1,17 +1,19 @@
 {
-  "name": "react-svg-components",
+  "name": "reactx-viewer-components",
   "private": true,
-  "description": "The standard React SVG Components",
+  "description": "Viewer and Editor Panel Components for React",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
   },
-  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-svg-components#readme",
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/reactx-viewer-components#readme",
   "keywords": [
     "reactx",
     "components",
-    "svg"
+    "viewer",
+    "panel",
+    "editor"
   ],
   "license": "MIT",
   "files": [
@@ -26,10 +28,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory": "packages/react-svg-components"
-  },
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-svg": "^9.0.4"
+    "directory": "packages/reactx-viewer-components"
   }
 }

@@ -9,9 +9,9 @@
 
 const reactVersion = require('../../package.json').version;
 const versions = {
-  'packages/react-components/package.json': require('../../packages/react-components/package.json')
+  'packages/reactx-components/package.json': require('../../packages/reactx-components/package.json')
     .version,
-  'packages/react-svg-components/package.json': require('../../packages/react-svg-components/package.json')
+  'packages/reactx-svg-components/package.json': require('../../packages/reactx-svg-components/package.json')
     .version,
 };
 

@@ -1,19 +1,16 @@
 {
-  "name": "react-viewer-components",
+  "name": "reactx-components",
   "private": true,
-  "description": "Viewer and Editor Panel Components for React",
+  "description": "The standard React Components",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
   },
-  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-viewer-components#readme",
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/reactx-components#readme",
   "keywords": [
     "reactx",
-    "components",
-    "viewer",
-    "panel",
-    "editor"
+    "components"
   ],
   "license": "MIT",
   "files": [
@@ -26,8 +23,8 @@
   ],
   "main": "index.js",
   "repository": {
-    "type": "git",
+    "type":"git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory": "packages/react-viewer-components"
+    "directory":"packages/reactx-components"
   }
 }

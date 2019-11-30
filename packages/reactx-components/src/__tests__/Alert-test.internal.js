@@ -20,7 +20,7 @@ describe('Alert', () => {
     jest.resetModules();
     // React = require('react');
     ReactDOM = require('react-dom');
-    // Alert = require('react-components/alert');
+    // Alert = require('reactx-components/alert');
 
     container = document.createElement('div');
     document.body.appendChild(container);

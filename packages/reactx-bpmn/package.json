@@ -1,18 +1,19 @@
 {
-  "name": "react-dragdrop",
+  "name": "reactx-bpmn",
   "private": true,
-  "description": "Drag and Drop for React",
+  "description": "Viewer and Editor Panel Components for React",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
   },
-  "homepage": "https://github.com/reactx/reactx/tree/master/packages/react-dragdrop#readme",
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/reactx-bpmn#readme",
   "keywords": [
     "reactx",
     "components",
-    "dnd",
-    "dragdrop"
+    "viewer",
+    "bpmn",
+    "editor"
   ],
   "license": "MIT",
   "files": [
@@ -27,6 +28,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory": "packages/react-dragdrop"
+    "directory": "packages/reactx-bpmn"
+  },
+  "dependencies": {
+    "bpmn-js": "^3.4.1"
   }
 }

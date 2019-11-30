@@ -10,7 +10,7 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Tabs, Tab, TabPanel} from 'react-components';
+import {Sidebar} from 'reactx-components';
 
 describe('while running in a browser environment', () => {
   let container, wrapper, onSetOpen;
@@ -31,14 +31,18 @@ describe('while running in a browser environment', () => {
   it('should render correctly', () => {
     wrapper = (
       <div>
-        <Tabs value={0}>
-          <Tab label={'First'} id={0}></Tab>
-          <Tab label={'Second'} id={1}></Tab>
-          <Tab label={'Third'} id={2}></Tab>
-          <TabPanel index={0}>First Panel</TabPanel>
-          <TabPanel index={1}>Second Panel</TabPanel>
-          <TabPanel index={2}>Third Panel</TabPanel>
-        </Tabs>
+        <Sidebar
+          onSetOpen={onSetOpen}
+          open={true}
+          sidebar={
+            <div>
+              <a key={1} href="#">
+                Mock menu item {1}
+              </a>
+            </div>
+          }>
+          <p>salam</p>
+        </Sidebar>
       </div>
     );
 

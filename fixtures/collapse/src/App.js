@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import {Collapse} from 'react-components';
+import {Collapse} from 'reactx-components';
 
 export default function App() {
   const [open, setOpen] = useState(false);

@@ -9,17 +9,17 @@
 module.exports = [
   {
     shortName: 'dom',
-    entryPoints: ['react-components', 'react-svg-components'],
+    entryPoints: ['reactx-components', 'reactx-svg-components'],
     isFlowTyped: true,
   },
   {
     shortName: 'dom-browser',
-    entryPoints: ['react-components', 'react-svg-components'],
+    entryPoints: ['reactx-components', 'reactx-svg-components'],
     isFlowTyped: true,
   },
   {
     shortName: 'native',
-    entryPoints: ['react-components', 'react-svg-components'],
+    entryPoints: ['reactx-components', 'reactx-svg-components'],
     isFlowTyped: true,
   }
 ];
