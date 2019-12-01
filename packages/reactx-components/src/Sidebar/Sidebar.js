@@ -298,6 +298,7 @@ export default function Sidebar(userProps: SidebarProps) {
     } else {
       contentStyle.left = `${sidebarWidth}px`;
     }
+    overlayStyle.display = 'none';
   } else if (props.open) {
     // slide open sidebar
     sidebarStyle.transform = `translateX(0%)`;

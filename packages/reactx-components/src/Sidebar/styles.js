@@ -38,6 +38,7 @@ const defaultStyles = {
     visibility: 'hidden',
     transition: 'opacity .3s ease-out, visibility .3s ease-out',
     backgroundColor: 'rgba(0,0,0,.3)',
+    display: 'block'
   },
   dragHandle: {
     zIndex: 1,
