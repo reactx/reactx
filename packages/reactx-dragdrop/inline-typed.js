@@ -22,18 +22,16 @@ export type XYCoord = {|
 
 export type State = {
   item: any,
-  sourceId: string | null,
-  source: EventTarget | null,
+  sourceTag: EventTarget | null,
   targetId: string,
   targetIds: string[],
   didDrop: boolean,
   clonable: boolean,
-  newItem: ReactElement<any> | null,
+  component: ReactElement<any> | null,
 };
 
 export type Action = {
   item: any,
-  sourceId: string,
   targetId: string,
   type: String,
 };
@@ -46,7 +44,8 @@ export type DragSourceProps = {
   forwardedref: any,
   clonable?: boolean,
   ref?: any,
-  onDragStart(e: EventTarget, sourceId: string): void,
+  component?: ReactElement<any>,
+  onDragStart(e: EventTarget): void,
 };
 
 export type DropTargetProps = {|
@@ -62,7 +61,7 @@ export type DropTargetProps = {|
   onDragEnter: (event: EventTarget) => void,
   onDrop: (
     event: EventTarget,
-    source: EventTarget | null,
+    sourceTag: EventTarget | null,
     payload: any,
   ) => void,
 |};

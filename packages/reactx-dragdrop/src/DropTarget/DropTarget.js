@@ -7,9 +7,15 @@
  * @flow
  */
 
-import React, {cloneElement, useState, useRef, useEffect, memo, Children} from 'react';
+import React, {
+  cloneElement,
+  useState,
+  useRef,
+  useEffect,
+  memo,
+  Children,
+} from 'react';
 import uuid from 'uuid';
-
 import {connectDropTarget} from '../DropUtils';
 import {useDragDropContext} from '../ContextManager';
 import {FindReactElement} from '../ElementUtils';
@@ -18,48 +24,48 @@ import {Actions} from '../ActionTypes';
 
 export function useDrop(props: DropTargetProps) {
   const {item, dispatch} = useDragDropContext();
-
+  const [mountedComponent, setMountedComponent] = useState(true);
   function drop(event: EventTarget, targetId: string | null) {
-    if (!item.source) {
+    if (!item.sourceTag) {
       return;
     }
 
     if (
       props.canDropByClassNames &&
-      Array.from(item.source.classList).filter(c =>
+      Array.from(item.sourceTag.classList).filter(c =>
         props.canDropByClassNames.includes(c),
       ).length === 0
     ) {
       return;
     }
 
-    const currentReactNode = FindReactElement(item.source);
-
-    const newReactEmenet = cloneElement(
-      currentReactNode,
-      {
-        ...currentReactNode.memoizedProps,
-        key: uuid.v4(),
-        ref: node => {
-          const {ref} = currentReactNode;
-          if (typeof ref === 'function') {
-            ref(node, {...props, clonable: false, sourceId: item.sourceId});
-          }
+    let newReactElement = item.component;
+    if (!React.isValidElement(newReactElement)) {
+      const currentReactNode = FindReactElement(item.sourceTag);
+      newReactElement = cloneElement(
+        currentReactNode,
+        {
+          ...currentReactNode.memoizedProps,
+          ref: node => {
+            const {ref} = currentReactNode;
+            if (typeof ref === 'function') {
+              ref(node, {...props});
+            }
+          },
         },
-      },
-      [...currentReactNode.memoizedProps.children],
-    );
+        [...currentReactNode.memoizedProps.children],
+      );
+    }
 
     let payload = {
-      newItem: newReactEmenet,
-      sourceId: item.sourceId,
-      source: item.source,
+      component: newReactElement,
+      sourceTag: item.sourceTag,
       target: event,
       targetId,
     };
 
     if (props.onDrop) {
-      props.onDrop(event, currentReactNode, payload);
+      props.onDrop(event, newReactElement, payload);
     }
 
     dispatch({
@@ -68,7 +74,7 @@ export function useDrop(props: DropTargetProps) {
     });
 
     if (item.clonable !== true) {
-      currentReactNode.stateNode.remove();
+      item.sourceTag.remove();
     }
   }
   function dragEnter(event: EventTarget, targetId: string | null) {
@@ -116,7 +122,7 @@ function Component(props: DropTargetProps) {
     }
 
     if (item && item.didDrop === true && item.targetId === targetId) {
-      setChildren(c => c.concat(item.newItem));
+      setChildren(c => c.concat(item.component));
     }
 
     if (item) {

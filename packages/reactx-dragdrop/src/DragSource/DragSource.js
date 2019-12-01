@@ -8,8 +8,6 @@
  */
 
 import React, {useCallback, memo} from 'react';
-import uuid from 'uuid';
-
 import {connectDragSource} from '../DragUtils';
 import {useDragDropContext} from '../ContextManager';
 import {type DragSourceProps} from '../../inline-typed';
@@ -20,18 +18,17 @@ export function useDrag(props: DragSourceProps) {
 
   function dragStart(e: EventTarget, dynamicProps: any) {
     const useProps = {...props, ...dynamicProps};
-    const sourceId: string = useProps.sourceId || uuid.v4();
     let payload = {
-      source: e,
+      sourceTag: e.firstChild,
       clonable: useProps.clonable,
-      sourceId,
+      component: useProps.component,
     };
     dispatch({
       type: Actions.BEGIN_DRAG,
       payload,
     });
     if (props.onDragStart) {
-      props.onDragStart(e, sourceId);
+      props.onDragStart(e);
     }
   }
 
@@ -45,11 +42,6 @@ function Component(props: DragSourceProps) {
     if (node !== null) {
       if (props.forwardedref) {
         props.forwardedref.current = node;
-      }
-
-      //We are tracking cloned elements by sourceId
-      if (dynamicProps && dynamicProps.sourceId) {
-        node.setAttribute('sourceId', dynamicProps.sourceId);
       }
 
       return connectDragSource(node, {

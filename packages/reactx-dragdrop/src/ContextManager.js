@@ -29,8 +29,7 @@ const dndReducer = (state: State, action: Action) => {
     case Actions.BEGIN_DRAG:
       return {
         ...state,
-        source: payload.source,
-        sourceId: payload.sourceId,
+        ...payload,
         clonable: payload.clonable || false,
         didDrop: false,
       };
@@ -45,19 +44,12 @@ const dndReducer = (state: State, action: Action) => {
     case Actions.DRAG_ENTER:
       return {
         ...state,
-        sourceId: payload.sourceId,
-        source: payload.source,
-        targetId: payload.targetId,
-        target: payload.target,
+        ...payload,
       };
     case Actions.DROP:
       return {
         ...state,
-        newItem: payload.newItem,
-        sourceId: payload.sourceId,
-        source: payload.source,
-        targetId: payload.targetId,
-        target: payload.target,
+        ...payload,
         didDrop: true,
         targetIds: [],
       };
