@@ -13,7 +13,7 @@
 // imported directly in code. Instead, our Flow configuration uses this entry
 // point for the currently checked renderer (the one you passed to `yarn flow`).
 
-import {type Element as ReactElement} from 'react';
+import {type Element as ReactElement, type RefObject} from 'react';
 
 export type XYCoord = {|
   x: number,
@@ -23,8 +23,6 @@ export type XYCoord = {|
 export type State = {
   item: any,
   sourceTag: EventTarget | null,
-  targetId: string,
-  targetIds: string[],
   didDrop: boolean,
   clonable: boolean,
   component: ReactElement<any> | null,
@@ -32,13 +30,12 @@ export type State = {
 
 export type Action = {
   item: any,
-  targetId: string,
   type: String,
 };
-
+export type ConnectableElement = Element | null;
 export type DragSourceProps = {
   index?: number,
-  cssTarget?: any,
+  cssSource?: any,
   children: ReactElement<any>,
   handler?: Element,
   forwardedref: any,

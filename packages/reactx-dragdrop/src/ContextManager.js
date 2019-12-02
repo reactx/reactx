@@ -33,14 +33,6 @@ const dndReducer = (state: State, action: Action) => {
         clonable: payload.clonable || false,
         didDrop: false,
       };
-    case Actions.REMOVE_TARGET:
-      if (state.targetIds.indexOf(payload.targetId) === -1) {
-        return state;
-      }
-      return {
-        ...state,
-        targetIds: without(state.targetIds, payload.targetId),
-      };
     case Actions.DRAG_ENTER:
       return {
         ...state,
@@ -51,26 +43,32 @@ const dndReducer = (state: State, action: Action) => {
         ...state,
         ...payload,
         didDrop: true,
-        targetIds: [],
       };
     default:
       return state;
   }
 };
 
-const DragDropContext = createContext(initialState);
+const DragDropContextState = createContext(initialState);
+const DragDropContextDispatch = createContext(null);
 
 export default function DragDropProvider(props: DragDropProviderProps) {
-  const context = useReducer(dndReducer, initialState);
+  const [state, dispatch] = useReducer(dndReducer, initialState);
 
   return (
-    <DragDropContext.Provider value={context}>
-      {props.children}
-    </DragDropContext.Provider>
+    <DragDropContextState.Provider value={state}>
+      <DragDropContextDispatch.Provider value={dispatch}>
+        {props.children}
+      </DragDropContextDispatch.Provider>
+    </DragDropContextState.Provider>
   );
 }
 
-export const useDragDropContext = () => {
-  const [item, dispatch] = useContext(DragDropContext);
-  return {item, dispatch};
+export const useDragDropContextState = () => {
+  const state = useContext(DragDropContextState);
+  return state;
+};
+export const useDragDropContextDispatch = () => {
+  const dispatch = useContext(DragDropContextDispatch);
+  return dispatch;
 };

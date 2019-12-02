@@ -7,21 +7,21 @@
  * @flow
  */
 
-import React, {useCallback, memo} from 'react';
+import React, {forwardRef, useRef, useEffect} from 'react';
 import {connectDragSource} from '../DragUtils';
-import {useDragDropContext} from '../ContextManager';
+import {useDragDropContextDispatch} from '../ContextManager';
 import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps) {
-  const {dispatch} = useDragDropContext();
+  const dispatch = useDragDropContextDispatch();
+  const ref = useRef(null);
 
-  function dragStart(e: EventTarget, dynamicProps: any) {
-    const useProps = {...props, ...dynamicProps};
+  const dragStart = (e: EventTarget) => {
     let payload = {
-      sourceTag: e.firstChild,
-      clonable: useProps.clonable,
-      component: useProps.component,
+      sourceTag: ref.current,
+      clonable: props.clonable,
+      component: props.component,
     };
     dispatch({
       type: Actions.BEGIN_DRAG,
@@ -30,43 +30,59 @@ export function useDrag(props: DragSourceProps) {
     if (props.onDragStart) {
       props.onDragStart(e);
     }
-  }
+  };
 
-  return [dragStart];
+  const drag = (element: ConnectableElement) => {
+    ref.current = element;
+    connectDragSource(element, {
+      dragImage: props.handler,
+      dragStart,
+      props,
+    });
+  };
+
+  return [drag];
 }
 
 function Component(props: DragSourceProps) {
-  const [dragStart] = useDrag(props);
+  const [drag] = useDrag(props);
+  const ref = useRef(props.ref);
 
-  const dragRefCallback = useCallback((node: any, dynamicProps: any) => {
-    if (node !== null) {
-      if (props.forwardedref) {
-        props.forwardedref.current = node;
-      }
-
-      return connectDragSource(node, {
-        dragImage: props.handler,
-        dragStart,
-        props: {...props, ...dynamicProps},
-      });
+  useEffect(() => {
+    if (ref.current) {
+      drag(ref.current);
     }
-  }, []);
+  }, [ref]);
+
+  // const dragRefCallback = useCallback((node: any) => {
+  //   if (node !== null) {
+  //     if (props.ref) {
+  //       props.ref.current = node;
+  //     }
+
+  //     return connectDragSource(node, {
+  //       dragImage: props.handler,
+  //       dragStart,
+  //       props,
+  //     });
+  //   }
+  // }, []);
 
   //Clean Unknown Props
-  const userProps = Object.assign({}, props);
-  delete userProps.clonable;
-  delete userProps.handler;
+  // const userProps = Object.assign({}, props);
+  // delete userProps.clonable;
+  // delete userProps.handler;
 
   return (
-    <div ref={dragRefCallback} {...userProps} style={props.cssTarget}>
+    <div ref={ref} {...props} style={props.cssSource}>
       {props.children}
     </div>
   );
 }
 
-const DragSource: any = memo((props: DragSourceProps) => {
+const DragSource: any = forwardRef((props: DragSourceProps, ref) => {
   return (
-    <Component {...props} forwardedref={props.ref}>
+    <Component {...props} ref={ref}>
       {props.children}
     </Component>
   );

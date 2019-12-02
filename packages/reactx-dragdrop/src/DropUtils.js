@@ -8,11 +8,10 @@
  */
 
 export type DragOptions = {|
-  dragOver(e: EventTarget, targetId: string | null): void,
-  dragEnter(e: EventTarget, targetId: string | null): void,
-  dragLeave(e: EventTarget, targetId: string | null): void,
-  drop(e: EventTarget, targetId: string | null): void,
-  targetId: string | null,
+  dragOver(e: EventTarget): void,
+  dragEnter(e: EventTarget): void,
+  dragLeave(e: EventTarget): void,
+  drop(e: EventTarget): void,
 |};
 
 export function connectDropTarget(node: any, options: DragOptions) {
@@ -52,7 +51,7 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragOver) {
-    options.dragOver(e.target, options.targetId);
+    options.dragOver(e.target);
   }
 }
 function HandleDragLeave(e: DragEvent, options: DragOptions) {
@@ -65,7 +64,7 @@ function HandleDragLeave(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragLeave) {
-    options.dragLeave(e.target, options.targetId);
+    options.dragLeave(e.target);
   }
 }
 
@@ -78,7 +77,7 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragEnter) {
-    options.dragEnter(e.target, options.targetId);
+    options.dragEnter(e.target);
   }
 }
 
@@ -86,6 +85,6 @@ function HandleDrop(e: DragEvent, options: DragOptions) {
   e.preventDefault();
   //TODO: check native and electron, flutter
   if (options.drop) {
-    options.drop(e.target, options.targetId);
+    options.drop(e.target);
   }
 }

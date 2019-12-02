@@ -113,7 +113,7 @@
     "node": "8.x || 9.x || 10.x || 11.x || 12.x"
   },
   "scripts": {
-    "build": "node ./scripts/rollup/build.js",
+    "build": "npm run prettier & node ./scripts/rollup/build.js",
     "linc": "node ./scripts/tasks/linc.js",
     "lint": "node ./scripts/tasks/eslint.js",
     "lint-build": "node ./scripts/rollup/validate/index.js",

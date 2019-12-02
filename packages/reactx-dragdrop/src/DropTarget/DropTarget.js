@@ -7,25 +7,20 @@
  * @flow
  */
 
-import React, {
-  cloneElement,
-  useState,
-  useRef,
-  useEffect,
-  memo,
-  Children,
-} from 'react';
+import React, {useRef, useEffect, forwardRef, useCallback} from 'react';
 import uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
-import {useDragDropContext} from '../ContextManager';
+import {useDragDropContextState} from '../ContextManager';
 import {FindReactElement} from '../ElementUtils';
 import {type DropTargetProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
-export function useDrop(props: DropTargetProps) {
-  const {item, dispatch} = useDragDropContext();
-  const [mountedComponent, setMountedComponent] = useState(true);
-  function drop(event: EventTarget, targetId: string | null) {
+export function useDrop(props: DropTargetProps, deps) {
+  const item = useDragDropContextState();
+  const itemRef = useRef(item);
+  itemRef.current = item;
+  const onDrop = useCallback((event: EventTarget) => {
+    let item = itemRef.current;
     if (!item.sourceTag) {
       return;
     }
@@ -39,113 +34,73 @@ export function useDrop(props: DropTargetProps) {
       return;
     }
 
-    let newReactElement = item.component;
-    if (!React.isValidElement(newReactElement)) {
-      const currentReactNode = FindReactElement(item.sourceTag);
-      newReactElement = cloneElement(
-        currentReactNode,
-        {
-          ...currentReactNode.memoizedProps,
-          ref: node => {
-            const {ref} = currentReactNode;
-            if (typeof ref === 'function') {
-              ref(node, {...props});
-            }
-          },
-        },
-        [...currentReactNode.memoizedProps.children],
-      );
-    }
-
     let payload = {
-      component: newReactElement,
+      component: item.component,
       sourceTag: item.sourceTag,
       target: event,
-      targetId,
     };
 
     if (props.onDrop) {
-      props.onDrop(event, newReactElement, payload);
+      props.onDrop(event, item.component || item.sourceTag, payload);
     }
 
-    dispatch({
-      type: Actions.DROP,
-      payload,
-    });
+    // dispatch({
+    //   type: Actions.DROP,
+    //   payload,
+    // });
 
     if (item.clonable !== true) {
       item.sourceTag.remove();
     }
-  }
-  function dragEnter(event: EventTarget, targetId: string | null) {
+  }, []);
+  const dragEnter = useCallback((event: EventTarget) => {
     if (props.onDragEnter) {
       props.onDragEnter(event);
     }
-  }
-  function dragOver(event: EventTarget, targetId: string | null) {
+  }, []);
+  const dragOver = useCallback((event: EventTarget) => {
     if (props.onDragOver) {
       props.onDragOver(event);
     }
-  }
-  function dragLeave(event: EventTarget, targetId: string | null) {
+  }, []);
+  const dragLeave = useCallback((event: EventTarget) => {
     if (props.onDragLeave) {
       props.onDragLeave(event);
     }
-  }
-  return [drop, dragOver, dragEnter, dragLeave];
-}
+  }, []);
 
-function CloningElement(target, children) {
-  return Children.map(target, Target => {
-    //TODO: define target based on offset
-    return cloneElement(Target, {
-      children: [target.props.children, ...children],
+  const drop = useCallback((element: ConnectableElement) => {
+    connectDropTarget(element, {
+      drop: onDrop,
+      dragEnter,
+      dragOver,
+      dragLeave,
     });
-  });
+  }, []);
+  return [drop];
 }
 
 function Component(props: DropTargetProps) {
-  const [targetId, setTargetId] = useState(null);
-  const {item} = useDragDropContext();
-  const [children, setChildren] = useState([]);
-  const dropRef = useRef(null);
-
-  const [drop, dragOver, dragEnter, dragLeave] = useDrop(props);
+  const [drop] = useDrop(props);
+  const ref = useRef(props.ref);
 
   useEffect(() => {
-    if (props.forwardedref) {
-      props.forwardedref = dropRef;
+    if (ref.current) {
+      drop(ref.current);
     }
-    let tempTargetId: string | null = targetId;
-    if (tempTargetId === null) {
-      setTargetId(uuid.v4());
-    }
-
-    if (item && item.didDrop === true && item.targetId === targetId) {
-      setChildren(c => c.concat(item.component));
-    }
-
-    if (item) {
-      return connectDropTarget(dropRef.current, {
-        targetId: tempTargetId,
-        drop,
-        dragEnter,
-        dragOver,
-        dragLeave,
-      });
-    }
-  }, [item]);
+  }, [ref]);
 
   return (
-    <div style={props.style} ref={dropRef}>
-      {CloningElement(props.children, children)}
+    <div style={props.style} ref={ref} {...props}>
+      {/* {CloningElement(props.children, children)} */}
+      {props.children}
     </div>
   );
 }
 
-const DropTarget: any = memo((props: DropTargetProps) => {
+const DropTarget: any = forwardRef((props: DropTargetProps, ref) => {
   return (
-    <Component {...props} forwardedref={props.ref}>
+    <Component {...props} ref={ref}>
       {props.children}
     </Component>
   );
