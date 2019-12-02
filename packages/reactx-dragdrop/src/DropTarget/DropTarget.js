@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {useRef, useEffect, forwardRef, useCallback} from 'react';
+import React, {useRef, useEffect, useCallback} from 'react';
 import uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
 import {useDragDropContextState} from '../ContextManager';
@@ -21,13 +21,13 @@ export function useDrop(props: DropTargetProps, deps) {
   itemRef.current = item;
   const onDrop = useCallback((event: EventTarget) => {
     let item = itemRef.current;
-    if (!item.sourceTag) {
+    if (!item.source) {
       return;
     }
 
     if (
       props.canDropByClassNames &&
-      Array.from(item.sourceTag.classList).filter(c =>
+      Array.from(item.source.classList).filter(c =>
         props.canDropByClassNames.includes(c),
       ).length === 0
     ) {
@@ -35,22 +35,18 @@ export function useDrop(props: DropTargetProps, deps) {
     }
 
     let payload = {
-      component: item.component,
-      sourceTag: item.sourceTag,
+      sourceProps: item,
+      source: item.source,
       target: event,
+      targetProps: props,
     };
 
     if (props.onDrop) {
-      props.onDrop(event, item.component || item.sourceTag, payload);
+      props.onDrop(event, item.source, payload);
     }
 
-    // dispatch({
-    //   type: Actions.DROP,
-    //   payload,
-    // });
-
     if (item.clonable !== true) {
-      item.sourceTag.remove();
+      item.source.remove();
     }
   }, []);
   const dragEnter = useCallback((event: EventTarget) => {
@@ -80,9 +76,9 @@ export function useDrop(props: DropTargetProps, deps) {
   return [drop];
 }
 
-function Component(props: DropTargetProps) {
+function DropTarget(props: DropTargetProps) {
   const [drop] = useDrop(props);
-  const ref = useRef(props.ref);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (ref.current) {
@@ -92,18 +88,9 @@ function Component(props: DropTargetProps) {
 
   return (
     <div style={props.style} ref={ref} {...props}>
-      {/* {CloningElement(props.children, children)} */}
       {props.children}
     </div>
   );
 }
-
-const DropTarget: any = forwardRef((props: DropTargetProps, ref) => {
-  return (
-    <Component {...props} ref={ref}>
-      {props.children}
-    </Component>
-  );
-});
 
 export default DropTarget;

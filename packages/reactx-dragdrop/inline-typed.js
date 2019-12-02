@@ -22,8 +22,7 @@ export type XYCoord = {|
 
 export type State = {
   item: any,
-  sourceTag: EventTarget | null,
-  didDrop: boolean,
+  source: EventTarget | null,
   clonable: boolean,
   component: ReactElement<any> | null,
 };
@@ -57,8 +56,8 @@ export type DropTargetProps = {|
   onDragOver: (event: EventTarget) => void,
   onDragEnter: (event: EventTarget) => void,
   onDrop: (
-    event: EventTarget,
-    sourceTag: EventTarget | null,
+    target: EventTarget,
+    source: EventTarget | null,
     payload: any,
   ) => void,
 |};

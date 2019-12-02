@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {forwardRef, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {useDragDropContextDispatch} from '../ContextManager';
 import {type DragSourceProps} from '../../inline-typed';
@@ -19,9 +19,9 @@ export function useDrag(props: DragSourceProps) {
 
   const dragStart = (e: EventTarget) => {
     let payload = {
-      sourceTag: ref.current,
-      clonable: props.clonable,
-      component: props.component,
+      source: ref.current,
+      ...props,
+      clonable: props.clonable || false,
     };
     dispatch({
       type: Actions.BEGIN_DRAG,
@@ -44,9 +44,9 @@ export function useDrag(props: DragSourceProps) {
   return [drag];
 }
 
-function Component(props: DragSourceProps) {
+function DragSource(props: DragSourceProps) {
   const [drag] = useDrag(props);
-  const ref = useRef(props.ref);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (ref.current) {
@@ -54,38 +54,11 @@ function Component(props: DragSourceProps) {
     }
   }, [ref]);
 
-  // const dragRefCallback = useCallback((node: any) => {
-  //   if (node !== null) {
-  //     if (props.ref) {
-  //       props.ref.current = node;
-  //     }
-
-  //     return connectDragSource(node, {
-  //       dragImage: props.handler,
-  //       dragStart,
-  //       props,
-  //     });
-  //   }
-  // }, []);
-
-  //Clean Unknown Props
-  // const userProps = Object.assign({}, props);
-  // delete userProps.clonable;
-  // delete userProps.handler;
-
   return (
     <div ref={ref} {...props} style={props.cssSource}>
       {props.children}
     </div>
   );
 }
-
-const DragSource: any = forwardRef((props: DragSourceProps, ref) => {
-  return (
-    <Component {...props} ref={ref}>
-      {props.children}
-    </Component>
-  );
-});
 
 export default DragSource;
