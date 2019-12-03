@@ -44,11 +44,8 @@ export function useDrop(props: DropTargetProps, deps) {
     if (props.onDrop) {
       props.onDrop(event, item.source, payload);
     }
-
-    if (item.clonable !== true) {
-      item.source.remove();
-    }
   }, []);
+
   const dragEnter = useCallback((event: EventTarget) => {
     if (props.onDragEnter) {
       props.onDragEnter(event);

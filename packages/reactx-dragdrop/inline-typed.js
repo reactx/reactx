@@ -23,7 +23,6 @@ export type XYCoord = {|
 export type State = {
   item: any,
   source: EventTarget | null,
-  clonable: boolean,
   component: ReactElement<any> | null,
 };
 
@@ -38,7 +37,6 @@ export type DragSourceProps = {
   children: ReactElement<any>,
   handler?: Element,
   forwardedref: any,
-  clonable?: boolean,
   ref?: any,
   component?: ReactElement<any>,
   onDragStart(e: EventTarget): void,

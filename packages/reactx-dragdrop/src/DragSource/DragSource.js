@@ -21,7 +21,6 @@ export function useDrag(props: DragSourceProps) {
     let payload = {
       source: ref.current,
       ...props,
-      clonable: props.clonable || false,
     };
     dispatch({
       type: Actions.BEGIN_DRAG,

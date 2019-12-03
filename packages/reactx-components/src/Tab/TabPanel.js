@@ -1,7 +1,28 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useMemo} from 'react';
 
-function TabPanelComponent(props) {
+type TabPanelTypeProps = {};
+type DefaultTabPanelTypeProps = {};
+
+function createDefaultProps(): DefaultTabPanelTypeProps {
+  return {
+    className: '',
+    forceRender: false,
+    selected: false,
+    label: 'Label',
+  };
+}
+
+function TabPanelComponent(userProps: TabPanelTypeProps) {
   const [activeTab, setActiveTab] = useState();
+  const defaultProps = useMemo(() => {
+    return {...createDefaultProps()};
+  }, []);
+
+  const props: TabPanelTypeProps = Object.assign(
+    {},
+    {...defaultProps},
+    {...userProps},
+  );
 
   return (
     <div

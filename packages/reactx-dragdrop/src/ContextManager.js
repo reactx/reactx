@@ -30,7 +30,6 @@ const dndReducer = (state: State, action: Action) => {
       return {
         ...state,
         ...payload,
-        clonable: payload.clonable || false,
       };
     case Actions.DRAG_ENTER:
       return {

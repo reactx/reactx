@@ -1,6 +1,26 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useMemo} from 'react';
 
-function TabComponent(props) {
+type TabTypeProps = {};
+type DefaultTabTypeProps = {};
+
+function createDefaultProps(): DefaultTabTypeProps {
+  return {
+    className: '',
+    selected: false,
+    label: 'Label',
+  };
+}
+function TabComponent(userProps: TabTypeProps) {
+  const defaultProps = useMemo(() => {
+    return {...createDefaultProps()};
+  }, []);
+
+  const props: TabTypeProps = Object.assign(
+    {},
+    {...defaultProps},
+    {...userProps},
+  );
+
   return (
     <li
       {...props}
