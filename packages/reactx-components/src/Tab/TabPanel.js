@@ -6,7 +6,6 @@ type DefaultTabPanelTypeProps = {};
 function createDefaultProps(): DefaultTabPanelTypeProps {
   return {
     className: '',
-    forceRender: false,
     selected: false,
     label: 'Label',
   };
@@ -30,7 +29,7 @@ function TabPanelComponent(userProps: TabPanelTypeProps) {
       className={
         props.className + ' ' + props.selectedPanelClassName || 'selected'
       }>
-      {props.forceRender || props.selected ? props.children : null}
+      {props.selected ? props.children : null}
     </div>
   );
 }

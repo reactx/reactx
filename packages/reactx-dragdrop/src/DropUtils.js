@@ -44,6 +44,7 @@ function getCurrentDropEffect(): string {
 function HandleDragOver(e: DragEvent, options: DragOptions) {
   // Show user-specified drop effect.
   e.preventDefault();
+  e.stopPropagation();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
@@ -57,6 +58,7 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
 function HandleDragLeave(e: DragEvent, options: DragOptions) {
   // Show user-specified drop effect.
   e.preventDefault();
+  e.stopPropagation();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
@@ -70,6 +72,7 @@ function HandleDragLeave(e: DragEvent, options: DragOptions) {
 
 function HandleDragEnter(e: DragEvent, options: DragOptions) {
   e.preventDefault();
+  e.stopPropagation();
   //TODO: check native and electron, flutter
   if (e.dataTransfer) {
     const {dataTransfer} = e;
@@ -83,6 +86,7 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
 
 function HandleDrop(e: DragEvent, options: DragOptions) {
   e.preventDefault();
+  e.stopPropagation();
   //TODO: check native and electron, flutter
   if (options.drop) {
     options.drop(e.target);
