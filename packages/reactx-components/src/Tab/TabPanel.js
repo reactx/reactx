@@ -4,13 +4,17 @@ function TabPanelComponent(props) {
   const [activeTab, setActiveTab] = useState();
 
   return (
-    <div className={props.selectedPanelClassName || 'selected'} {...props}>
+    <div
+      {...props}
+      className={
+        props.className + ' ' + props.selectedPanelClassName || 'selected'
+      }>
       {props.forceRender || props.selected ? props.children : null}
     </div>
   );
 }
 
-const TabPanel: any = memo((props) => {
+const TabPanel: any = memo(props => {
   return (
     <TabPanelComponent {...props} forwardedref={props.ref}>
       {props.children}

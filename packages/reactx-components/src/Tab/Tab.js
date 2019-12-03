@@ -2,7 +2,9 @@ import React, {memo, useState} from 'react';
 
 function TabComponent(props) {
   return (
-    <li className={'tab-item ' + (props.selected ? 'selected' : '')} {...props}>
+    <li
+      {...props}
+      className={props.className + ' ' + (props.selected ? 'selected' : '')}>
       {props.label}
     </li>
   );

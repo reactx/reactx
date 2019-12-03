@@ -6,11 +6,7 @@ import './tabs.css';
 function TabsComponent(props) {
   const [activeTab, setActiveTab] = useState();
 
-  return (
-    <ul className={'tabs '} {...props}>
-      {props.children}
-    </ul>
-  );
+  return <ul {...props}>{props.children}</ul>;
 }
 
 const Tabs: any = memo(props => {
