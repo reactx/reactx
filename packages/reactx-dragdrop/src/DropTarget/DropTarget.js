@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {useRef, useEffect, useCallback} from 'react';
+import React, {useRef, useEffect, useCallback, useState} from 'react';
 import uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
 import {useDragDropContextState} from '../ContextManager';
@@ -17,13 +17,10 @@ import {Actions} from '../ActionTypes';
 
 export function useDrop(props: DropTargetProps, deps) {
   const item = useDragDropContextState();
-  const itemRef = useRef(item);
-  itemRef.current = item;
-  const onDrop = useCallback((event: EventTarget) => {
-    let item = itemRef.current;
-    if (!item.source) {
-      return;
-    }
+  const [droppedComponent, setDroppedComponent] = useState(null);
+
+  useEffect(() => {
+    if (!droppedComponent || !item.source) return;
 
     if (
       props.canDropByClassNames &&
@@ -34,16 +31,18 @@ export function useDrop(props: DropTargetProps, deps) {
       return;
     }
 
-    let payload = {
-      sourceProps: item,
-      source: item.source,
-      target: event,
-      targetProps: props,
-    };
-
     if (props.onDrop) {
-      props.onDrop(event, item.source, payload);
+      props.onDrop(droppedComponent.event, item.source, {
+        sourceProps: item,
+        source: item.source,
+        target: droppedComponent.event,
+        targetProps: props,
+      });
     }
+  }, [droppedComponent]);
+
+  const onDrop = useCallback((event: EventTarget) => {
+    setDroppedComponent({event, id: uuid.v4()});
   }, []);
 
   const dragEnter = useCallback((event: EventTarget) => {

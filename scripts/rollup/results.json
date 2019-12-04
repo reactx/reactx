@@ -144,29 +144,29 @@
       "filename": "reactx-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-components",
-      "size": 16357,
-      "gzip": 3752
+      "size": 16310,
+      "gzip": 3733
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-components",
-      "size": 7399,
-      "gzip": 2505
+      "size": 7369,
+      "gzip": 2497
     },
     {
       "filename": "reactx-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-components",
-      "size": 15470,
-      "gzip": 3759
+      "size": 15425,
+      "gzip": 3740
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-components",
-      "size": 7285,
-      "gzip": 2450
+      "size": 7255,
+      "gzip": 2432
     },
     {
       "filename": "reactx-svg-components.development.js",
@@ -186,8 +186,8 @@
       "filename": "reactx-svg-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-svg-components",
-      "size": 2218,
-      "gzip": 927
+      "size": 1989,
+      "gzip": 817
     },
     {
       "filename": "reactx-svg-components.production.min.js",
@@ -200,29 +200,29 @@
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 53737,
-      "gzip": 12151
+      "size": 58806,
+      "gzip": 13971
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 11257,
-      "gzip": 4353
+      "size": 12571,
+      "gzip": 4968
     },
     {
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 50288,
-      "gzip": 12067
+      "size": 55108,
+      "gzip": 13881
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 11060,
-      "gzip": 4319
+      "size": 12373,
+      "gzip": 4930
     },
     {
       "filename": "reactx-viewer-components.development.js",
