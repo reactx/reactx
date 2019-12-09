@@ -7,7 +7,13 @@
  * @flow
  */
 
-import React, {useRef, useEffect, useCallback, useState} from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useCallback,
+  useState,
+  forwardRef,
+} from 'react';
 import uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
 import {useDragDropContextState} from '../ContextManager';
@@ -79,6 +85,7 @@ function DropTarget(props: DropTargetProps) {
   useEffect(() => {
     if (ref.current) {
       drop(ref.current);
+      if (props.forwardedref) props.forwardedref.current = ref.current;
     }
   }, [ref]);
 
@@ -89,4 +96,6 @@ function DropTarget(props: DropTargetProps) {
   );
 }
 
-export default DropTarget;
+export default forwardRef((props, ref) => (
+  <DropTarget forwardedref={ref} {...props}></DropTarget>
+));

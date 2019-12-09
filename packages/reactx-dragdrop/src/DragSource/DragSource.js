@@ -7,7 +7,7 @@
  * @flow
  */
 
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, forwardRef} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {useDragDropContextDispatch} from '../ContextManager';
 import {type DragSourceProps} from '../../inline-typed';
@@ -50,6 +50,7 @@ function DragSource(props: DragSourceProps) {
   useEffect(() => {
     if (ref.current) {
       drag(ref.current);
+      if (props.forwardedref) props.forwardedref.current = ref.current;
     }
   }, [ref]);
 
@@ -60,4 +61,6 @@ function DragSource(props: DragSourceProps) {
   );
 }
 
-export default DragSource;
+export default forwardRef((props, ref) => (
+  <DragSource forwardedref={ref} {...props}></DragSource>
+));
