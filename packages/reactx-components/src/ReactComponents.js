@@ -9,6 +9,7 @@
 
 import Sidebar from './Sidebar/Sidebar';
 import Collapse from './Collapse/Collapse';
+import Autocomplete from './Autocomplete/Autocomplete';
 import {Tab, TabPanel, Tabs} from './Tab';
 
 const ReactComponents = {
@@ -17,6 +18,7 @@ const ReactComponents = {
   Tab,
   TabPanel,
   Tabs,
+  Autocomplete,
 };
 
 export default ReactComponents;

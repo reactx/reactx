@@ -8,12 +8,8 @@
  */
 import React from 'react';
 
-type AlertEvent = {|
-  target: Element | Document,
-|};
-
 type AlertProps = {
-  onClose: (e: AlertEvent) => void,
+  onClose: (e: SyntheticEvent<HTMLButtonElement>) => void,
   text: string,
 };
 

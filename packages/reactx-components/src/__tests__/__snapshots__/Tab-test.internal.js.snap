@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`while running in a browser environment should render correctly 1`] = `
+<div>
+  <ul
+    value="0"
+  >
+    <li
+      class=" selected"
+      id="0"
+      label="First"
+    >
+      First
+    </li>
+    <li
+      class=" "
+      id="1"
+      label="Second"
+    >
+      Second
+    </li>
+    <li
+      class=" "
+      id="2"
+      label="Third"
+    >
+      Third
+    </li>
+  </ul>
+  <div
+    class=" undefined"
+    index="0"
+    label="Label"
+  >
+    First Panel
+  </div>
+  <div
+    class=" undefined"
+    index="1"
+    label="Label"
+  />
+  <div
+    class=" undefined"
+    index="2"
+    label="Label"
+  />
+</div>
+`;

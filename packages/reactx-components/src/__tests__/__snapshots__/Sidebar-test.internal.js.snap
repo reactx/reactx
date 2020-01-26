@@ -19,7 +19,7 @@ exports[`while running in a browser environment should render correctly 1`] = `
       </div>
     </div>
     <div
-      style="z-index: 1; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; opacity: 1; visibility: visible; transition: opacity .3s ease-out, visibility .3s ease-out; background-color: rgba(0, 0, 0, 0.3);"
+      style="z-index: 1; position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; opacity: 1; visibility: visible; transition: opacity .3s ease-out, visibility .3s ease-out; background-color: rgba(0, 0, 0, 0.3); display: block;"
     />
     <div
       style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow-y: auto; transition: left .3s ease-out, right .3s ease-out;"
