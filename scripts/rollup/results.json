@@ -144,29 +144,29 @@
       "filename": "reactx-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-components",
-      "size": 16310,
-      "gzip": 3733
+      "size": 30675,
+      "gzip": 6936
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-components",
-      "size": 7322,
-      "gzip": 2473
+      "size": 12883,
+      "gzip": 4210
     },
     {
       "filename": "reactx-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-components",
-      "size": 15425,
-      "gzip": 3740
+      "size": 29030,
+      "gzip": 6922
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-components",
-      "size": 7255,
-      "gzip": 2432
+      "size": 12763,
+      "gzip": 4130
     },
     {
       "filename": "reactx-svg-components.development.js",

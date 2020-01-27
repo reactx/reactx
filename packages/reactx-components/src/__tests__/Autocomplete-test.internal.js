@@ -10,14 +10,25 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Autocomplete} from  'reactx-components';
+import {Autocomplete} from 'reactx-components';
+import {mount, configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
+configure({adapter: new Adapter()});
+const items = [
+  {id: 'foo', label: 'foo'},
+  {id: 'bar', label: 'bar'},
+  {id: 'baz', label: 'baz'},
+];
 describe('while running in a browser environment', () => {
-  let container, wrapper, onSetOpen;
+  let container, wrapper;
+  let onChange, onSelect, shouldItemRender;
 
   beforeEach(() => {
     jest.resetModules();
-    onSetOpen = jest.fn();
+    onChange = jest.fn();
+    onSelect = jest.fn();
+    shouldItemRender = jest.fn();
     container = document.createElement('div');
     document.body.appendChild(container);
   });
@@ -36,5 +47,84 @@ describe('while running in a browser environment', () => {
     );
 
     expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
+  });
+  it('should render correctly with params', () => {
+    wrapper = (
+      <div>
+        <Autocomplete
+          items={items}
+          shouldItemRender={shouldItemRender}
+          getItemValue={item => item.label}
+          renderItem={(item, highlighted) => (
+            <div
+              key={item.id}
+              style={{backgroundColor: highlighted ? '#eee' : 'transparent'}}>
+              {item.label}
+            </div>
+          )}
+          value={items[0].id}
+          onChange={onChange}
+          onSelect={onSelect}
+        />
+      </div>
+    );
+
+    expect(onChange).not.toBeCalled();
+    expect(onSelect).not.toBeCalled();
+    expect(shouldItemRender).not.toBeCalled();
+    expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
+  });
+});
+
+describe('onChange', () => {
+  let onChange, ref, wrapper, autocompleteInputWrapper;
+  const setState = jest.fn();
+  const isOpenSpy = jest.spyOn(React, 'useState');
+
+  beforeEach(() => {
+    onChange = jest.fn();
+    ref = React.createRef();
+    const Component = () => {
+      return (
+        <Autocomplete
+          ref={ref}
+          renderItem={(item, highlighted) => (
+            <div
+              key={item.id}
+              style={{backgroundColor: highlighted ? '#eee' : 'transparent'}}>
+              {item.label}
+            </div>
+          )}
+          items={items}
+          value={items[0].id}
+          onChange={onChange}
+        />
+      );
+    };
+    wrapper = mount(Component({}));
+    autocompleteInputWrapper = wrapper.find('input');
+    isOpenSpy.mockImplementation(init => [init, setState]);
+  });
+
+  it('is called for mouse pointers', () => {
+    debugger;
+    expect(setState).toHaveBeenCalledTimes(0);
+    expect(
+      autocompleteInputWrapper.instance().getAttribute('aria-expanded'),
+    ).toBe('false');
+
+    // autocompleteInputWrapper.props('onChange')({
+    //   target: {
+    //     value: 'aaa',
+    //   },
+    // });
+
+    // expect(wrapper.instance().refs.menu).toBe(undefined);
+
+    // Display autocomplete menu upon input focus
+    autocompleteInputWrapper.simulate('focus');
+    expect(setState).toHaveBeenCalledTimes(0);
+    expect(wrapper.instance().isOpen).toBe(true);
+    expect(wrapper.instance().refs.menu).not.toBe(undefined);
   });
 });
