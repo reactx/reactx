@@ -10,22 +10,6 @@ exports[`while running in a browser environment should render correctly 1`] = `
       aria-expanded="false"
       autocomplete="off"
       role="combobox"
-      value=""
-    />
-  </div>
-</div>
-`;
-
-exports[`while running in a browser environment should render correctly with params 1`] = `
-<div>
-  <div
-    style="display: inline-block;"
-  >
-    <input
-      aria-autocomplete="list"
-      aria-expanded="false"
-      autocomplete="off"
-      role="combobox"
       value="foo"
     />
   </div>
