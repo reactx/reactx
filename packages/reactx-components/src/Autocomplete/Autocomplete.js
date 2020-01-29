@@ -94,7 +94,6 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     if (props.sortItems) {
       items.sort((a, b) => props.sortItems(a, b, props.value));
     }
-
     return items;
   }, [props.value]);
 
@@ -171,7 +170,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         setOptions({...options, _ignoreBlur: false});
       },
     };
-  }, [highlightedIndex, isOpen]);
+  }, [isOpen, highlightedIndex]);
 
   const handleInputFocus = useCallback(event => {
     if (options._ignoreFocus) {
@@ -276,7 +275,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         setIsOpen(true);
       }
     },
-    [isOpen],
+    [isOpen, highlightedIndex],
   );
 
   const composeEventHandlers = useCallback((internal, external) => {
