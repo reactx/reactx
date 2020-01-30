@@ -1,6 +1,5 @@
 {
-  "name": "reactx-components",
-  "private": true,
+  "name": "@reactx/reactx-components",
   "description": "The standard React Components",
   "version": "0.0.1",
   "author": "Behzad Abbasi <overafaik.com>",

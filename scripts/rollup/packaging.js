@@ -106,11 +106,12 @@ async function prepareNpmPackage(name) {
       `packages/${name}/README.md`,
       `build/node_modules/${name}/README.md`
     ),
+    asyncCopyTo(`packages/${name}/.npmrc`, `build/node_modules/${name}/.npmrc`),
     asyncCopyTo(`packages/${name}/npm`, `build/node_modules/${name}`),
   ]);
-  const tgzName = (await asyncExecuteCommand(
-    `npm pack build/node_modules/${name}`
-  )).trim();
+  const tgzName = (
+    await asyncExecuteCommand(`npm pack build/node_modules/${name}`)
+  ).trim();
   await asyncRimRaf(`build/node_modules/${name}`);
   await asyncExtractTar(getTarOptions(tgzName, name));
   unlinkSync(tgzName);
