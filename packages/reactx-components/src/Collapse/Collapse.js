@@ -21,24 +21,24 @@ const RESTING = 'RESTING';
 const IDLING = 'IDLING';
 
 type CollapsePropsType = {|
-  children: ReactElement<any>,
+  children?: ReactElement<any>,
   isOpened: boolean,
   forceInitialAnimation?: boolean,
   hasNestedCollapse?: boolean,
-  fixedHeight?: number,
+  fixedHeight: number,
   style: any,
   collapseClassName: string,
   contentClassName: string,
-  onMeasure: () => void,
+  onMeasure?: () => void,
 |};
 
 type CollapseStateType = {|
-  currentState: WAITING | RESIZING | RESTING | IDLING,
+  currentState: string,
   from: number,
   to: number,
 |};
 
-function createDefaultProps(): DefaultSidebarProps {
+function createDefaultProps(): CollapsePropsType {
   return {
     forceInitialAnimation: false,
     hasNestedCollapse: false,
@@ -46,6 +46,7 @@ function createDefaultProps(): DefaultSidebarProps {
     style: {},
     collapseClassName: 'ReactCollapse--collapse',
     contentClassName: 'ReactCollapse--content',
+    isOpened: false,
   };
 }
 
@@ -53,11 +54,7 @@ export default function Collapse(userProps: CollapsePropsType) {
   const defaultProps = useMemo(() => {
     return {...createDefaultProps()};
   }, []);
-  const props: SidebarProps = Object.assign(
-    {},
-    {...defaultProps},
-    {...userProps},
-  );
+  const props: CollapsePropsType = {...defaultProps, ...userProps};
   const [state, setState] = useState({
     currentState: IDLING,
     from: 0,
