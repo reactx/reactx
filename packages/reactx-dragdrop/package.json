@@ -1,7 +1,7 @@
 {
   "name": "@reactx/reactx-dragdrop",
   "description": "Drag and Drop for React",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
