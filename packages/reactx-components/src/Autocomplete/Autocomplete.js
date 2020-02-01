@@ -7,22 +7,31 @@
  * @flow
  */
 import React, {useMemo, useRef, useCallback, useState, useEffect} from 'react';
+import type {Element} from 'react';
 type AutocompleteProps = {
   onChange: (e: SyntheticEvent<HTMLButtonElement>, value: string) => void,
-  onSelect: (e: SyntheticEvent<HTMLButtonElement>) => void,
-  sortItems: (e: SyntheticEvent<HTMLButtonElement>) => void,
-  getItemValue: (e: any) => void,
-  renderItem: (e: any) => void,
+  onSelect: (value: any, item: any) => void,
+  sortItems: (a: any, b: any, c: any) => number,
+  getItemValue: (e: any) => string,
+  renderItem: (e: any, changed: boolean, opt: any) => Element<any>,
+  onMenuVisibilityChange: (e: any) => void,
   isItemSelectable: (e: any) => void,
   renderInput: (props: any) => void,
   shouldItemRender: (item: any, value: any) => void,
-  renderMenu: (items: Array<any>, value: any, style: any) => void,
+  renderMenu: (items: Array<any>, value: any, style: any) => Element<any>,
   items: Array<any>,
   value: any,
+  autoHighlight: boolean,
+  menuStyle: any,
   wrapperStyle: any,
   wrapperProps: any,
   inputProps: any,
   selectOnBlur: boolean,
+};
+
+type RefsType = {
+  input: HTMLInputElement | null,
+  menu: HTMLElement | null,
 };
 
 const defaultProps = {
@@ -65,24 +74,22 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     _ignoreBlur: false,
     _ignoreFocus: false,
   });
-  const refs = useRef({});
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
+  const refs = useRef<RefsType>({});
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
   const [positions, setPositions] = useState({});
 
-  const props: TabTypeProps = Object.assign(
-    {
-      renderMenu(items, value, style) {
-        return (
-          <div
-            style={{...style, ...defaultMemoizedProps.menuStyle}}
-            children={items}
-          />
-        );
-      },
+  const props: AutocompleteProps = {
+    renderMenu(items, value, style) {
+      return (
+        <div
+          style={{...style, ...defaultMemoizedProps.menuStyle}}
+          children={items}
+        />
+      );
     },
-    {...defaultMemoizedProps},
-    {...userProps},
-  );
+    ...defaultMemoizedProps,
+    ...userProps,
+  };
 
   const getFilteredItems = useCallback(() => {
     let items = props.items;
@@ -146,7 +153,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         } else if (highlightedIndex == null) {
           // input has focus but no menu item is selected + enter is hit -> close the menu, highlight whatever's in input
           setIsOpen(false);
-          refs.current.input.select();
+          refs.current.input && refs.current.input.select();
         } else {
           // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
           event.preventDefault();
@@ -155,7 +162,8 @@ export default function Autocomplete(userProps: AutocompleteProps) {
           setIsOpen(false);
           setHighlightedIndex(null);
           //   refs.input.current.setSelectionRange(value.length, value.length);
-          refs.current.input.setSelectionRange(value.length, value.length);
+          refs.current.input &&
+            refs.current.input.setSelectionRange(value.length, value.length);
           if (props.onSelect) props.onSelect(value, item);
         }
       },
@@ -192,7 +200,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
       setOptions({
         ...options,
         _scrollTimer: setTimeout(() => {
-          _scrollTimer = null;
+          setOptions({...options, _scrollTimer: null});
           window.scrollTo(x, y);
         }, 0),
       });
@@ -210,19 +218,11 @@ export default function Autocomplete(userProps: AutocompleteProps) {
       x:
         window.pageXOffset !== undefined
           ? window.pageXOffset
-          : (
-              document.documentElement ||
-              document.body.parentNode ||
-              document.body
-            ).scrollLeft,
+          : (document.documentElement || document.body)?.scrollLeft,
       y:
         window.pageYOffset !== undefined
           ? window.pageYOffset
-          : (
-              document.documentElement ||
-              document.body.parentNode ||
-              document.body
-            ).scrollTop,
+          : (document.documentElement || document.body)?.scrollTop,
     };
   }, []);
 
@@ -234,7 +234,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
           _ignoreFocus: true,
           _scrollOffset: getScrollOffset(),
         });
-        refs.current.input.focus();
+        refs.current.input && refs.current.input.focus();
         return;
       }
 
@@ -256,6 +256,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
 
   const isInputFocused = useCallback(() => {
     const el = refs.current.input;
+    if (!el) return;
     return el.ownerDocument && el === el.ownerDocument.activeElement;
   }, [refs.current]);
 
@@ -268,7 +269,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   }, [isOpen]);
 
   const handleKeyDown = useCallback(
-    event => {
+    (event: KeyboardEvent) => {
       if (keyDownHandlers[event.key])
         keyDownHandlers[event.key].call(this, event);
       else if (!isOpen) {
@@ -278,14 +279,20 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     [isOpen, highlightedIndex],
   );
 
-  const composeEventHandlers = useCallback((internal, external) => {
-    return external
-      ? e => {
-          internal(e);
-          external(e);
-        }
-      : internal;
-  }, []);
+  const composeEventHandlers = useCallback(
+    (
+      internal: (e: KeyboardEvent) => void,
+      external: (e: KeyboardEvent) => void,
+    ) => {
+      return external
+        ? (e: KeyboardEvent) => {
+            internal(e);
+            external(e);
+          }
+        : internal;
+    },
+    [],
+  );
 
   const selectItemFromMouse = useCallback(item => {
     const value = props.getItemValue(item);
@@ -300,6 +307,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   const setMenuPositions = useCallback(
     item => {
       const node = refs.current.input;
+      if (!node) return;
       const rect = node.getBoundingClientRect();
       const computedStyle = global.window.getComputedStyle(node);
       const marginBottom = parseInt(computedStyle.marginBottom, 10) || 0;
@@ -339,10 +347,14 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   }, [highlightedIndex, props.value]);
 
   const ensureHighlightedIndex = useCallback(() => {
-    if (highlightedIndex >= getFilteredItems().length) {
+    if (
+      highlightedIndex === null ||
+      highlightedIndex >= getFilteredItems().length
+    ) {
       return null;
     }
   }, [highlightedIndex]);
+
   useEffect(() => {
     setHighlightedIndex(maybeAutoCompleteText());
   }, [props.value]);
@@ -369,7 +381,8 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     };
     const menu = props.renderMenu(items, props.value, style);
     return React.cloneElement(menu, {
-      ref: e => (refs.current = {...refs.current, menu: e}),
+      ref: (e: HTMLElement | null) =>
+        (refs.current = {...refs.current, menu: e}),
       // Ignore blur to prevent menu from de-rendering before we can process click
       onTouchStart: () => setOptions({...options, _ignoreBlur: true}),
       onMouseEnter: () => setOptions({...options, _ignoreBlur: true}),
@@ -380,7 +393,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   const maybeScrollItemIntoView = () => {
     if (highlightedIndex !== null) {
       const itemNode = refs.current[`item-${highlightedIndex}`];
-      const menuNode = refs.menu;
+      const menuNode = refs.current.menu;
       // scrollIntoView(findDOMNode(itemNode), findDOMNode(menuNode), {
       //   onlyScrollIfNeeded: true,
       // });

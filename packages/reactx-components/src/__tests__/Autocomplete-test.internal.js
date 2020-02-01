@@ -57,12 +57,15 @@ describe('Autocomplete', () => {
     });
   });
 
-  describe('onChange', () => {
-    const setState = jest.fn();
-    const isOpenSpy = jest.spyOn(React, 'useState');
-    let onChange, onSelect, shouldItemRender;
-    let currentValue = items[0].id;
+  describe('change', () => {
+    let onChange,
+      onSelect,
+      shouldItemRender,
+      container,
+      inputWrapper,
+      currentValue;
     beforeEach(() => {
+      currentValue = items[0].id;
       onChange = jest.fn(done => {
         currentValue = done.target.value;
       });
@@ -87,41 +90,40 @@ describe('Autocomplete', () => {
           onSelect={onSelect}
         />
       );
-      // ReactDOM.render(wrapper, container);
+      container = mount(wrapper);
+      inputWrapper = container.find('input');
     });
-    it('is called for mouse pointers', () => {
-      debugger;
-      const element = mount(wrapper);
-      const autocompleteInputWrapper = element.find('input');
+
+    it('should be default value', () => {
+      expect(inputWrapper.instance().getAttribute('aria-expanded')).toBe(
+        'false',
+      );
+      expect(currentValue).toBe('foo');
+    });
+
+    it('is change by onSelect props', () => {
+      inputWrapper.simulate('focus');
       expect(
-        autocompleteInputWrapper.instance().getAttribute('aria-expanded'),
-      ).toBe('false');
-      autocompleteInputWrapper.props().onChange({
+        container
+          .find('div')
+          .at(1)
+          .props().children.length,
+      ).toBe(3);
+
+      inputWrapper.simulate('keydown', {key: 'ArrowDown'});
+      inputWrapper.simulate('keydown', {key: 'Enter', keyCode: 13});
+      expect(onChange).toHaveBeenCalledTimes(0);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+      expect(currentValue).toBe('bar');
+    });
+
+    it('is change by onChange props', () => {
+      inputWrapper.props().onChange({
         target: {
           value: 'bar',
         },
       });
       expect(onChange).toHaveBeenCalledTimes(1);
-      expect(onSelect).toHaveBeenCalledTimes(0);
-      expect(currentValue).toBe('bar');
-
-      autocompleteInputWrapper.simulate('focus');
-      expect(
-        element
-          .find('div')
-          .at(1)
-          .props().children.length,
-      ).toBe(3);
-      autocompleteInputWrapper.props().onChange({
-        target: {
-          value: '',
-        },
-      });
-      expect(currentValue).toBe('');
-      autocompleteInputWrapper.simulate('keydown', {key: 'ArrowDown'});
-      autocompleteInputWrapper.simulate('keydown', {key: 'Enter', keyCode: 13});
-      expect(onChange).toHaveBeenCalledTimes(2);
-      expect(onSelect).toHaveBeenCalledTimes(1);
       expect(currentValue).toBe('bar');
     });
   });
