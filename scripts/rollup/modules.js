@@ -44,7 +44,7 @@ function getPeerGlobals(externals, bundleType) {
 function getDependencies(bundleType, entry) {
   // Replaces any part of the entry that follow the package name (like
   // "/server" in "react-dom/server") by the path to the package settings
-  const packageJson = require(entry.replace(/(\/.*)?$/, '/package.json'));
+  const packageJson = require(entry + '/package.json');
   // Both deps and peerDeps are assumed as accessible.
   return Array.from(
     new Set([

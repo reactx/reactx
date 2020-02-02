@@ -19,6 +19,7 @@ const {
 } = Bundles.bundleTypes;
 
 function getPackageName(name) {
+  name = name.replace('@reactx/', '');
   if (name.indexOf('/') !== -1) {
     return name.split('/')[0];
   }

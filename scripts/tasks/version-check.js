@@ -9,6 +9,12 @@
 
 const reactVersion = require('../../package.json').version;
 const versions = {
+  'packages/reactx-bpmn/package.json': require('../../packages/reactx-bpmn/package.json')
+    .version,
+  'packages/reactx-dragdrop/package.json': require('../../packages/reactx-dragdrop/package.json')
+    .version,
+  'packages/reactx-viewer-components/package.json': require('../../packages/reactx-viewer-components/package.json')
+    .version,
   'packages/reactx-components/package.json': require('../../packages/reactx-components/package.json')
     .version,
   'packages/reactx-svg-components/package.json': require('../../packages/reactx-svg-components/package.json')

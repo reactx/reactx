@@ -1,5 +1,5 @@
 {
-  "name": "reactx-viewer-components",
+  "name": "@reactx/reactx-viewer-components",
   "private": true,
   "description": "Viewer and Editor Panel Components for React",
   "version": "0.0.2",
@@ -21,6 +21,7 @@
     "README.md",
     "build-info.json",
     "index.js",
+    ".npmrc",
     "cjs/",
     "umd/"
   ],

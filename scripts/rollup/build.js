@@ -160,6 +160,7 @@ function getFormat(bundleType) {
 
 function getFilename(name, globalName, bundleType) {
   // we do this to replace / to -, for react-dom/server
+  name = name.replace('@reactx/', '');
   name = name.replace('/', '-');
   switch (bundleType) {
     case UMD_DEV:
@@ -343,7 +344,6 @@ async function createBundle(bundle, bundleType) {
   if (shouldSkipBundle(bundle, bundleType)) {
     return;
   }
-
   const filename = getFilename(bundle.entry, bundle.global, bundleType);
   const logKey =
     chalk.white.bold(filename) + chalk.dim(` (${bundleType.toLowerCase()})`);

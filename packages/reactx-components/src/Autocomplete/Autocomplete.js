@@ -218,11 +218,11 @@ export default function Autocomplete(userProps: AutocompleteProps) {
       x:
         window.pageXOffset !== undefined
           ? window.pageXOffset
-          : (document.documentElement || document.body)?.scrollLeft,
+          : (document.documentElement || document.body).scrollLeft,
       y:
         window.pageYOffset !== undefined
           ? window.pageYOffset
-          : (document.documentElement || document.body)?.scrollTop,
+          : (document.documentElement || document.body).scrollTop,
     };
   }, []);
 

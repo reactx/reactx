@@ -9,17 +9,35 @@
 module.exports = [
   {
     shortName: 'dom',
-    entryPoints: ['reactx-components', 'reactx-svg-components'],
+    entryPoints: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
   },
   {
     shortName: 'dom-browser',
-    entryPoints: ['reactx-components', 'reactx-svg-components'],
+    entryPoints: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
   },
   {
     shortName: 'native',
-    entryPoints: ['reactx-components', 'reactx-svg-components'],
+    entryPoints: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
-  }
+  },
 ];

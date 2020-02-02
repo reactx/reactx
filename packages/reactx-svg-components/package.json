@@ -1,5 +1,5 @@
 {
-  "name": "reactx-svg-components",
+  "name": "@reactx/reactx-svg-components",
   "private": true,
   "description": "The standard React SVG Components",
   "version": "0.0.2",
@@ -19,6 +19,7 @@
     "README.md",
     "build-info.json",
     "index.js",
+    ".npmrc",
     "cjs/",
     "umd/"
   ],
