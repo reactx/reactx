@@ -74,8 +74,8 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     _ignoreBlur: false,
     _ignoreFocus: false,
   });
-  const refs = useRef<RefsType>({});
-  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
+  const refs = useRef({});
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
   const [positions, setPositions] = useState({});
 
   const props: AutocompleteProps = {
