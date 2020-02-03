@@ -10,7 +10,7 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Tabs, Tab, TabPanel} from 'reactx-components';
+import {Tabs, Tab, TabPanel} from '@reactx/reactx-components';
 
 describe('while running in a browser environment', () => {
   let container, wrapper, onSetOpen;

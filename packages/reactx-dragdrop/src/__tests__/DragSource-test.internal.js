@@ -10,7 +10,7 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {DragSource, DragDropProvider} from 'reactx-dragdrop';
+import {DragSource, DragDropProvider} from '@reactx/reactx-dragdrop';
 
 describe('while running in a browser environment', () => {
   let container, wrapper;
