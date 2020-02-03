@@ -19,3 +19,4 @@ chrome-user-data
 *.swp
 *.swo
 *.lock
+*.tgz

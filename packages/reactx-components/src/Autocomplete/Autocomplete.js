@@ -102,7 +102,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
       items.sort((a, b) => props.sortItems(a, b, props.value));
     }
     return items;
-  }, [props.value]);
+  }, [props.value, props.items]);
 
   const keyDownHandlers = useMemo(() => {
     return {
@@ -178,40 +178,43 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         setOptions({...options, _ignoreBlur: false});
       },
     };
-  }, [isOpen, highlightedIndex]);
+  }, [isOpen, highlightedIndex, options]);
 
-  const handleInputFocus = useCallback(event => {
-    if (options._ignoreFocus) {
-      const {x, y} = options._scrollOffset;
-      setOptions({...options, _ignoreFocus: false, _scrollOffset: null});
-      // Focus will cause the browser to scroll the <input> into view.
-      // This can cause the mouse coords to change, which in turn
-      // could cause a new highlight to happen, cancelling the click
-      // event (when selecting with the mouse)
-      window.scrollTo(x, y);
-      // Some browsers wait until all focus event handlers have been
-      // processed before scrolling the <input> into view, so let's
-      // scroll again on the next tick to ensure we're back to where
-      // the user was before focus was lost. We could do the deferred
-      // scroll only, but that causes a jarring split second jump in
-      // some browsers that scroll before the focus event handlers
-      // are triggered.
-      if (options._scrollTimer) clearTimeout(options._scrollTimer);
-      setOptions({
-        ...options,
-        _scrollTimer: setTimeout(() => {
-          setOptions({...options, _scrollTimer: null});
-          window.scrollTo(x, y);
-        }, 0),
-      });
-      return;
-    }
-    setIsOpen(true);
-    const {onFocus} = props.inputProps;
-    if (onFocus) {
-      onFocus(event);
-    }
-  }, []);
+  const handleInputFocus = useCallback(
+    event => {
+      if (options._ignoreFocus) {
+        const {x, y} = options._scrollOffset;
+        setOptions({...options, _ignoreFocus: false, _scrollOffset: null});
+        // Focus will cause the browser to scroll the <input> into view.
+        // This can cause the mouse coords to change, which in turn
+        // could cause a new highlight to happen, cancelling the click
+        // event (when selecting with the mouse)
+        window.scrollTo(x, y);
+        // Some browsers wait until all focus event handlers have been
+        // processed before scrolling the <input> into view, so let's
+        // scroll again on the next tick to ensure we're back to where
+        // the user was before focus was lost. We could do the deferred
+        // scroll only, but that causes a jarring split second jump in
+        // some browsers that scroll before the focus event handlers
+        // are triggered.
+        if (options._scrollTimer) clearTimeout(options._scrollTimer);
+        setOptions({
+          ...options,
+          _scrollTimer: setTimeout(() => {
+            setOptions({...options, _scrollTimer: null});
+            window.scrollTo(x, y);
+          }, 0),
+        });
+        return;
+      }
+      setIsOpen(true);
+      const {onFocus} = props.inputProps;
+      if (onFocus) {
+        onFocus(event);
+      }
+    },
+    [options],
+  );
 
   const getScrollOffset = useCallback(() => {
     return {
@@ -251,7 +254,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         onBlur(event);
       }
     },
-    [highlightedIndex],
+    [highlightedIndex, options],
   );
 
   const isInputFocused = useCallback(() => {
@@ -294,15 +297,18 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     [],
   );
 
-  const selectItemFromMouse = useCallback(item => {
-    const value = props.getItemValue(item);
-    // The menu will de-render before a mouseLeave event
-    // happens. Clear the flag to release control over focus
-    setOptions({...options, _ignoreBlur: false});
-    setIsOpen(false);
-    setHighlightedIndex(null);
-    if (props.onSelect) props.onSelect(value, item);
-  }, []);
+  const selectItemFromMouse = useCallback(
+    item => {
+      const value = props.getItemValue(item);
+      // The menu will de-render before a mouseLeave event
+      // happens. Clear the flag to release control over focus
+      setOptions({...options, _ignoreBlur: false});
+      setIsOpen(false);
+      setHighlightedIndex(null);
+      if (props.onSelect) props.onSelect(value, item);
+    },
+    [options],
+  );
 
   const setMenuPositions = useCallback(
     item => {
