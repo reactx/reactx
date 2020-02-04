@@ -21,6 +21,9 @@ exports[`Autocomplete while running in a browser environment should render corre
       role="combobox"
       value="foo"
     />
+    <button
+      onClick={[Function]}
+    />
   </div>
 </div>
 `;

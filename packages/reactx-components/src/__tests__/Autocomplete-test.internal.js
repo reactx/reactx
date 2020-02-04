@@ -9,7 +9,7 @@
 
 'use strict';
 import React from 'react';
-import {Autocomplete} from 'reactx-components';
+import {Autocomplete} from '@reactx/reactx-components';
 import ReactTestUtils from 'react-dom/test-utils';
 import renderer from 'react-test-renderer';
 import {mount, configure} from 'enzyme';
@@ -38,6 +38,7 @@ describe('Autocomplete', () => {
         <div>
           <Autocomplete
             items={items}
+            showArrow={true}
             getItemValue={item => item.label}
             renderItem={(item, highlighted) => (
               <div

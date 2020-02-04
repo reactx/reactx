@@ -17,15 +17,18 @@ type AutocompleteProps = {
   onMenuVisibilityChange: (e: any) => void,
   isItemSelectable: (e: any) => void,
   renderInput: (props: any) => void,
+  renderArrow: (props: any) => void,
   shouldItemRender: (item: any, value: any) => void,
   renderMenu: (items: Array<any>, value: any, style: any) => Element<any>,
   items: Array<any>,
   value: any,
   autoHighlight: boolean,
+  showArrow: boolean,
   menuStyle: any,
   wrapperStyle: any,
   wrapperProps: any,
   inputProps: any,
+  arrowProps: any,
   selectOnBlur: boolean,
 };
 
@@ -36,13 +39,18 @@ type RefsType = {
 
 const defaultProps = {
   value: '',
+  showArrow: false,
   wrapperProps: {},
   wrapperStyle: {
     display: 'inline-block',
   },
   inputProps: {},
+  arrowProps: {},
   renderInput(props) {
     return <input {...props} />;
+  },
+  renderArrow(props) {
+    return <button {...props} />;
   },
   onChange() {},
   onSelect() {},
@@ -263,12 +271,23 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     return el.ownerDocument && el === el.ownerDocument.activeElement;
   }, [refs.current]);
 
+  const isArrowFocused = useCallback(() => {
+    const el = refs.current.arrow;
+    if (!el) return;
+    return el.ownerDocument && el === el.ownerDocument.activeElement;
+  }, [refs.current]);
+
   const handleChange = useCallback(event => {
     props.onChange(event, event.target.value);
   }, []);
 
   const handleInputClick = useCallback(() => {
     if (isInputFocused() && !isOpen) setIsOpen(true);
+  }, [isOpen]);
+
+  const handleArrowClick = useCallback(() => {
+    if (isArrowFocused() && !isOpen && refs.current.input)
+      refs.current.input.focus();
   }, [isOpen]);
 
   const handleKeyDown = useCallback(
@@ -436,6 +455,15 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         ),
         value: props.value,
       })}
+      {props.showArrow &&
+        props.renderArrow({
+          ...props.arrowProps,
+          ref: el => (refs.current = {...refs.current, arrow: el}),
+          onClick: composeEventHandlers(
+            handleArrowClick,
+            props.arrowProps.onClick,
+          ),
+        })}
       {isOpen && renderMenu()}
     </div>
   );

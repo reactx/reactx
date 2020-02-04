@@ -19,7 +19,8 @@ export default function App() {
       <button onClick={() => setOpen(!open)}>Toggle</button>
       <Collapse isOpened={open}>This is a test</Collapse>
 
-      <Autocomplete 
+      <Autocomplete
+        showArrow={true}
         renderItem={(item, highlighted) => (
           <div
             key={item.id}
