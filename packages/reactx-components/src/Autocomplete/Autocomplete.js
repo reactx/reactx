@@ -24,6 +24,7 @@ type AutocompleteProps = {
   value: any,
   autoHighlight: boolean,
   showArrow: boolean,
+  rightPositionArrow: boolean,
   menuStyle: any,
   wrapperStyle: any,
   wrapperProps: any,
@@ -40,6 +41,7 @@ type RefsType = {
 const defaultProps = {
   value: '',
   showArrow: false,
+  rightPositionArrow: false,
   wrapperProps: {},
   wrapperStyle: {
     display: 'inline-block',
@@ -215,7 +217,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         });
         return;
       }
-      setIsOpen(true);
+      if (!isOpen) setIsOpen(true);
       const {onFocus} = props.inputProps;
       if (onFocus) {
         onFocus(event);
@@ -286,8 +288,10 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   }, [isOpen]);
 
   const handleArrowClick = useCallback(() => {
-    if (isArrowFocused() && !isOpen && refs.current.input)
+    if (isArrowFocused() && !isOpen && refs.current.input) {
       refs.current.input.focus();
+      handleInputClick();
+    }
   }, [isOpen]);
 
   const handleKeyDown = useCallback(
@@ -435,6 +439,16 @@ export default function Autocomplete(userProps: AutocompleteProps) {
 
   return (
     <div style={{...props.wrapperStyle}} {...props.wrapperProps}>
+      {props.showArrow &&
+        props.rightPositionArrow &&
+        props.renderArrow({
+          ...props.arrowProps,
+          ref: el => (refs.current = {...refs.current, arrow: el}),
+          onClick: composeEventHandlers(
+            handleArrowClick,
+            props.arrowProps.onClick,
+          ),
+        })}
       {props.renderInput({
         ...props.inputProps,
         role: 'combobox',
@@ -456,6 +470,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         value: props.value,
       })}
       {props.showArrow &&
+        !props.rightPositionArrow &&
         props.renderArrow({
           ...props.arrowProps,
           ref: el => (refs.current = {...refs.current, arrow: el}),
