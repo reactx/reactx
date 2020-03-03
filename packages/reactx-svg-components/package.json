@@ -2,7 +2,7 @@
   "name": "@reactx/reactx-svg-components",
   "private": true,
   "description": "The standard React SVG Components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
