@@ -1,13 +1,13 @@
 {
   "name": "bpmn-dnd",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "react": "link:../../node_modules/react",
     "react-dom": "link:../../node_modules/react-dom",
     "reactx-dragdrop": "link:../../build/node_modules/reactx-dragdrop",
     "reactx-components": "link:../../build/node_modules/reactx-components",
-    "react-scripts": "^3.0.0"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -27,6 +27,7 @@ const dndReducer = (state: State, action: Action) => {
   const {payload} = action;
   switch (action.type) {
     case Actions.BEGIN_DRAG:
+      payload.element.isDragging = true;
       return payload;
     case Actions.DRAG_ENTER:
       return {
@@ -34,10 +35,8 @@ const dndReducer = (state: State, action: Action) => {
         ...payload,
       };
     case Actions.DROP:
-      return {
-        ...state,
-        ...payload,
-      };
+      payload.element.isDragging = false;
+      return {};
     default:
       return state;
   }

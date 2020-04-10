@@ -5,15 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import DragSource, {useDrag} from './DragSource/DragSource';
-import DropTarget, {useDrop} from './DropTarget/DropTarget';
+import {useDrag} from './DragSource/DragSource';
+import {useDrop} from './DropTarget/DropTarget';
 import DragDropProvider from './ContextManager';
 
+const useDragDrop = () => {
+  return {
+    useDrag,
+    useDrop,
+  };
+};
+
 const ReactDnD = {
-  DragSource,
-  useDrag,
-  DropTarget,
-  useDrop,
+  useDragDrop,
   DragDropProvider,
 };
 

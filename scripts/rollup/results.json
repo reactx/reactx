@@ -200,29 +200,29 @@
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 59284,
-      "gzip": 14036
+      "size": 59383,
+      "gzip": 14096
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 12846,
-      "gzip": 5036
+      "size": 12838,
+      "gzip": 5059
     },
     {
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 55562,
-      "gzip": 13943
+      "size": 55671,
+      "gzip": 14008
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 12655,
-      "gzip": 4991
+      "size": 12645,
+      "gzip": 5023
     },
     {
       "filename": "reactx-viewer-components.development.js",
