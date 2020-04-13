@@ -21,7 +21,7 @@ export function useDrop(props: DropTargetProps = {}, deps) {
   const item = useDragDropContextState();
   const dispatch = useDragDropContextDispatch();
 
-  const el = useRef(null);
+  const el = useRef(props.element);
   const [droppedComponent, setDroppedComponent] = useState(null);
 
   const {refKey = 'ref', ...rest} = props;
@@ -73,7 +73,8 @@ export function useDrop(props: DropTargetProps = {}, deps) {
   }, []);
 
   useEffect(() => {
-    if (!el.current) return;
+    if (!el.current && !props.element) return;
+    if (!el.current) el.current = props.element;
     connectDropTarget(el.current, {
       drop: onDrop,
       dragEnter,
@@ -81,7 +82,7 @@ export function useDrop(props: DropTargetProps = {}, deps) {
       dragLeave,
     });
     return;
-  }, [el.current]);
+  }, [el.current, props.element]);
 
   return {
     [refKey]: el,

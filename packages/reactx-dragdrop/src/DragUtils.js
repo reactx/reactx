@@ -92,6 +92,6 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragStart) {
-    options.dragStart(e.target, options.props);
+    options.dragStart(e, options.props);
   }
 }

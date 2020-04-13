@@ -52,7 +52,7 @@ function HandleDragOver(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragOver) {
-    options.dragOver(e.target);
+    options.dragOver(e);
   }
 }
 function HandleDragLeave(e: DragEvent, options: DragOptions) {
@@ -66,7 +66,7 @@ function HandleDragLeave(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragLeave) {
-    options.dragLeave(e.target);
+    options.dragLeave(e);
   }
 }
 
@@ -80,7 +80,7 @@ function HandleDragEnter(e: DragEvent, options: DragOptions) {
   }
 
   if (options.dragEnter) {
-    options.dragEnter(e.target);
+    options.dragEnter(e);
   }
 }
 
@@ -89,6 +89,6 @@ function HandleDrop(e: DragEvent, options: DragOptions) {
   e.stopPropagation();
   //TODO: check native and electron, flutter
   if (options.drop) {
-    options.drop(e.target);
+    options.drop(e);
   }
 }

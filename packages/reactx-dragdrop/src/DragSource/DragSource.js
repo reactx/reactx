@@ -14,7 +14,7 @@ import {type DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps = {}) {
-  const el = useRef(null);
+  const el = useRef(props.element);
   const dispatch = useDragDropContextDispatch();
   const {refKey = 'ref', ...rest} = props;
   const dragStart = useCallback((e: EventTarget) => {
@@ -32,7 +32,8 @@ export function useDrag(props: DragSourceProps = {}) {
     }
   }, []);
   useEffect(() => {
-    if (!el.current) return;
+    if (!el.current && !props.element) return;
+    if (!el.current) el.current = props.element;
 
     connectDragSource(el.current, {
       dragImage: props.handler,
@@ -40,7 +41,7 @@ export function useDrag(props: DragSourceProps = {}) {
       props,
     });
     return;
-  }, [el.current]);
+  }, [el.current, props.element]);
 
   return {
     [refKey]: el,
