@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 
-import {Collapse, Autocomplete} from 'reactx-components';
+import {Collapse, Input} from 'reactx-components';
 const items = [
   {id: 'foo', label: 'foo'},
   {id: 'bar', label: 'bar'},
@@ -12,14 +12,16 @@ export default function App() {
   const [value, setValue] = useState('');
 
   const change = (item, val) => {
+    debugger;
     setValue(val);
   };
   return (
     <div className="container">
       <button onClick={() => setOpen(!open)}>Toggle</button>
-      <Collapse isOpened={open}>This is a test</Collapse>
+      {/* <Collapse isOpened={open}>This is a test</Collapse> */}
+      <Input value={value} onChange={change}></Input>
 
-      <Autocomplete
+      {/* <Autocomplete
         showArrow={true}
         renderItem={(item, highlighted) => (
           <div
@@ -36,7 +38,7 @@ export default function App() {
         value={value}
         onChange={change}
         onSelect={value => setValue(value)}
-      />
+      /> */}
     </div>
   );
 }

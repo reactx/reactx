@@ -11,8 +11,4 @@ export type Errback = (error: Error | null, svg?: Element) => void;
 
 import Task from './Task/Task';
 
-const ReactSVG = {
-  Task,
-};
-
-export default ReactSVG;
+export {Task};

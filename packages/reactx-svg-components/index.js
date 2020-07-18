@@ -8,7 +8,4 @@
  */
 'use strict';
 
-const ReactSVG = require('./src/ReactSVG');
-
-// This is hacky but makes it work with both Rollup and Jest.
-module.exports = ReactSVG.default || ReactSVG;
+export * from './src/ReactSVG';

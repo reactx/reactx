@@ -9,8 +9,4 @@
 
 import SVGViewer from './SVGViewer/SVGViewer';
 
-const ReactViewer = {
-  SVGViewer,
-};
-
-export default ReactViewer;
+export {SVGViewer};

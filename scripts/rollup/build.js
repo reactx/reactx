@@ -9,7 +9,7 @@ const replace = require('@rollup/plugin-replace');
 const stripBanner = require('rollup-plugin-strip-banner');
 const chalk = require('chalk');
 const path = require('path');
-const resolve = require('rollup-plugin-node-resolve');
+const resolve = require('@rollup/plugin-node-resolve').nodeResolve;
 const fs = require('fs');
 const argv = require('minimist')(process.argv.slice(2));
 const Modules = require('./modules');
@@ -89,6 +89,7 @@ const closureOptions = {
 
 function getBabelConfig(updateBabelOptions, bundleType, filename) {
   let options = {
+    babelHelpers: 'bundled',
     exclude: '/**/node_modules/**',
     presets: [],
     plugins: [],
@@ -369,7 +370,7 @@ async function createBundle(bundle, bundleType) {
   const rollupConfig = {
     input: resolvedEntry,
     treeshake: {
-      pureExternalModules,
+      moduleSideEffects: pureExternalModules,
     },
     external(id) {
       const containsThisModule = pkg => id === pkg || id.startsWith(pkg + '/');

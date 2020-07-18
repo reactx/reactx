@@ -144,141 +144,141 @@
       "filename": "reactx-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-components",
-      "size": 32109,
-      "gzip": 7103
+      "size": 36361,
+      "gzip": 7401
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-components",
-      "size": 13598,
-      "gzip": 4360
+      "size": 15165,
+      "gzip": 4732
     },
     {
       "filename": "reactx-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-components",
-      "size": 30392,
-      "gzip": 7091
+      "size": 34121,
+      "gzip": 7280
     },
     {
       "filename": "reactx-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-components",
-      "size": 13484,
-      "gzip": 4273
+      "size": 15073,
+      "gzip": 4649
     },
     {
       "filename": "reactx-svg-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-svg-components",
-      "size": 18980,
-      "gzip": 5083
+      "size": 18934,
+      "gzip": 5060
     },
     {
       "filename": "reactx-svg-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-svg-components",
-      "size": 8270,
-      "gzip": 3328
+      "size": 8266,
+      "gzip": 3414
     },
     {
       "filename": "reactx-svg-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-svg-components",
-      "size": 2218,
-      "gzip": 927
+      "size": 1925,
+      "gzip": 794
     },
     {
       "filename": "reactx-svg-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-svg-components",
-      "size": 1092,
-      "gzip": 579
+      "size": 1071,
+      "gzip": 564
     },
     {
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 59534,
-      "gzip": 14117
+      "size": 22286,
+      "gzip": 6578
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 12925,
-      "gzip": 5077
+      "size": 7576,
+      "gzip": 3246
     },
     {
       "filename": "reactx-dragdrop.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-dragdrop",
-      "size": 55818,
-      "gzip": 14027
+      "size": 20797,
+      "gzip": 6442
     },
     {
       "filename": "reactx-dragdrop.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-dragdrop",
-      "size": 12732,
-      "gzip": 5042
+      "size": 7365,
+      "gzip": 3156
     },
     {
       "filename": "reactx-viewer-components.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-viewer-components",
-      "size": 921,
-      "gzip": 505
+      "size": 836,
+      "gzip": 486
     },
     {
       "filename": "reactx-viewer-components.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-viewer-components",
-      "size": 634,
-      "gzip": 418
+      "size": 617,
+      "gzip": 411
     },
     {
       "filename": "reactx-viewer-components.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-viewer-components",
-      "size": 932,
-      "gzip": 531
+      "size": 586,
+      "gzip": 398
     },
     {
       "filename": "reactx-viewer-components.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-viewer-components",
-      "size": 439,
-      "gzip": 326
+      "size": 422,
+      "gzip": 316
     },
     {
       "filename": "reactx-bpmn.development.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-bpmn",
-      "size": 2103,
-      "gzip": 876
+      "size": 2088,
+      "gzip": 894
     },
     {
       "filename": "reactx-bpmn.production.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-bpmn",
-      "size": 1141,
-      "gzip": 651
+      "size": 1128,
+      "gzip": 650
     },
     {
       "filename": "reactx-bpmn.development.js",
       "bundleType": "NODE_DEV",
       "packageName": "reactx-bpmn",
-      "size": 2004,
-      "gzip": 884
+      "size": 1736,
+      "gzip": 793
     },
     {
       "filename": "reactx-bpmn.production.min.js",
       "bundleType": "NODE_PROD",
       "packageName": "reactx-bpmn",
-      "size": 912,
-      "gzip": 555
+      "size": 895,
+      "gzip": 547
     }
   ]
 }

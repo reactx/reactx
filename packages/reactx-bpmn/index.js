@@ -8,7 +8,4 @@
  */
 'use strict';
 
-const ReactBPMN = require('./src/ReactBPMN');
-
-// This is hacky but makes it work with both Rollup and Jest.
-module.exports = ReactBPMN.default || ReactBPMN;
+export * from './src/ReactBPMN';

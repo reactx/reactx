@@ -9,8 +9,4 @@
 
 import Editor from './Editor/Editor';
 
-const ReactBPMN = {
-  Editor,
-};
-
-export default ReactBPMN;
+export {Editor};

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`while running in a browser environment should render correctly 1`] = `
+<div>
+  <label>
+    salam
+     
+  </label>
+  <input
+    label="salam"
+    type="text"
+    value=""
+  />
+</div>
+`;

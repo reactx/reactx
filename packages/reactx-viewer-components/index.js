@@ -8,7 +8,4 @@
  */
 'use strict';
 
-const ReactViewer = require('./src/ReactViewer');
-
-// This is hacky but makes it work with both Rollup and Jest.
-module.exports = ReactViewer.default || ReactViewer;
+export * from './src/ReactViewer';

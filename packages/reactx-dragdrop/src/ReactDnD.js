@@ -16,9 +16,4 @@ const useDragDrop = () => {
   };
 };
 
-const ReactDnD = {
-  useDragDrop,
-  DragDropProvider,
-};
-
-export default ReactDnD;
+export {useDragDrop, DragDropProvider};

@@ -10,15 +10,7 @@
 import Sidebar from './Sidebar/Sidebar';
 import Collapse from './Collapse/Collapse';
 import Autocomplete from './Autocomplete/Autocomplete';
+import Input from './Input/Input';
 import {Tab, TabPanel, Tabs} from './Tab';
 
-const ReactComponents = {
-  Sidebar,
-  Collapse,
-  Tab,
-  TabPanel,
-  Tabs,
-  Autocomplete,
-};
-
-export default ReactComponents;
+export {Sidebar, Collapse, Tab, TabPanel, Tabs, Autocomplete, Input};
