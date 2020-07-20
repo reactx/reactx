@@ -16,7 +16,15 @@ module.exports = [
       'reactx-viewer-components',
       'reactx-svg-components',
     ],
+    paths: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
+    isServerSupported: true,
   },
   {
     shortName: 'dom-browser',
@@ -27,7 +35,15 @@ module.exports = [
       'reactx-viewer-components',
       'reactx-svg-components',
     ],
+    paths: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
+    isServerSupported: true,
   },
   {
     shortName: 'native',
@@ -38,6 +54,14 @@ module.exports = [
       'reactx-viewer-components',
       'reactx-svg-components',
     ],
+    paths: [
+      'reactx-components',
+      'reactx-dragdrop',
+      'reactx-bpmn',
+      'reactx-viewer-components',
+      'reactx-svg-components',
+    ],
     isFlowTyped: true,
+    isServerSupported: true,
   },
 ];

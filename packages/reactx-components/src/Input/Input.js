@@ -14,7 +14,7 @@ type InputProps = {
   onFocus: (e: SyntheticEvent<HTMLButtonElement>) => void,
   onBlur: (e: SyntheticEvent<HTMLButtonElement>) => void,
   onKeyDown: (e: SyntheticEvent<HTMLButtonElement>) => void,
-  renderinput?: (props: any) => void,
+  renderInput?: (props: any) => void,
   value: any,
   label?: string,
   type?: string,

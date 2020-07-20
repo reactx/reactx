@@ -1,9 +1,9 @@
 'use strict';
 
 const {rollup} = require('rollup');
-const babel = require('rollup-plugin-babel');
+const babel = require('@rollup/plugin-babel');
 const closure = require('./plugins/closure-plugin');
-const commonjs = require('rollup-plugin-commonjs');
+const commonjs = require('@rollup/plugin-commonjs');
 const prettier = require('rollup-plugin-prettier');
 const replace = require('@rollup/plugin-replace');
 const stripBanner = require('rollup-plugin-strip-banner');

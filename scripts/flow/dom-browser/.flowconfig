@@ -1,32 +1,55 @@
+# ---------------------------------------------------------------#
+# NOTE: this file is generated.                                  #
+# If you want to edit it, open ./scripts/flow/config/flowconfig. #
+# Then run Yarn for changes to take effect.                      #
+# ---------------------------------------------------------------#
 [ignore]
+.*/scripts/bench/.*
+.*/build/.*
+.*/.tempUserDataDir/.*
 
 # These shims are copied into external projects:
-.*/rollup/shims/reactx-www/.*
+.*/rollup/shims/facebook-www/.*
 .*/rollup/shims/react-native/.*
 
+.*/node_modules/@snyk/.*
 .*/node_modules/y18n/.*
 .*/node_modules/chrome-devtools-frontend/.*
 .*/node_modules/devtools-timeline-model/.*
 .*/node_modules/create-react-class/.*
+.*/node_modules/react-native-web/.*
 .*/__mocks__/.*
 .*/__tests__/.*
 
+# TODO: noop should get its own inlinedHostConfig entry
+.*/packages/react-noop-renderer/.*
+
+.*/packages/.*/forks/.*.dom.js
+.*/packages/.*/forks/.*.native.js
+
 [include]
-../../../node_modules/
-../../../packages/
-../../../scripts/
+./node_modules/
+./packages/
+./scripts/
 
 [libs]
-../../../node_modules/fbjs/flow/lib/dev.js
-../environment.js
+./node_modules/fbjs/flow/lib/dev.js
+./scripts/flow/environment.js
 
 [lints]
 untyped-type-import=error
 
 [options]
+server.max_workers=4
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-esproposal.optional_chaining=enable
+
+# Substituted by createFlowConfig.js:
+module.name_mapper='ReactFiberHostConfig$' -> 'forks/ReactFiberHostConfig.dom-browser'
+module.name_mapper='ReactServerStreamConfig$' -> 'forks/ReactServerStreamConfig.dom-browser'
+module.name_mapper='ReactServerFormatConfig$' -> 'forks/ReactServerFormatConfig.dom-browser'
+module.name_mapper='ReactFlightServerConfig$' -> 'forks/ReactFlightServerConfig.dom-browser'
+module.name_mapper='ReactFlightClientHostConfig$' -> 'forks/ReactFlightClientHostConfig.dom-browser'
 
 munge_underscores=false
 
@@ -35,12 +58,10 @@ suppress_type=$FlowFixMe
 suppress_type=$FixMe
 suppress_type=$FlowExpectedError
 
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
-suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
-
-server.max_workers=1
-
 [version]
 ^0.129.0
+# ---------------------------------------------------------------#
+# NOTE: this file is generated.                                  #
+# If you want to edit it, open ./scripts/flow/config/flowconfig. #
+# Then run Yarn for changes to take effect.                      #
+# ---------------------------------------------------------------#
