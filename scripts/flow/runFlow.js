@@ -45,8 +45,8 @@ async function runFlow(renderer, args) {
               'Detected manual changes to .flowconfig, which is a generated ' +
                 'file. These changes have been discarded.\n\n' +
                 'To change the Flow config, edit the template in ' +
-                'scripts/flow/config/.flowconfig. Then run this command again.\n',
-            ),
+                'scripts/flow/config/.flowconfig. Then run this command again.\n'
+            )
           );
         }
         fs.unlinkSync(destPath);
@@ -61,7 +61,7 @@ async function runFlow(renderer, args) {
     }
 
     console.log(
-      'Running Flow on the ' + chalk.yellow(renderer) + ' renderer...',
+      'Running Flow on the ' + chalk.yellow(renderer) + ' renderer...'
     );
 
     spawn(cmd, args, {
@@ -70,13 +70,13 @@ async function runFlow(renderer, args) {
     }).on('close', function(code) {
       if (code !== 0) {
         console.error(
-          'Flow failed for the ' + chalk.red(renderer) + ' renderer',
+          'Flow failed for the ' + chalk.red(renderer) + ' renderer'
         );
         console.log();
         process.exit(code);
       } else {
         console.log(
-          'Flow passed for the ' + chalk.green(renderer) + ' renderer',
+          'Flow passed for the ' + chalk.green(renderer) + ' renderer'
         );
         resolve();
       }

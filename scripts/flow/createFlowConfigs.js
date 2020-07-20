@@ -36,24 +36,15 @@ function writeConfig(renderer, rendererInfo, isServerSupported) {
       }
       ignoredPaths.push(`.*/packages/${otherPath}`);
     });
-
-    if (otherRenderer.shortName !== serverRenderer) {
-      ignoredPaths.push(
-        `.*/packages/.*/forks/.*.${otherRenderer.shortName}.js`,
-      );
-    }
   });
 
   const config = configTemplate
     .replace(
-      '%REACT_RENDERER_FLOW_OPTIONS%',
+      '%NIRVANA_RENDERER_FLOW_OPTIONS%',
       `
-module.name_mapper='ReactFiberHostConfig$$' -> 'forks/ReactFiberHostConfig.${renderer}'
-module.name_mapper='ReactServerStreamConfig$$' -> 'forks/ReactServerStreamConfig.${serverRenderer}'
-module.name_mapper='ReactServerFormatConfig$$' -> 'forks/ReactServerFormatConfig.${serverRenderer}'
-module.name_mapper='ReactFlightServerConfig$$' -> 'forks/ReactFlightServerConfig.${serverRenderer}'
-module.name_mapper='ReactFlightClientHostConfig$$' -> 'forks/ReactFlightClientHostConfig.${serverRenderer}'
-    `.trim(),
+      module.system.node.resolve_dirname=node_modules
+      module.system.node.resolve_dirname=packages
+    `.trim()
     )
     .replace('%REACT_RENDERER_FLOW_IGNORES%', ignoredPaths.join('\n'));
 
@@ -91,7 +82,7 @@ inlinedHostConfigs.forEach(rendererInfo => {
     writeConfig(
       rendererInfo.shortName,
       rendererInfo,
-      rendererInfo.isServerSupported,
+      rendererInfo.isServerSupported
     );
   }
 });

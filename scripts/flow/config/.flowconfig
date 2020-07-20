@@ -23,7 +23,7 @@
 
 [include]
 ./node_modules/
-./packages/
+./src/
 ./scripts/
 
 [libs]
@@ -39,7 +39,7 @@ esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 
 # Substituted by createFlowConfig.js:
-%REACT_RENDERER_FLOW_OPTIONS%
+%NIRVANA_RENDERER_FLOW_OPTIONS%
 
 munge_underscores=false
 

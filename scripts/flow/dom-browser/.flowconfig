@@ -24,12 +24,11 @@
 # TODO: noop should get its own inlinedHostConfig entry
 .*/packages/react-noop-renderer/.*
 
-.*/packages/.*/forks/.*.dom.js
-.*/packages/.*/forks/.*.native.js
+
 
 [include]
 ./node_modules/
-./packages/
+./src/
 ./scripts/
 
 [libs]
@@ -45,11 +44,8 @@ esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 
 # Substituted by createFlowConfig.js:
-module.name_mapper='ReactFiberHostConfig$' -> 'forks/ReactFiberHostConfig.dom-browser'
-module.name_mapper='ReactServerStreamConfig$' -> 'forks/ReactServerStreamConfig.dom-browser'
-module.name_mapper='ReactServerFormatConfig$' -> 'forks/ReactServerFormatConfig.dom-browser'
-module.name_mapper='ReactFlightServerConfig$' -> 'forks/ReactFlightServerConfig.dom-browser'
-module.name_mapper='ReactFlightClientHostConfig$' -> 'forks/ReactFlightClientHostConfig.dom-browser'
+module.system.node.resolve_dirname=node_modules
+      module.system.node.resolve_dirname=packages
 
 munge_underscores=false
 
