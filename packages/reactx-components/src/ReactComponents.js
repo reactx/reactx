@@ -12,5 +12,6 @@ import Collapse from './Collapse/Collapse';
 import Autocomplete from './Autocomplete/Autocomplete';
 import Input from './Input/Input';
 import {Tab, TabPanel, Tabs} from './Tab';
+import {Form} from './Form';
 
 export {Sidebar, Collapse, Tab, TabPanel, Tabs, Autocomplete, Input};
