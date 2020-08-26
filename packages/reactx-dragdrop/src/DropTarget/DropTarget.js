@@ -7,31 +7,25 @@
  * @flow
  */
 
-import React, {useRef, useEffect, useCallback, useState} from 'react';
-import uuid from 'uuid';
+import React, {useEffect, useCallback, useState} from 'react';
+import * as uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
-import {
-  useDragDropContextState,
-  useDragDropContextDispatch,
-} from '../ContextManager';
+import {useDragDropContextState} from '../ContextManager';
 import {type DropTargetProps} from '../../inline-typed';
+import {useDragDropContextDispatch} from '../ContextManager';
 import {Actions} from '../ActionTypes';
 
 export function useDrop(props: DropTargetProps = {}, deps) {
-  const item = useDragDropContextState();
   const dispatch = useDragDropContextDispatch();
-
-  const el = useRef(props.element);
+  const item = useDragDropContextState();
   const [droppedComponent, setDroppedComponent] = useState(null);
-
-  const {refKey = 'ref', ...rest} = props;
 
   useEffect(() => {
     if (!droppedComponent || !item.source || !item.element.isDragging) return;
 
     if (
       props.canDropByClassNames &&
-      Array.from(item.source.classList).filter(c =>
+      Array.from(item.source.classList).filter((c) =>
         props.canDropByClassNames.includes(c),
       ).length === 0
     ) {
@@ -50,6 +44,8 @@ export function useDrop(props: DropTargetProps = {}, deps) {
       type: Actions.DROP,
       payload: {...item},
     });
+
+    return;
   }, [droppedComponent]);
 
   const onDrop = useCallback((event: EventTarget) => {
@@ -72,20 +68,16 @@ export function useDrop(props: DropTargetProps = {}, deps) {
     }
   }, []);
 
-  useEffect(() => {
-    if (!el.current && !props.element) return;
-    if (!el.current) el.current = props.element;
-    connectDropTarget(el.current, {
+  const drop = useCallback((ref) => {
+    if (!ref) return;
+    connectDropTarget(ref, {
       drop: onDrop,
       dragEnter,
       dragOver,
       dragLeave,
     });
-    return;
-  }, [el.current, props.element]);
+    return ref;
+  }, []);
 
-  return {
-    [refKey]: el,
-    ...rest,
-  };
+  return drop;
 }

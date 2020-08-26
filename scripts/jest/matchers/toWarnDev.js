@@ -52,7 +52,7 @@ const createMatcherFor = (consoleMethod, matcherName) =>
       // and result in a test that passes when it shouldn't.
       let caughtError;
 
-      const isLikelyAComponentStack = message =>
+      const isLikelyAComponentStack = (message) =>
         typeof message === 'string' && message.includes('\n    in ');
 
       const consoleSpy = (format, ...args) => {
@@ -178,7 +178,7 @@ const createMatcherFor = (consoleMethod, matcherName) =>
             return {
               message: () =>
                 `Expected ${withoutStack} warnings without a component stack but received ${warningsWithoutComponentStack.length}:\n` +
-                warningsWithoutComponentStack.map(warning =>
+                warningsWithoutComponentStack.map((warning) =>
                   this.utils.printReceived(warning)
                 ),
               pass: false,

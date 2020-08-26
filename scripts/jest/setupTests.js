@@ -15,17 +15,17 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
   // TODO: Stop using spyOn in all the test since that seem deprecated.
   // This is a legacy upgrade path strategy from:
   // https://github.com/facebook/jest/blob/v20.0.4/packages/jest-matchers/src/spyMatchers.js#L160
-  const isSpy = spy => spy.calls && typeof spy.calls.count === 'function';
+  const isSpy = (spy) => spy.calls && typeof spy.calls.count === 'function';
 
   const spyOn = global.spyOn;
-  const noop = function() {};
+  const noop = function () {};
 
   // Spying on console methods in production builds can mask errors.
   // This is why we added an explicit spyOnDev() helper.
   // It's too easy to accidentally use the more familiar spyOn() helper though,
   // So we disable it entirely.
   // Spying on both dev and prod will require using both spyOnDev() and spyOnProd().
-  global.spyOn = function() {
+  global.spyOn = function () {
     throw new Error(
       'Do not use spyOn(). ' +
         'It can accidentally hide unexpected errors in production builds. ' +
@@ -63,9 +63,9 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
     }
   });
 
-  ['error', 'warn'].forEach(methodName => {
+  ['error', 'warn'].forEach((methodName) => {
     const unexpectedConsoleCallStacks = [];
-    const newMethod = function(format, ...args) {
+    const newMethod = function (format, ...args) {
       // Ignore uncaught errors reported by jsdom
       // and React addendums because they're too noisy.
       if (methodName === 'error' && shouldIgnoreConsoleError(format, args)) {
@@ -101,7 +101,7 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
             `${chalk.red(message)}\n` +
             `${stack
               .split('\n')
-              .map(line => chalk.gray(line))
+              .map((line) => chalk.gray(line))
               .join('\n')}`
         );
 
@@ -141,7 +141,7 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
     //    also proxies error instances with `proxyErrorInstance`.
     // 2. `proxyErrorInstance` decodes error messages when the `message`
     //    property is changed.
-    const decodeErrorMessage = function(message) {
+    const decodeErrorMessage = function (message) {
       if (!message) {
         return message;
       }
@@ -153,8 +153,8 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
       const code = parseInt(matches[1], 10);
       const args = matches[2]
         .split('&')
-        .filter(s => s.startsWith('args[]='))
-        .map(s => s.substr('args[]='.length))
+        .filter((s) => s.startsWith('args[]='))
+        .map((s) => s.substr('args[]='.length))
         .map(decodeURIComponent);
       const format = errorMap[code];
       let argIndex = 0;
@@ -164,7 +164,7 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
     // V8's Error.captureStackTrace (used in Jest) fails if the error object is
     // a Proxy, so we need to pass it the unproxied instance.
     const originalErrorInstances = new WeakMap();
-    const captureStackTrace = function(error, ...args) {
+    const captureStackTrace = function (error, ...args) {
       return OriginalError.captureStackTrace.call(
         this,
         originalErrorInstances.get(error) ||
@@ -173,7 +173,7 @@ if (process.env.REACT_CLASS_EQUIVALENCE_TEST) {
         ...args
       );
     };
-    const proxyErrorInstance = error => {
+    const proxyErrorInstance = (error) => {
       const proxy = new Proxy(error, {
         set(target, key, value, receiver) {
           if (key === 'message') {

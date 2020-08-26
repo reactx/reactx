@@ -9,11 +9,4 @@ import {useDrag} from './DragSource/DragSource';
 import {useDrop} from './DropTarget/DropTarget';
 import DragDropProvider from './ContextManager';
 
-const useDragDrop = () => {
-  return {
-    useDrag,
-    useDrop,
-  };
-};
-
-export {useDragDrop, DragDropProvider};
+export {useDrag, useDrop, DragDropProvider};

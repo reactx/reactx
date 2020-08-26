@@ -26,7 +26,7 @@ const Wrappers = require('./wrappers');
 
 // Errors in promises should be fatal.
 let loggedErrors = new Set();
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   if (loggedErrors.has(err)) {
     // No need to print it twice.
     process.exit(1);
@@ -244,7 +244,7 @@ function getPlugins(
       exclude: 'node_modules/**/*',
     }),
     // Compile to ES5.
-    babel(getBabelConfig(updateBabelOptions, bundleType)),
+    babel.babel(getBabelConfig(updateBabelOptions, bundleType)),
     // Remove 'use strict' from individual source files.
     {
       transform(source) {
@@ -296,7 +296,7 @@ function getPlugins(
       getSize: (size, gzip) => {
         const currentSizes = Stats.currentBuildResults.bundleSizes;
         const recordIndex = currentSizes.findIndex(
-          record =>
+          (record) =>
             record.filename === filename && record.bundleType === bundleType
         );
         const index = recordIndex !== -1 ? recordIndex : currentSizes.length;
@@ -319,7 +319,7 @@ function shouldSkipBundle(bundle, bundleType) {
   }
   if (requestedBundleTypes.length > 0) {
     const isAskingForDifferentType = requestedBundleTypes.every(
-      requestedType => bundleType.indexOf(requestedType) === -1
+      (requestedType) => bundleType.indexOf(requestedType) === -1
     );
     if (isAskingForDifferentType) {
       return true;
@@ -331,7 +331,7 @@ function shouldSkipBundle(bundle, bundleType) {
       // entry ends in something. Such as `react-dom/index` only matches
       // `react-dom` but not `react-dom/server`. Everything else is fuzzy
       // search.
-      requestedName =>
+      (requestedName) =>
         (bundle.entry + '/index.js').indexOf(requestedName) === -1
     );
     if (isAskingForDifferentNames) {
@@ -364,7 +364,7 @@ async function createBundle(bundle, bundleType) {
 
   const importSideEffects = Modules.getImportSideEffects();
   const pureExternalModules = Object.keys(importSideEffects).filter(
-    module => !importSideEffects[module]
+    (module) => !importSideEffects[module]
   );
 
   const rollupConfig = {
@@ -373,7 +373,8 @@ async function createBundle(bundle, bundleType) {
       moduleSideEffects: pureExternalModules,
     },
     external(id) {
-      const containsThisModule = pkg => id === pkg || id.startsWith(pkg + '/');
+      const containsThisModule = (pkg) =>
+        id === pkg || id.startsWith(pkg + '/');
       const isProvidedByDependency = externals.some(containsThisModule);
       if (!shouldBundleDependencies && isProvidedByDependency) {
         return true;

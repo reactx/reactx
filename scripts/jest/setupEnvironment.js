@@ -9,11 +9,11 @@ global.__PROFILE__ = NODE_ENV === 'development';
 global.__UMD__ = false;
 
 if (typeof window !== 'undefined') {
-  global.requestAnimationFrame = function(callback) {
+  global.requestAnimationFrame = function (callback) {
     setTimeout(callback);
   };
 
-  global.requestIdleCallback = function(callback) {
+  global.requestIdleCallback = function (callback) {
     return setTimeout(() => {
       callback({
         timeRemaining() {
@@ -23,7 +23,7 @@ if (typeof window !== 'undefined') {
     });
   };
 
-  global.cancelIdleCallback = function(callbackID) {
+  global.cancelIdleCallback = function (callbackID) {
     clearTimeout(callbackID);
   };
 }

@@ -12,7 +12,8 @@ const HAS_NO_SIDE_EFFECTS_ON_IMPORT = false;
 // const HAS_SIDE_EFFECTS_ON_IMPORT = true;
 const importSideEffects = Object.freeze({
   'prop-types/checkPropTypes': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
-  deepFreezeAndThrowOnMutationInDev: HAS_NO_SIDE_EFFECTS_ON_IMPORT,
+  'react-dom/server': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
+  'react-dom': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
 });
 
 // Bundles exporting globals that other modules rely on.
@@ -22,13 +23,13 @@ const knownGlobals = Object.freeze({
   'react-dom/server': 'ReactDOMServer',
   'prop-types': 'PropTypes',
   'bpmn-js/lib/Modeler': 'BpmnModeler',
-  crypto: 'crypto',
+  uuid: 'uuid',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.
 function getPeerGlobals(externals, bundleType) {
   const peerGlobals = {};
-  externals.forEach(name => {
+  externals.forEach((name) => {
     if (
       !knownGlobals[name] &&
       (bundleType === UMD_DEV || bundleType === UMD_PROD)

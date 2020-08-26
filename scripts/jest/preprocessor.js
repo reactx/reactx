@@ -56,7 +56,7 @@ const babelOptions = {
 };
 
 module.exports = {
-  process: function(src, filePath) {
+  process: function (src, filePath) {
     if (filePath.match(/\.coffee$/)) {
       return coffee.compile(src, {bare: true});
     }

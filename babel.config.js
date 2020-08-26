@@ -4,7 +4,6 @@ module.exports = {
   plugins: [
     '@babel/plugin-syntax-jsx',
     '@babel/plugin-transform-react-jsx',
-    '@babel/plugin-syntax-optional-chaining',
     '@babel/plugin-transform-flow-strip-types',
     ['@babel/plugin-proposal-class-properties', {loose: true}],
     'syntax-trailing-function-commas',
@@ -18,6 +17,7 @@ module.exports = {
     '@babel/plugin-transform-block-scoped-functions',
     '@babel/plugin-transform-object-super',
     '@babel/plugin-transform-shorthand-properties',
+    '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-transform-computed-properties',
     '@babel/plugin-transform-for-of',
     ['@babel/plugin-transform-spread', {loose: true, useBuiltIns: true}],
