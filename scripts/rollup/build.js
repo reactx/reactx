@@ -520,7 +520,6 @@ async function buildEverything() {
     await createBundle(bundle, bundleType);
   }
 
-  await Packaging.copyAllShims();
   await Packaging.prepareNpmPackages();
 
   if (syncFBSourcePath) {

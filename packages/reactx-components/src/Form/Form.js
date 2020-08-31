@@ -34,7 +34,7 @@ function FormComponent(userProps: FormProps) {
     ...userProps,
   };
 
-  const handleSubmit = useCallback(event => {
+  const handleSubmit = useCallback((event) => {
     if (props.onSubmit) props.onSubmit(event);
   }, []);
 
@@ -59,6 +59,7 @@ function FormComponent(userProps: FormProps) {
     name: props.name,
     className: props.className,
     ref: props.forwardedRef,
+    children: props.children,
   });
 }
 

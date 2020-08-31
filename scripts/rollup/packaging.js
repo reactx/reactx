@@ -50,33 +50,6 @@ function getBundleOutputPaths(bundleType, filename, packageName) {
   }
 }
 
-async function copyWWWShims() {
-  await asyncCopyTo(`${__dirname}/shims/reactx-www`, 'build/reactx-www/shims');
-}
-
-async function copyRNShims() {
-  await Promise.all([
-    // React Native
-    asyncCopyTo(`${__dirname}/shims/react-native`, 'build/react-native/shims'),
-    asyncCopyTo(
-      require.resolve('shared/ReactxTypes.js'),
-      'build/react-native/shims/ReactxTypes.js'
-    ),
-    // asyncCopyTo(
-    //   require.resolve('react-native-renderer/src/ReactNativeTypes.js'),
-    //   'build/react-native/shims/ReactNativeTypes.js'
-    // ),
-    asyncCopyTo(
-      `${__dirname}/shims/react-native-reactx`,
-      'build/react-native/reactx'
-    ),
-  ]);
-}
-
-async function copyAllShims() {
-  await Promise.all([copyWWWShims(), copyRNShims()]);
-}
-
 function getTarOptions(tgzName, packageName) {
   // Files inside the `npm pack`ed archive start
   // with "package/" in their paths. We'll undo
@@ -124,13 +97,12 @@ async function prepareNpmPackages() {
     return;
   }
   const builtPackageFolders = readdirSync('build/node_modules').filter(
-    dir => dir.charAt(0) !== '.'
+    (dir) => dir.charAt(0) !== '.'
   );
   await Promise.all(builtPackageFolders.map(prepareNpmPackage));
 }
 
 module.exports = {
-  copyAllShims,
   getPackageName,
   getBundleOutputPaths,
   prepareNpmPackages,
