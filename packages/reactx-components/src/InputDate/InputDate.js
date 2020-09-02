@@ -7,6 +7,7 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
 type InputDateProps = {
   id?: string,
@@ -25,6 +26,7 @@ type InputDateProps = {
   forwardedRef: {current: any},
   onChange: (e: ChangeEventHandler<T>) => void,
   renderInputDate?: (props: any) => void,
+  renderTitle?: (props: any) => void,
 };
 
 const defaultProps = {
@@ -32,8 +34,23 @@ const defaultProps = {
   value: '',
   type: 'date',
   onChange: (e) => {},
+  renderTitle(props) {
+    return <label>{props.title}</label>;
+  },
   renderInputDate(props) {
-    return <input {...props} />;
+    const parentProps = {...props};
+    delete parentProps.renderTitle;
+    cleanProps(parentProps);
+    return (
+      <>
+        {props.title && props.title !== '' && props.renderTitle(parentProps)}
+        <input
+          {...parentProps}
+          autoFocus={props.autoFocus}
+          onChange={props.onChange}
+        />
+      </>
+    );
   },
 };
 
@@ -61,6 +78,7 @@ function InputDateComponent(userProps: InputDateProps) {
     ref: props.forwardedRef,
     className: props.className,
     onChange: props.onChange,
+    renderTitle: props.renderTitle,
   });
 }
 

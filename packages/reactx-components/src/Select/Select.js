@@ -25,6 +25,7 @@ type SelectProps = {
   onChange: (e: ChangeEventHandler<T>) => void,
   renderSelect?: (props: any) => void,
   renderOptions?: (props: any) => void,
+  renderTitle?: (props: any) => void,
 };
 
 const defaultProps = {
@@ -32,6 +33,9 @@ const defaultProps = {
   value: '',
   items: [],
   onChange: (e) => {},
+  renderTitle(props) {
+    return <label>{props.title}</label>;
+  },
   renderOptions(item, props, index) {
     return (
       <option key={index} {...props} value={item.value}>
@@ -42,14 +46,17 @@ const defaultProps = {
   renderSelect(props) {
     const parentProps = {...props};
     delete parentProps.renderOptions;
+    delete parentProps.renderTitle;
     delete parentProps.optionProps;
-
     return (
-      <select {...parentProps}>
-        {props.items.map((item, index) =>
-          props.renderOptions(item, props.optionProps, index),
-        )}
-      </select>
+      <>
+        {props.title && props.title !== '' && props.renderTitle(parentProps)}
+        <select {...parentProps}>
+          {props.items.map((item, index) =>
+            props.renderOptions(item, props.optionProps, index),
+          )}
+        </select>
+      </>
     );
   },
 };
@@ -78,6 +85,7 @@ function SelectComponent(userProps: SelectProps) {
     className: props.className,
     onChange: props.onChange,
     renderOptions: props.renderOptions,
+    renderTitle: props.renderTitle,
   });
 }
 

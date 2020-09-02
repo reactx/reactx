@@ -7,6 +7,7 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
 type InputTextProps = {
   id?: string,
@@ -28,6 +29,7 @@ type InputTextProps = {
   className?: string,
   onChange: (e: ChangeEventHandler<T>) => void,
   renderInputText?: (props: any) => void,
+  renderTitle?: (props: any) => void,
 };
 
 const defaultProps = {
@@ -35,8 +37,23 @@ const defaultProps = {
   value: '',
   type: 'text',
   onChange: (e) => {},
+  renderTitle(props) {
+    return <label>{props.title}</label>;
+  },
   renderInputText(props) {
-    return <input {...props} onChange={props.onChange} />;
+    const parentProps = {...props};
+    delete parentProps.renderTitle;
+    cleanProps(parentProps);
+    return (
+      <>
+        {props.title && props.title !== '' && props.renderTitle(parentProps)}
+        <input
+          {...parentProps}
+          autoFocus={props.autoFocus}
+          onChange={props.onChange}
+        />
+      </>
+    );
   },
 };
 
@@ -67,6 +84,7 @@ function InputTextComponent(userProps: InputTextProps) {
     ref: props.forwardedRef,
     className: props.className,
     onChange: props.onChange,
+    renderTitle: props.renderTitle,
   });
 }
 

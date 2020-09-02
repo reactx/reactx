@@ -7,28 +7,80 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
-type CheckBoxProps = {
+export type CheckBoxProps = {
   id?: string,
-  name?: string,
   title?: string,
-  checked: boolean,
-  disabled?: boolean,
+  name?: string,
+  checked?: boolean,
+  inline?: boolean,
+  value?: string,
+  legend?: string,
   required?: boolean,
+  disabled?: boolean,
 
   checkBoxProps?: any,
+  wrapperClassName: string,
+  requiredClassName: string,
+  legendClassName: string,
   className?: string,
   forwardedRef: {current: any},
   onChange: (e: ChangeEventHandler<T>) => void,
   renderCheckBox?: (props: any) => void,
+  renderTitle?: (props: any) => void,
+  renderLegend?: (props: any) => void,
 };
 
 const defaultProps = {
   checkBoxProps: {},
   disabled: false,
   required: false,
+  wrapperClassName: 'form-group',
+  legendClassName: 'legend',
+  renderTitle(props) {
+    return (
+      <label>
+        {props.title}
+        {props.required && <span className={props.requiredClassName}>*</span>}
+      </label>
+    );
+  },
+  renderLegend(props) {
+    return (
+      <legend className={props.legendClassName}>
+        {props.legend}
+        {props.required && <span className={props.requiredClassName}>*</span>}
+      </legend>
+    );
+  },
   renderCheckBox(props) {
-    return <input {...props} type="checkbox" />;
+    const parentProps = {...props};
+    delete parentProps.renderTitle;
+    delete parentProps.renderLegend;
+    delete parentProps.wrapperClassName;
+    delete parentProps.requiredClassName;
+    delete parentProps.legend;
+    cleanProps(parentProps);
+
+    return (
+      <div className={props.wrapperClassName}>
+        {props.title &&
+          props.title !== '' &&
+          !props.inline &&
+          props.renderTitle(parentProps)}
+        <fieldset>
+          {props.legend &&
+            props.legend !== '' &&
+            props.renderLegend(parentProps)}
+          <input {...parentProps} type="checkbox" onChange={props.onChange} />
+          {props.title &&
+            props.title !== '' &&
+            props.inline &&
+            props.renderTitle(parentProps)}
+        </fieldset>
+      </div>
+    );
   },
 };
 
@@ -43,15 +95,23 @@ function CheckBoxComponent(userProps: CheckBoxProps) {
   return props.renderCheckBox({
     ...props.checkBoxProps,
     id: props.id,
-    name: props.name,
     title: props.title,
+    name: props.name,
     checked: props.checked,
+    inline: props.inline,
+    value: props.value,
+    legend: props.legend,
     required: props.required,
-    disabled: props.checked,
+    disabled: props.disabled,
 
     ref: props.forwardedRef,
     className: props.className,
+    wrapperClassName: props.wrapperClassName,
+    requiredClassName: props.requiredClassName,
+    legendClassName: props.requiredClassName,
     onChange: props.onChange,
+    renderTitle: props.renderTitle,
+    renderLegend: props.renderLegend,
   });
 }
 

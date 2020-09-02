@@ -8,7 +8,26 @@
  */
 import React, {useCallback, useMemo} from 'react';
 import {cleanProps} from '../../utils';
-import {type ButtonProps} from 'inline-typed';
+
+export type ButtonProps = {
+  id?: string,
+  title?: string,
+  type?: string,
+  btncolor?: string,
+  disabled: boolean,
+  badgeProps: {
+    badge: string,
+    className: string,
+    badgecolor: string,
+  },
+
+  buttonProps: any,
+  className?: string,
+  forwardedRef: {current: any},
+  renderButton?: (props: any) => void,
+  renderBadge?: (props: any) => void,
+  onClick: (e: MouseEventHandler<T>) => void,
+};
 
 const defaultProps = {
   buttonProps: {},
@@ -21,10 +40,9 @@ const defaultProps = {
   renderBadge(props) {
     return (
       <span
-        {...props}
         className={
           props.className +
-          (button.badgecolor !== '' ? ' badge-' + button.badgecolor : '')
+          (props.badgecolor !== '' ? ' badge-' + props.badgecolor : '')
         }>
         {props.badge}
       </span>
@@ -34,6 +52,7 @@ const defaultProps = {
     const parentProps = {...props};
     delete parentProps.renderBadge;
     delete parentProps.badgeProps;
+    delete parentProps.btncolor;
     cleanProps(parentProps);
     cleanProps(props.badgeProps);
 
@@ -41,8 +60,8 @@ const defaultProps = {
       <button
         {...parentProps}
         className={
-          (props.btncolor ? ' btn-' + props.btncolor : '') +
-          (props.className || '')
+          (props.className || '') +
+          (props.btncolor ? ' btn-' + (props.btncolor + ' ') : '')
         }>
         {props.title}
         {props.badgeProps?.badge && props.renderBadge(props.badgeProps)}
@@ -57,6 +76,7 @@ function ButtonComponent(userProps: ButtonProps) {
   const props: ButtonProps = {
     ...defaultMemoizedProps,
     ...userProps,
+    badgeProps: {...defaultProps.badgeProps, ...userProps.badgeProps},
   };
 
   return props.renderButton({

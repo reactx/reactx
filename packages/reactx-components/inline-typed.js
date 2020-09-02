@@ -13,23 +13,4 @@
 // imported directly in code. Instead, our Flow configuration uses this entry
 // point for the currently checked renderer (the one you passed to `yarn flow`).
 
-export type ButtonProps = {
-  id?: string,
-  title?: string,
-  type?: string,
-  btncolor?: string,
-  disabled: boolean,
-  badgeProps: {
-    badge: string,
-    className: string,
-    badgecolor: string,
-  },
-
-  buttonProps: any,
-  className?: string,
-  forwardedRef: {current: any},
-  renderButton?: (props: any) => void,
-  renderBadge?: (props: any) => void,
-  onClick: (e: MouseEventHandler<T>) => void,
-};
 export * from './src/ReactComponents';

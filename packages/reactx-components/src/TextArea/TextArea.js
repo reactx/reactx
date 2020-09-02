@@ -7,6 +7,7 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
 type TextAreaProps = {
   id?: string,
@@ -24,19 +25,46 @@ type TextAreaProps = {
   rows?: boolean,
   cols?: boolean,
   wrap?: boolean,
-  wordcount?: boolean,
+  wordCount?: boolean,
+  wordCountText?: string,
 
   forwardedRef: {current: any},
   className?: string,
   textAreaProps: any,
   onChange: (e: ChangeEventHandler<T>) => void,
   renderTextArea?: (props: any) => void,
+  renderTitle?: (props: any) => void,
 };
 
 const defaultProps = {
   textAreaProps: {},
+  value: '',
+  wordCountText: 'Word Count:',
+  onChange: (e) => {},
+  renderTitle(props) {
+    return <label>{props.title}</label>;
+  },
   renderTextArea(props) {
-    return <textarea {...props}></textarea>;
+    const parentProps = {...props};
+    delete parentProps.renderTitle;
+    delete parentProps.wordCount;
+    cleanProps(parentProps);
+    return (
+      <>
+        {props.title && props.title !== '' && props.renderTitle(parentProps)}
+        <textarea
+          {...parentProps}
+          autoFocus={props.autoFocus}
+          onChange={props.onChange}></textarea>
+        {props.wordCount && !props.readOnly && !props.disabled && (
+          <small
+            visibility={props.visibility}
+            className="nirvana-text-area-wordcount">
+            {props.wordCountText} {props.value.length}
+          </small>
+        )}
+      </>
+    );
   },
 };
 
@@ -65,11 +93,13 @@ function TextAreaComponent(userProps: TextAreaProps) {
     rows: props.rows,
     cols: props.cols,
     wrap: props.wrap,
-    wordcount: props.wordcount,
+    wordCount: props.wordCount,
+    wordCountText: props.wordCountText,
 
     ref: props.forwardedRef,
     className: props.className,
     onChange: props.onChange,
+    renderTitle: props.renderTitle,
   });
 }
 

@@ -7,6 +7,7 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
 type InputNumberProps = {
   id?: string,
@@ -26,6 +27,7 @@ type InputNumberProps = {
   className?: string,
   onChange: (e: ChangeEventHandler<T>) => void,
   renderInputNumber?: (props: any) => void,
+  renderTitle?: (props: any) => void,
 };
 
 const defaultProps = {
@@ -33,8 +35,23 @@ const defaultProps = {
   value: '',
   type: 'number',
   onChange: (e) => {},
+  renderTitle(props) {
+    return <label>{props.title}</label>;
+  },
   renderInputNumber(props) {
-    return <input {...props} />;
+    const parentProps = {...props};
+    delete parentProps.renderTitle;
+    cleanProps(parentProps);
+    return (
+      <>
+        {props.title && props.title !== '' && props.renderTitle(parentProps)}
+        <input
+          {...parentProps}
+          autoFocus={props.autoFocus}
+          onChange={props.onChange}
+        />
+      </>
+    );
   },
 };
 
@@ -63,6 +80,7 @@ function InputNumberComponent(userProps: InputNumberProps) {
     ref: props.forwardedRef,
     className: props.className,
     onChange: props.onChange,
+    renderTitle: props.renderTitle,
   });
 }
 
