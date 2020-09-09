@@ -7,6 +7,7 @@
  * @flow
  */
 import React, {useCallback, useMemo} from 'react';
+import {cleanProps} from '../../utils';
 
 type FormProps = {
   onSubmit: (e: FormEventHandler<T>) => void,
@@ -21,7 +22,10 @@ type FormProps = {
 const defaultProps = {
   formProps: {},
   renderForm(props) {
-    return <form {...props}>{props.children}</form>;
+    const parentProps = {...props};
+    cleanProps(parentProps);
+
+    return <form {...parentProps}>{props.children}</form>;
   },
   onChange() {},
 };
@@ -54,12 +58,14 @@ function FormComponent(userProps: FormProps) {
   );
   return props.renderForm({
     ...props.formProps,
-    onSubmit: composeEventHandlers(handleSubmit, props.onSubmit),
     id: props.id,
     name: props.name,
+    action: props.action,
+    method: props.method,
     className: props.className,
     ref: props.forwardedRef,
     children: props.children,
+    onSubmit: composeEventHandlers(handleSubmit, props.onSubmit),
   });
 }
 
