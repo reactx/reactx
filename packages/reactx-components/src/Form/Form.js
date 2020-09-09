@@ -10,13 +10,14 @@ import React, {useCallback, useMemo} from 'react';
 import {cleanProps} from '../../utils';
 
 type FormProps = {
-  onSubmit: (e: FormEventHandler<T>) => void,
-  renderForm?: (props: any) => void,
   name?: string,
   className?: string,
   id?: string,
   formProps: any,
   forwardedRef: {current: any},
+  renderForm?: (props: any) => void,
+  onSubmit: (e: FormEventHandler<T>) => void,
+  onReset: (e: FormEventHandler<T>) => void,
 };
 
 const defaultProps = {
@@ -27,7 +28,6 @@ const defaultProps = {
 
     return <form {...parentProps}>{props.children}</form>;
   },
-  onChange() {},
 };
 
 function FormComponent(userProps: FormProps) {
@@ -38,24 +38,6 @@ function FormComponent(userProps: FormProps) {
     ...userProps,
   };
 
-  const handleSubmit = useCallback((event) => {
-    if (props.onSubmit) props.onSubmit(event);
-  }, []);
-
-  const composeEventHandlers = useCallback(
-    (
-      internal: (e: KeyboardEvent) => void,
-      external: (e: KeyboardEvent) => void,
-    ) => {
-      return external
-        ? (e: KeyboardEvent) => {
-            internal(e);
-            external(e);
-          }
-        : internal;
-    },
-    [],
-  );
   return props.renderForm({
     ...props.formProps,
     id: props.id,
@@ -65,7 +47,8 @@ function FormComponent(userProps: FormProps) {
     className: props.className,
     ref: props.forwardedRef,
     children: props.children,
-    onSubmit: composeEventHandlers(handleSubmit, props.onSubmit),
+    onSubmit: props.onSubmit,
+    onReset: props.onReset,
   });
 }
 
