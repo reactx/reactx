@@ -18,18 +18,22 @@ type AutocompleteProps = {
   isItemSelectable: (e: any) => void,
   renderInput: (props: any) => void,
   renderArrow: (props: any) => void,
+  renderClear: (props: any) => void,
   shouldItemRender: (item: any, value: any) => void,
   renderMenu: (items: Array<any>, value: any, style: any) => Element<any>,
   items: Array<any>,
   value: any,
   autoHighlight: boolean,
   showArrow: boolean,
+  showClear: boolean,
   rightPositionArrow: boolean,
+  rightPositionClear: boolean,
   menuStyle: any,
   wrapperStyle: any,
   wrapperProps: any,
   inputProps: any,
   arrowProps: any,
+  clearProps: any,
   selectOnBlur: boolean,
 };
 
@@ -53,6 +57,9 @@ const defaultProps = {
   },
   renderArrow(props) {
     return <button {...props} />;
+  },
+  renderClear(props) {
+    return <button {...props}>Clear</button>;
   },
   onChange() {},
   onSelect() {},
@@ -105,7 +112,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     let items = props.items;
 
     if (props.shouldItemRender) {
-      items = items.filter(item => props.shouldItemRender(item, props.value));
+      items = items.filter((item) => props.shouldItemRender(item, props.value));
     }
 
     if (props.sortItems) {
@@ -191,7 +198,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   }, [isOpen, highlightedIndex, options]);
 
   const handleInputFocus = useCallback(
-    event => {
+    (event) => {
       if (options._ignoreFocus) {
         const {x, y} = options._scrollOffset;
         setOptions({...options, _ignoreFocus: false, _scrollOffset: null});
@@ -240,7 +247,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   }, []);
 
   const handleInputBlur = useCallback(
-    event => {
+    (event) => {
       if (options._ignoreBlur) {
         setOptions({
           ...options,
@@ -279,7 +286,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     return el.ownerDocument && el === el.ownerDocument.activeElement;
   }, [refs.current]);
 
-  const handleChange = useCallback(event => {
+  const handleChange = useCallback((event) => {
     props.onChange(event, event.target.value);
   }, []);
 
@@ -291,6 +298,12 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     if (isArrowFocused() && !isOpen && refs.current.input) {
       refs.current.input.focus();
       handleInputClick();
+    }
+  }, [isOpen]);
+
+  const handleClearClick = useCallback(() => {
+    if (!isOpen && refs.current.input) {
+      refs.current.input.focus();
     }
   }, [isOpen]);
 
@@ -321,7 +334,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   );
 
   const selectItemFromMouse = useCallback(
-    item => {
+    (item) => {
       const value = props.getItemValue(item);
       // The menu will de-render before a mouseLeave event
       // happens. Clear the flag to release control over focus
@@ -334,7 +347,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
   );
 
   const setMenuPositions = useCallback(
-    item => {
+    (item) => {
       const node = refs.current.input;
       if (!node) return;
       const rect = node.getBoundingClientRect();
@@ -400,7 +413,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         onClick: props.isItemSelectable(item)
           ? () => selectItemFromMouse(item)
           : null,
-        ref: e => (refs.current = {...refs.current, [`item-${index}`]: e}),
+        ref: (e) => (refs.current = {...refs.current, [`item-${index}`]: e}),
       });
     });
     const style = {
@@ -443,10 +456,20 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         props.rightPositionArrow &&
         props.renderArrow({
           ...props.arrowProps,
-          ref: el => (refs.current = {...refs.current, arrow: el}),
+          ref: (el) => (refs.current = {...refs.current, arrow: el}),
           onClick: composeEventHandlers(
             handleArrowClick,
             props.arrowProps.onClick,
+          ),
+        })}
+      {props.showClear &&
+        props.rightPositionClear &&
+        props.renderClear({
+          ...props.clearProps,
+          ref: (el) => (refs.current = {...refs.current, clear: el}),
+          onClick: composeEventHandlers(
+            handleClearClick,
+            props.clearProps.onClick,
           ),
         })}
       {props.renderInput({
@@ -455,7 +478,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         'aria-autocomplete': 'list',
         'aria-expanded': isOpen,
         autoComplete: 'off',
-        ref: el => (refs.current = {...refs.current, input: el}),
+        ref: (el) => (refs.current = {...refs.current, input: el}),
         onFocus: handleInputFocus,
         onBlur: handleInputBlur,
         onChange: handleChange,
@@ -473,10 +496,20 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         !props.rightPositionArrow &&
         props.renderArrow({
           ...props.arrowProps,
-          ref: el => (refs.current = {...refs.current, arrow: el}),
+          ref: (el) => (refs.current = {...refs.current, arrow: el}),
           onClick: composeEventHandlers(
             handleArrowClick,
             props.arrowProps.onClick,
+          ),
+        })}
+      {props.showClear &&
+        !props.rightPositionClear &&
+        props.renderClear({
+          ...props.clearProps,
+          ref: (el) => (refs.current = {...refs.current, clear: el}),
+          onClick: composeEventHandlers(
+            handleClearClick,
+            props.clearProps.onClick,
           ),
         })}
       {isOpen && renderMenu()}
