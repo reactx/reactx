@@ -46,12 +46,14 @@ const defaultProps = {
   value: '',
   showArrow: false,
   rightPositionArrow: false,
+  rightPositionClear: false,
   wrapperProps: {},
   wrapperStyle: {
     display: 'inline-block',
   },
   inputProps: {},
   arrowProps: {},
+  clearProps: {},
   renderInput(props) {
     return <input {...props} />;
   },
