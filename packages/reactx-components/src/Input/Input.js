@@ -16,9 +16,17 @@ type InputProps = {
   onKeyDown: (e: SyntheticEvent<HTMLButtonElement>) => void,
   renderInput?: (props: any) => void,
   value: any,
+  defaultValue: any,
   label?: string,
+  title?: string,
   type?: string,
+  id?: string,
   inputProps: any,
+  className: string,
+  placeholder: string,
+  checked: boolean,
+  min: number,
+  max: number,
   forwardedRef: {current: any},
 };
 
@@ -34,7 +42,8 @@ const defaultProps = {
       </>
     );
   },
-  onChange() {},
+  onChange(e: SyntheticEvent<HTMLButtonElement>) {},
+  onClick(e: SyntheticEvent<HTMLButtonElement>) {},
 };
 
 function InputComponent(userProps: InputProps) {
@@ -69,7 +78,7 @@ function InputComponent(userProps: InputProps) {
   }, [options]);
 
   const handleInputFocus = useCallback(
-    event => {
+    (event) => {
       if (options._ignoreFocus) {
         setOptions({...options, _ignoreFocus: false, _scrollOffset: null});
         return;
@@ -83,7 +92,7 @@ function InputComponent(userProps: InputProps) {
   );
 
   const handleInputBlur = useCallback(
-    event => {
+    (event) => {
       if (options._ignoreBlur) {
         setOptions({
           ...options,
@@ -106,17 +115,9 @@ function InputComponent(userProps: InputProps) {
     return el.ownerDocument && el === el.ownerDocument.activeElement;
   }, [props.forwardedRef]);
 
-  const handleChange = useCallback(event => {
-    props.onChange(event, event.target.value);
-  }, []);
-
   const handleKeyDown = useCallback((event: KeyboardEvent) => {
     if (keyDownHandlers[event.key])
       keyDownHandlers[event.key].call(this, event);
-  }, []);
-
-  const handleInputClick = useCallback(event => {
-    if (props.onClick) props.onClick(event);
   }, []);
 
   const composeEventHandlers = useCallback(
@@ -140,11 +141,19 @@ function InputComponent(userProps: InputProps) {
     ref: props.forwardedRef,
     onFocus: handleInputFocus,
     onBlur: handleInputBlur,
-    onChange: handleChange,
+    onChange: props.onChange,
     onKeyDown: composeEventHandlers(handleKeyDown, props.onKeyDown),
-    onClick: composeEventHandlers(handleInputClick, props.onClick),
+    onClick: props.onClick,
     value: props.value,
+    defaultValue: props.defaultValue,
+    id: props.id,
+    className: props.className,
     label: props.label,
+    title: props.title,
+    placeholder: props.placeholder,
+    min: props.min,
+    max: props.max,
+    checked: props.checked,
   });
 }
 

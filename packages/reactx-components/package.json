@@ -1,7 +1,7 @@
 {
   "name": "@reactx/reactx-components",
   "description": "The standard React Components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
