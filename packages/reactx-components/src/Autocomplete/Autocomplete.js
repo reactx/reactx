@@ -288,10 +288,6 @@ export default function Autocomplete(userProps: AutocompleteProps) {
     return el.ownerDocument && el === el.ownerDocument.activeElement;
   }, [refs.current]);
 
-  const handleChange = useCallback((event) => {
-    props.onChange(event, event.target.value);
-  }, []);
-
   const handleInputClick = useCallback(() => {
     if (isInputFocused() && !isOpen) setIsOpen(true);
   }, [isOpen]);
@@ -379,10 +375,13 @@ export default function Autocomplete(userProps: AutocompleteProps) {
       items[index] && props.isItemSelectable(items[index])
         ? items[index]
         : null;
-    if (value !== '' && matchedItem) {
+    if (value.toString() !== '' && matchedItem) {
       const itemValue = getItemValue(matchedItem);
       const itemValueDoesMatch =
-        itemValue.toLowerCase().indexOf(value.toLowerCase()) === 0;
+        itemValue
+          .toString()
+          .toLowerCase()
+          .indexOf(value.toString().toLowerCase()) === 0;
       if (itemValueDoesMatch) {
         return index;
       }
@@ -483,7 +482,7 @@ export default function Autocomplete(userProps: AutocompleteProps) {
         ref: (el) => (refs.current = {...refs.current, input: el}),
         onFocus: handleInputFocus,
         onBlur: handleInputBlur,
-        onChange: handleChange,
+        onChange: (event) => props.onChange(event, event.target.value),
         onKeyDown: composeEventHandlers(
           handleKeyDown,
           props.inputProps.onKeyDown,
