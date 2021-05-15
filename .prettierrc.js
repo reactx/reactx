@@ -1,6 +1,11 @@
 'use strict';
 
-const {esNextPaths} = require('./scripts/shared/pathsByLanguageVersion');
+const esNextPaths = [
+  // Source files
+  'packages/**/src/**/*.js',
+  'packages/**/src/**/*.ts',
+  'packages/**/src/**/*.tsx',
+];
 
 module.exports = {
   bracketSpacing: false,
@@ -8,7 +13,7 @@ module.exports = {
   jsxBracketSameLine: true,
   trailingComma: 'es5',
   printWidth: 80,
-  parser: 'babel',
+  parser: 'typescript',
 
   overrides: [
     {

@@ -16,12 +16,12 @@
     "LICENSE",
     "README.md",
     "build-info.json",
-    "index.js",
+    "index.ts",
     ".npmrc",
     "cjs/",
     "umd/"
   ],
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
     "type":"git",
     "url": "https://github.com/reactx/reactx.git",

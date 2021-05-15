@@ -6,7 +6,6 @@
  *
  
  */
-
 'use strict';
 
-export * from './src/ReactDnD';
+export * from './src/ReactComponents';
