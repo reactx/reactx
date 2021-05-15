@@ -10,7 +10,7 @@
 import React, {useRef, useCallback} from 'react';
 import {connectDragSource} from '../DragUtils';
 import {useDragDropContextDispatch} from '../ContextManager';
-import {type DragSourceProps} from '../../inline-typed';
+import {DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
 
 export function useDrag(props: DragSourceProps = {}) {

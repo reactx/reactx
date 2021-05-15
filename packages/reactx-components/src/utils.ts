@@ -1,16 +1,16 @@
 export type IGenerateClassList = {
-  className?: string,
-  radius?: string,
-  shadow?: string,
-  size?: string,
-  background?: string,
-  outline?: boolean,
-  color?: string,
-  validationStates?: string,
-  theme?: string,
-  disabled?: boolean,
-  readOnly?: boolean,
-  required?: boolean,
+  className?: string;
+  radius?: string;
+  shadow?: string;
+  size?: string;
+  background?: string;
+  outline?: boolean;
+  color?: string;
+  validationStates?: string;
+  theme?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
 };
 
 export function generateClass(
@@ -67,7 +67,7 @@ export function generateClass(
   return classList.join(' ');
 }
 
-export const cleanProps = (props :any) => {
+export const cleanProps = (props: any) => {
   Object.keys(props).forEach(function (key) {
     if (typeof props[key] === 'undefined' || props[key] === null) {
       delete props[key];

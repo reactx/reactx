@@ -11,7 +11,7 @@ import React, {useEffect, useCallback, useState} from 'react';
 import * as uuid from 'uuid';
 import {connectDropTarget} from '../DropUtils';
 import {useDragDropContextState} from '../ContextManager';
-import {type DropTargetProps} from '../../inline-typed';
+import {DropTargetProps} from '../../inline-typed';
 import {useDragDropContextDispatch} from '../ContextManager';
 import {Actions} from '../ActionTypes';
 

@@ -49,13 +49,14 @@ const AccordionComponent = (props: accordionProps) => {
   );
 };
 
-const Accordion: FC<accordionProps> = React.forwardRef((props:accordionProps) => (
-  <AccordionComponent {...props} />
-));
-export {Accordion};
+const Accordion: FC<accordionProps> = React.forwardRef(
+  (props: accordionProps) => <AccordionComponent {...props} />,
+);
 
 Accordion.defaultProps = {
   radius: 'normal',
   color: 'normal',
   shadow: 'none',
 };
+
+export {Accordion};

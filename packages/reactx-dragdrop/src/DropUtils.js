@@ -7,13 +7,6 @@
  
  */
 
-export type DragOptions = {|
-  dragOver(e: EventTarget): void,
-  dragEnter(e: EventTarget): void,
-  dragLeave(e: EventTarget): void,
-  drop(e: EventTarget): void,
-|};
-
 export function connectDropTarget(node: any, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);
   const handleDragOver = (e: DragEvent) => HandleDragOver(e, options);

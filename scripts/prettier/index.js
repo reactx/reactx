@@ -16,16 +16,13 @@
  const prettierConfigPath = require.resolve('../../.prettierrc');
  
  const mode = process.argv[2] || 'check';
- const shouldWrite = mode === 'write' || mode === 'write-changed';
- const onlyChanged = mode === 'check-changed' || mode === 'write-changed';
+ const shouldWrite = mode === 'write';
  
- const changedFiles = onlyChanged || null;
  let didWarn = false;
  let didError = false;
  
  const files = glob
-   .sync('**packages/src/**/*.{js,jsx,tsx,ts}', {ignore: '**/node_modules/**'})
-   .filter((f) => !onlyChanged || changedFiles.has(f));
+   .sync('**packages/**/src/**/*.{js,jsx,tsx,ts}', {ignore: '**/node_modules/**'});
  
  if (!files.length) {
    return;

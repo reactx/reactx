@@ -7,13 +7,6 @@
  
  */
 import {getEventClientOffset, getDragPreviewOffset} from './OffsetUtils';
-import {type DragSourceProps} from '../inline-typed';
-
-type DragOptions = {|
-  dragImage?: Element,
-  dragStart(e: EventTarget, props: DragSourceProps): void,
-  props: DragSourceProps,
-|};
 
 export function connectDragSource(node: Element, options: DragOptions) {
   const handleDragStart = (e: any) => HandleDragStart(e, options);
@@ -85,7 +78,7 @@ function HandleDragStart(e: DragEvent, options: DragOptions) {
       offsetPoint,
     );
     dataTransfer.setDragImage(
-      options.dragImage || (e.target: any),
+      options.dragImage || e.target,
       dragPreviewOffset.x,
       dragPreviewOffset.y,
     );

@@ -8,19 +8,15 @@
  */
 
 import React, {
-  type Portal,
-  type Element,
+  Portal,
+  Element,
   createContext,
   useContext,
   useReducer,
 } from 'react';
 import without from 'lodash/without';
-import {type State, type Action} from '../inline-typed';
+import {State, Action} from '../inline-typed';
 import {Actions} from './ActionTypes';
-
-type DragDropProviderProps = {|
-  children: Element<any> | Portal,
-|};
 
 const initialState = {};
 const dndReducer = (state: State, action: Action) => {

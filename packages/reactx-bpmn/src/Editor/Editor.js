@@ -10,24 +10,6 @@
 import React, {useState} from 'react';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 var BpmnViewer = require('bpmn-js/lib/NavigatedViewer');
-
-type EditorOptions = {|
-  keyboard: any,
-  additionalModules: any[],
-  moddleExtensions: any,
-  propertiesPanel: any,
-|};
-
-type EditorProps = {|
-  id: string,
-  isViewer: boolean,
-  showPropPanel: boolean,
-  options: EditorOptions,
-  cssViewer: any,
-  cssProperty: any,
-  onInitialize(modeler: any): () => {},
-|};
-
 export default function Editor(props: EditorProps) {
   let container = props.id || '_bpmnviewer';
   const [modeler, setModeler] = useState(null);
@@ -43,7 +25,7 @@ export default function Editor(props: EditorProps) {
     };
   }
 
-  const draggableRef = node => {
+  const draggableRef = (node) => {
     if (node !== null) {
       if (!modeler) {
         // This is hacky but makes it work with Rollup.

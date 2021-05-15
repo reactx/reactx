@@ -39,7 +39,7 @@ describe('Autocomplete', () => {
           <Autocomplete
             items={items}
             showArrow={true}
-            getItemValue={item => item.label}
+            getItemValue={(item) => item.label}
             renderItem={(item, highlighted) => (
               <div
                 key={item.id}
@@ -67,18 +67,18 @@ describe('Autocomplete', () => {
       currentValue;
     beforeEach(() => {
       currentValue = items[0].id;
-      onChange = jest.fn(done => {
+      onChange = jest.fn((done) => {
         currentValue = done.target.value;
       });
 
-      onSelect = jest.fn(value => {
+      onSelect = jest.fn((value) => {
         currentValue = value;
       });
       shouldItemRender = jest.fn();
       wrapper = (
         <Autocomplete
           items={items}
-          getItemValue={item => item.label}
+          getItemValue={(item) => item.label}
           renderItem={(item, highlighted) => (
             <div
               key={item.id}
@@ -104,12 +104,7 @@ describe('Autocomplete', () => {
 
     it('is change by onSelect props', () => {
       inputWrapper.simulate('focus');
-      expect(
-        container
-          .find('div')
-          .at(1)
-          .props().children.length,
-      ).toBe(3);
+      expect(container.find('div').at(1).props().children.length).toBe(3);
 
       inputWrapper.simulate('keydown', {key: 'ArrowDown'});
       inputWrapper.simulate('keydown', {key: 'Enter', keyCode: 13});
