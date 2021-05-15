@@ -65,8 +65,8 @@ const shouldExtractErrors = argv['extract-errors'];
 
 const closureOptions = {
   compilation_level: 'SIMPLE',
-  language_in: 'ECMASCRIPT_2017',
-  language_out: 'ECMASCRIPT_2017',
+  language_in: 'ECMASCRIPT_2020',
+  language_out: 'ECMASCRIPT_2020',
   env: 'CUSTOM',
   warning_level: 'QUIET',
   apply_input_source_maps: false,

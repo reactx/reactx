@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 
 export type collapseProps = {
@@ -6,15 +7,7 @@ export type collapseProps = {
   onClick?: (id: string) => void;
   radius?: 'none' | 'small' | 'normal' | 'curve' | 'rounded' | 'pill';
   shadow?: 'none' | 'small' | 'medium' | 'large';
-  color?:
-    | 'primary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'dark'
-    | 'light'
-    | 'normal';
+  color?: BaseColor;
   accordionMode?: boolean;
   className?: string;
   disabled?: boolean;
@@ -58,7 +51,7 @@ const Collapse: FC<collapseProps> = React.forwardRef((props: collapseProps) => (
 ));
 Collapse.defaultProps = {
   radius: 'normal',
-  color: 'normal',
+  color: BaseColor.normal,
   shadow: 'none',
 };
 

@@ -1,19 +1,12 @@
 import React, {FC, useState} from 'react';
+import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 import {Collapse} from './Collapse';
 
 export type accordionProps = {
   radius?: 'none' | 'small' | 'normal' | 'curve';
   shadow?: 'none' | 'small' | 'medium' | 'large';
-  color?:
-    | 'primary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'dark'
-    | 'light'
-    | 'normal';
+  color?: BaseColor;
   className?: string;
   default: string;
   items: Array<accordionItems>;
@@ -55,7 +48,7 @@ const Accordion: FC<accordionProps> = React.forwardRef(
 
 Accordion.defaultProps = {
   radius: 'normal',
-  color: 'normal',
+  color: BaseColor.normal,
   shadow: 'none',
 };
 

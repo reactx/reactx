@@ -13,4 +13,17 @@
 // imported directly in code. Instead, our Flow configuration uses this entry
 // point for the currently checked renderer (the one you passed to `yarn flow`).
 
-export * from './src/ReactComponents';
+export enum BaseColor {
+  'none',
+  'normal',
+  'primary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'dark',
+  'light',
+}
+
+export type LoadingSizeType = 'tiny' | 'small' | 'medium' | 'large' | 'extra';
+

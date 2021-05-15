@@ -21,7 +21,11 @@ const knownGlobals = Object.freeze({
   react: 'React',
   'react-dom': 'ReactDOM',
   'react-dom/server': 'ReactDOMServer',
-  // 'prop-types': 'PropTypes',
+  'ag-grid-react': 'AgGrid',
+  'ag-grid-community': 'ag-grid-community',
+  'ag-grid-enterprise': 'ag-grid-enterprise',
+  'react-contextmenu': 'ContextMenu',
+  'react-datepicker2': 'DatePicker',
   'bpmn-js/lib/Modeler': 'BpmnModeler',
   uuid: 'uuid',
 });

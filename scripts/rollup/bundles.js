@@ -24,7 +24,15 @@ const bundles = [
     moduleType: COMPONENT,
     entry: '@reactx/reactx-components',
     global: 'ReactComponents',
-    externals: ['react', 'react-dom'],
+    externals: [
+      'react',
+      'react-dom',
+      'ag-grid-react',
+      'ag-grid-community',
+      'ag-grid-enterprise',
+      'react-contextmenu',
+      'react-datepicker2',
+    ],
   },
   /******* Drag And Drop (experimental) *******/
   // {

@@ -1,11 +1,13 @@
+import {BaseColor} from '../inline-typed';
+
 export type IGenerateClassList = {
   className?: string;
   radius?: string;
   shadow?: string;
   size?: string;
-  background?: string;
+  background?: BaseColor;
   outline?: boolean;
-  color?: string;
+  color?: BaseColor;
   validationStates?: string;
   theme?: string;
   disabled?: boolean;
@@ -35,13 +37,17 @@ export function generateClass(
     classList.push(baseName + '-size-' + prop.size);
   }
   //BACKGROUND
-  if (prop.background && prop.background !== 'normal') {
+  if (prop.background && prop.background !== BaseColor.normal) {
     classList.push(baseName + '-background-' + prop.background);
   }
   //OUTLINE AND COLOR
   if (prop.outline && prop.color) {
     classList.push('outline reactx-color-' + prop.color);
-  } else if (prop.color && prop.color !== 'none' && prop.color !== 'normal') {
+  } else if (
+    prop.color &&
+    prop.color !== BaseColor.none &&
+    prop.color !== BaseColor.normal
+  ) {
     classList.push('reactx-' + baseName + '-' + prop.color);
   }
   //VALIDATION
