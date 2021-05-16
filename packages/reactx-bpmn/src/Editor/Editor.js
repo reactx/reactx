@@ -7,9 +7,9 @@
  
  */
 
-import React, {useState} from 'react';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
-var BpmnViewer = require('bpmn-js/lib/NavigatedViewer');
+import React, {useState} from 'react';
+const BpmnViewer = require('bpmn-js/lib/NavigatedViewer');
 export default function Editor(props: EditorProps) {
   let container = props.id || '_bpmnviewer';
   const [modeler, setModeler] = useState(null);
@@ -29,7 +29,7 @@ export default function Editor(props: EditorProps) {
     if (node !== null) {
       if (!modeler) {
         // This is hacky but makes it work with Rollup.
-        var ModelerClass = props.isViewer
+        const ModelerClass = props.isViewer
           ? BpmnViewer.default || BpmnViewer
           : BpmnModeler.default || BpmnModeler;
         let tempModeler = new ModelerClass(options);

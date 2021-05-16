@@ -8,12 +8,11 @@
  */
 
 'use strict';
-import React from 'react';
 import {Autocomplete} from '@reactx/reactx-components';
-import ReactTestUtils from 'react-dom/test-utils';
-import renderer from 'react-test-renderer';
-import {mount, configure} from 'enzyme';
+import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import renderer from 'react-test-renderer';
 configure({adapter: new Adapter()});
 
 const items = [
@@ -59,12 +58,7 @@ describe('Autocomplete', () => {
   });
 
   describe('change', () => {
-    let onChange,
-      onSelect,
-      shouldItemRender,
-      container,
-      inputWrapper,
-      currentValue;
+    let onChange, onSelect, container, inputWrapper, currentValue;
     beforeEach(() => {
       currentValue = items[0].id;
       onChange = jest.fn((done) => {
@@ -74,7 +68,6 @@ describe('Autocomplete', () => {
       onSelect = jest.fn((value) => {
         currentValue = value;
       });
-      shouldItemRender = jest.fn();
       wrapper = (
         <Autocomplete
           items={items}

@@ -7,8 +7,6 @@
  
  */
 
-import {type Element as ReactElement, type RefObject} from 'react';
-
 // export type XYCoord = {|
 //   x: number,
 //   y: number,

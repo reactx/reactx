@@ -7,18 +7,20 @@
  
  */
 
-import React, {useRef, useCallback} from 'react';
-import {connectDragSource} from '../DragUtils';
-import {useDragDropContextDispatch} from '../ContextManager';
+import {useCallback, useRef} from 'react';
 import {DragSourceProps} from '../../inline-typed';
 import {Actions} from '../ActionTypes';
+import {useDragDropContextDispatch} from '../ContextManager';
+import {connectDragSource} from '../DragUtils';
 
 export function useDrag(props: DragSourceProps = {}) {
   const dispatch = useDragDropContextDispatch();
   const el = useRef();
 
   const dragStart = useCallback((e: EventTarget) => {
-    if (el.current?.isDragging === true) return;
+    if (el.current?.isDragging === true) {
+      return;
+    }
     const payload = {
       source: e,
       ...props,
@@ -33,7 +35,9 @@ export function useDrag(props: DragSourceProps = {}) {
   }, []);
 
   const drag = useCallback((ref) => {
-    if (!ref) return;
+    if (!ref) {
+      return;
+    }
     el.current = ref;
     connectDragSource(ref, {
       dragImage: props.handler,

@@ -7,15 +7,8 @@
  *
  */
 
-import React, {
-  Portal,
-  Element,
-  createContext,
-  useContext,
-  useReducer,
-} from 'react';
-import without from 'lodash/without';
-import {State, Action} from '../inline-typed';
+import React, {createContext, useContext, useReducer} from 'react';
+import {Action, State} from '../inline-typed';
 import {Actions} from './ActionTypes';
 
 const initialState = {};

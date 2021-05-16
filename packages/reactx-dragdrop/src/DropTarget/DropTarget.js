@@ -7,13 +7,15 @@
  
  */
 
-import React, {useEffect, useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import * as uuid from 'uuid';
-import {connectDropTarget} from '../DropUtils';
-import {useDragDropContextState} from '../ContextManager';
 import {DropTargetProps} from '../../inline-typed';
-import {useDragDropContextDispatch} from '../ContextManager';
 import {Actions} from '../ActionTypes';
+import {
+  useDragDropContextDispatch,
+  useDragDropContextState,
+} from '../ContextManager';
+import {connectDropTarget} from '../DropUtils';
 
 export function useDrop(props: DropTargetProps = {}, deps) {
   const dispatch = useDragDropContextDispatch();
@@ -21,7 +23,9 @@ export function useDrop(props: DropTargetProps = {}, deps) {
   const [droppedComponent, setDroppedComponent] = useState(null);
 
   useEffect(() => {
-    if (!droppedComponent || !item.source || !item.element.isDragging) return;
+    if (!droppedComponent || !item.source || !item.element.isDragging) {
+      return;
+    }
 
     if (
       props.canDropByClassNames &&
@@ -69,7 +73,9 @@ export function useDrop(props: DropTargetProps = {}, deps) {
   }, []);
 
   const drop = useCallback((ref) => {
-    if (!ref) return;
+    if (!ref) {
+      return;
+    }
     connectDropTarget(ref, {
       drop: onDrop,
       dragEnter,
