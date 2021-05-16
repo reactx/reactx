@@ -1,6 +1,5 @@
 import {isFirefox, isSafari} from 'shared/BrowserDetector';
 import MonotonicInterpolant, {interpolate} from './MonotonicInterpolant';
-import type {XYCoord} from './ReactDnD';
 
 const ELEMENT_NODE = 1;
 
