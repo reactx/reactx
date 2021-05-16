@@ -43,7 +43,7 @@ const Table: FC<tableProps> = React.forwardRef((props) => (
   <TableComponent {...props} />
 ));
 Table.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'none',
 };

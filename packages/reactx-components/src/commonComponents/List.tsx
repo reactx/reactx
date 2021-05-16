@@ -41,6 +41,6 @@ const List: FC<listProps> = React.forwardRef((props) => (
 List.defaultProps = {
   radius: 'normal',
   shadow: 'none',
-  color: BaseColor.normal,
+  color: 'normal',
 };
 export {List};

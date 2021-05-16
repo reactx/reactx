@@ -1,6 +1,8 @@
-import React, {useRef, useEffect, FC} from 'react';
-import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+import {GridReadyEvent} from 'ag-grid-community';
 import * as agGridEnterprise from 'ag-grid-enterprise';
+import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+import React, {FC, useCallback} from 'react';
+import {useComposeHandlers} from '../hooks/useComposeHandlers';
 // import 'ag-grid-community/dist/styles/ag-grid.css';
 // import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 // import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
@@ -11,7 +13,7 @@ agGridEnterprise.LicenseManager.setLicenseKey(
 
 export type agGridProps = {
   id?: string;
-  className?: string;
+  wrapperClassName?: string;
   enableRtl?: boolean;
   animateRows?: boolean;
   pagination?: boolean;
@@ -30,12 +32,12 @@ export type agGridProps = {
   rowClassRules?: any;
   rowSelection: 'single' | 'multiple';
   //Action
-  onSelectionChanged?: () => void;
-  onGridReady?: () => void;
-  onPaginationChanged?: () => void;
-  onRowDoubleClicked?: () => void;
-  onRowSelected?: () => void;
-  onCellClicked?: () => void;
+  onSelectionChanged?: void;
+  onGridReady(event: GridReadyEvent): void;
+  onPaginationChanged?: void;
+  onRowDoubleClicked?: void;
+  onRowSelected?: void;
+  onCellClicked?: void;
 };
 
 export type agGridItems = {
@@ -46,35 +48,30 @@ export type agGridItems = {
 };
 
 const AgGridComponent = (props: agGridProps) => {
-  const gridRef = useRef(null);
+  const {composeGridHandlers} = useComposeHandlers();
 
-  useEffect(() => {
-    if (!gridRef.current) return;
+  const onGridReady = useCallback((event: GridReadyEvent) => {
     const resize = (e: Event) => {
-      gridRef.current.api.sizeColumnsToFit();
+      event.api.sizeColumnsToFit();
     };
-
     window.addEventListener('resize', resize);
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-  }, [gridRef.current]);
+  }, []);
 
   return (
-    <AgGridReact
-      ref={gridRef}
-      {...props}
-      className={'ag-theme-alpine ' + (props.className ? props.className : '')}>
-      {props.columns.map((item: agGridItems, index: number) => (
-        <AgGridColumn
-          key={index}
-          field={item.field}
-          headerName={item.headerName || item.field}
-          sortable={item.sortable}
-          filter={item.filter}
-        />
-      ))}
-    </AgGridReact>
+    <div className={props.wrapperClassName || ''}>
+      <AgGridReact
+        onGridReady={composeGridHandlers(onGridReady, props.onGridReady)}>
+        {props.columns.map((item: agGridItems, index: number) => (
+          <AgGridColumn
+            key={index}
+            field={item.field}
+            headerName={item.headerName || item.field}
+            sortable={item.sortable}
+            filter={item.filter}
+          />
+        ))}
+      </AgGridReact>
+    </div>
   );
 };
 
@@ -85,5 +82,6 @@ const AgGrid: FC<agGridProps> = React.forwardRef((props) => (
 AgGrid.defaultProps = {
   paginationPageSize: 25,
   rowSelection: 'single',
+  wrapperClassName: 'ag-theme-alpine',
 };
 export {AgGrid};

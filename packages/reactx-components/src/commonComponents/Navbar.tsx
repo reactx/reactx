@@ -28,8 +28,8 @@ const Navbar: FC<navbarProps> = React.forwardRef((props) => (
   <NavbarComponent {...props} />
 ));
 Navbar.defaultProps = {
-  color: BaseColor.normal,
-  background: BaseColor.normal,
+  color: 'normal',
+  background: 'normal',
   shadow: 'none',
 };
 export {Navbar};

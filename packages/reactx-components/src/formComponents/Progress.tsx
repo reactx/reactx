@@ -49,7 +49,7 @@ const Progress: FC<progressProps> = React.forwardRef((props) => (
 
 Progress.defaultProps = {
   radius: 'normal',
-  color: BaseColor.primary,
+  color: 'primary',
   size: 'medium',
   shadow: 'none',
   max: 100,

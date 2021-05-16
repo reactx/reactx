@@ -51,7 +51,7 @@ const Collapse: FC<collapseProps> = React.forwardRef((props: collapseProps) => (
 ));
 Collapse.defaultProps = {
   radius: 'normal',
-  color: BaseColor.normal,
+  color: 'normal',
   shadow: 'none',
 };
 

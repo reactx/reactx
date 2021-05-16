@@ -92,7 +92,7 @@ const Modal: FC<modalProps> = React.forwardRef((props) => (
 ));
 Modal.defaultProps = {
   modalType: 'full',
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'medium',
   show: true,

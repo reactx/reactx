@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor, LoadingSizeType} from '../../inline-typed';
 import {generateClass} from '../utils';
 import {Loading} from './Loading';
@@ -15,7 +15,7 @@ export type buttonProps = {
   disabled?: boolean;
   loading?: boolean;
   className?: string;
-  onClick: () => void;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
   children: React.ReactNode | string;
 };
 
@@ -25,7 +25,7 @@ const ButtonComponent = (props: buttonProps) => {
       id={props.id}
       title={props.title}
       disabled={props.disabled}
-      onClick={() => props.onClick()}
+      onClick={props.onClick}
       className={generateClass(props, 'btn')}>
       {props.children}
       <Loading enabled={props.loading} color={props.color} size={props.size} />
@@ -38,7 +38,7 @@ const Button: FC<buttonProps> = React.forwardRef((props) => (
 ));
 Button.defaultProps = {
   type: 'button',
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   size: 'medium',
   shadow: 'none',

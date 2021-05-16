@@ -48,7 +48,7 @@ const Accordion: FC<accordionProps> = React.forwardRef(
 
 Accordion.defaultProps = {
   radius: 'normal',
-  color: BaseColor.normal,
+  color: 'normal',
   shadow: 'none',
 };
 

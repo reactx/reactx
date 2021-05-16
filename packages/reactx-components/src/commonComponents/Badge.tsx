@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 
@@ -10,7 +10,7 @@ export type badgeProps = {
   outline?: boolean;
   title?: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
   children: React.ReactNode | string;
 };
 
@@ -20,7 +20,7 @@ const BadgeComponent = (props: badgeProps) => {
       id={props.id}
       title={props.title}
       className={generateClass(props, 'badge')}
-      onClick={() => props.onClick && props.onClick()}>
+      onClick={props.onClick}>
       {props.children}
     </div>
   );
@@ -31,7 +31,7 @@ const Badge: FC<badgeProps> = React.forwardRef((props) => (
 ));
 Badge.defaultProps = {
   radius: 'normal',
-  color: BaseColor.normal,
+  color: 'normal',
   shadow: 'none',
 };
 export {Badge};

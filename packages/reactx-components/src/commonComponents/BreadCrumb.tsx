@@ -2,6 +2,13 @@ import React, {FC} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 
+type itemsProps = {
+  title: string;
+  id: string;
+  icon: string;
+  active: boolean;
+};
+
 export type breadCrumbProps = {
   id?: string;
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'extra';
@@ -14,13 +21,6 @@ export type breadCrumbProps = {
   onClick?: (item: itemsProps) => void;
   stepMode?: boolean;
   itemIcon?: boolean;
-};
-
-export type itemsProps = {
-  title: string;
-  id: string;
-  icon: string;
-  active: boolean;
 };
 
 const BreadCrumbComponent = (props: breadCrumbProps) => {
@@ -63,7 +63,7 @@ const BreadCrumb: FC<breadCrumbProps> = React.forwardRef((props) => (
 ));
 
 BreadCrumb.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   size: 'medium',
   shadow: 'none',

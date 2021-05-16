@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor, LoadingSizeType} from '../../inline-typed';
 import {generateClass} from '../utils';
 import {Loading} from './Loading';
@@ -17,7 +17,7 @@ export type avatarProps = {
   letterCount: number;
   loading?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 };
 
 const AvatarComponent = (props: avatarProps) => {
@@ -26,7 +26,7 @@ const AvatarComponent = (props: avatarProps) => {
       id={props.id}
       title={props.title || props.username}
       className={generateClass(props, 'avatar')}
-      onClick={() => props.onClick && props.onClick()}>
+      onClick={props.onClick}>
       {props.src ? (
         <img src={props.src} alt={props.username} />
       ) : (
@@ -52,7 +52,7 @@ const Avatar: FC<avatarProps> = React.forwardRef((props) => (
   <AvatarComponent {...props} />
 ));
 Avatar.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   size: 'medium',
   shadow: 'none',

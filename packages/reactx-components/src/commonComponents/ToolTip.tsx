@@ -36,7 +36,7 @@ const ToolTip: FC<toolTipProps> = React.forwardRef((props) => (
 ));
 ToolTip.defaultProps = {
   id: 'tooltip-container',
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   size: 'medium',
   shadow: 'none',

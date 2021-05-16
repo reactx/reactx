@@ -1,4 +1,4 @@
-import React, {useRef, useCallback, FC} from 'react';
+import React, {useRef, useCallback, FC, MouseEventHandler} from 'react';
 import {generateClass} from '../utils';
 
 export type tabProps = {
@@ -11,7 +11,7 @@ export type tabProps = {
   onClick?: (item: tabItem) => void;
   setActiveTab?: (item: tabItem) => void;
   deleteTabAction?: (id: string) => void;
-  addTabAction?: () => void;
+  addTabAction?: MouseEventHandler;
   children: React.ReactNode | string;
 };
 
@@ -98,7 +98,7 @@ const TabComponent = (props: tabProps) => {
               className="reactx-btn"
               data-tooltip="تب جدید"
               aria-label="تب جدید"
-              onClick={() => props.addTabAction && props.addTabAction()}>
+              onClick={props.addTabAction}>
               <i className="reactx-icon nf-icon-CalculatorAddition" />
             </button>
           </div>

@@ -90,7 +90,7 @@ const Comment: FC<commentProps> = React.forwardRef((props) => (
   <CommentComponent {...props} />
 ));
 Comment.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'small',
 };

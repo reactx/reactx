@@ -57,7 +57,7 @@ const Loading: FC<loadingProps> = React.forwardRef((props) => (
   <LoadingComponent {...props} />
 ));
 Loading.defaultProps = {
-  color: BaseColor.primary,
+  color: 'primary',
   size: 'extra',
 };
 export {Loading};

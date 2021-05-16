@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {FluentIcon} from '../commonComponents/FluentIcon';
 import {generateClass} from '../utils';
@@ -10,7 +10,7 @@ export type ratingProps = {
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'extra';
   disabled?: boolean;
   className?: string;
-  onClick?: (index: number) => void;
+  onClick(index: number): void;
   count?: number;
   value?: number;
 };
@@ -19,10 +19,10 @@ const RatingComponent = (props: ratingProps) => {
   const [value, setValue] = useState(props.value || 1);
   const [ratingList, setRatingList] = useState<any[]>([]);
 
-  const clickFun = (index: number) => {
+  const clickFun = useCallback((index: number) => {
     setValue(index);
     props.onClick && props.onClick(index);
-  };
+  }, []);
 
   useEffect(() => {
     if (props.shape && value) {
@@ -60,7 +60,7 @@ const Rating: FC<ratingProps> = React.forwardRef((props) => (
 Rating.defaultProps = {
   count: 5,
   shape: 'Star',
-  color: BaseColor.warning,
+  color: 'warning',
   size: 'medium',
 };
 

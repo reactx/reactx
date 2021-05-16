@@ -49,7 +49,7 @@ const BottomNavigation: FC<bottomNavigationProps> = React.forwardRef(
 );
 BottomNavigation.defaultProps = {
   radius: 'normal',
-  color: BaseColor.normal,
+  color: 'normal',
   shadow: 'none',
 };
 export {BottomNavigation};

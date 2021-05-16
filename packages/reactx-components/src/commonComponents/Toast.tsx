@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {Progress} from '../formComponents/Progress';
 import {generateClass} from '../utils';
@@ -13,9 +13,9 @@ export type toastProps = {
   useDefaultIcon?: boolean;
   showDuration?: number;
   className?: string;
-  closeAction?: () => void;
+  closeAction?: MouseEventHandler;
   progressBar?: boolean;
-  onClick?: () => void;
+  onClick?: void;
   outline?: boolean;
   id?: string;
   children: React.ReactNode | string;
@@ -64,7 +64,7 @@ const Toast: FC<toastProps> = React.forwardRef((props) => (
 Toast.defaultProps = {
   radius: 'small',
   shadow: 'small',
-  color: BaseColor.normal,
+  color: 'normal',
   showDuration: 3000,
 };
 export {Toast};

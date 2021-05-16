@@ -43,7 +43,7 @@ const ToggleButton: FC<toggleButtonProps> = React.forwardRef((props) => (
 ToggleButton.defaultProps = {
   radius: 'normal',
   shadow: 'none',
-  color: BaseColor.normal,
+  color: 'normal',
   size: 'medium',
 };
 export {ToggleButton};

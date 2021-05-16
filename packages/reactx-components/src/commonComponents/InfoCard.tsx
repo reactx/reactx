@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 
@@ -12,16 +12,14 @@ export type infoCardProps = {
   outline?: boolean;
   inline?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 };
 
 const InfoCardComponent = (props: infoCardProps) => {
   return (
     <div
       id={props.id}
-      onClick={() => {
-        props.onClick && props.onClick();
-      }}
+      onClick={props.onClick}
       className={
         generateClass(props, 'info-card') +
         (props.inline ? ' info-card-inline' : '')
@@ -36,7 +34,7 @@ const InfoCard: FC<infoCardProps> = React.forwardRef((props) => (
   <InfoCardComponent {...props} />
 ));
 InfoCard.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'none',
 };

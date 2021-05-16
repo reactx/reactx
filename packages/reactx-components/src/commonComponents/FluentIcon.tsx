@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 
 export type fluentIconProps = {
   id?: string;
@@ -12,14 +12,14 @@ export type fluentIconProps = {
   shadow?: 'none' | 'small' | 'medium' | 'large';
   shadowOnHover?: 'none' | 'small' | 'medium' | 'large';
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler;
 };
 
 const FluentIconComponent = (props: fluentIconProps) => {
   return (
     <span
       id={props.id}
-      onClick={() => props.onClick && props.onClick()}
+      onClick={props.onClick}
       style={{color: props.color}}
       className={
         (props.className || '') +

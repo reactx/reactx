@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {generateClass} from '../utils';
 
@@ -10,7 +10,7 @@ export type alertProps = {
   title?: string;
   outline?: boolean;
   className?: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
   children: React.ReactNode | string;
 };
 
@@ -19,7 +19,7 @@ const AlertComponent = (props: alertProps) => {
     <div
       id={props.id}
       title={props.title}
-      onClick={() => props.onClick && props.onClick()}
+      onClick={props.onClick}
       className={generateClass(props, 'alert')}>
       {props.children}
     </div>
@@ -31,7 +31,7 @@ const Alert: FC<alertProps> = React.forwardRef((props) => (
 ));
 
 Alert.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'none',
 };

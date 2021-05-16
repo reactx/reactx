@@ -33,7 +33,7 @@ const Card: FC<cardProps> = React.forwardRef((props) => (
   <CardComponent {...props} />
 ));
 Card.defaultProps = {
-  color: BaseColor.normal,
+  color: 'normal',
   radius: 'normal',
   shadow: 'none',
 };
