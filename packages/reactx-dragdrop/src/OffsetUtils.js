@@ -10,7 +10,6 @@ export function getNodeClientOffset(node: any) {
   if (!el) {
     return null;
   }
-
   const {top, left} = el.getBoundingClientRect();
   return {x: left, y: top};
 }
