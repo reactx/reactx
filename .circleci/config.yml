@@ -15,13 +15,6 @@ jobs:
 
       - run: echo $CIRCLE_COMPARE_URL | cut -d/ -f7
 
-      - restore_cache:
-          name: Restore node_modules cache
-          keys:
-            - v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - v1-node-{{ arch }}-{{ .Branch }}-
-            - v1-node-{{ arch }}-
-
       - run:
           name: Nodejs Version
           command: node --version
@@ -33,12 +26,6 @@ jobs:
       - run:
           name: Test Packages
           command: bash ./scripts/circleci/test_entry_point.sh
-
-      - save_cache:
-          name: Save node_modules cache
-          key: v1-node-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
 
       - store_artifacts:
           path: ./node_modules.tgz
