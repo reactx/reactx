@@ -17,10 +17,7 @@ case $1 in
     ;;
   prettier)
     yarn prettier $@
-    ;;
-  prettier-all)
-    yarn prettier-all $@
-    ;;  
+    ;; 
   debug)
     yarn debug-test $@
     ;;
