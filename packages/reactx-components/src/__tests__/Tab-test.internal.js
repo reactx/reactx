@@ -8,16 +8,15 @@
  */
 
 'use strict';
+import {Tab, TabPanel, Tabs} from '@reactx/reactx-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Tabs, Tab, TabPanel} from '@reactx/reactx-components';
 
 describe('while running in a browser environment', () => {
-  let container, wrapper, onSetOpen;
+  let container, wrapper;
 
   beforeEach(() => {
     jest.resetModules();
-    onSetOpen = jest.fn();
     container = document.createElement('div');
     document.body.appendChild(container);
   });
@@ -32,9 +31,9 @@ describe('while running in a browser environment', () => {
     wrapper = (
       <div>
         <Tabs value={0}>
-          <Tab label={'First'} id={0}></Tab>
-          <Tab label={'Second'} id={1}></Tab>
-          <Tab label={'Third'} id={2}></Tab>
+          <Tab label={'First'} id={0} />
+          <Tab label={'Second'} id={1} />
+          <Tab label={'Third'} id={2} />
           <TabPanel index={0}>First Panel</TabPanel>
           <TabPanel index={1}>Second Panel</TabPanel>
           <TabPanel index={2}>Third Panel</TabPanel>

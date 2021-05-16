@@ -12,14 +12,9 @@ module.exports = {
   extends: 'fbjs',
 
   // Stop ESLint from looking for a configuration file in parent folders
-  'root': true,
+  root: true,
 
-  plugins: [
-    'jest',
-    'no-for-of-loops',
-    'react',
-    'reactx-internal',
-  ],
+  plugins: ['jest', 'react', 'no-for-of-loops'],
 
   parser: 'babel-eslint',
   parserOptions: {
@@ -53,7 +48,7 @@ module.exports = {
     'no-unused-vars': [ERROR, {args: 'none'}],
     'no-use-before-define': [ERROR, {functions: false, variables: false}],
     'no-useless-concat': OFF,
-    'quotes': [ERROR, 'single', {avoidEscape: true, allowTemplateLiterals: true }],
+    quotes: [ERROR, 'single', {avoidEscape: true, allowTemplateLiterals: true}],
     'space-before-blocks': ERROR,
     'space-before-function-paren': OFF,
     'valid-typeof': [ERROR, {requireStringLiterals: true}],
@@ -83,17 +78,20 @@ module.exports = {
     'react/react-in-jsx-scope': ERROR,
     'react/self-closing-comp': ERROR,
     // We don't care to do this
-    'react/jsx-wrap-multilines': [ERROR, {declaration: false, assignment: false}],
+    'react/jsx-wrap-multilines': [
+      ERROR,
+      {declaration: false, assignment: false},
+    ],
 
     // Prevent for...of loops because they require a Symbol polyfill.
     // You can disable this rule for code that isn't shipped (e.g. build scripts and tests).
     'no-for-of-loops/no-for-of-loops': ERROR,
 
-        // CUSTOM RULES
+    // CUSTOM RULES
     // the second argument of warning/invariant should be a literal string
-    'reactx-internal/no-primitive-constructors': ERROR,
-    'reactx-internal/no-to-warn-dev-within-to-throw': ERROR,
-    'reactx-internal/warning-and-invariant-args': ERROR,
+    // 'reactx-internal/no-primitive-constructors': ERROR,
+    // 'reactx-internal/no-to-warn-dev-within-to-throw': ERROR,
+    // 'reactx-internal/warning-and-invariant-args': ERROR,
   },
 
   overrides: [
@@ -133,12 +131,12 @@ module.exports = {
         'jest/valid-expect': ERROR,
         'jest/valid-expect-in-promise': ERROR,
       },
-    }
+    },
   ],
 
   globals: {
     SharedArrayBuffer: true,
-    
+
     spyOnDev: true,
     spyOnDevAndProd: true,
     spyOnProd: true,

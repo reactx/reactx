@@ -1,28 +1,26 @@
-import {isSafari, isFirefox} from 'shared/BrowserDetector';
+import {isFirefox, isSafari} from 'shared/BrowserDetector';
 import MonotonicInterpolant, {interpolate} from './MonotonicInterpolant';
-import type {XYCoord} from './ReactDnD';
 
 const ELEMENT_NODE = 1;
 
-export function getNodeClientOffset(node: any) {
+export function getNodeClientOffset(node) {
   const el = node.nodeType === ELEMENT_NODE ? node : node.parentElement;
 
   if (!el) {
     return null;
   }
-
   const {top, left} = el.getBoundingClientRect();
   return {x: left, y: top};
 }
 
-export function getEventClientOffset(e: any) {
+export function getEventClientOffset(e) {
   return {
     x: e.clientX,
     y: e.clientY,
   };
 }
 
-function isImageNode(node: any) {
+function isImageNode(node) {
   return (
     node.nodeName === 'IMG' &&
     (isFirefox() ||
@@ -30,12 +28,7 @@ function isImageNode(node: any) {
   );
 }
 
-function getDragPreviewSize(
-  isImage: boolean,
-  dragPreview: any,
-  sourceWidth: number,
-  sourceHeight: number,
-) {
+function getDragPreviewSize(isImage, dragPreview, sourceWidth, sourceHeight) {
   let dragPreviewWidth = isImage ? dragPreview.width : sourceWidth;
   let dragPreviewHeight = isImage ? dragPreview.height : sourceHeight;
 
@@ -48,19 +41,17 @@ function getDragPreviewSize(
 }
 
 export function getDragPreviewOffset(
-  sourceNode: any,
-  dragPreview: any,
-  clientOffset: XYCoord,
-  anchorPoint: any,
-  offsetPoint: any,
+  sourceNode,
+  dragPreview,
+  clientOffset,
+  anchorPoint,
+  offsetPoint,
 ) {
   // The browsers will use the image intrinsic size under different conditions.
   // Firefox only cares if it's an image, but WebKit also wants it to be detached.
   const isImage = isImageNode(dragPreview);
   const dragPreviewNode = isImage ? sourceNode : dragPreview;
-  const dragPreviewNodeOffsetFromClient: XYCoord = getNodeClientOffset(
-    dragPreviewNode,
-  );
+  const dragPreviewNodeOffsetFromClient = getNodeClientOffset(dragPreviewNode);
   const offsetFromDragPreview = {
     x: clientOffset.x - dragPreviewNodeOffsetFromClient.x,
     y: clientOffset.y - dragPreviewNodeOffsetFromClient.y,

@@ -1,6 +1,7 @@
 'use strict';
 
 const {rollup} = require('rollup');
+const typescript = require('@rollup/plugin-typescript');
 const babel = require('@rollup/plugin-babel');
 const closure = require('./plugins/closure-plugin');
 const commonjs = require('@rollup/plugin-commonjs');
@@ -18,7 +19,6 @@ const Stats = require('./stats');
 const Sync = require('./sync');
 const sizes = require('./plugins/sizes-plugin');
 const stripUnusedImports = require('./plugins/strip-unused-imports');
-const extractErrorCodes = require('../error-codes/extract-errors');
 const Packaging = require('./packaging');
 const {asyncCopyTo, asyncRimRaf} = require('./utils');
 const codeFrame = require('babel-code-frame');
@@ -34,14 +34,7 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
-const {
-  UMD_DEV,
-  UMD_PROD,
-  NODE_DEV,
-  NODE_PROD,
-  RN_OSS_DEV,
-  RN_OSS_PROD,
-} = Bundles.bundleTypes;
+const {UMD_DEV, UMD_PROD} = Bundles.bundleTypes;
 
 function parseRequestedNames(names, toCase) {
   let result = [];
@@ -68,17 +61,12 @@ const requestedBundleTypes = argv.type
   : [];
 const requestedBundleNames = parseRequestedNames(argv._, 'lowercase');
 const forcePrettyOutput = argv.pretty;
-const syncFBSourcePath = argv['sync-fbsource'];
-const syncWWWPath = argv['sync-www'];
 const shouldExtractErrors = argv['extract-errors'];
-const errorCodeOpts = {
-  errorMapFilePath: 'scripts/error-codes/codes.json',
-};
 
 const closureOptions = {
   compilation_level: 'SIMPLE',
-  language_in: 'ECMASCRIPT5_STRICT',
-  language_out: 'ECMASCRIPT5_STRICT',
+  language_in: 'ECMASCRIPT_2020',
+  language_out: 'ECMASCRIPT_2020',
   env: 'CUSTOM',
   warning_level: 'QUIET',
   apply_input_source_maps: false,
@@ -89,38 +77,16 @@ const closureOptions = {
 
 function getBabelConfig(updateBabelOptions, bundleType, filename) {
   let options = {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     babelHelpers: 'bundled',
     exclude: '/**/node_modules/**',
-    presets: [],
-    plugins: [],
+    presets: ["@babel/preset-react", "@babel/typescript"],
+    plugins: ['@babel/plugin-transform-typescript'],
   };
   if (updateBabelOptions) {
     options = updateBabelOptions(options);
   }
-  switch (bundleType) {
-    case RN_OSS_DEV:
-    case RN_OSS_PROD:
-      return Object.assign({}, options, {
-        plugins: options.plugins.concat([
-          // Wrap warning() calls in a __DEV__ check so they are stripped from production.
-          require('../babel/wrap-warning-with-env-check'),
-        ]),
-      });
-    case UMD_DEV:
-    case UMD_PROD:
-    case NODE_DEV:
-    case NODE_PROD:
-      return Object.assign({}, options, {
-        plugins: options.plugins.concat([
-          // Minify invariant messages
-          require('../error-codes/minify-error-messages'),
-          // Wrap warning() calls in a __DEV__ check so they are stripped from production.
-          require('../babel/wrap-warning-with-env-check'),
-        ]),
-      });
-    default:
-      return options;
-  }
+  return options;
 }
 
 function getRollupOutputOptions(
@@ -146,19 +112,6 @@ function getRollupOutputOptions(
   );
 }
 
-function getFormat(bundleType) {
-  switch (bundleType) {
-    case UMD_DEV:
-    case UMD_PROD:
-      return `umd`;
-    case NODE_DEV:
-    case NODE_PROD:
-    case RN_OSS_DEV:
-    case RN_OSS_PROD:
-      return `cjs`;
-  }
-}
-
 function getFilename(name, globalName, bundleType) {
   // we do this to replace / to -, for react-dom/server
   name = name.replace('@reactx/', '');
@@ -168,26 +121,14 @@ function getFilename(name, globalName, bundleType) {
       return `${name}.development.js`;
     case UMD_PROD:
       return `${name}.production.min.js`;
-    case NODE_DEV:
-      return `${name}.development.js`;
-    case NODE_PROD:
-      return `${name}.production.min.js`;
-    case RN_OSS_DEV:
-      return `${globalName}-dev.js`;
-    case RN_OSS_PROD:
-      return `${globalName}-prod.js`;
   }
 }
 
 function isProductionBundleType(bundleType) {
   switch (bundleType) {
     case UMD_DEV:
-    case NODE_DEV:
-    case RN_OSS_DEV:
       return false;
     case UMD_PROD:
-    case NODE_PROD:
-    case RN_OSS_PROD:
       return true;
     default:
       throw new Error(`Unknown type: ${bundleType}`);
@@ -219,24 +160,17 @@ function getPlugins(
   moduleType,
   pureExternalModules
 ) {
-  const findAndRecordErrorCodes = extractErrorCodes(errorCodeOpts);
   const isProduction = isProductionBundleType(bundleType);
   const isUMDBundle = bundleType === UMD_DEV || bundleType === UMD_PROD;
-  const isRNBundle = bundleType === RN_OSS_DEV || bundleType === RN_OSS_PROD;
-  const shouldStayReadable = isRNBundle || forcePrettyOutput;
+  const shouldStayReadable = forcePrettyOutput;
+
   return [
-    // Extract error codes from invariant() messages into a file.
-    shouldExtractErrors && {
-      transform(source) {
-        findAndRecordErrorCodes(source);
-        return source;
-      },
-    },
     // Ensure we don't try to bundle any fbjs modules.
     forbidFBJSImports(),
     // Use Node resolution mechanism.
     resolve({
       external: externals,
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       // preferBuiltins: false,
     }),
     // Remove license headers from individual modules
@@ -253,10 +187,12 @@ function getPlugins(
     },
     // Turn __DEV__ and process.env checks into constants.
     replace({
+      preventAssignment: true,
       __DEV__: isProduction ? 'false' : 'true',
       __UMD__: isUMDBundle ? 'true' : 'false',
       'process.env.NODE_ENV': isProduction ? "'production'" : "'development'",
     }),
+    // typescript(),
     // We still need CommonJS for external deps like object-assign.
     commonjs(),
     // Apply dead code elimination and/or minification.
@@ -332,7 +268,7 @@ function shouldSkipBundle(bundle, bundleType) {
       // `react-dom` but not `react-dom/server`. Everything else is fuzzy
       // search.
       (requestedName) =>
-        (bundle.entry + '/index.js').indexOf(requestedName) === -1
+        (bundle.entry + '/index.ts').indexOf(requestedName) === -1
     );
     if (isAskingForDifferentNames) {
       return true;
@@ -348,7 +284,7 @@ async function createBundle(bundle, bundleType) {
   const filename = getFilename(bundle.entry, bundle.global, bundleType);
   const logKey =
     chalk.white.bold(filename) + chalk.dim(` (${bundleType.toLowerCase()})`);
-  const format = getFormat(bundleType);
+  const format = 'cjs';
   const packageName = Packaging.getPackageName(bundle.entry);
 
   let resolvedEntry = require.resolve(bundle.entry);
@@ -500,12 +436,7 @@ async function buildEverything() {
   let bundles = [];
   // eslint-disable-next-line no-for-of-loops/no-for-of-loops
   for (const bundle of Bundles.bundles) {
-    bundles.push(
-      [bundle, UMD_DEV],
-      [bundle, UMD_PROD],
-      [bundle, NODE_DEV],
-      [bundle, NODE_PROD]
-    );
+    bundles.push([bundle, UMD_DEV], [bundle, UMD_PROD]);
   }
 
   if (!shouldExtractErrors && process.env.CIRCLE_NODE_TOTAL) {
@@ -521,12 +452,6 @@ async function buildEverything() {
   }
 
   await Packaging.prepareNpmPackages();
-
-  if (syncFBSourcePath) {
-    await Sync.syncReactNative(syncFBSourcePath);
-  } else if (syncWWWPath) {
-    await Sync.syncReactDom('build/reactx-www', syncWWWPath);
-  }
 
   console.log(Stats.printResults());
   if (!forcePrettyOutput) {

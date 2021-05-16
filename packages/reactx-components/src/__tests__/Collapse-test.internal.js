@@ -8,16 +8,15 @@
  */
 
 'use strict';
+import {Collapse} from '@reactx/reactx-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Collapse} from '@reactx/reactx-components';
 
 describe('while running in a browser environment', () => {
-  let container, wrapper, onSetOpen;
+  let container, wrapper;
 
   beforeEach(() => {
     jest.resetModules();
-    onSetOpen = jest.fn();
     container = document.createElement('div');
     document.body.appendChild(container);
   });

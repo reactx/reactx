@@ -11,11 +11,7 @@ const {
 
 const {
   UMD_DEV,
-  UMD_PROD,
-  NODE_DEV,
-  NODE_PROD,
-  RN_OSS_DEV,
-  RN_OSS_PROD,
+  UMD_PROD  
 } = Bundles.bundleTypes;
 
 function getPackageName(name) {
@@ -27,27 +23,10 @@ function getPackageName(name) {
 }
 
 function getBundleOutputPaths(bundleType, filename, packageName) {
-  switch (bundleType) {
-    case NODE_DEV:
-    case NODE_PROD:
-      return [`build/node_modules/${packageName}/cjs/${filename}`];
-    case UMD_DEV:
-    case UMD_PROD:
-      return [
-        `build/node_modules/${packageName}/umd/${filename}`,
-        `build/dist/${filename}`,
-      ];
-    case RN_OSS_DEV:
-    case RN_OSS_PROD:
-      switch (packageName) {
-        case 'react-native-renderer':
-          return [`build/react-native/oss/${filename}`];
-        default:
-          throw new Error('Unknown RN package.');
-      }
-    default:
-      throw new Error('Unknown bundle type.');
-  }
+  return [
+    `build/node_modules/${packageName}/umd/${filename}`,
+    `build/dist/${filename}`,
+  ];
 }
 
 function getTarOptions(tgzName, packageName) {

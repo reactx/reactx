@@ -8,16 +8,15 @@
  */
 
 'use strict';
+import {Input} from '@reactx/reactx-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Input} from '@reactx/reactx-components';
 
 describe('while running in a browser environment', () => {
-  let container, wrapper, onSetOpen;
+  let container, wrapper;
 
   beforeEach(() => {
     jest.resetModules();
-    onSetOpen = jest.fn();
     container = document.createElement('div');
     document.body.appendChild(container);
   });
@@ -31,9 +30,10 @@ describe('while running in a browser environment', () => {
   it('should render correctly', () => {
     wrapper = (
       <div>
-        <Input label="salam"></Input>
+        <Input label="salam" />
       </div>
     );
+
     expect(ReactDOM.render(wrapper, container)).toMatchSnapshot();
   });
 });

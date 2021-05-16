@@ -4,15 +4,8 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ 
  */
-
-export type DragOptions = {|
-  dragOver(e: EventTarget): void,
-  dragEnter(e: EventTarget): void,
-  dragLeave(e: EventTarget): void,
-  drop(e: EventTarget): void,
-|};
 
 export function connectDropTarget(node: any, options: DragOptions) {
   const handleDragEnter = (e: DragEvent) => HandleDragEnter(e, options);

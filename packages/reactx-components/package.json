@@ -16,15 +16,22 @@
     "LICENSE",
     "README.md",
     "build-info.json",
-    "index.js",
+    "index.ts",
     ".npmrc",
     "cjs/",
     "umd/"
   ],
-  "main": "index.js",
+  "main": "index.ts",
   "repository": {
-    "type":"git",
+    "type": "git",
     "url": "https://github.com/reactx/reactx.git",
-    "directory":"packages/reactx-components"
+    "directory": "packages/reactx-components"
+  },
+  "dependencies": {
+    "ag-grid-community": "^25.2.1",
+    "ag-grid-enterprise": "^25.2.1",
+    "ag-grid-react": "^25.2.0",
+    "react-contextmenu": "^2.14.0",
+    "react-datepicker2": "^3.3.13"
   }
 }

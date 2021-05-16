@@ -8,12 +8,11 @@
  */
 
 'use strict';
-import React from 'react';
 import {Autocomplete} from '@reactx/reactx-components';
-import ReactTestUtils from 'react-dom/test-utils';
-import renderer from 'react-test-renderer';
-import {mount, configure} from 'enzyme';
+import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import renderer from 'react-test-renderer';
 configure({adapter: new Adapter()});
 
 const items = [
@@ -39,7 +38,7 @@ describe('Autocomplete', () => {
           <Autocomplete
             items={items}
             showArrow={true}
-            getItemValue={item => item.label}
+            getItemValue={(item) => item.label}
             renderItem={(item, highlighted) => (
               <div
                 key={item.id}
@@ -59,26 +58,20 @@ describe('Autocomplete', () => {
   });
 
   describe('change', () => {
-    let onChange,
-      onSelect,
-      shouldItemRender,
-      container,
-      inputWrapper,
-      currentValue;
+    let onChange, onSelect, container, inputWrapper, currentValue;
     beforeEach(() => {
       currentValue = items[0].id;
-      onChange = jest.fn(done => {
+      onChange = jest.fn((done) => {
         currentValue = done.target.value;
       });
 
-      onSelect = jest.fn(value => {
+      onSelect = jest.fn((value) => {
         currentValue = value;
       });
-      shouldItemRender = jest.fn();
       wrapper = (
         <Autocomplete
           items={items}
-          getItemValue={item => item.label}
+          getItemValue={(item) => item.label}
           renderItem={(item, highlighted) => (
             <div
               key={item.id}
@@ -104,12 +97,7 @@ describe('Autocomplete', () => {
 
     it('is change by onSelect props', () => {
       inputWrapper.simulate('focus');
-      expect(
-        container
-          .find('div')
-          .at(1)
-          .props().children.length,
-      ).toBe(3);
+      expect(container.find('div').at(1).props().children.length).toBe(3);
 
       inputWrapper.simulate('keydown', {key: 'ArrowDown'});
       inputWrapper.simulate('keydown', {key: 'Enter', keyCode: 13});
