@@ -20,10 +20,7 @@ case $1 in
     ;;
   prettier-all)
     yarn prettier-all $@
-    ;;
-  flow)
-    yarn flow dom $@
-    ;;
+    ;;  
   debug)
     yarn debug-test $@
     ;;

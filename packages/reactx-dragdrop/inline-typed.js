@@ -7,12 +7,6 @@
  
  */
 
-// This file must have the Flow annotation.
-//
-// This is the Flow-typed entry point for the reconciler. It should not be
-// imported directly in code. Instead, our Flow configuration uses this entry
-// point for the currently checked renderer (the one you passed to `yarn flow`).
-
 import {type Element as ReactElement, type RefObject} from 'react';
 
 // export type XYCoord = {|

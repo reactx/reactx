@@ -18,7 +18,6 @@ module.exports = {
     'jest',
     'no-for-of-loops',
     'react',
-    'reactx-internal',
   ],
 
   parser: 'babel-eslint',
@@ -91,9 +90,9 @@ module.exports = {
 
         // CUSTOM RULES
     // the second argument of warning/invariant should be a literal string
-    'reactx-internal/no-primitive-constructors': ERROR,
-    'reactx-internal/no-to-warn-dev-within-to-throw': ERROR,
-    'reactx-internal/warning-and-invariant-args': ERROR,
+    // 'reactx-internal/no-primitive-constructors': ERROR,
+    // 'reactx-internal/no-to-warn-dev-within-to-throw': ERROR,
+    // 'reactx-internal/warning-and-invariant-args': ERROR,
   },
 
   overrides: [
