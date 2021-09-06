@@ -34,24 +34,6 @@ const bundles = [
       'react-datepicker2',
     ],
   },
-  /******* Drag And Drop (experimental) *******/
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   moduleType: UI,
-  //   entry: '@reactx/reactx-dragdrop',
-  //   global: 'ReactDnD',
-  //   externals: ['react', 'react-dom', 'uuid'],
-  // },
-  /******* BPMN based on bpmn.io *******/
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   moduleType: COMPONENT,
-  //   entry: '@reactx/reactx-bpmn',
-  //   global: 'ReactBPMN',
-  //   externals: ['react', 'react-dom', 'bpmn-js/lib/Modeler'],
-  // },
-];
-
 // Based on deep-freeze by substack (public domain)
 function deepFreeze(o) {
   Object.freeze(o);

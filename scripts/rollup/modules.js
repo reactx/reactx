@@ -26,7 +26,6 @@ const knownGlobals = Object.freeze({
   'ag-grid-enterprise': 'ag-grid-enterprise',
   'react-contextmenu': 'ContextMenu',
   'react-datepicker2': 'DatePicker',
-  'bpmn-js/lib/Modeler': 'BpmnModeler',
   uuid: 'uuid',
 });
 
