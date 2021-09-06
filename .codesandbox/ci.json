@@ -1,8 +1,0 @@
-{
-  "packages": ["packages/reactx"],
-  "buildCommand": "build --type=NODE reactx/index",
-  "publishDirectory": {
-    "reactx": "build/node_modules/reactx"
-  },
-  "sandboxes": ["new"]
-}

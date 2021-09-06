@@ -34,6 +34,7 @@ const bundles = [
       'react-datepicker2',
     ],
   },
+];
 // Based on deep-freeze by substack (public domain)
 function deepFreeze(o) {
   Object.freeze(o);

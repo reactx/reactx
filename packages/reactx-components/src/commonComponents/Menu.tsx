@@ -6,6 +6,7 @@ import {
   ContextMenuTrigger,
   SubMenu,
 } from 'react-contextmenu';
+import {BaseColor} from '../../inline-typed';
 
 export type menuProps = {
   id: string;
@@ -14,8 +15,8 @@ export type menuProps = {
   icon: boolean;
   shortcutKey: boolean;
   rtl: boolean;
-  color?: string;
-  background?: string;
+  color?: BaseColor | undefined;
+  background?: BaseColor | undefined;
   radius?: 'none' | 'small' | 'normal' | 'curve';
   shadow?: 'none' | 'small' | 'medium' | 'large';
 };

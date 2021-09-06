@@ -31,11 +31,7 @@ const CalendarComponent = (props: datepickerProps) => {
           value={value}
           isGregorian={props.isGregorian}
           timePicker={props.timePicker}
-          disabled={props.disabled}
           persianDigits={props.persianDigits}
-          placeholder={props.placeholder}
-          showTodayButton={props.showTodayButton}
-          showToggleButton={props.showToggleButton}
           min={props.minDate}
           max={props.maxDate}
           inputFormat={props.inputFormat}
@@ -44,14 +40,9 @@ const CalendarComponent = (props: datepickerProps) => {
         />
       ) : (
         <Calendar
-          className={generateClass(props, 'calendar')}
+          calendarClass={generateClass(props, 'calendar')}
           value={value}
           isGregorian={props.isGregorian}
-          timePicker={props.timePicker}
-          disabled={props.disabled}
-          persianDigits={props.persianDigits}
-          showTodayButton={props.showTodayButton}
-          showToggleButton={props.showToggleButton}
           min={props.minDate}
           max={props.maxDate}
           inputFormat={props.inputFormat}
