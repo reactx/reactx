@@ -9,10 +9,7 @@ const {
   asyncRimRaf,
 } = require('./utils');
 
-const {
-  UMD_DEV,
-  UMD_PROD  
-} = Bundles.bundleTypes;
+const {UMD_DEV, UMD_PROD} = Bundles.bundleTypes;
 
 function getPackageName(name) {
   name = name.replace('@reactx/', '');
@@ -23,10 +20,7 @@ function getPackageName(name) {
 }
 
 function getBundleOutputPaths(bundleType, filename, packageName) {
-  return [
-    `build/node_modules/${packageName}/umd/${filename}`,
-    `build/dist/${filename}`,
-  ];
+  return `build/${packageName}/${filename}`;
 }
 
 function getTarOptions(tgzName, packageName) {
@@ -36,7 +30,7 @@ function getTarOptions(tgzName, packageName) {
   const CONTENTS_FOLDER = 'package';
   return {
     src: tgzName,
-    dest: `build/node_modules/${packageName}`,
+    dest: `build/${packageName}`,
     tar: {
       entries: [CONTENTS_FOLDER],
       map(header) {
@@ -50,32 +44,28 @@ function getTarOptions(tgzName, packageName) {
 
 async function prepareNpmPackage(name) {
   await Promise.all([
-    asyncCopyTo('LICENSE', `build/node_modules/${name}/LICENSE`),
-    asyncCopyTo(
-      `packages/${name}/package.json`,
-      `build/node_modules/${name}/package.json`
-    ),
-    asyncCopyTo(
-      `packages/${name}/README.md`,
-      `build/node_modules/${name}/README.md`
-    ),
-    asyncCopyTo(`packages/${name}/.npmrc`, `build/node_modules/${name}/.npmrc`),
-    asyncCopyTo(`packages/${name}/npm`, `build/node_modules/${name}`),
+    asyncCopyTo('LICENSE', `build/${name}/LICENSE`),
+    asyncCopyTo(`packages/${name}/package.json`, `build/${name}/package.json`),
+    asyncCopyTo(`packages/${name}/README.md`, `build/${name}/README.md`),
+    asyncCopyTo(`packages/${name}/.npmrc`, `build/${name}/.npmrc`),
+    asyncCopyTo(`packages/${name}/npm`, `build/${name}`),
   ]);
-  const tgzName = (
-    await asyncExecuteCommand(`npm pack build/node_modules/${name}`)
-  ).trim();
-  await asyncRimRaf(`build/node_modules/${name}`);
+  const tgzName = (await asyncExecuteCommand(`npm pack build/${name}/`)).trim();
+  await asyncRimRaf(`build/${name}`);
   await asyncExtractTar(getTarOptions(tgzName, name));
   unlinkSync(tgzName);
+  await asyncExecuteCommand(`npm publish build/${name}/`);
+}
+async function publishNpmPackage(name) {
+  await asyncExecuteCommand(`npm publish build/${name}/`);
 }
 
 async function prepareNpmPackages() {
-  if (!existsSync('build/node_modules')) {
+  if (!existsSync('build')) {
     // We didn't build any npm packages.
     return;
   }
-  const builtPackageFolders = readdirSync('build/node_modules').filter(
+  const builtPackageFolders = readdirSync('build').filter(
     (dir) => dir.charAt(0) !== '.'
   );
   await Promise.all(builtPackageFolders.map(prepareNpmPackage));
@@ -85,4 +75,5 @@ module.exports = {
   getPackageName,
   getBundleOutputPaths,
   prepareNpmPackages,
+  publishNpmPackage
 };

@@ -332,7 +332,7 @@ async function createBundle(bundle, bundleType) {
     // We can't use getters in www.
     // legacy: false,
   };
-  const [mainOutputPath, ...otherOutputPaths] = Packaging.getBundleOutputPaths(
+  const mainOutputPath = Packaging.getBundleOutputPaths(
     bundleType,
     filename,
     packageName
@@ -353,9 +353,6 @@ async function createBundle(bundle, bundleType) {
     console.log(`${chalk.bgRed.black(' OH NOES! ')} ${logKey}\n`);
     handleRollupError(error);
     throw error;
-  }
-  for (let i = 0; i < otherOutputPaths.length; i++) {
-    await asyncCopyTo(mainOutputPath, otherOutputPaths[i]);
   }
   console.log(`${chalk.bgGreen.black(' COMPLETE ')} ${logKey}\n`);
 }
@@ -452,6 +449,7 @@ async function buildEverything() {
   }
 
   await Packaging.prepareNpmPackages();
+  await Packaging.publishNpmPackage();
 
   console.log(Stats.printResults());
   if (!forcePrettyOutput) {

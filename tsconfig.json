@@ -8,7 +8,7 @@
         "esnext"
       ],
       "outDir": "build",
-      "declarationDir": "./",
+      "declarationDir": ".",
       "declaration": true,
       "allowJs": true,
       "skipLibCheck": true,

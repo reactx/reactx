@@ -1,7 +1,7 @@
 {
   "name": "@reactx/reactx-components",
   "description": "The standard React Components",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
@@ -16,12 +16,17 @@
     "LICENSE",
     "README.md",
     "build-info.json",
-    "index.ts",
+    "index.js",
+    "index.d.ts",
+    "inline-typed.d.ts",
+    "FluentIcons.d.ts",
     ".npmrc",
-    "cjs/",
-    "umd/"
+    "reactx-components.development.js",
+    "reactx-components.development.min.js",
+    "src/"
   ],
-  "main": "index.ts",
+  "main": "./index.ts",
+  "typings": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/reactx/reactx.git",
