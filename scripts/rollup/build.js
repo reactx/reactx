@@ -449,7 +449,7 @@ async function buildEverything() {
   }
 
   await Packaging.prepareNpmPackages();
-  await Packaging.publishNpmPackage();
+  await Packaging.publishNpmPackages();
 
   console.log(Stats.printResults());
   if (!forcePrettyOutput) {

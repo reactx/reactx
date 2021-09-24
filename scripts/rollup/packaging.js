@@ -54,7 +54,6 @@ async function prepareNpmPackage(name) {
   await asyncRimRaf(`build/${name}`);
   await asyncExtractTar(getTarOptions(tgzName, name));
   unlinkSync(tgzName);
-  await asyncExecuteCommand(`npm publish build/${name}/`);
 }
 async function publishNpmPackage(name) {
   await asyncExecuteCommand(`npm publish build/${name}/`);
@@ -70,10 +69,20 @@ async function prepareNpmPackages() {
   );
   await Promise.all(builtPackageFolders.map(prepareNpmPackage));
 }
+async function publishNpmPackages() {
+  if (!existsSync('build')) {
+    // We didn't build any npm packages.
+    return;
+  }
+  const builtPackageFolders = readdirSync('build').filter(
+    (dir) => dir.charAt(0) !== '.'
+  );
+  await Promise.all(builtPackageFolders.map(publishNpmPackage));
+}
 
 module.exports = {
   getPackageName,
   getBundleOutputPaths,
   prepareNpmPackages,
-  publishNpmPackage
+  publishNpmPackages
 };
