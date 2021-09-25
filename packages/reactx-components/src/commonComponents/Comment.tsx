@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {BaseColor} from '../../inline-typed';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 import {Avatar} from './Avatar';
 import {FluentIcon} from './FluentIcon';
 

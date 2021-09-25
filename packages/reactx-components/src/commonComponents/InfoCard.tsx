@@ -1,6 +1,6 @@
 import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type infoCardProps = {
   id?: string;

@@ -1,5 +1,5 @@
 import React, {useState, FC} from 'react';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 import DatePicker, {Calendar} from 'react-datepicker2';
 
 export type datepickerProps = {

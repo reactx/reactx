@@ -32,6 +32,7 @@ const bundles = [
       'ag-grid-enterprise',
       'react-contextmenu',
       'react-datepicker2',
+      'classnames',
     ],
   },
 ];

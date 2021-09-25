@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 import {
   ContextMenu,
   MenuItem,

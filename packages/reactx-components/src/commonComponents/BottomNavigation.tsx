@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import {BaseColor} from '../../inline-typed';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type bottomNavigationProps = {
   color?: BaseColor;

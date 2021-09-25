@@ -1,7 +1,7 @@
 import React, {FC, useCallback, useEffect, useState} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {FluentIcon} from '../commonComponents/FluentIcon';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type ratingProps = {
   id?: string;

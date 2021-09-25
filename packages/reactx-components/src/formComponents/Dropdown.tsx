@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, FC} from 'react';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type dropdownProps = {
   id?: string;

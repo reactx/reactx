@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {BaseColor} from '../../inline-typed';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type toolTipProps = {
   id?: string;

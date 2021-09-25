@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 import {FluentIcon} from './FluentIcon';
 
 export type paginationProps = {

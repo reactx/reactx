@@ -1,7 +1,7 @@
 import React, {FC, MouseEventHandler} from 'react';
 import {BaseColor} from '../../inline-typed';
 import {Progress} from '../formComponents/Progress';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 import {FluentIcon} from './FluentIcon';
 
 export type toastProps = {

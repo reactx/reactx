@@ -1,5 +1,5 @@
 import React, {useState, FC} from 'react';
-import {generateClass} from '../utils';
+import {generateClass} from '../types';
 
 export type radioProps = {
   id?: string;

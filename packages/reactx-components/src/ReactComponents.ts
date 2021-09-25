@@ -6,21 +6,16 @@
  *
  */
 
+export * from './atoms'
+
 export * from './commonComponents/Accordion';
-export * from './commonComponents/Alert';
-export * from './commonComponents/Avatar';
-export * from './commonComponents/Badge';
-export * from './commonComponents/Button';
-export * from './commonComponents/BreadCrumb';
 export * from './commonComponents/BottomNavigation';
-export * from './commonComponents/Card';
 export * from './commonComponents/Collapse';
 export * from './commonComponents/Comment';
 export * from './commonComponents/FloatAction';
 export * from './commonComponents/FluentIcon';
 export * from './commonComponents/InfoCard';
 export * from './commonComponents/List';
-export * from './commonComponents/Loading';
 export * from './commonComponents/Menu';
 export * from './commonComponents/Modal';
 export * from './commonComponents/Navbar';

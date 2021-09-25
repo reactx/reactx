@@ -15,11 +15,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "build-info.json",
     "index.js",
     "index.d.ts",
-    "inline-typed.d.ts",
-    "FluentIcons.d.ts",
     ".npmrc",
     "reactx-components.development.js",
     "reactx-components.development.min.js",
@@ -37,6 +34,7 @@
     "ag-grid-enterprise": "^25.2.1",
     "ag-grid-react": "^25.2.0",
     "react-contextmenu": "^2.14.0",
-    "react-datepicker2": "^3.3.13"
+    "react-datepicker2": "^3.3.13",
+    "classnames": "^2.3.1"
   }
 }
