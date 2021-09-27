@@ -6,7 +6,7 @@
  *
  */
 
-export * from './atoms'
+export * from './atoms';
 
 export * from './commonComponents/Accordion';
 export * from './commonComponents/BottomNavigation';

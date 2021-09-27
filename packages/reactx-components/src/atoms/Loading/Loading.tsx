@@ -10,8 +10,7 @@
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
 
-export interface LoadingPropsType
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface LoadingPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
 }
 

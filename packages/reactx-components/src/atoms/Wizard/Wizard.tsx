@@ -50,7 +50,7 @@ const WizardComponent = (props: WizardPropsType) => {
       ref={forawardedRef}
       className={classNames('x-wizard', className)}
       {...restProps}>
-      {renderLine && renderLine(steps.map(c=>c.name))}
+      {renderLine && renderLine(steps.map((c) => c.name))}
       {steps.map((step) => {
         return (
           <TransitionGroup>
