@@ -69,4 +69,4 @@ Modal.defaultProps = {
   backdrop: true,
   show: false,
 };
-export {Modal};
+export default Modal;

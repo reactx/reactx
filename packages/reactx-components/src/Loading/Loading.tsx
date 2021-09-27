@@ -35,4 +35,4 @@ const Loading: FC<LoadingPropsType> = forwardRef<
 });
 
 Loading.displayName = 'Loading';
-export {Loading};
+export default Loading;

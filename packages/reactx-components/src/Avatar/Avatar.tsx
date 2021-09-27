@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
-import {Loading} from '../../atoms';
+import Loading from '../Loading/Loading';
 
 export interface AvatarPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -64,4 +64,4 @@ Avatar.defaultProps = {
   loading: false,
   letterCount: 1,
 };
-export {Avatar};
+export default Avatar;

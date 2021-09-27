@@ -9,8 +9,8 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, useCallback} from 'react';
-import {CloseButton} from '../../atoms';
-import {Variant} from '../../types';
+import CloseButton from '../CloseButton/CloseButton';
+import {Variant} from '../types';
 
 export interface AlertPropsType extends React.HTMLAttributes<HTMLDivElement> {
   variant?: Variant;
@@ -61,4 +61,4 @@ Alert.defaultProps = {
 };
 
 Alert.displayName = 'Alert';
-export {Alert};
+export default Alert;

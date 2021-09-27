@@ -77,4 +77,4 @@ Wizard.defaultProps = {
   animationDelay: 300,
 };
 Wizard.displayName = 'Wizard';
-export {Wizard};
+export default Wizard;

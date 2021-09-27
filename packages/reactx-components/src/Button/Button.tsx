@@ -9,8 +9,8 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
-import {Loading} from '../../atoms';
-import {ButtonVariant} from '../../types';
+import Loading from '../Loading/Loading';
+import {ButtonVariant} from '../types';
 
 export interface ButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -47,4 +47,4 @@ Button.defaultProps = {
 };
 
 Button.displayName = 'Button';
-export {Button};
+export default Button;

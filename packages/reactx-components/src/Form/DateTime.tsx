@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import locales from 'date-fns/locale';
+import * as locales from 'date-fns/locale';
 import React, {FC} from 'react';
 import DatePicker, {
   ReactDatePickerProps,

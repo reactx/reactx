@@ -35,4 +35,4 @@ const CloseButton: FC<CloseButtonPropsType> = React.forwardRef<
 ));
 
 CloseButton.displayName = 'CloseButton';
-export {CloseButton};
+export default CloseButton;

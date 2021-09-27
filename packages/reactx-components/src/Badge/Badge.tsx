@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
-import {Variant} from '../../types';
+import {Variant} from '../types';
 
 export interface BadgePropsType extends React.HTMLAttributes<HTMLElement> {
   variant?: Variant;
@@ -43,4 +43,4 @@ Badge.defaultProps = {
 };
 
 Badge.displayName = 'Badge';
-export {Badge};
+export default Badge;

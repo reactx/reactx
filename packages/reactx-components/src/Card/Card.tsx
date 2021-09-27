@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
-import {Variant} from '../../types';
+import {Variant} from '../types';
 import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
 import CardImage from './CardImage';
