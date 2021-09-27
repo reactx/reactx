@@ -24,7 +24,6 @@ const knownGlobals = Object.freeze({
   'ag-grid-react': 'AgGrid',
   'ag-grid-community': 'ag-grid-community',
   'ag-grid-enterprise': 'ag-grid-enterprise',
-  'react-contextmenu': 'ContextMenu',
   'react-datepicker': 'DatePicker',
   'date-fns': 'DateFNS',
   'react-transition-group': 'DatePicker',

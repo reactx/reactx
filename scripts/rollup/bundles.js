@@ -30,7 +30,6 @@ const bundles = [
       'ag-grid-react',
       'ag-grid-community',
       'ag-grid-enterprise',
-      'react-contextmenu',
       'react-datepicker',
       'date-fns',
       'react-transition-group',

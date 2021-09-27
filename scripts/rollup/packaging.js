@@ -49,6 +49,7 @@ async function prepareNpmPackage(name) {
     asyncCopyTo(`packages/${name}/README.md`, `build/${name}/README.md`),
     asyncCopyTo(`packages/${name}/.npmrc`, `build/${name}/.npmrc`),
     asyncCopyTo(`packages/${name}/npm`, `build/${name}`),
+    asyncCopyTo(`packages/${name}/src/assets`, `build/${name}/src/assets`),
   ]);
   const tgzName = (await asyncExecuteCommand(`npm pack build/${name}/`)).trim();
   await asyncRimRaf(`build/${name}`);

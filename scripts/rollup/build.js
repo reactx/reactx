@@ -7,6 +7,7 @@ const closure = require('./plugins/closure-plugin');
 const commonjs = require('@rollup/plugin-commonjs');
 const prettier = require('rollup-plugin-prettier');
 const replace = require('@rollup/plugin-replace');
+const scss = require('rollup-plugin-scss');
 const stripBanner = require('rollup-plugin-strip-banner');
 const chalk = require('chalk');
 const path = require('path');
@@ -165,6 +166,7 @@ function getPlugins(
   const shouldStayReadable = forcePrettyOutput;
 
   return [
+    scss(), // will output compiled styles to output.css
     // Ensure we don't try to bundle any fbjs modules.
     forbidFBJSImports(),
     // Use Node resolution mechanism.
