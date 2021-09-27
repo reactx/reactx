@@ -18,14 +18,14 @@ export * from './BreadCrumb/BreadCrumb';
 export * from './Button/Button';
 export * from './Card/Card';
 export * from './CloseButton/CloseButton';
-export * from './Loading/Loading';
-export * from './Modal/Modal';
-export * from './Wizard/Wizard';
-export * from './Tab/Tab';
 export * from './Form/Form';
-
 export * from './gridComponents/AgGrid';
 export * from './gridComponents/Column';
 export * from './gridComponents/Row';
+export * from './Header/Header';
+export * from './Loading/Loading';
+export * from './Modal/Modal';
+export * from './Tab/Tab';
+export * from './Wizard/Wizard';
 
 export {BreadCrumb, Card, Form, Tab};
