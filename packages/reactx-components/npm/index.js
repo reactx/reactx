@@ -1,7 +1,7 @@
 'use strict';
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./reactx-components.production.min.js');
+  module.exports = require('./reactx-components.min.js');
 } else {
-  module.exports = require('./reactx-components.development.js');
+  module.exports = require('./reactx-components.js');
 }

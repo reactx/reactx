@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
-import Loading from '../Loading/Loading';
+import {Loading} from '../Loading/Loading';
 import {ButtonVariant} from '../types';
 
 export interface ButtonPropsType
@@ -47,4 +47,4 @@ Button.defaultProps = {
 };
 
 Button.displayName = 'Button';
-export default Button;
+export {Button};

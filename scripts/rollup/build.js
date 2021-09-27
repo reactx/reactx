@@ -118,9 +118,9 @@ function getFilename(name, globalName, bundleType) {
   name = name.replace('/', '-');
   switch (bundleType) {
     case UMD_DEV:
-      return `${name}.development.js`;
+      return `${name}.js`;
     case UMD_PROD:
-      return `${name}.production.min.js`;
+      return `${name}.min.js`;
   }
 }
 

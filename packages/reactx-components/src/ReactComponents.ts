@@ -6,6 +6,11 @@
  *
  */
 
+import BreadCrumb from './BreadCrumb/BreadCrumb';
+import Card from './Card/Card';
+import Form from './Form/Form';
+import Tab from './Tab/Tab';
+
 export * from './Alert/Alert';
 export * from './Avatar/Avatar';
 export * from './Badge/Badge';
@@ -22,3 +27,5 @@ export * from './Form/Form';
 export * from './gridComponents/AgGrid';
 export * from './gridComponents/Column';
 export * from './gridComponents/Row';
+
+export {BreadCrumb, Card, Form, Tab};

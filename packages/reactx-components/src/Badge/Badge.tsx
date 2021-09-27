@@ -43,4 +43,4 @@ Badge.defaultProps = {
 };
 
 Badge.displayName = 'Badge';
-export default Badge;
+export {Badge};

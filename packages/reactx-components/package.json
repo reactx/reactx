@@ -18,8 +18,8 @@
     "index.js",
     "index.d.ts",
     ".npmrc",
-    "reactx-components.development.js",
-    "reactx-components.development.min.js",
+    "reactx-components.js",
+    "reactx-components.min.js",
     "src/"
   ],
   "main": "./index.ts",
