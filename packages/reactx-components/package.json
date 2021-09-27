@@ -34,7 +34,9 @@
     "ag-grid-enterprise": "^25.2.1",
     "ag-grid-react": "^25.2.0",
     "react-contextmenu": "^2.14.0",
-    "react-datepicker2": "^3.3.13",
+    "react-datepicker": "^4.2.1",
+    "date-fns": "^2.24.0",
+    "react-transition-group": "^4.4.2",
     "classnames": "^2.3.1"
   }
 }

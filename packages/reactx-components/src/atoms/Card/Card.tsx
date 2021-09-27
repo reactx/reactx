@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Pascal System and ReactX.
+ * Copyright (c) ReactX and its affiliates..
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,9 +10,9 @@
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
 import {Variant} from '../../types';
-import {CardFooter} from '../CardFooter/CardFooter';
-import {CardHeader} from '../CardHeader/CardHeader';
-import {CardImage} from '../CardImage/CardImage';
+import CardFooter from './CardFooter';
+import CardHeader from './CardHeader';
+import CardImage from './CardImage';
 
 export interface CardPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -31,23 +31,20 @@ const CardComponent = (props: CardPropsType) => {
   );
 };
 
-const CardBody: FC<CardPropsType> = React.forwardRef<
-  HTMLDivElement,
-  CardPropsType
->((props, forawardedRef) => (
-  <CardComponent {...props} forawardedRef={forawardedRef} />
-));
+const Card: FC<CardPropsType> = React.forwardRef<HTMLDivElement, CardPropsType>(
+  (props, forawardedRef) => (
+    <CardComponent {...props} forawardedRef={forawardedRef} />
+  ),
+);
 
-CardBody.defaultProps = {
+Card.defaultProps = {
   variant: 'primary',
 };
 
-CardBody.displayName = 'Card';
+Card.displayName = 'Card';
 
-const Card = Object.assign(CardBody, {
+export default Object.assign(Card, {
   Img: CardImage,
   Header: CardHeader,
   Footer: CardFooter,
 });
-
-export {Card};

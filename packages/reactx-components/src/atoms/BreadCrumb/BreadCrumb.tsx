@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Pascal System and ReactX.
+ * Copyright (c) ReactX and its affiliates..
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
-import {BreadCrumbItem} from '../BreadCrumbItem/BreadCrumbItem';
+import BreadCrumbItem from './BreadCrumbItem';
 
 export interface BreadCrumbPropsType
   extends React.HTMLAttributes<HTMLMenuElement> {
@@ -37,20 +37,19 @@ const BreadCrumbComponent = (props: BreadCrumbPropsType) => {
   );
 };
 
-const BreadCrumbGroup: FC<BreadCrumbPropsType> = forwardRef<
+const BreadCrumb: FC<BreadCrumbPropsType> = forwardRef<
   HTMLMenuElement,
   BreadCrumbPropsType
 >((props, forawardedRef) => {
   return <BreadCrumbComponent {...props} forawardedRef={forawardedRef} />;
 });
 
-BreadCrumbGroup.displayName = 'BreadCrumb';
-BreadCrumbGroup.defaultProps = {
+BreadCrumb.displayName = 'BreadCrumb';
+BreadCrumb.defaultProps = {
   label: 'breadcrumb',
   listProps: {},
 };
 
-const BreadCrumb = Object.assign(BreadCrumbGroup, {
+export default Object.assign(BreadCrumb, {
   Item: BreadCrumbItem,
 });
-export {BreadCrumb};

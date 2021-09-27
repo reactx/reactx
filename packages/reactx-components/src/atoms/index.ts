@@ -6,3 +6,7 @@ export * from './Button/Button';
 export * from './Card/Card';
 export * from './CloseButton/CloseButton';
 export * from './Loading/Loading';
+export * from './Modal/Modal';
+export * from './Wizard/Wizard';
+export * from './Tab/Tab';
+export * from './Form/Form';

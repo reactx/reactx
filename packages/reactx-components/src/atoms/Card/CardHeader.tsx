@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Pascal System and ReactX.
+ * Copyright (c) ReactX and its affiliates..
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -10,29 +10,29 @@
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
 
-export interface CardFooterPropsType
+export interface CardHeaderPropsType
   extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
 }
 
-const CardFooterComponent = (props: CardFooterPropsType) => {
+const CardHeaderComponent = (props: CardHeaderPropsType) => {
   const {forawardedRef, className, children, ...restProps} = props;
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-footer', className)}
+      className={classNames('x-header', className)}
       {...restProps}>
       {children}
     </div>
   );
 };
 
-const CardFooter: FC<CardFooterPropsType> = React.forwardRef<
+const CardHeader: FC<CardHeaderPropsType> = React.forwardRef<
   HTMLDivElement,
-  CardFooterPropsType
+  CardHeaderPropsType
 >((props, forawardedRef) => (
-  <CardFooterComponent {...props} forawardedRef={forawardedRef} />
+  <CardHeaderComponent {...props} forawardedRef={forawardedRef} />
 ));
 
-CardFooter.displayName = 'CardFooter';
-export {CardFooter};
+CardHeader.displayName = 'CardHeader';
+export default CardHeader;
