@@ -27,5 +27,6 @@ export * from './Loading/Loading';
 export * from './Modal/Modal';
 export * from './Tab/Tab';
 export * from './Wizard/Wizard';
+export * from './Tooltip/Tooltip';
 
 export {BreadCrumb, Card, Form, Tab};

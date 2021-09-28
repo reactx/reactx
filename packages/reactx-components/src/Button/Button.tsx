@@ -27,7 +27,7 @@ const ButtonComponent = (props: ButtonPropsType) => {
       role="button"
       ref={forawardedRef}
       className={classNames('x-btn', className)}
-      {...props}>
+      {...restProps}>
       {children}
       {loading && (typeof loading === 'boolean' ? <Loading /> : loading)}
     </button>

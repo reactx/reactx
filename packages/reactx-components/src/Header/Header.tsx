@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
-import '../assets/element.header.scss';
+import '../assets/elements.header.scss';
 
 export interface HeaderPropsType extends React.HTMLAttributes<HTMLHeadElement> {
   forawardedRef?: ForwardedRef<HTMLHeadElement>;

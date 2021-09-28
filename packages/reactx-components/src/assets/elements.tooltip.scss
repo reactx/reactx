@@ -1,0 +1,46 @@
+.x-tooltip {
+    position: fixed;
+    top: -2rem;
+    left: 0;
+    z-index: 1500;
+    & {
+      color: white;
+      padding: 4px 8px;
+      font-weight: 500;
+    }
+  
+    $p: &;
+    &__arrow {
+      visibility: hidden;
+  
+      &,
+      &::before {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: inherit;
+      }
+  
+      &::before {
+        visibility: visible;
+        content: '';
+        transform: rotate(45deg);
+      }
+  
+      #{$p}[data-popper-placement^='top'] > & {
+        bottom: -4px;
+      }
+  
+      #{$p}[data-popper-placement^='bottom'] > & {
+        top: -4px;
+      }
+  
+      #{$p}[data-popper-placement^='left'] > & {
+        right: -4px;
+      }
+  
+      #{$p}[data-popper-placement^='right'] > & {
+        left: -4px;
+      }
+    }
+  }

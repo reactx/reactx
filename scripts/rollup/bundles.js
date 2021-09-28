@@ -31,6 +31,7 @@ const bundles = [
       'ag-grid-community',
       'ag-grid-enterprise',
       'react-datepicker',
+      '@popperjs/core',
       'date-fns',
       'react-transition-group',
       'classnames',

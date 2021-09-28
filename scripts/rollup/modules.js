@@ -27,7 +27,8 @@ const knownGlobals = Object.freeze({
   'react-datepicker': 'DatePicker',
   'date-fns': 'DateFNS',
   'react-transition-group': 'DatePicker',
-  'classnames': 'classNames',
+  classnames: 'classNames',
+  '@popperjs/core': 'popper',
   uuid: 'uuid',
 });
 
