@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import React, {ForwardedRef, forwardRef} from 'react';
 import {Loading} from '../Loading/Loading';
 import {ButtonVariant} from '../types';
+import '../assets/elements.button.scss';
 
 export interface ButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -20,13 +21,14 @@ export interface ButtonPropsType
 }
 
 const ButtonComponent = (props: ButtonPropsType) => {
-  const {forawardedRef, loading, className, children, ...restProps} = props;
+  const {forawardedRef, loading, className, children, variant, ...restProps} =
+    props;
 
   return (
     <button
       role="button"
       ref={forawardedRef}
-      className={classNames('x-btn', className)}
+      className={classNames('x-btn', 'x-btn--' + variant, className)}
       {...restProps}>
       {children}
       {loading && (typeof loading === 'boolean' ? <Loading /> : loading)}

@@ -11,7 +11,10 @@ export type Variant =
 export type ButtonVariant =
   | 'small'
   | 'normal'
-  | 'curve'
-  | 'pill'
+  | 'large'
   | 'rounded'
+  | 'icon'
+  | 'upload'
+  | 'badge'
+  | 'float'
   | string;

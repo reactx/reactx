@@ -1,0 +1,53 @@
+.x-autocomplete {
+    position: relative;
+    line-height: 1.5em;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    border: 0;
+  
+    &__option {
+      padding: 5px 20px;
+      cursor: pointer;
+      
+      &--selected {
+        background-color: #eee;
+      }
+    
+      &--selected:hover,
+      &--focus{
+        background: #eee;
+      }
+    }
+  
+    &__menu {
+      background-color: white;
+      position: fixed;
+      max-height: 200px;
+      overflow: auto;
+      height: auto;
+      width: 100%;
+      z-index: 1;
+      border-radius :3px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      padding: 2px 0;
+      max-height: 50%;
+    }
+
+    &__arrow{
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      border: solid black;
+      padding: 3px;
+      &--up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+      }
+      
+      &--down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+      }
+    }
+  }
