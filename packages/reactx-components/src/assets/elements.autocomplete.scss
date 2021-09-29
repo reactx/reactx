@@ -55,11 +55,13 @@
         border-left: 2px solid #000;        
       }
       &--up {
+        margin-top: -5px;
         transform: rotate(-135deg);
         -webkit-transform: rotate(-135deg);
       }
       
       &--down {
+        margin-top: 5px;
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
       }
