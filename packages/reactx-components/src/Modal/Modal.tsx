@@ -10,15 +10,18 @@
 import classNames from 'classnames';
 import React, {FC, ForwardedRef, forwardRef} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import {CloseButton} from '../CloseButton/CloseButton';
+import '../assets/elements.modal.scss';
 
 export interface ModalPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<CSSTransition<HTMLElement | undefined>>;
   show: boolean;
+  width?: number | string;
   backdrop?: boolean;
   backdropClassName?: string;
   closeDelay?: number;
-  onShow?: () => {};
-  onHide?: () => {};
+  onShow?: () => void;
+  onHide?: () => void;
 }
 
 const ModalComponent = (props: ModalPropsType) => {
@@ -32,23 +35,34 @@ const ModalComponent = (props: ModalPropsType) => {
     onShow,
     onHide,
     children,
+    title,
+    width,
     ...restProps
   } = props;
 
   return (
     <>
-      {backdrop && (
+      {backdrop && show && (
         <div
-          className={classNames('x-modal-backdrop', backdropClassName)}
+          className={classNames('x-modal__backdrop', backdropClassName)}
           onClick={onHide ? onHide : undefined}></div>
       )}
       <CSSTransition
         ref={forawardedRef}
         unmountOnExit
         in={show}
-        classNames="x-modal-container"
+        classNames="x-modal"
         timeout={closeDelay!}>
-        <div className={classNames(className)} {...restProps}>
+        <div
+          style={{width: width}}
+          className={classNames('x-modal', className)}
+          {...restProps}>
+          {title && (
+            <div className="x-modal__header">
+              <div className="x-modal__header-title">{title}</div>
+              <CloseButton onClick={onHide ? onHide : undefined}></CloseButton>
+            </div>
+          )}
           {children}
         </div>
       </CSSTransition>
@@ -65,7 +79,7 @@ const Modal: FC<ModalPropsType> = forwardRef<
 
 Modal.displayName = 'Modal';
 Modal.defaultProps = {
-  closeDelay: 300,
+  closeDelay: 1,
   backdrop: true,
   show: false,
 };

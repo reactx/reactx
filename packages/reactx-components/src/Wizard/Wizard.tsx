@@ -59,7 +59,7 @@ const WizardComponent = (props: WizardPropsType) => {
               in={step.id === activeStep}
               classNames="x-wizard__step"
               timeout={animationDelay!}>
-              {step.child}
+              <div className="x-wizard__step">{step.child}</div>
             </CSSTransition>
           </TransitionGroup>
         );

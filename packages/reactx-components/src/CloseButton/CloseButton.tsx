@@ -9,6 +9,7 @@
 
 import classNames from 'classnames';
 import React, {FC, ForwardedRef} from 'react';
+import '../assets/elements.closebutton.scss';
 
 export interface CloseButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,8 +23,10 @@ const CloseButtonComponent = (props: CloseButtonPropsType) => {
       ref={forawardedRef}
       type="button"
       aria-label="Close"
-      className={classNames('x-btn', 'x-badge-close', className)}
-      {...restProps}></button>
+      className={classNames('x-btn--close', className)}
+      {...restProps}>
+      &times;
+    </button>
   );
 };
 

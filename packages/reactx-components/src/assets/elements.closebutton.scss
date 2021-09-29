@@ -1,0 +1,15 @@
+.x-btn--close{
+    background-color: #dc3545;
+    border-radius: 50%;
+    cursor: pointer;
+    color:#dc3545;
+    outline: none;
+    border: none;
+    height: 12px;
+    width: 12px;
+    padding: 0;
+    
+    &:hover{
+        color:white;
+    }
+}
