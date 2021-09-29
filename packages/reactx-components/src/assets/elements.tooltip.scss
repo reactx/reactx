@@ -1,12 +1,13 @@
 .x-tooltip {
     position: fixed;
+    z-index: 1500;
     top: -2rem;
     left: 0;
-    z-index: 1500;
+
     & {
-      color: white;
       padding: 4px 8px;
       font-weight: 500;
+      color: white;
     }
   
     $p: &;
@@ -15,16 +16,16 @@
   
       &,
       &::before {
+        background: inherit;
         position: absolute;
         width: 8px;
         height: 8px;
-        background: inherit;
       }
   
       &::before {
+        transform: rotate(45deg);
         visibility: visible;
         content: '';
-        transform: rotate(45deg);
       }
   
       #{$p}[data-popper-placement^='top'] > & {
