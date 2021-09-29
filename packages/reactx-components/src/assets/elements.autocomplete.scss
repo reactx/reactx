@@ -35,11 +35,19 @@
       max-height: 50%;
     }
 
+    &__clear{
+      height: 2.2em !important;
+    }
+
     &__arrow{
-      border-width: 0 3px 3px 0;
-      display: inline-block;
-      border: solid black;
-      padding: 3px;
+      height: 2.2em !important;
+      $a: &;
+      i{
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #000;
+        border-left: 2px solid #000;        
+      }
       &--up {
         transform: rotate(-135deg);
         -webkit-transform: rotate(-135deg);

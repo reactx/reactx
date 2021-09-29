@@ -17,9 +17,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Form from '../Form/Form';
-import {Button} from '../Button/Button';
 import '../assets/elements.autocomplete.scss';
+import {Button} from '../Button/Button';
+import Form from '../Form/Form';
 
 export interface AutocompletePropsType {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -289,11 +289,15 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     }
   }, [isOpen]);
 
-  const handleClearClick = useCallback(() => {
-    if (!isOpen && refs.current.input) {
-      refs.current.input.focus();
-    }
-  }, [isOpen]);
+  const handleClearClick = useCallback(
+    (event) => {
+      if (!isOpen && refs.current.input) {
+        refs.current.input.focus();
+      }
+      onChange && onChange(event, '');
+    },
+    [isOpen],
+  );
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent): void => {
@@ -414,18 +418,22 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
       className={classNames('x-autocomplete', className)}>
       {showArrow && (
         <Button
-          className={classNames(
-            'x-autocomplete__arrow',
-            'x-autocomplete__arrow--' + (isOpen ? 'up' : 'down'),
-          )}
+          className="x-autocomplete__arrow"
           onClick={handleArrowClick}
-          ref={(el) => (refs.current = {...refs.current, arrow: el})}></Button>
+          ref={(el) => (refs.current = {...refs.current, arrow: el})}>
+          <i
+            className={classNames(
+              'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
+            )}></i>
+        </Button>
       )}
       {showClear && (
         <Button
           className="x-autocomplete__clear"
           onClick={handleClearClick}
-          ref={(el) => (refs.current = {...refs.current, clear: el})}></Button>
+          ref={(el) => (refs.current = {...refs.current, clear: el})}>
+          <i>&times;</i>
+        </Button>
       )}
       <Form.Control
         role="combobox"
