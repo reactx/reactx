@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 import {Variant} from '../types';
 import CardFooter from './CardFooter';
 import CardHeader from './CardHeader';
@@ -31,11 +31,9 @@ const CardComponent = (props: CardPropsType) => {
   );
 };
 
-const Card: FC<CardPropsType> = React.forwardRef<HTMLDivElement, CardPropsType>(
-  (props, forawardedRef) => (
-    <CardComponent {...props} forawardedRef={forawardedRef} />
-  ),
-);
+const Card = React.forwardRef<HTMLDivElement, CardPropsType>((props, ref) => (
+  <CardComponent {...props} forawardedRef={ref} />
+));
 
 Card.defaultProps = {
   variant: 'primary',

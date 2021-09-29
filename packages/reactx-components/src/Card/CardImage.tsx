@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export interface CardImagePropsType
   extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -27,12 +27,9 @@ const CardImageComponent = (props: CardImagePropsType) => {
   );
 };
 
-const CardImage: FC<CardImagePropsType> = React.forwardRef<
-  HTMLImageElement,
-  CardImagePropsType
->((props, forawardedRef) => (
-  <CardImageComponent {...props} forawardedRef={forawardedRef} />
-));
+const CardImage = React.forwardRef<HTMLImageElement, CardImagePropsType>(
+  (props, ref) => <CardImageComponent {...props} forawardedRef={ref} />,
+);
 CardImage.defaultProps = {
   variant: 'top',
 };

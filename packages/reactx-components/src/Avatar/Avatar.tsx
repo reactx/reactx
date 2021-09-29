@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 import {Loading} from '../Loading/Loading';
 
 export interface AvatarPropsType extends React.HTMLAttributes<HTMLDivElement> {
@@ -52,11 +52,9 @@ const AvatarComponent = (props: AvatarPropsType) => {
   );
 };
 
-const Avatar: FC<AvatarPropsType> = forwardRef<HTMLDivElement, AvatarPropsType>(
-  (props, forawardedRef) => {
-    return <AvatarComponent {...props} forawardedRef={forawardedRef} />;
-  },
-);
+const Avatar = forwardRef<HTMLDivElement, AvatarPropsType>((props, ref) => {
+  return <AvatarComponent {...props} forawardedRef={ref} />;
+});
 
 Avatar.displayName = 'Avatar';
 Avatar.defaultProps = {

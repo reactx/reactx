@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface BreadCrumbItemPropsType
   extends React.LiHTMLAttributes<HTMLLIElement> {
@@ -32,12 +32,11 @@ const BreadCrumbItemComponent = (props: BreadCrumbItemPropsType) => {
   );
 };
 
-const BreadCrumbItem: FC<BreadCrumbItemPropsType> = forwardRef<
-  HTMLLIElement,
-  BreadCrumbItemPropsType
->((props, forawardedRef) => {
-  return <BreadCrumbItemComponent {...props} forawardedRef={forawardedRef} />;
-});
+const BreadCrumbItem = forwardRef<HTMLLIElement, BreadCrumbItemPropsType>(
+  (props, ref) => {
+    return <BreadCrumbItemComponent {...props} forawardedRef={ref} />;
+  },
+);
 
 BreadCrumbItem.displayName = 'BreadCrumbItem';
 export default BreadCrumbItem;

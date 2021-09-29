@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef, useCallback} from 'react';
+import React, {ForwardedRef, forwardRef, useCallback} from 'react';
 import TabList from './TabList';
 import TabPane from './TabPane';
 
@@ -48,11 +48,9 @@ const TabComponent = (props: TabPropsType) => {
   );
 };
 
-const Tab: FC<TabPropsType> = forwardRef<HTMLLIElement, TabPropsType>(
-  (props, forawardedRef) => {
-    return <TabComponent {...props} forawardedRef={forawardedRef} />;
-  },
-);
+const Tab = forwardRef<HTMLLIElement, TabPropsType>((props, ref) => {
+  return <TabComponent {...props} forawardedRef={ref} />;
+});
 Tab.defaultProps = {
   role: 'tab',
   hidden: false,

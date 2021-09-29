@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 import {Variant} from '../types';
 
 export interface BadgePropsType extends React.HTMLAttributes<HTMLElement> {
@@ -32,11 +32,9 @@ const BadgeComponent = (props: BadgePropsType) => {
   );
 };
 
-const Badge: FC<BadgePropsType> = React.forwardRef<HTMLElement, BadgePropsType>(
-  (props, forawardedRef) => (
-    <BadgeComponent {...props} forawardedRef={forawardedRef} />
-  ),
-);
+const Badge = React.forwardRef<HTMLElement, BadgePropsType>((props, ref) => (
+  <BadgeComponent {...props} forawardedRef={ref} />
+));
 Badge.defaultProps = {
   variant: 'primary',
   pill: false,

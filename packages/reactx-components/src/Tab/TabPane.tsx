@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface TabPanePropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -29,11 +29,8 @@ const TabPaneComponent = (props: TabPanePropsType) => {
   );
 };
 
-const TabPane: FC<TabPanePropsType> = forwardRef<
-  HTMLDivElement,
-  TabPanePropsType
->((props, forawardedRef) => {
-  return <TabPaneComponent {...props} forawardedRef={forawardedRef} />;
+const TabPane = forwardRef<HTMLDivElement, TabPanePropsType>((props, ref) => {
+  return <TabPaneComponent {...props} forawardedRef={ref} />;
 });
 TabPane.displayName = 'TabPane';
 

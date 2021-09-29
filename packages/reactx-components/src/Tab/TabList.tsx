@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef, useCallback} from 'react';
+import React, {ForwardedRef, forwardRef, useCallback} from 'react';
 
 export interface TabListPropsType
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'onChange'> {
@@ -44,11 +44,8 @@ const TabListComponent = (props: TabListPropsType) => {
   );
 };
 
-const TabList: FC<TabListPropsType> = forwardRef<
-  HTMLUListElement,
-  TabListPropsType
->((props, forawardedRef) => {
-  return <TabListComponent {...props} forawardedRef={forawardedRef} />;
+const TabList = forwardRef<HTMLUListElement, TabListPropsType>((props, ref) => {
+  return <TabListComponent {...props} forawardedRef={ref} />;
 });
 TabList.defaultProps = {
   role: 'tablist',

@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, useCallback} from 'react';
+import React, {ForwardedRef, useCallback} from 'react';
 import {CloseButton} from '../CloseButton/CloseButton';
 import {Variant} from '../types';
 
@@ -50,11 +50,8 @@ const AlertComponent = (props: AlertPropsType) => {
   );
 };
 
-const Alert: FC<AlertPropsType> = React.forwardRef<
-  HTMLDivElement,
-  AlertPropsType
->((props, forawardedRef) => (
-  <AlertComponent {...props} forawardedRef={forawardedRef} />
+const Alert = React.forwardRef<HTMLDivElement, AlertPropsType>((props, ref) => (
+  <AlertComponent {...props} forawardedRef={ref} />
 ));
 Alert.defaultProps = {
   variant: 'success',

@@ -1,7 +1,7 @@
 import {GridReadyEvent} from 'ag-grid-community';
 import * as agGridEnterprise from 'ag-grid-enterprise';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
-import React, {FC, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {useComposeHandlers} from '../hooks/useComposeHandlers';
 // import 'ag-grid-community/dist/styles/ag-grid.css';
 // import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -75,7 +75,7 @@ const AgGridComponent = (props: agGridProps) => {
   );
 };
 
-const AgGrid: FC<agGridProps> = React.forwardRef((props) => (
+const AgGrid = React.forwardRef<HTMLDivElement, agGridProps>((props, ref) => (
   <AgGridComponent {...props} />
 ));
 

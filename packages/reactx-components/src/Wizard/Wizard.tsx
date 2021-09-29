@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef, useMemo} from 'react';
+import React, {ForwardedRef, forwardRef, useMemo} from 'react';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 export type StepsType = {
@@ -68,11 +68,9 @@ const WizardComponent = (props: WizardPropsType) => {
   );
 };
 
-const Wizard: FC<WizardPropsType> = forwardRef<HTMLDivElement, WizardPropsType>(
-  (props, forawardedRef) => {
-    return <WizardComponent {...props} forawardedRef={forawardedRef} />;
-  },
-);
+const Wizard = forwardRef<HTMLDivElement, WizardPropsType>((props, ref) => {
+  return <WizardComponent {...props} forawardedRef={ref} />;
+});
 Wizard.defaultProps = {
   animationDelay: 300,
 };

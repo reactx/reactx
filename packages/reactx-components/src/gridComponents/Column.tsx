@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 
 export type columnProps = {
   id?: string;
@@ -64,7 +64,7 @@ const ColumnComponent = (props: columnProps) => {
   );
 };
 
-const Column: FC<columnProps> = React.forwardRef((props) => (
+const Column = React.forwardRef<HTMLDivElement, columnProps>((props) => (
   <ColumnComponent {...props} />
 ));
 Column.defaultProps = {

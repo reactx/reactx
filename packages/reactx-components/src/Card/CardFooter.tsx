@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export interface CardFooterPropsType
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,12 +27,9 @@ const CardFooterComponent = (props: CardFooterPropsType) => {
   );
 };
 
-const CardFooter: FC<CardFooterPropsType> = React.forwardRef<
-  HTMLDivElement,
-  CardFooterPropsType
->((props, forawardedRef) => (
-  <CardFooterComponent {...props} forawardedRef={forawardedRef} />
-));
+const CardFooter = React.forwardRef<HTMLDivElement, CardFooterPropsType>(
+  (props, ref) => <CardFooterComponent {...props} forawardedRef={ref} />,
+);
 
 CardFooter.displayName = 'CardFooter';
 export default CardFooter;

@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 import '../assets/elements.header.scss';
 
 export interface HeaderPropsType extends React.HTMLAttributes<HTMLHeadElement> {
@@ -27,12 +27,9 @@ const HeaderComponent = (props: HeaderPropsType) => {
   );
 };
 
-const Header: FC<HeaderPropsType> = React.forwardRef<
-  HTMLHeadElement,
-  HeaderPropsType
->((props, forawardedRef) => (
-  <HeaderComponent {...props} forawardedRef={forawardedRef} />
-));
+const Header = React.forwardRef<HTMLHeadElement, HeaderPropsType>(
+  (props, ref) => <HeaderComponent {...props} forawardedRef={ref} />,
+);
 
 Header.displayName = 'Header';
 export {Header};

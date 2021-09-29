@@ -8,10 +8,10 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 import {CSSTransition} from 'react-transition-group';
-import {CloseButton} from '../CloseButton/CloseButton';
 import '../assets/elements.modal.scss';
+import {CloseButton} from '../CloseButton/CloseButton';
 
 export interface ModalPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<CSSTransition<HTMLElement | undefined>>;
@@ -70,11 +70,11 @@ const ModalComponent = (props: ModalPropsType) => {
   );
 };
 
-const Modal: FC<ModalPropsType> = forwardRef<
+const Modal = forwardRef<
   CSSTransition<HTMLElement | undefined>,
   ModalPropsType
->((props, forawardedRef) => {
-  return <ModalComponent {...props} forawardedRef={forawardedRef} />;
+>((props, ref) => {
+  return <ModalComponent {...props} forawardedRef={ref} />;
 });
 
 Modal.displayName = 'Modal';

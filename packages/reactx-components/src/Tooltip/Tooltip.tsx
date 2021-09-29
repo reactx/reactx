@@ -9,7 +9,7 @@
 
 import {createPopper, Placement} from '@popperjs/core';
 import classNames from 'classnames';
-import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import '../assets/elements.tooltip.scss';
 
@@ -23,7 +23,7 @@ export interface TooltipPropsType
   showArrow?: boolean;
 }
 
-const Tooltip: FC<TooltipPropsType> = (props: TooltipPropsType) => {
+const Tooltip = (props: TooltipPropsType) => {
   const {
     className,
     title,

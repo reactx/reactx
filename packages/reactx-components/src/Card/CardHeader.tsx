@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export interface CardHeaderPropsType
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -27,12 +27,9 @@ const CardHeaderComponent = (props: CardHeaderPropsType) => {
   );
 };
 
-const CardHeader: FC<CardHeaderPropsType> = React.forwardRef<
-  HTMLDivElement,
-  CardHeaderPropsType
->((props, forawardedRef) => (
-  <CardHeaderComponent {...props} forawardedRef={forawardedRef} />
-));
+const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderPropsType>(
+  (props, ref) => <CardHeaderComponent {...props} forawardedRef={ref} />,
+);
 
 CardHeader.displayName = 'CardHeader';
 export default CardHeader;

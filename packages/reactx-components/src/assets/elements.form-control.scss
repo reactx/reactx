@@ -1,0 +1,47 @@
+.x-form-control {
+    cursor: pointer;
+    height: 2.2em;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    min-width: 0;
+  
+    &:focus {
+      border: 1px;
+      border-color: black;
+    }
+  
+    &:disabled {
+      cursor: not-allowed !important;
+    }
+  
+    input[type="color"] & {
+      height: 30px;
+    }
+  
+    input:not([type="checkbox"]) & {
+      width: 100%;
+    }
+  
+    &.x-form-control-sm {
+      width: 20px !important;
+      height: 18px;
+      font-size: 11px;
+    }
+  
+    &.x-form-control-m {
+      width:35px !important;
+      height: 30px;
+      font-size: 14px;
+    }
+  
+    &.x-rtl{
+      direction: rtl;
+      text-align: right;
+    }
+  }
+  

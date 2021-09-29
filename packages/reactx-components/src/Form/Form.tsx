@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 import Check from './Check';
 import Control from './Control';
 import DateTime from './DateTime';
@@ -33,11 +33,8 @@ const FormComponent = (props: FormPropsType) => {
   );
 };
 
-const Form: FC<FormPropsType> = React.forwardRef<
-  HTMLFormElement,
-  FormPropsType
->((props, forawardedRef) => (
-  <FormComponent {...props} forawardedRef={forawardedRef} />
+const Form = React.forwardRef<HTMLFormElement, FormPropsType>((props, ref) => (
+  <FormComponent {...props} forawardedRef={ref} />
 ));
 
 Form.defaultProps = {

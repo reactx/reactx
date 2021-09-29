@@ -8,7 +8,8 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
+import '../assets/elements.form-control.scss';
 
 export interface ControlPropsType
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -25,12 +26,9 @@ const ControlComponent = (props: ControlPropsType) => {
   );
 };
 
-const Control: FC<ControlPropsType> = React.forwardRef<
-  HTMLInputElement,
-  ControlPropsType
->((props, forawardedRef) => (
-  <ControlComponent {...props} forawardedRef={forawardedRef} />
-));
+const Control = React.forwardRef<HTMLInputElement, ControlPropsType>(
+  (props, ref) => <ControlComponent {...props} forawardedRef={ref} />,
+);
 
 Control.displayName = 'Control';
 export default Control;

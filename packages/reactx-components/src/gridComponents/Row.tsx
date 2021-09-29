@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 
 export type rowProps = {
   id?: string;
@@ -40,7 +40,7 @@ const RowComponent = (props: rowProps) => {
   );
 };
 
-const Row: FC<rowProps> = React.forwardRef((props) => (
+const Row = React.forwardRef<HTMLDivElement, rowProps>((props) => (
   <RowComponent {...props} />
 ));
 

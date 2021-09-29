@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface LoadingPropsType extends React.HTMLAttributes<HTMLDivElement> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -27,11 +27,8 @@ const LoadingComponent = (props: LoadingPropsType) => {
   );
 };
 
-const Loading: FC<LoadingPropsType> = forwardRef<
-  HTMLDivElement,
-  LoadingPropsType
->((props, forawardedRef) => {
-  return <LoadingComponent {...props} forawardedRef={forawardedRef} />;
+const Loading = forwardRef<HTMLDivElement, LoadingPropsType>((props, ref) => {
+  return <LoadingComponent {...props} forawardedRef={ref} />;
 });
 
 Loading.displayName = 'Loading';

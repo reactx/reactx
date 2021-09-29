@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export interface SwitchPropsType
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -58,12 +58,9 @@ const SwitchComponent = (props: SwitchPropsType) => {
   );
 };
 
-const Switch: FC<SwitchPropsType> = React.forwardRef<
-  HTMLInputElement,
-  SwitchPropsType
->((props, forawardedRef) => (
-  <SwitchComponent {...props} forawardedRef={forawardedRef} />
-));
+const Switch = React.forwardRef<HTMLInputElement, SwitchPropsType>(
+  (props, ref) => <SwitchComponent {...props} forawardedRef={ref} />,
+);
 
 Switch.displayName = 'Switch';
 export default Switch;

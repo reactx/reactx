@@ -9,7 +9,7 @@
 
 import classNames from 'classnames';
 import * as locales from 'date-fns/locale';
-import React, {FC} from 'react';
+import React from 'react';
 import DatePicker, {
   ReactDatePickerProps,
   registerLocale,
@@ -17,7 +17,7 @@ import DatePicker, {
 
 export interface DateTimePropsType extends ReactDatePickerProps {}
 
-const DateTime: FC<DateTimePropsType> = (props: DateTimePropsType) => {
+const DateTime = (props: DateTimePropsType) => {
   const {className, locale, ...restProps} = props;
   const parsedLocal = typeof locale === 'string' ? locale : locale?.code;
   typeof locale !== 'string' && registerLocale(parsedLocal!, locale!);

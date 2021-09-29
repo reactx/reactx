@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 import BreadCrumbItem from './BreadCrumbItem';
 
 export interface BreadCrumbPropsType
@@ -37,12 +37,11 @@ const BreadCrumbComponent = (props: BreadCrumbPropsType) => {
   );
 };
 
-const BreadCrumb: FC<BreadCrumbPropsType> = forwardRef<
-  HTMLMenuElement,
-  BreadCrumbPropsType
->((props, forawardedRef) => {
-  return <BreadCrumbComponent {...props} forawardedRef={forawardedRef} />;
-});
+const BreadCrumb = forwardRef<HTMLMenuElement, BreadCrumbPropsType>(
+  (props, ref) => {
+    return <BreadCrumbComponent {...props} forawardedRef={ref} />;
+  },
+);
 
 BreadCrumb.displayName = 'BreadCrumb';
 BreadCrumb.defaultProps = {

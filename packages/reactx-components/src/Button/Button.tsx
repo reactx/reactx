@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef} from 'react';
 import {Loading} from '../Loading/Loading';
 import {ButtonVariant} from '../types';
 
@@ -34,11 +34,8 @@ const ButtonComponent = (props: ButtonPropsType) => {
   );
 };
 
-const Button: FC<ButtonPropsType> = forwardRef<
-  HTMLButtonElement,
-  ButtonPropsType
->((props, forawardedRef) => {
-  return <ButtonComponent {...props} forawardedRef={forawardedRef} />;
+const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
+  return <ButtonComponent {...props} forawardedRef={ref} />;
 });
 
 Button.defaultProps = {

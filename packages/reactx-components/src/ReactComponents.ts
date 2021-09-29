@@ -12,6 +12,7 @@ import Form from './Form/Form';
 import Tab from './Tab/Tab';
 
 export * from './Alert/Alert';
+export * from './Autocomplete/Autocomplete';
 export * from './Avatar/Avatar';
 export * from './Badge/Badge';
 export * from './BreadCrumb/BreadCrumb';
@@ -26,7 +27,7 @@ export * from './Header/Header';
 export * from './Loading/Loading';
 export * from './Modal/Modal';
 export * from './Tab/Tab';
-export * from './Wizard/Wizard';
 export * from './Tooltip/Tooltip';
+export * from './Wizard/Wizard';
 
 export {BreadCrumb, Card, Form, Tab};

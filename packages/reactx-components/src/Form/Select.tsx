@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export type FormSelectType = 'checkbox' | 'radio';
 
@@ -38,12 +38,9 @@ const SelectComponent = (props: SelectPropsType) => {
   );
 };
 
-const Select: FC<SelectPropsType> = React.forwardRef<
-  HTMLSelectElement,
-  SelectPropsType
->((props, forawardedRef) => (
-  <SelectComponent {...props} forawardedRef={forawardedRef} />
-));
+const Select = React.forwardRef<HTMLSelectElement, SelectPropsType>(
+  (props, ref) => <SelectComponent {...props} forawardedRef={ref} />,
+);
 
 Select.displayName = 'Select';
 export default Select;

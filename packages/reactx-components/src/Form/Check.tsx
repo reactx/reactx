@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 
 export type FormCheckType = 'checkbox' | 'radio';
 
@@ -61,12 +61,9 @@ const CheckComponent = (props: CheckPropsType) => {
   );
 };
 
-const Check: FC<CheckPropsType> = React.forwardRef<
-  HTMLInputElement,
-  CheckPropsType
->((props, forawardedRef) => (
-  <CheckComponent {...props} forawardedRef={forawardedRef} />
-));
+const Check = React.forwardRef<HTMLInputElement, CheckPropsType>(
+  (props, ref) => <CheckComponent {...props} forawardedRef={ref} />,
+);
 
 Check.displayName = 'Check';
 Check.defaultProps = {

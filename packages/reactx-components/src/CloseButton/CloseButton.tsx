@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {FC, ForwardedRef} from 'react';
+import React, {ForwardedRef} from 'react';
 import '../assets/elements.closebutton.scss';
 
 export interface CloseButtonPropsType
@@ -30,12 +30,9 @@ const CloseButtonComponent = (props: CloseButtonPropsType) => {
   );
 };
 
-const CloseButton: FC<CloseButtonPropsType> = React.forwardRef<
-  HTMLButtonElement,
-  CloseButtonPropsType
->((props, forawardedRef) => (
-  <CloseButtonComponent {...props} forawardedRef={forawardedRef} />
-));
+const CloseButton = React.forwardRef<HTMLButtonElement, CloseButtonPropsType>(
+  (props, ref) => <CloseButtonComponent {...props} forawardedRef={ref} />,
+);
 
 CloseButton.displayName = 'CloseButton';
 export {CloseButton};

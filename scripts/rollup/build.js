@@ -382,6 +382,8 @@ function handleRollupWarning(warning) {
     return;
   }
 
+  if (warning.code === 'THIS_IS_UNDEFINED') {return;}
+  
   if (typeof warning.code === 'string') {
     // This is a warning coming from Rollup itself.
     // These tend to be important (e.g. clashes in namespaced exports)
