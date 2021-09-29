@@ -19,6 +19,7 @@ import React, {
 } from 'react';
 import '../assets/elements.autocomplete.scss';
 import {Button} from '../Button/Button';
+import {ControlPropsType} from '../Form/Control';
 import Form from '../Form/Form';
 
 export interface AutocompletePropsType {
@@ -37,6 +38,7 @@ export interface AutocompletePropsType {
   className?: string;
   items: Array<any>;
   value: any;
+  inputProps?: ControlPropsType;
 }
 
 type RefsType = {
@@ -75,6 +77,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     items,
     value,
     className,
+    inputProps,
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -217,10 +220,10 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         }
       }
       if (!isOpen) setIsOpen(true);
-      //   const {onFocus} = inputProps;
-      //   if (onFocus) {
-      //     onFocus(event);
-      //   }
+      const {onFocus} = inputProps!;
+      if (onFocus) {
+        onFocus(event);
+      }
     },
     [options],
   );
@@ -258,10 +261,10 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
       }
       setIsOpen(false);
       setHighlightedIndex(null);
-      //   const {onBlur} = inputProps;
-      //   if (onBlur) {
-      //     onBlur(event);
-      //   }
+      const {onBlur} = inputProps!;
+      if (onBlur) {
+        onBlur(event);
+      }
     },
     [highlightedIndex, options],
   );
@@ -449,7 +452,8 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         value={value}
         ref={(el: HTMLInputElement) =>
           (refs.current = {...refs.current, input: el})
-        }></Form.Control>
+        }
+        {...inputProps}></Form.Control>
       {isOpen && renderMenu()}
     </div>
   );
@@ -467,5 +471,6 @@ Autocomplete.defaultProps = {
   showArrow: false,
   isItemSelectable: () => true,
   selectOnBlur: false,
+  inputProps: {},
 };
 export {Autocomplete};
