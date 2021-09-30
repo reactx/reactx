@@ -9,6 +9,7 @@
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import Card from './Card/Card';
 import Form from './Form/Form';
+import Grid from './Grid/Grid';
 import Tab from './Tab/Tab';
 
 export * from './Alert/Alert';
@@ -20,9 +21,6 @@ export * from './Button/Button';
 export * from './Card/Card';
 export * from './CloseButton/CloseButton';
 export * from './Form/Form';
-export * from './gridComponents/AgGrid';
-export * from './gridComponents/Column';
-export * from './gridComponents/Row';
 export * from './Header/Header';
 export * from './Loading/Loading';
 export * from './Modal/Modal';
@@ -30,4 +28,4 @@ export * from './Tab/Tab';
 export * from './Tooltip/Tooltip';
 export * from './Wizard/Wizard';
 
-export {BreadCrumb, Card, Form, Tab};
+export {BreadCrumb, Card, Form, Grid, Tab};

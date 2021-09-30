@@ -284,15 +284,15 @@
       "filename": "reactx-components.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-components",
-      "size": 60111,
-      "gzip": 12830
+      "size": 98673,
+      "gzip": 21882
     },
     {
       "filename": "reactx-components.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-components",
-      "size": 40656,
-      "gzip": 9660
+      "size": 44072,
+      "gzip": 10686
     }
   ]
 }
