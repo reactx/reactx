@@ -8,7 +8,14 @@
  */
 
 import classNames from 'classnames';
-import React, {ForwardedRef, forwardRef, ReactElement, useMemo} from 'react';
+import React, {
+  ForwardedRef,
+  forwardRef,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import {typeOfComponent} from '../types';
 import Step from './Step';
@@ -42,6 +49,13 @@ const WizardComponent = (props: WizardPropsType) => {
     renderLine,
     ...restProps
   } = props;
+
+  const prevStep = useRef<number>(activeStep || 0);
+
+  useEffect(() => {
+    prevStep.current = activeStep!;
+  }, [activeStep]);
+
   const steps = useMemo(() => {
     return React.Children.map(
       React.Children.toArray(children).filter(
@@ -69,7 +83,7 @@ const WizardComponent = (props: WizardPropsType) => {
               {steps.find((c) => c.id === activeStep)?.name}
             </span>
             <ul className="x-wizard__line-steps">
-              {steps.map((step, index) => {
+              {steps.map((step) => {
                 return (
                   <li
                     className={classNames('x-wizard__line-step', {
@@ -88,7 +102,12 @@ const WizardComponent = (props: WizardPropsType) => {
           <CSSTransition
             key={step.id}
             in={step.id === activeStep}
-            classNames="x-wizard__step"
+            classNames={
+              'x-wizard__step ' +
+              (prevStep.current > activeStep!
+                ? 'x-wizard__step--prev'
+                : 'x-wizard__step--next')
+            }
             unmountOnExit={unmountOnExit}
             timeout={animationDelay!}>
             {step.child}

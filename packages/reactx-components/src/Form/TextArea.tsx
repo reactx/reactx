@@ -31,6 +31,8 @@ const TextAreaComponent = (props: TextAreaPropsType) => {
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
   (props, ref) => <TextAreaComponent {...props} forawardedRef={ref} />,
 );
-
+TextArea.defaultProps = {
+  rows: 10,
+};
 TextArea.displayName = 'TextArea';
 export default TextArea;

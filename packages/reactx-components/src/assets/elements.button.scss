@@ -34,10 +34,10 @@
     } 
   
     &--icon {
-        background-color: transparent;
-        border: none;
+        background-color: transparent !important;;
+        border: none !important;;
         box-shadow: none !important;
-        margin: unset;
+        margin: unset !important;
   
         :hover {
             color: black;
