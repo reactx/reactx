@@ -16,11 +16,22 @@ import Column from './Column';
 agGridEnterprise.LicenseManager.setLicenseKey(
   'DownloadDevTools_COM_NDEwMjM0NTgwMDAwMA==59158b5225400879a12a96634544f5b6',
 );
-export interface GridPropsType extends AgGridReactProps {
+export interface GridPropsType
+  extends Omit<AgGridReactProps, 'rowModelType' | 'rowSelection'> {
   forawardedRef?: ForwardedRef<AgGridReact>;
+  rowModelType?: 'clientSide' | 'infinite' | 'viewport' | 'serverSide';
+  rowSelection?: 'multiple' | 'single';
 }
 const GridComponent = (props: GridPropsType) => {
-  const {forawardedRef, onGridReady, children, modules, ...restProps} = props;
+  const {
+    forawardedRef,
+    onGridReady,
+    children,
+    modules,
+    rowModelType,
+    defaultColDef,
+    ...restProps
+  } = props;
   const gridRefApi = useRef<GridApi>();
 
   const allModules = useMemo(
@@ -65,6 +76,13 @@ const GridComponent = (props: GridPropsType) => {
 
   return (
     <AgGridReact
+      rowModelType={rowModelType}
+      defaultColDef={{
+        flex: 1,
+        minWidth: 100,
+        filter: true,
+        ...defaultColDef,
+      }}
       onGridReady={composeGridHandlers(gridReady, onGridReady)}
       ref={forawardedRef}
       modules={allModules}
@@ -81,6 +99,10 @@ const Grid = React.forwardRef<AgGridReact, GridPropsType>((props, ref) => (
 Grid.defaultProps = {
   reactUi: false, //disable for temporary errors
   className: 'ag-theme-alpine',
+  rowModelType: 'clientSide',
+  rowBuffer: 0,
+  paginationPageSize: 100,
+  rowSelection: 'single',
 };
 export default Object.assign(Grid, {
   Column,

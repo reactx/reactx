@@ -6,8 +6,7 @@ export type Variant =
   | 'warning'
   | 'info'
   | 'dark'
-  | 'light'
-  | string;
+  | 'light';
 export type ButtonVariant =
   | 'small'
   | 'normal'
@@ -16,5 +15,8 @@ export type ButtonVariant =
   | 'icon'
   | 'upload'
   | 'badge'
-  | 'float'
-  | string;
+  | 'float';
+
+export const typeOfComponent = (component: any): string =>
+  (typeof component?.type === 'object' && component.type)?.displayName ||
+  undefined;

@@ -11,6 +11,7 @@ import Card from './Card/Card';
 import Form from './Form/Form';
 import Grid from './Grid/Grid';
 import Tab from './Tab/Tab';
+import Wizard from './Wizard/Wizard';
 
 export * from './Alert/Alert';
 export * from './Autocomplete/Autocomplete';
@@ -28,4 +29,4 @@ export * from './Tab/Tab';
 export * from './Tooltip/Tooltip';
 export * from './Wizard/Wizard';
 
-export {BreadCrumb, Card, Form, Grid, Tab};
+export {BreadCrumb, Card, Form, Grid, Tab, Wizard};
