@@ -8,6 +8,13 @@
     outline: none;
     width: 100%;
     border:none;
+
+    @at-root {
+      textarea#{&} {
+        height: auto;
+        resize: vertical;
+      }
+    }
   
     &:focus {
       border: 1px;
