@@ -1,21 +1,26 @@
 .x-wizard{
-  &__line{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &__line{
       display: flex;
       flex-direction: column;
+      
       &-title{
-          font-size: $font-size-lg;
+          font-size: 14px;
           text-align: center;
       }
 
       &-step{
-          margin-right: $standard-margin;
+          margin-right: 10px;
           display: inline-block;
           width: 15%;
           height: 7px;
-          background: var(--x-black-backdrop-1);
+          background: #eee;
           border-radius: 3.5px;
           &--active{
-              background: $blue;
+              background: #bebebe;
           }
       }
 
@@ -23,7 +28,11 @@
           display: flex;   
           flex-direction: row-reverse;
           justify-content: center;
-          padding: 0px $double-size-padding;         
+          padding: 0px 1rem;         
       }
-  }
+    }
+    &__step{
+      flex: 1;
+      height: 100%;
+    }
 }

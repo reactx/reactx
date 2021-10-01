@@ -22,10 +22,9 @@ export type StepsType = {
 export interface WizardPropsType
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
-  renderLine?: (
-    steps: Array<StepsType>,
-    activeStep?: number,
-  ) => React.ReactNode;
+  renderLine?:
+    | boolean
+    | ((steps: Array<StepsType>, activeStep?: number) => React.ReactNode);
   children: React.ReactElement | React.ReactElement[];
   activeStep?: number;
   animationDelay?: number;
