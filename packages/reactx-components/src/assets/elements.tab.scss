@@ -1,0 +1,30 @@
+.x-tab-list {
+    margin: 0 0 0px;
+    padding: 0 5px;
+    display: flex;
+    flex: 0 1 40px;
+    height: 40px;
+    border-bottom: 1px solid whitesmoke;
+    line-height: 40px;
+  
+    .x-tab {
+        list-style: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        flex: auto;
+        justify-content: center;
+        user-select: none;
+        line-height: 100%;
+  
+        i {
+          font-size: 14px;
+        }
+  
+      &--selected {
+        background-color: rgb(101, 101, 250);
+      }
+    }
+  }
