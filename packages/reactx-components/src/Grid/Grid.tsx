@@ -1,26 +1,29 @@
 import * as comunityModules from '@ag-grid-community/all-modules';
-import * as enterpriseModules from '@ag-grid-enterprise/all-modules';
-import {GridApi, GridReadyEvent} from '@ag-grid-community/core';
+import {
+  GridApi,
+  GridReadyEvent,
+  ICellRendererParams,
+} from '@ag-grid-community/core';
 import {AgGridReact} from '@ag-grid-community/react';
 import {AgGridReactProps} from '@ag-grid-community/react/lib/interfaces';
-import * as agGridEnterprise from '@ag-grid-enterprise/core';
+import * as enterpriseModules from '@ag-grid-enterprise/all-modules';
 import React, {
   ForwardedRef,
+  forwardRef,
   useCallback,
   useEffect,
   useMemo,
   useRef,
 } from 'react';
+import ActionButtonRenderer from './ActionButtonRenderer';
 import Column from './Column';
 
-agGridEnterprise.LicenseManager.setLicenseKey(
-  'DownloadDevTools_COM_NDEwMjM0NTgwMDAwMA==59158b5225400879a12a96634544f5b6',
-);
 export interface GridPropsType
   extends Omit<AgGridReactProps, 'rowModelType' | 'rowSelection'> {
   forawardedRef?: ForwardedRef<AgGridReact>;
   rowModelType?: 'clientSide' | 'infinite' | 'viewport' | 'serverSide';
   rowSelection?: 'multiple' | 'single';
+  actionButtonComponent?: React.ReactNode;
 }
 const GridComponent = (props: GridPropsType) => {
   const {
@@ -30,6 +33,8 @@ const GridComponent = (props: GridPropsType) => {
     modules,
     rowModelType,
     defaultColDef,
+    frameworkComponents,
+    actionButtonComponent,
     ...restProps
   } = props;
   const gridRefApi = useRef<GridApi>();
@@ -74,6 +79,16 @@ const GridComponent = (props: GridPropsType) => {
     };
   }, []);
 
+  const actionButtonRenderer = actionButtonComponent
+    ? forwardRef((props: any, ref: any) => {
+        return (
+          <ActionButtonRenderer {...props} ref={ref}>
+            {actionButtonComponent}
+          </ActionButtonRenderer>
+        );
+      })
+    : null;
+
   return (
     <AgGridReact
       rowModelType={rowModelType}
@@ -82,6 +97,10 @@ const GridComponent = (props: GridPropsType) => {
         minWidth: 100,
         filter: true,
         ...defaultColDef,
+      }}
+      frameworkComponents={{
+        ...frameworkComponents,
+        actionButtonRenderer,
       }}
       onGridReady={composeGridHandlers(gridReady, onGridReady)}
       ref={forawardedRef}
