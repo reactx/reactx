@@ -23,7 +23,7 @@ export interface GridPropsType
   forawardedRef?: ForwardedRef<AgGridReact>;
   rowModelType?: 'clientSide' | 'infinite' | 'viewport' | 'serverSide';
   rowSelection?: 'multiple' | 'single';
-  actionButtonComponent?: React.ReactNode;
+  actionButtonRender?: (props: ICellRendererParams) => React.ReactNode;
 }
 const GridComponent = (props: GridPropsType) => {
   const {
@@ -34,7 +34,7 @@ const GridComponent = (props: GridPropsType) => {
     rowModelType,
     defaultColDef,
     frameworkComponents,
-    actionButtonComponent,
+    actionButtonRender,
     ...restProps
   } = props;
   const gridRefApi = useRef<GridApi>();
@@ -79,11 +79,11 @@ const GridComponent = (props: GridPropsType) => {
     };
   }, []);
 
-  const actionButtonRenderer = actionButtonComponent
+  const actionButtonRenderer = actionButtonRender
     ? forwardRef((props: any, ref: any) => {
         return (
           <ActionButtonRenderer {...props} ref={ref}>
-            {actionButtonComponent}
+            {actionButtonRender(props)}
           </ActionButtonRenderer>
         );
       })
