@@ -103,6 +103,12 @@ Grid.defaultProps = {
   rowBuffer: 0,
   paginationPageSize: 100,
   rowSelection: 'single',
+  suppressMultiSort: true,
+  suppressRowClickSelection: true,
+  maxConcurrentDatasourceRequests: 1,
+  infiniteInitialRowCount: 1,
+  maxBlocksInCache: 10,
+  cacheOverflowSize: 2,
 };
 export default Object.assign(Grid, {
   Column,
