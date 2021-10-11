@@ -9,6 +9,8 @@
 
 import classNames from 'classnames';
 import React, {ForwardedRef, forwardRef, useCallback} from 'react';
+import Tab from './Tab';
+import TabPanel from './TabPanel';
 
 export interface TabListPropsType
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'onChange'> {
@@ -52,4 +54,7 @@ TabList.defaultProps = {
 };
 TabList.displayName = 'TabList';
 
-export default TabList;
+export default Object.assign(TabList, {
+  Item: Tab,
+  Panel: TabPanel,
+});
