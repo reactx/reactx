@@ -54,6 +54,7 @@ const TabPanel = forwardRef<HTMLDivElement, TabPanePropsType>((props, ref) => {
 });
 TabPanel.defaultProps = {
   hidden: true,
+  unmountOnExit: false,
 };
 TabPanel.displayName = 'TabPanel';
 
