@@ -14,7 +14,7 @@ export interface TabPanePropsType
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'hidden'> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
   hidden: boolean;
-  unmountOnExit: boolean;
+  unmountOnExit?: boolean;
 }
 
 const TabPanelComponent = (props: TabPanePropsType) => {
