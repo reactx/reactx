@@ -14,12 +14,30 @@ export interface TabPanePropsType
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'hidden'> {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
   hidden: boolean;
+  unmountOnExit: boolean;
 }
 
 const TabPanelComponent = (props: TabPanePropsType) => {
-  const {forawardedRef, className, children, hidden, ...restProps} = props;
+  const {
+    forawardedRef,
+    className,
+    children,
+    hidden,
+    unmountOnExit,
+    ...restProps
+  } = props;
 
-  return (
+  return unmountOnExit ? (
+    !hidden ? (
+      <div
+        ref={forawardedRef}
+        role="tabpanel"
+        className={classNames('x-tab-panel', className)}
+        {...restProps}>
+        {children}
+      </div>
+    ) : null
+  ) : (
     <div
       ref={forawardedRef}
       hidden={hidden}
