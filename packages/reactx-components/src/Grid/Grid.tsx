@@ -104,6 +104,7 @@ Grid.defaultProps = {
   paginationPageSize: 100,
   rowSelection: 'single',
   suppressMultiSort: true,
+  animateRows: true,
   suppressRowClickSelection: true,
   maxConcurrentDatasourceRequests: 1,
   infiniteInitialRowCount: 1,
