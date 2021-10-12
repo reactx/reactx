@@ -36,6 +36,7 @@ const SwitchComponent = (props: SwitchPropsType) => {
     <div
       className={classNames(
         'x-switch',
+        'x-form-control',
         className,
         {'x-is-valid': isValid},
         {'x-is-invalid': isInvalid},
