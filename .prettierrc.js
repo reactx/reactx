@@ -10,7 +10,7 @@ const esNextPaths = [
 module.exports = {
   bracketSpacing: false,
   singleQuote: true,
-  jsxBracketSameLine: true,
+  bracketSameLine: true,
   trailingComma: 'es5',
   printWidth: 80,
   parser: 'typescript',

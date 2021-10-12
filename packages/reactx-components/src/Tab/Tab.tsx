@@ -9,15 +9,14 @@
 
 import classNames from 'classnames';
 import React, {ForwardedRef, forwardRef, useCallback} from 'react';
-import TabList from './TabList';
-import TabPane from './TabPane';
+import '../assets/elements.tab.scss';
 
 export interface TabPropsType
   extends Omit<React.LiHTMLAttributes<HTMLLIElement>, 'onChange'> {
   forawardedRef?: ForwardedRef<HTMLLIElement>;
   selected?: boolean;
-  name: string | number;
-  onChange: (name: string | number) => void;
+  name: any;
+  onChange?: (name: any) => void;
 }
 
 const TabComponent = (props: TabPropsType) => {
@@ -25,9 +24,7 @@ const TabComponent = (props: TabPropsType) => {
     forawardedRef,
     className,
     children,
-    hidden,
     selected,
-    tabIndex,
     name,
     onChange,
     ...restProps
@@ -53,11 +50,7 @@ const Tab = forwardRef<HTMLLIElement, TabPropsType>((props, ref) => {
 });
 Tab.defaultProps = {
   role: 'tab',
-  hidden: false,
 };
 Tab.displayName = 'Tab';
 
-export default Object.assign(Tab, {
-  List: TabList,
-  Pane: TabPane,
-});
+export default Tab;

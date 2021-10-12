@@ -41,6 +41,7 @@ const CheckComponent = (props: CheckPropsType) => {
     <div
       className={classNames(
         'x-check',
+        'x-form-control',
         className,
         {'x-check--inline': inline},
         {'x-is-valid': isValid},

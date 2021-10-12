@@ -28,6 +28,7 @@ const SelectComponent = (props: SelectPropsType) => {
       ref={forawardedRef}
       className={classNames(
         'x-select',
+        'x-form-control',
         className,
         {'x-is-valid': isValid},
         {'x-is-invalid': isInvalid},
