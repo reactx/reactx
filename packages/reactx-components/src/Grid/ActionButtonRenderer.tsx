@@ -31,7 +31,16 @@ function ActionRendererWrapper(props: ActionRendererWrapper) {
     };
   });
 
-  return showAction ? children : value || '';
+  return showAction ? (
+    <div className="ag-theme-alpine__action">
+      <span className="ag-theme-alpine__action-value">
+        {value?.toString() || ''}
+      </span>
+      {children}
+    </div>
+  ) : (
+    value?.toString() || ''
+  );
 }
 
 const ActionButtonRenderer = forwardRef<
