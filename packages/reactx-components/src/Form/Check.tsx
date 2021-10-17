@@ -9,6 +9,7 @@
 
 import classNames from 'classnames';
 import React, {ForwardedRef} from 'react';
+import '../assets/elements.form-check.scss';
 
 export type FormCheckType = 'checkbox' | 'radio';
 
