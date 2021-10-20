@@ -8,7 +8,7 @@
  */
 
 import classNames from 'classnames';
-import React, {ForwardedRef, forwardRef} from 'react';
+import React, {ForwardedRef, forwardRef, MouseEvent} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import '../assets/elements.modal.scss';
 import {CloseButton} from '../CloseButton/CloseButton';
@@ -20,8 +20,7 @@ export interface ModalPropsType extends React.HTMLAttributes<HTMLDivElement> {
   backdrop?: boolean;
   backdropClassName?: string;
   closeDelay?: number;
-  onShow?: () => void;
-  onHide?: () => void;
+  onHide?: (e?: MouseEvent) => void;
 }
 
 const ModalComponent = (props: ModalPropsType) => {
@@ -32,7 +31,6 @@ const ModalComponent = (props: ModalPropsType) => {
     backdrop,
     backdropClassName,
     closeDelay,
-    onShow,
     onHide,
     children,
     title,
