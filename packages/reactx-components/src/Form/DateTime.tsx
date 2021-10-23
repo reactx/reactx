@@ -14,6 +14,7 @@ import DatePicker, {
   ReactDatePickerProps,
   registerLocale,
 } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export interface DateTimePropsType extends ReactDatePickerProps {}
 
@@ -21,8 +22,9 @@ const DateTime = (props: DateTimePropsType) => {
   const {className, locale, ...restProps} = props;
   const parsedLocal = typeof locale === 'string' ? locale : locale?.code;
   typeof locale !== 'string' && registerLocale(parsedLocal!, locale!);
+  const ReactDatePicker = (DatePicker as any).default || DatePicker;
   return (
-    <DatePicker
+    <ReactDatePicker
       locale={parsedLocal}
       className={classNames('x-form-control', className)}
       {...restProps}
