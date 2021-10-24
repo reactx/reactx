@@ -21,6 +21,7 @@ import '../assets/elements.autocomplete.scss';
 import {Button} from '../Button/Button';
 import {ControlPropsType} from '../Form/Control';
 import Form from '../Form/Form';
+import {createPopper, Placement} from '@popperjs/core';
 
 export interface AutocompletePropsType {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -40,25 +41,6 @@ export interface AutocompletePropsType {
   value: any;
   inputProps?: ControlPropsType;
 }
-
-type RefsType = {
-  input?: HTMLInputElement | null;
-  menu?: HTMLElement | null;
-  arrow?: HTMLButtonElement | null;
-  clear?: HTMLButtonElement | null;
-};
-
-type OptionsType = {
-  _scrollOffset: {x: number; y: number} | null;
-  _scrollTimer: NodeJS.Timeout | null;
-  _ignoreBlur: boolean;
-  _ignoreFocus: boolean;
-};
-type PositionType = {
-  menuLeft?: number;
-  menuTop?: number;
-  menuWidth?: number;
-};
 
 const AutocompleteComponent = (props: AutocompletePropsType) => {
   const {
@@ -81,15 +63,8 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   } = props;
 
   const [isOpen, setIsOpen] = useState(false);
-  const [options, setOptions] = useState<OptionsType>({
-    _scrollOffset: null,
-    _scrollTimer: null,
-    _ignoreBlur: false,
-    _ignoreFocus: false,
-  });
-  const refs = useRef<RefsType>({});
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
-  const [positions, setPositions] = useState<PositionType>({});
 
   const getFilteredItems = useCallback(() => {
     let renderedOtems = [...items];
@@ -145,14 +120,13 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         // Key code 229 is used for selecting items from character selectors (Pinyin, Kana, etc)
         if (event.keyCode !== 13) return;
         // In case the user is currently hovering over the menu
-        setOptions({...options, _ignoreBlur: false});
         if (!isOpen) {
           // menu is closed so there is no selection to accept -> do nothing
           return;
-        } else if (highlightedIndex == null) {
+        } else if (highlightedIndex === null) {
           // input has focus but no menu item is selected + enter is hit -> close the menu, highlight whatever's in input
           setIsOpen(false);
-          refs.current.input && refs.current.input.select();
+          inputRef.current && inputRef.current.select();
         } else {
           // text entered + menu item has been highlighted + enter is hit -> update value to that of selected menu item, close the menu
           event.preventDefault();
@@ -160,99 +134,39 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
           const value = getItemValue(item);
           setIsOpen(false);
           setHighlightedIndex(null);
-          //   refs.input.current.setSelectionRange(value.length, value.length);
-          refs.current.input &&
-            refs.current.input.setSelectionRange(value.length, value.length);
+          inputRef.current &&
+            inputRef.current.setSelectionRange(value.length, value.length);
           if (onSelect) onSelect(value, item);
         }
       },
       Escape() {
         // In case the user is currently hovering over the menu
-        setOptions({...options, _ignoreBlur: false});
         setIsOpen(false);
         setHighlightedIndex(null);
       },
-      Tab() {
-        // In case the user is currently hovering over the menu
-        setOptions({...options, _ignoreBlur: false});
-      },
+      Tab() {},
     };
   }, [
     highlightedIndex,
-    refs.current,
-    options,
+    inputRef.current,
     isOpen,
     setHighlightedIndex,
     isItemSelectable,
     getFilteredItems,
     getItemValue,
-    setOptions,
     setIsOpen,
   ]);
 
-  const handleInputFocus = useCallback(
-    (event) => {
-      if (options._ignoreFocus) {
-        if (options._scrollOffset) {
-          const {x, y} = options._scrollOffset;
-          setOptions({...options, _ignoreFocus: false, _scrollOffset: null});
-          // Focus will cause the browser to scroll the <input> into view.
-          // This can cause the mouse coords to change, which in turn
-          // could cause a new highlight to happen, cancelling the click
-          // event (when selecting with the mouse)
-          window.scrollTo(x, y);
-          // Some browsers wait until all focus event handlers have been
-          // processed before scrolling the <input> into view, so let's
-          // scroll again on the next tick to ensure we're back to where
-          // the user was before focus was lost. We could do the deferred
-          // scroll only, but that causes a jarring split second jump in
-          // some browsers that scroll before the focus event handlers
-          // are triggered.
-          if (options._scrollTimer) clearTimeout(options._scrollTimer);
-          setOptions({
-            ...options,
-            _scrollTimer: setTimeout(() => {
-              setOptions({...options, _scrollTimer: null});
-              window.scrollTo(x, y);
-            }, 0),
-          });
-          return;
-        }
-      }
-      if (!isOpen) setIsOpen(true);
-      const {onFocus} = inputProps!;
-      if (onFocus) {
-        onFocus(event);
-      }
-    },
-    [options],
-  );
-
-  const getScrollOffset = useCallback(() => {
-    return {
-      x:
-        window.pageXOffset !== undefined
-          ? window.pageXOffset
-          : (document.documentElement || document.body).scrollLeft,
-      y:
-        window.pageYOffset !== undefined
-          ? window.pageYOffset
-          : (document.documentElement || document.body).scrollTop,
-    };
+  const handleInputFocus = useCallback((event) => {
+    if (!isOpen) setIsOpen(true);
+    const {onFocus} = inputProps!;
+    if (onFocus) {
+      onFocus(event);
+    }
   }, []);
 
   const handleInputBlur = useCallback(
     (event) => {
-      if (options._ignoreBlur) {
-        setOptions({
-          ...options,
-          _ignoreFocus: true,
-          _scrollOffset: getScrollOffset(),
-        });
-        refs.current.input && refs.current.input.focus();
-        return;
-      }
-
       if (selectOnBlur && highlightedIndex !== null) {
         const items = getFilteredItems();
         const item = items[highlightedIndex];
@@ -266,40 +180,34 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         onBlur(event);
       }
     },
-    [highlightedIndex, options],
+    [highlightedIndex],
   );
 
   const isInputFocused = useCallback(() => {
-    const el = refs.current.input;
+    const el = inputRef.current;
     if (!el) return;
     return el.ownerDocument && el === el.ownerDocument.activeElement;
-  }, [refs.current]);
-
-  const isArrowFocused = useCallback(() => {
-    const el = refs.current.arrow;
-    if (!el) return;
-    return el.ownerDocument && el === el.ownerDocument.activeElement;
-  }, [refs.current]);
+  }, [inputRef.current]);
 
   const handleInputClick = useCallback(() => {
     if (isInputFocused() && !isOpen) setIsOpen(true);
   }, [isOpen]);
 
   const handleArrowClick = useCallback(() => {
-    if (isArrowFocused() && !isOpen && refs.current.input) {
-      refs.current.input.focus();
+    if (!isOpen && inputRef.current) {
+      inputRef.current.focus();
       handleInputClick();
     }
-  }, [isOpen]);
+  }, [isOpen, inputRef.current]);
 
   const handleClearClick = useCallback(
     (event) => {
-      if (!isOpen && refs.current.input) {
-        refs.current.input.focus();
+      if (!isOpen && inputRef.current) {
+        inputRef.current.focus();
       }
       onChange && onChange(event, '');
     },
-    [isOpen],
+    [isOpen, inputRef.current],
   );
 
   const handleKeyDown = useCallback(
@@ -313,34 +221,14 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     [isOpen, highlightedIndex],
   );
 
-  const selectItemFromMouse = useCallback(
-    (item) => {
-      const value = getItemValue(item);
-      // The menu will de-render before a mouseLeave event
-      // happens. Clear the flag to release control over focus
-      setOptions({...options, _ignoreBlur: false});
-      setIsOpen(false);
-      setHighlightedIndex(null);
-      if (onSelect) onSelect(value, item);
-    },
-    [options],
-  );
-
-  const setMenuPositions = useCallback(() => {
-    const node = refs.current.input;
-    if (!node) return;
-    const rect = node.getBoundingClientRect();
-    const computedStyle = global.window.getComputedStyle(node);
-    const marginBottom = parseInt(computedStyle.marginBottom, 10) || 0;
-    const marginLeft = parseInt(computedStyle.marginLeft, 10) || 0;
-    const marginRight = parseInt(computedStyle.marginRight, 10) || 0;
-
-    setPositions({
-      menuTop: rect.bottom + marginBottom,
-      menuLeft: rect.left + marginLeft,
-      menuWidth: rect.width + marginLeft + marginRight,
-    });
-  }, [refs.current]);
+  const selectItemFromMouse = useCallback((item) => {
+    const value = getItemValue(item);
+    // The menu will re-render before a mouseLeave event
+    // happens. Clear the flag to release control over focus
+    setIsOpen(false);
+    setHighlightedIndex(null);
+    if (onSelect) onSelect(value, item);
+  }, []);
 
   const maybeAutoCompleteText = useCallback(() => {
     let index = highlightedIndex === null ? 0 : highlightedIndex;
@@ -381,36 +269,35 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         onClick: isItemSelectable!(item)
           ? () => selectItemFromMouse(item)
           : null,
-        ref: (e: any) =>
-          (refs.current = {...refs.current, [`item-${index}`]: e}),
       });
     });
-    const style = {
-      left: positions.menuLeft,
-      top: positions.menuTop,
-      minWidth: positions.menuWidth,
-    };
-    const menu = (
-      <div
-        className="x-autocomplete__menu"
-        style={{
-          ...style,
-        }}
-        children={items}
-      />
-    );
+    const menu = <div className="x-autocomplete__menu" children={items} />;
+
+    const modifiers = [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 5],
+        },
+      },
+      {
+        name: 'flip',
+        options: {
+          altBoundary: true,
+        },
+      },
+    ];
     return React.cloneElement(menu, {
-      ref: (e: HTMLElement | null) =>
-        (refs.current = {...refs.current, menu: e}),
-      // Ignore blur to prevent menu from de-rendering before we can process click
-      onTouchStart: () => setOptions({...options, _ignoreBlur: true}),
-      onMouseEnter: () => setOptions({...options, _ignoreBlur: true}),
-      onMouseLeave: () => setOptions({...options, _ignoreBlur: false}),
+      ref: (e: HTMLElement | null) => {
+        createPopper(inputRef.current!, e!, {
+          placement: 'bottom-start',
+          modifiers,
+        });
+      },
     });
   };
   useEffect(() => {
     if (isOpen) {
-      setMenuPositions();
       if (onMenuVisibilityChange) onMenuVisibilityChange(isOpen);
     }
   }, [isOpen]);
@@ -420,10 +307,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
       ref={forawardedRef}
       className={classNames('x-autocomplete', className)}>
       {showArrow && (
-        <Button
-          className="x-autocomplete__arrow"
-          onClick={handleArrowClick}
-          ref={(el) => (refs.current = {...refs.current, arrow: el})}>
+        <Button className="x-autocomplete__arrow" onClick={handleArrowClick}>
           <i
             className={classNames(
               'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
@@ -431,10 +315,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         </Button>
       )}
       {showClear && (
-        <Button
-          className="x-autocomplete__clear"
-          onClick={handleClearClick}
-          ref={(el) => (refs.current = {...refs.current, clear: el})}>
+        <Button className="x-autocomplete__clear" onClick={handleClearClick}>
           <i>&times;</i>
         </Button>
       )}
@@ -450,9 +331,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         onKeyDown={handleKeyDown}
         onClick={handleInputClick}
         value={value}
-        ref={(el: HTMLInputElement) =>
-          (refs.current = {...refs.current, input: el})
-        }
+        ref={inputRef}
         {...inputProps}></Form.Control>
       {isOpen && renderMenu()}
     </div>
