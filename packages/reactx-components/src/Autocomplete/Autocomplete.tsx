@@ -7,6 +7,7 @@
  * @flow
  */
 
+import {createPopper} from '@popperjs/core';
 import classNames from 'classnames';
 import React, {
   ForwardedRef,
@@ -21,7 +22,6 @@ import '../assets/elements.autocomplete.scss';
 import {Button} from '../Button/Button';
 import {ControlPropsType} from '../Form/Control';
 import Form from '../Form/Form';
-import {createPopper, Placement} from '@popperjs/core';
 
 export interface AutocompletePropsType {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
@@ -41,7 +41,10 @@ export interface AutocompletePropsType {
   value: any;
   inputProps?: ControlPropsType;
 }
-
+type OptionsType = {
+  _ignoreBlur: boolean;
+  _ignoreFocus: boolean;
+};
 const AutocompleteComponent = (props: AutocompletePropsType) => {
   const {
     forawardedRef,
@@ -64,8 +67,12 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const menuRef = useRef<HTMLElement | null>(null);
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
-
+  const [options, setOptions] = useState<OptionsType>({
+    _ignoreBlur: false,
+    _ignoreFocus: false,
+  });
   const getFilteredItems = useCallback(() => {
     let renderedOtems = [...items];
     if (shouldItemRender) {
@@ -120,6 +127,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         // Key code 229 is used for selecting items from character selectors (Pinyin, Kana, etc)
         if (event.keyCode !== 13) return;
         // In case the user is currently hovering over the menu
+        setOptions({...options, _ignoreBlur: false});
         if (!isOpen) {
           // menu is closed so there is no selection to accept -> do nothing
           return;
@@ -141,15 +149,21 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
       },
       Escape() {
         // In case the user is currently hovering over the menu
+        setOptions({...options, _ignoreBlur: false});
         setIsOpen(false);
         setHighlightedIndex(null);
       },
-      Tab() {},
+      Tab() {
+        // In case the user is currently hovering over the menu
+        setOptions({...options, _ignoreBlur: false});
+      },
     };
   }, [
     highlightedIndex,
     inputRef.current,
     isOpen,
+    options,
+    setOptions,
     setHighlightedIndex,
     isItemSelectable,
     getFilteredItems,
@@ -157,16 +171,29 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     setIsOpen,
   ]);
 
-  const handleInputFocus = useCallback((event) => {
-    if (!isOpen) setIsOpen(true);
-    const {onFocus} = inputProps!;
-    if (onFocus) {
-      onFocus(event);
-    }
-  }, []);
+  const handleInputFocus = useCallback(
+    (event) => {
+      if (!options._ignoreFocus) {
+        if (!isOpen) setIsOpen(true);
+        const {onFocus} = inputProps!;
+        if (onFocus) {
+          onFocus(event);
+        }
+      }
+    },
+    [options, isOpen, setIsOpen],
+  );
 
   const handleInputBlur = useCallback(
     (event) => {
+      if (options._ignoreBlur) {
+        setOptions({
+          ...options,
+          _ignoreFocus: true,
+        });
+        inputRef.current && inputRef.current.focus();
+        return;
+      }
       if (selectOnBlur && highlightedIndex !== null) {
         const items = getFilteredItems();
         const item = items[highlightedIndex];
@@ -180,7 +207,16 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         onBlur(event);
       }
     },
-    [highlightedIndex],
+    [
+      highlightedIndex,
+      inputRef.current,
+      options,
+      setOptions,
+      setIsOpen,
+      setHighlightedIndex,
+      getFilteredItems,
+      getItemValue,
+    ],
   );
 
   const isInputFocused = useCallback(() => {
@@ -191,14 +227,14 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
 
   const handleInputClick = useCallback(() => {
     if (isInputFocused() && !isOpen) setIsOpen(true);
-  }, [isOpen]);
+  }, [isOpen, isInputFocused, setIsOpen]);
 
   const handleArrowClick = useCallback(() => {
     if (!isOpen && inputRef.current) {
       inputRef.current.focus();
       handleInputClick();
     }
-  }, [isOpen, inputRef.current]);
+  }, [isOpen, inputRef.current, handleInputClick]);
 
   const handleClearClick = useCallback(
     (event) => {
@@ -218,17 +254,21 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         setIsOpen(true);
       }
     },
-    [isOpen, highlightedIndex],
+    [isOpen, highlightedIndex, setIsOpen],
   );
 
-  const selectItemFromMouse = useCallback((item) => {
-    const value = getItemValue(item);
-    // The menu will re-render before a mouseLeave event
-    // happens. Clear the flag to release control over focus
-    setIsOpen(false);
-    setHighlightedIndex(null);
-    if (onSelect) onSelect(value, item);
-  }, []);
+  const selectItemFromMouse = useCallback(
+    (item) => {
+      const value = getItemValue(item);
+      // The menu will re-render before a mouseLeave event
+      // happens. Clear the flag to release control over focus
+      setOptions({...options, _ignoreBlur: false});
+      setIsOpen(false);
+      setHighlightedIndex(null);
+      if (onSelect) onSelect(value, item);
+    },
+    [options, setOptions, setIsOpen, setHighlightedIndex, getItemValue],
+  );
 
   const maybeAutoCompleteText = useCallback(() => {
     let index = highlightedIndex === null ? 0 : highlightedIndex;
@@ -251,11 +291,23 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
       }
     }
     return null;
-  }, [highlightedIndex, value]);
+  }, [
+    highlightedIndex,
+    value,
+    getFilteredItems,
+    isItemSelectable,
+    getItemValue,
+  ]);
 
   useEffect(() => {
     setHighlightedIndex(maybeAutoCompleteText());
   }, [value]);
+
+  useEffect(() => {
+    if (isOpen) {
+      if (onMenuVisibilityChange) onMenuVisibilityChange(isOpen);
+    }
+  }, [isOpen]);
 
   const renderMenu = () => {
     const items = getFilteredItems().map((item, index) => {
@@ -289,18 +341,20 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     ];
     return React.cloneElement(menu, {
       ref: (e: HTMLElement | null) => {
-        createPopper(inputRef.current!, e!, {
-          placement: 'bottom-start',
-          modifiers,
-        });
+        if (e && inputRef.current) {
+          menuRef.current = e;
+          createPopper(inputRef.current, e, {
+            placement: 'bottom-start',
+            modifiers,
+          });
+        }
       },
+      // Ignore blur to prevent menu from de-rendering before we can process click
+      onTouchStart: () => setOptions({...options, _ignoreBlur: true}),
+      onMouseEnter: () => setOptions({...options, _ignoreBlur: true}),
+      onMouseLeave: () => setOptions({...options, _ignoreBlur: false}),
     });
   };
-  useEffect(() => {
-    if (isOpen) {
-      if (onMenuVisibilityChange) onMenuVisibilityChange(isOpen);
-    }
-  }, [isOpen]);
 
   return (
     <div
