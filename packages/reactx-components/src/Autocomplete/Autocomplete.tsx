@@ -25,7 +25,7 @@ import Form from '../Form/Form';
 
 export interface AutocompletePropsType {
   forawardedRef?: ForwardedRef<HTMLDivElement>;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>, value: string) => void;
+  onChange?: (value: string) => void;
   renderItem: (e: any, changed: boolean, opt: any) => React.ReactElement<any>;
   sortItems?: (a: any, b: any, c: any) => number;
   shouldItemRender?: (item: any, value: any) => void;
@@ -226,8 +226,11 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   }, [inputRef.current]);
 
   const handleInputClick = useCallback(() => {
-    if (isInputFocused() && !isOpen) setIsOpen(true);
-  }, [isOpen, isInputFocused, setIsOpen]);
+    if (isInputFocused() && !isOpen) {
+      onChange && onChange(value);
+      setIsOpen(true);
+    }
+  }, [isOpen, value, isInputFocused, setIsOpen, onChange]);
 
   const handleArrowClick = useCallback(() => {
     if (!isOpen && inputRef.current) {
@@ -236,15 +239,12 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
     }
   }, [isOpen, inputRef.current, handleInputClick]);
 
-  const handleClearClick = useCallback(
-    (event) => {
-      if (!isOpen && inputRef.current) {
-        inputRef.current.focus();
-      }
-      onChange && onChange(event, '');
-    },
-    [isOpen, inputRef.current],
-  );
+  const handleClearClick = useCallback(() => {
+    if (!isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+    onChange && onChange('');
+  }, [isOpen, inputRef.current]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent): void => {
@@ -380,7 +380,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
         className="x-autocomplete__control"
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        onChange={(event) => onChange && onChange(event, event.target.value)}
+        onChange={(event) => onChange && onChange(event.target.value)}
         aria-expanded={isOpen}
         onKeyDown={handleKeyDown}
         onClick={handleInputClick}
