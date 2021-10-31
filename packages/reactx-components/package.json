@@ -1,7 +1,7 @@
 {
   "name": "@reactx/reactx-components",
   "description": "The standard React Components",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
@@ -24,7 +24,7 @@
     "reactx-components.min.css",
     "src/"
   ],
-  "main": "./index.ts",
+  "main": "./index.js",
   "typings": "./index.d.ts",
   "repository": {
     "type": "git",

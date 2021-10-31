@@ -283,18 +283,20 @@ async function createBundle(bundle, bundleType) {
   if (shouldSkipBundle(bundle, bundleType)) {
     return;
   }
+  
   const filename = getFilename(bundle.entry, bundle.global, bundleType);
   const logKey =
     chalk.white.bold(filename) + chalk.dim(` (${bundleType.toLowerCase()})`);
   const format = 'cjs';
   const packageName = Packaging.getPackageName(bundle.entry);
 
-  let resolvedEntry = require.resolve(bundle.entry);
+  let resolvedEntry = require.resolve(bundle.entry + '/index.ts');
 
   const shouldBundleDependencies =
     bundleType === UMD_DEV || bundleType === UMD_PROD;
   const peerGlobals = Modules.getPeerGlobals(bundle.externals, bundleType);
   let externals = Object.keys(peerGlobals);
+
   if (!shouldBundleDependencies) {
     const deps = Modules.getDependencies(bundleType, bundle.entry);
     externals = externals.concat(deps);
