@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef, useCallback} from 'react';
 import '../assets/elements.tab.scss';
 
@@ -38,7 +38,7 @@ const TabComponent = (props: TabPropsType) => {
     <li
       ref={forawardedRef}
       onClick={handleClick}
-      className={classNames('x-tab', className, {'x-tab--selected': selected})}
+      className={clsx('x-tab', className, {'x-tab--selected': selected})}
       {...restProps}>
       {children}
     </li>

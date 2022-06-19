@@ -66,14 +66,15 @@ const shouldExtractErrors = argv['extract-errors'];
 
 const closureOptions = {
   compilation_level: 'SIMPLE',
-  language_in: 'ECMASCRIPT_2020',
-  language_out: 'ECMASCRIPT_2020',
+  language_in: 'ECMASCRIPT_2015',
+  language_out: 'ECMASCRIPT5_STRICT',
   env: 'CUSTOM',
   warning_level: 'QUIET',
   apply_input_source_maps: false,
   use_types_for_optimization: false,
   process_common_js_modules: false,
   rewrite_polyfills: false,
+  inject_libraries: false,
 };
 
 function getBabelConfig(updateBabelOptions, bundleType, filename) {

@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import '../assets/elements.form-check.scss';
 
@@ -40,7 +40,7 @@ const CheckComponent = (props: CheckPropsType) => {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'x-check',
         className,
         {'x-check--inline': inline},
@@ -48,13 +48,13 @@ const CheckComponent = (props: CheckPropsType) => {
         {'x-is-invalid': isInvalid},
       )}>
       <input
-        className="x-check__input"
+        className='x-check__input'
         id={id}
         type={type}
         ref={forawardedRef}
         {...restProps}></input>
       {hasLabel && (
-        <label className="x-check__label" htmlFor={id}>
+        <label className='x-check__label' htmlFor={id}>
           {label}
         </label>
       )}

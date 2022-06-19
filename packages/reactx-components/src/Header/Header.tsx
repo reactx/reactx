@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import '../assets/elements.header.scss';
 
@@ -20,7 +20,7 @@ const HeaderComponent = (props: HeaderPropsType) => {
   return (
     <header
       ref={forawardedRef}
-      className={classNames('x-header', className)}
+      className={clsx('x-header', className)}
       {...restProps}>
       {children}
     </header>

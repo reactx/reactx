@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 import BreadCrumbItem from './BreadCrumbItem';
 
@@ -26,11 +26,11 @@ const BreadCrumbComponent = (props: BreadCrumbPropsType) => {
     <nav
       ref={forawardedRef}
       aria-label={label}
-      className={classNames('x-breadcrumb', className)}
+      className={clsx('x-breadcrumb', className)}
       {...restProps}>
       <ol
         {...listProps}
-        className={classNames('x-breadcrumb-group', listProps?.className)}>
+        className={clsx('x-breadcrumb-group', listProps?.className)}>
         {children}
       </ol>
     </nav>

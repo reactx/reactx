@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 
 export interface CardFooterPropsType
@@ -20,7 +20,7 @@ const CardFooterComponent = (props: CardFooterPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-footer', className)}
+      className={clsx('x-footer', className)}
       {...restProps}>
       {children}
     </div>

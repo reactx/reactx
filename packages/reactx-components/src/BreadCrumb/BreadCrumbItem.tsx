@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface BreadCrumbItemPropsType
@@ -23,7 +23,7 @@ const BreadCrumbItemComponent = (props: BreadCrumbItemPropsType) => {
   return (
     <li
       ref={forawardedRef}
-      className={classNames('x-breadcrumb-item', className, {
+      className={clsx('x-breadcrumb-item', className, {
         'x-active': active,
       })}
       {...restProps}>

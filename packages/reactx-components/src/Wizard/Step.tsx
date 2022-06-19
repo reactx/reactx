@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 import '../assets/elements.button.scss';
 
@@ -22,7 +22,7 @@ const StepComponent = (props: StepPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-wizard__step', className)}
+      className={clsx('x-wizard__step', className)}
       {...restProps}>
       {children}
     </div>

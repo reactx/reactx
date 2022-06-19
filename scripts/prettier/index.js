@@ -24,11 +24,8 @@
  const files = glob
    .sync('**packages/**/src/**/*.{js,jsx,tsx,ts}', {ignore: '**/node_modules/**'});
  
- if (!files.length) {
-   return;
- }
- 
- files.forEach((file) => {
+ if (files.length) {
+   files.forEach((file) => {
    const options = prettier.resolveConfig.sync(file, {
      config: prettierConfigPath,
    });
@@ -69,4 +66,5 @@
  if (didWarn || didError) {
    process.exit(1);
  }
+}
  

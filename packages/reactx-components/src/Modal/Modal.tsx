@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef, MouseEvent} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import '../assets/elements.modal.scss';
@@ -42,22 +42,22 @@ const ModalComponent = (props: ModalPropsType) => {
     <>
       {backdrop && show && (
         <div
-          className={classNames('x-modal__backdrop', backdropClassName)}
+          className={clsx('x-modal__backdrop', backdropClassName)}
           onClick={onHide ? onHide : undefined}></div>
       )}
       <CSSTransition
         ref={forawardedRef}
         unmountOnExit
         in={show}
-        classNames="x-modal"
+        clsx='x-modal'
         timeout={closeDelay!}>
         <div
           style={{width: width}}
-          className={classNames('x-modal', className)}
+          className={clsx('x-modal', className)}
           {...restProps}>
           {title && (
-            <div className="x-modal__header">
-              <div className="x-modal__header-title">{title}</div>
+            <div className='x-modal__header'>
+              <div className='x-modal__header-title'>{title}</div>
               <CloseButton onClick={onHide ? onHide : undefined}></CloseButton>
             </div>
           )}

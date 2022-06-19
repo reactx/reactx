@@ -1,7 +1,7 @@
 {
   "name": "@reactx/reactx-components",
   "description": "The standard React Components",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "author": "Behzad Abbasi <overafaik.com>",
   "bugs": {
     "url": "https://github.com/reactx/reactx/issues"
@@ -32,15 +32,15 @@
     "directory": "packages/reactx-components"
   },
   "dependencies": {
-    "@ag-grid-community/core": "^26.0.0",
-    "@ag-grid-community/all-modules": "^26.0.0",
-    "@ag-grid-enterprise/core": "^26.0.0",
-    "@ag-grid-enterprise/all-modules": "^26.0.0",
-    "@ag-grid-community/react": "^26.0.0",
-    "react-datepicker": "^4.2.1",
-    "date-fns": "^2.24.0",
-    "@popperjs/core": "^2.10.1",
+    "@ag-grid-community/core": "^27.3.0",
+    "@ag-grid-community/all-modules": "^27.3.0",
+    "@ag-grid-enterprise/core": "^27.3.0",
+    "@ag-grid-enterprise/all-modules": "^27.3.0",
+    "@ag-grid-community/react": "^27.3.0",
+    "react-datepicker": "^4.8.0",
+    "date-fns": "^2.28.0",
+    "@popperjs/core": "^2.11.5",
     "react-transition-group": "^4.4.2",
-    "classnames": "^2.3.1"
+    "clsx": "^1.1.1"
   }
 }

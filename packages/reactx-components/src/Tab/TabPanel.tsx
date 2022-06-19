@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface TabPanePropsType
@@ -31,8 +31,8 @@ const TabPanelComponent = (props: TabPanePropsType) => {
     !hidden ? (
       <div
         ref={forawardedRef}
-        role="tabpanel"
-        className={classNames('x-tab-panel', className)}
+        role='tabpanel'
+        className={clsx('x-tab-panel', className)}
         {...restProps}>
         {children}
       </div>
@@ -41,8 +41,8 @@ const TabPanelComponent = (props: TabPanePropsType) => {
     <div
       ref={forawardedRef}
       hidden={hidden}
-      role="tabpanel"
-      className={classNames('x-tab-panel', className)}
+      role='tabpanel'
+      className={clsx('x-tab-panel', className)}
       {...restProps}>
       {children}
     </div>

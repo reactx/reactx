@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 import {Loading} from '../Loading/Loading';
 import {ButtonVariant, Variant} from '../types';
@@ -34,9 +34,9 @@ const ButtonComponent = (props: ButtonPropsType) => {
 
   return (
     <button
-      role="button"
+      role='button'
       ref={forawardedRef}
-      className={classNames(
+      className={clsx(
         'x-btn',
         'x-btn--' + variant,
         'x-btn--' + colorVariant,

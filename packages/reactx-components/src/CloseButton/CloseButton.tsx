@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import '../assets/elements.closebutton.scss';
 
@@ -21,9 +21,9 @@ const CloseButtonComponent = (props: CloseButtonPropsType) => {
   return (
     <button
       ref={forawardedRef}
-      type="button"
-      aria-label="Close"
-      className={classNames('x-btn--close', className)}
+      type='button'
+      aria-label='Close'
+      className={clsx('x-btn--close', className)}
       {...restProps}>
       &times;
     </button>

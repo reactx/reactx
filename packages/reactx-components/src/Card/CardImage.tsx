@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 
 export interface CardImagePropsType
@@ -21,7 +21,7 @@ const CardImageComponent = (props: CardImagePropsType) => {
   return (
     <img
       ref={forawardedRef}
-      className={classNames('x-card-img', 'x-card-img-' + variant, className)}
+      className={clsx('x-card-img', 'x-card-img-' + variant, className)}
       {...restProps}
     />
   );

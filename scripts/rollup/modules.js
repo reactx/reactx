@@ -12,26 +12,23 @@ const HAS_NO_SIDE_EFFECTS_ON_IMPORT = false;
 // const HAS_SIDE_EFFECTS_ON_IMPORT = true;
 const importSideEffects = Object.freeze({
   // 'prop-types/checkPropTypes': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
-  'react-dom/server': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
   'react-dom': HAS_NO_SIDE_EFFECTS_ON_IMPORT,
 });
 
 // Bundles exporting globals that other modules rely on.
 const knownGlobals = Object.freeze({
   react: 'React',
-  'react-dom': 'ReactDOM',
-  'react-dom/server': 'ReactDOMServer',
-  '@ag-grid-community/react': 'AgGridReact',
-  '@ag-grid-community/all-modules': '@ag-grid-community/all-modules',
-  '@ag-grid-community/core': '@ag-grid-community/core',
-  '@ag-grid-enterprise/core': '@ag-grid-enterprise/core',
-  '@ag-grid-enterprise/all-modules': '@ag-grid-enterprise/all-modules',
-  'react-datepicker': 'DatePicker',
-  'date-fns': 'DateFNS',
-  'react-transition-group': 'DatePicker',
-  classnames: 'classNames',
-  '@popperjs/core': 'popper',
-  uuid: 'uuid',
+  'react-dom': 'reactDOM',
+  '@ag-grid-community/react': 'communityReact',
+  '@ag-grid-community/all-modules': 'communityModules',
+  '@ag-grid-community/core': 'communityCore',
+  '@ag-grid-enterprise/core': 'enterpriseCore',
+  '@ag-grid-enterprise/all-modules': 'enterpriseModules',
+  'react-datepicker': 'reactDatePicker',
+  'date-fns': 'dateFNS',
+  'react-transition-group': 'transitionGroup',
+  clsx: 'clsx',
+  '@popperjs/core': 'popperCore'
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.

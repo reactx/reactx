@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {
   ForwardedRef,
   forwardRef,
@@ -74,19 +74,19 @@ const WizardComponent = (props: WizardPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-wizard', className)}
+      className={clsx('x-wizard', className)}
       {...restProps}>
       {renderLine &&
         (typeof renderLine === 'boolean' ? (
-          <div className="x-wizard__line">
-            <span className="x-wizard__line-title">
+          <div className='x-wizard__line'>
+            <span className='x-wizard__line-title'>
               {steps.find((c) => c.id === activeStep)?.name}
             </span>
-            <ul className="x-wizard__line-steps">
+            <ul className='x-wizard__line-steps'>
               {steps.map((step) => {
                 return (
                   <li
-                    className={classNames('x-wizard__line-step', {
+                    className={clsx('x-wizard__line-step', {
                       'x-wizard__line-step--active': step.id === activeStep,
                     })}
                     key={step.id}></li>
@@ -102,7 +102,7 @@ const WizardComponent = (props: WizardPropsType) => {
           <CSSTransition
             key={step.id}
             in={step.id === activeStep}
-            classNames={
+            clsx={
               'x-wizard__step ' +
               (prevStep.current > activeStep!
                 ? 'x-wizard__step--prev'

@@ -1,5 +1,5 @@
 import {AgGridColumnProps} from '@ag-grid-community/react';
-import {AgGridColumn} from '@ag-grid-community/react/lib/agGridColumn';
+import {AgGridColumn} from '@ag-grid-community/react';
 import React, {ForwardedRef} from 'react';
 
 export interface ColumnPropsType extends AgGridColumnProps {

@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 
 export interface LoadingPropsType extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,9 +20,9 @@ const LoadingComponent = (props: LoadingPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-loading', className)}
+      className={clsx('x-loading', className)}
       {...restProps}>
-      <span className="x-loading-circle"></span>
+      <span className='x-loading-circle'></span>
     </div>
   );
 };

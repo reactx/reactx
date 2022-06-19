@@ -8,7 +8,7 @@
  */
 
 import {createPopper, Placement} from '@popperjs/core';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import '../assets/elements.tooltip.scss';
@@ -118,17 +118,13 @@ const Tooltip = (props: TooltipPropsType) => {
       {showTootltip
         ? createPortal(
             <span
-              role="tooltip"
+              role='tooltip'
               ref={tooltipRef}
-              className={classNames(
-                'x-tooltip',
-                'x-tooltip--' + place,
-                className,
-              )}
+              className={clsx('x-tooltip', 'x-tooltip--' + place, className)}
               {...restProps}>
               {title}
               {showArrow && (
-                <span className="x-tooltip__arrow" ref={arrowRef}></span>
+                <span className='x-tooltip__arrow' ref={arrowRef}></span>
               )}
             </span>,
             document.body,

@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, useCallback} from 'react';
 import '../assets/elements.form.scss';
 import Check from './Check';
@@ -46,7 +46,7 @@ const FormComponent = (props: FormPropsType) => {
     <form
       ref={forawardedRef}
       onSubmit={handleSubmit}
-      className={classNames('x-form', className, {
+      className={clsx('x-form', className, {
         'x-form--validate': validated,
       })}
       {...restProps}></form>

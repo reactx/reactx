@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 
 export interface SwitchPropsType
@@ -34,7 +34,7 @@ const SwitchComponent = (props: SwitchPropsType) => {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'x-switch',
         className,
         {'x-is-valid': isValid},
@@ -42,15 +42,15 @@ const SwitchComponent = (props: SwitchPropsType) => {
       )}>
       <label>
         <input
-          className="x-switch__input"
+          className='x-switch__input'
           id={id}
-          type="checkbox"
+          type='checkbox'
           ref={forawardedRef}
           {...restProps}></input>
-        <span className="x-switch__slider" />
+        <span className='x-switch__slider' />
       </label>
       {hasLabel && (
-        <label className="x-switch__label" htmlFor={id}>
+        <label className='x-switch__label' htmlFor={id}>
           {label}
         </label>
       )}

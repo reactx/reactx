@@ -5,7 +5,7 @@ import {
   ICellRendererParams,
 } from '@ag-grid-community/core';
 import {AgGridReact} from '@ag-grid-community/react';
-import {AgGridReactProps} from '@ag-grid-community/react/lib/interfaces';
+import {AgGridReactProps} from '@ag-grid-community/react';
 import * as enterpriseModules from '@ag-grid-enterprise/all-modules';
 import React, {
   ForwardedRef,

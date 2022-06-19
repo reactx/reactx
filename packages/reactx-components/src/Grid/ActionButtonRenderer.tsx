@@ -32,8 +32,8 @@ function ActionRendererWrapper(props: ActionRendererWrapper) {
   });
 
   return showAction ? (
-    <div className="ag-theme-alpine__action">
-      <span className="ag-theme-alpine__action-value">
+    <div className='ag-theme-alpine__action'>
+      <span className='ag-theme-alpine__action-value'>
         {value?.toString() || ''}
       </span>
       {children}

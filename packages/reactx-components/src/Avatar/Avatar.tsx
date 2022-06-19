@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef} from 'react';
 import {Loading} from '../Loading/Loading';
 
@@ -35,12 +35,12 @@ const AvatarComponent = (props: AvatarPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-avatar', className, {'x-avatar-pill': pill})}
+      className={clsx('x-avatar', className, {'x-avatar-pill': pill})}
       {...restProps}>
       {src ? (
         <img src={src} alt={text} />
       ) : (
-        <span className="reactx-avatar-letter">
+        <span className='reactx-avatar-letter'>
           {text
             .substring(0, letterCount)
             .trim()

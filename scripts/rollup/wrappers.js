@@ -20,8 +20,6 @@ const wrappers = {
 ${license}
  */
 
-'use strict';
-
 ${source}`;
   },
 

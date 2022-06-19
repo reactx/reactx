@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import {Variant} from '../types';
 
@@ -23,7 +23,7 @@ const BadgeComponent = (props: BadgePropsType) => {
   return (
     <span
       ref={forawardedRef}
-      className={classNames('x-badge', 'x-badge-' + variant, className, {
+      className={clsx('x-badge', 'x-badge-' + variant, className, {
         'x-badge--pill': pill,
       })}
       {...restProps}>

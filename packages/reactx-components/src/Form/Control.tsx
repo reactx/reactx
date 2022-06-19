@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import '../assets/elements.form-control.scss';
 
@@ -21,7 +21,7 @@ const ControlComponent = (props: ControlPropsType) => {
   return (
     <input
       ref={forawardedRef}
-      className={classNames('x-form-control', className)}
+      className={clsx('x-form-control', className)}
       {...restProps}></input>
   );
 };

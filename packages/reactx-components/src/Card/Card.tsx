@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 import {Variant} from '../types';
 import CardFooter from './CardFooter';
@@ -24,7 +24,7 @@ const CardComponent = (props: CardPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-card', 'x-card-' + variant, className)}
+      className={clsx('x-card', 'x-card-' + variant, className)}
       {...restProps}>
       {children}
     </div>

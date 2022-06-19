@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, forwardRef, useCallback} from 'react';
 import Tab from './Tab';
 import TabPanel from './TabPanel';
@@ -39,7 +39,7 @@ const TabListComponent = (props: TabListPropsType) => {
   return (
     <ul
       ref={forawardedRef}
-      className={classNames('x-tab-list', className)}
+      className={clsx('x-tab-list', className)}
       {...restProps}>
       {getChildrens()}
     </ul>

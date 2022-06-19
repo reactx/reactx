@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import * as locales from 'date-fns/locale';
 import React from 'react';
 import DatePicker, {
@@ -26,7 +26,7 @@ const DateTime = (props: DateTimePropsType) => {
   return (
     <ReactDatePicker
       locale={parsedLocal}
-      className={classNames('x-form-control', className)}
+      className={clsx('x-form-control', className)}
       {...restProps}
     />
   );

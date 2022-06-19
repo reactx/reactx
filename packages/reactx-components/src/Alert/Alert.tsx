@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef, useCallback} from 'react';
 import {CloseButton} from '../CloseButton/CloseButton';
 import {Variant} from '../types';
@@ -32,17 +32,20 @@ const AlertComponent = (props: AlertPropsType) => {
     ...restProps
   } = props;
 
-  const handleClose = useCallback((e) => {
-    if (onClose) {
-      onClose(false, e);
-    }
-  }, []);
+  const handleClose: any = useCallback(
+    (e: React.MouseEventHandler<HTMLButtonElement> | undefined) => {
+      if (onClose) {
+        onClose(false, e);
+      }
+    },
+    [],
+  );
 
   return (
     <div
-      role="alert"
+      role='alert'
       ref={forawardedRef}
-      className={classNames('x-alert', 'x-alert-' + variant, className)}
+      className={clsx('x-alert', 'x-alert-' + variant, className)}
       {...restProps}>
       {dismissible && <CloseButton onClick={handleClose} />}
       {children}

@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 
 export type FormSelectType = 'checkbox' | 'radio';
@@ -26,7 +26,7 @@ const SelectComponent = (props: SelectPropsType) => {
   return (
     <select
       ref={forawardedRef}
-      className={classNames(
+      className={clsx(
         'x-select',
         'x-form-control',
         className,

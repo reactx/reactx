@@ -36,7 +36,7 @@ const bundles = [
       '@popperjs/core',
       'date-fns',
       'react-transition-group',
-      'classnames',
+      'clsx',
     ],
   },
 ];

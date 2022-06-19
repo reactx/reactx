@@ -8,7 +8,7 @@
  */
 
 import {createPopper} from '@popperjs/core';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {
   ForwardedRef,
   forwardRef,
@@ -172,7 +172,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   ]);
 
   const handleInputFocus = useCallback(
-    (event) => {
+    (event: React.FocusEvent<HTMLInputElement, Element>) => {
       if (!options._ignoreFocus) {
         if (!isOpen) setIsOpen(true);
         const {onFocus} = inputProps!;
@@ -185,7 +185,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   );
 
   const handleInputBlur = useCallback(
-    (event) => {
+    (event: React.FocusEvent<HTMLInputElement, Element>) => {
       if (options._ignoreBlur) {
         setOptions({
           ...options,
@@ -258,7 +258,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   );
 
   const selectItemFromMouse = useCallback(
-    (item) => {
+    (item: any) => {
       const value = getItemValue(item);
       // The menu will re-render before a mouseLeave event
       // happens. Clear the flag to release control over focus
@@ -323,7 +323,7 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
           : null,
       });
     });
-    const menu = <div className="x-autocomplete__menu" children={items} />;
+    const menu = <div className='x-autocomplete__menu' children={items} />;
 
     const modifiers = [
       {
@@ -357,27 +357,25 @@ const AutocompleteComponent = (props: AutocompletePropsType) => {
   };
 
   return (
-    <div
-      ref={forawardedRef}
-      className={classNames('x-autocomplete', className)}>
+    <div ref={forawardedRef} className={clsx('x-autocomplete', className)}>
       {showArrow && (
-        <Button className="x-autocomplete__arrow" onClick={handleArrowClick}>
+        <Button className='x-autocomplete__arrow' onClick={handleArrowClick}>
           <i
-            className={classNames(
+            className={clsx(
               'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
             )}></i>
         </Button>
       )}
       {showClear && (
-        <Button className="x-autocomplete__clear" onClick={handleClearClick}>
+        <Button className='x-autocomplete__clear' onClick={handleClearClick}>
           <i>&times;</i>
         </Button>
       )}
       <Form.Control
-        role="combobox"
-        aria-autocomplete="list"
-        autoComplete="off"
-        className="x-autocomplete__control"
+        role='combobox'
+        aria-autocomplete='list'
+        autoComplete='off'
+        className='x-autocomplete__control'
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         onChange={(event) => onChange && onChange(event.target.value)}

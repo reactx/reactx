@@ -7,7 +7,7 @@
  * @flow
  */
 
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
 
 export interface CardHeaderPropsType
@@ -20,7 +20,7 @@ const CardHeaderComponent = (props: CardHeaderPropsType) => {
   return (
     <div
       ref={forawardedRef}
-      className={classNames('x-header', className)}
+      className={clsx('x-header', className)}
       {...restProps}>
       {children}
     </div>
