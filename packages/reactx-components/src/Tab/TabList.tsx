@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @flow
+ *
  */
 
 import clsx from 'clsx';
@@ -31,7 +31,7 @@ const TabListComponent = (props: TabListPropsType) => {
       return React.cloneElement(child, {
         selected: child.props.name === value,
         onChange,
-      });
+      } as any);
     });
     return childrens;
   }, [value, onChange, children]);

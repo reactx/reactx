@@ -9,7 +9,6 @@
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import Card from './Card/Card';
 import Form from './Form/Form';
-import Grid from './Grid/Grid';
 import TabList from './Tab/TabList';
 import Wizard from './Wizard/Wizard';
 
@@ -29,4 +28,4 @@ export * from './Tab/Tab';
 export * from './Tooltip/Tooltip';
 export * from './Wizard/Wizard';
 
-export {BreadCrumb, Card, Form, Grid, TabList, Wizard};
+export {BreadCrumb, Card, Form, TabList, Wizard};

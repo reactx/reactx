@@ -19,15 +19,9 @@ const importSideEffects = Object.freeze({
 const knownGlobals = Object.freeze({
   react: 'React',
   'react-dom': 'reactDOM',
-  '@ag-grid-community/react': 'communityReact',
-  '@ag-grid-community/all-modules': 'communityModules',
-  '@ag-grid-community/core': 'communityCore',
-  '@ag-grid-enterprise/core': 'enterpriseCore',
-  '@ag-grid-enterprise/all-modules': 'enterpriseModules',
   'react-datepicker': 'reactDatePicker',
   'date-fns': 'dateFNS',
   'react-transition-group': 'transitionGroup',
-  clsx: 'clsx',
   '@popperjs/core': 'popperCore'
 });
 

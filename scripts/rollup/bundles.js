@@ -27,16 +27,10 @@ const bundles = [
     externals: [
       'react',
       'react-dom',
-      '@ag-grid-community/react',
-      '@ag-grid-community/all-modules',
-      '@ag-grid-community/core',
-      '@ag-grid-enterprise/core',
-      '@ag-grid-enterprise/all-modules',
       'react-datepicker',
       '@popperjs/core',
       'date-fns',
-      'react-transition-group',
-      'clsx',
+      'react-transition-group'
     ],
   },
 ];
