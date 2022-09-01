@@ -1,0 +1,68 @@
+.x-btn {
+    align-items: center;
+    background-color: white;
+    border-radius: 2px;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    outline: none;
+    white-space: nowrap;
+
+    &:hover:enabled {
+        background-color: darken(white, 10);
+    }
+  
+    &--normal {
+        padding: 3px;
+        width: fit-content;
+    }
+  
+    &--small {
+        padding: 1px;
+        width: min-content;
+    }
+
+    &--large {
+        padding: 5px;
+        width: max-content;
+    }
+
+    &--rounded {
+      border-radius: 10%;
+    } 
+  
+    &--icon {
+        background-color: transparent !important;;
+        border: none !important;;
+        box-shadow: none !important;
+        margin: unset !important;
+  
+        :hover {
+            color: black;
+        }
+    }
+    
+    &--upload {
+      display: inline-block;
+      border: none;
+      outline: none;
+      cursor: pointer;
+  
+      input {
+        display: none;
+      }
+    }
+  
+    &--badge {
+      display: block;
+    }
+  
+    &--float {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 100;
+    }
+  }

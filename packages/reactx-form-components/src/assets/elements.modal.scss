@@ -1,0 +1,55 @@
+.x-modal{
+  box-shadow:  0px 1.6px 3.6px darken(white, 10);
+  background-color: white;
+  flex-flow: column;
+  position: fixed;
+  display: flex;
+  height: 250px;  
+  width: auto;
+  z-index: 2;
+
+  &__header {
+    justify-content: space-between;
+    align-items: center;
+    flex: 0 1 auto;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+
+    &-title {
+      font-weight: bolder;
+    }
+  }
+
+  &__body {
+    flex-direction: column;
+    overflow-x: hidden;
+    min-height: 100px;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+  }
+
+  &__footer {    
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.x-modal__backdrop {
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  display: flex;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
