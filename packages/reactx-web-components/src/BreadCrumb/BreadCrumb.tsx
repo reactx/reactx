@@ -9,7 +9,7 @@
 
 import clsx from 'clsx';
 import React, {Children, cloneElement, forwardRef, isValidElement} from 'react';
-import {__DEV__} from '../../../reactx-base';
+
 import BreadCrumbItem from './BreadCrumbItem';
 
 export interface BreadCrumbPropsType
@@ -57,9 +57,7 @@ BreadCrumb.defaultProps = {
   listProps: {},
 };
 
-if (__DEV__) {
-  BreadCrumb.displayName = 'BreadCrumb';
-}
+BreadCrumb.displayName = 'BreadCrumb';
 
 export default Object.assign(BreadCrumb, {
   Item: BreadCrumbItem,

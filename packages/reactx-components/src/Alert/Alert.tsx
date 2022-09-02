@@ -20,7 +20,7 @@ export interface AlertPropsType extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: (a: any, b: any) => void;
 }
 
-const AlertComponent = (props: AlertPropsType) => {
+const Alert = React.forwardRef<HTMLDivElement, AlertPropsType>((props, ref) => {
   const {
     forawardedRef,
     show,
@@ -51,11 +51,8 @@ const AlertComponent = (props: AlertPropsType) => {
       {children}
     </div>
   );
-};
+});
 
-const Alert = React.forwardRef<HTMLDivElement, AlertPropsType>((props, ref) => (
-  <AlertComponent {...props} forawardedRef={ref} />
-));
 Alert.defaultProps = {
   variant: 'success',
 };

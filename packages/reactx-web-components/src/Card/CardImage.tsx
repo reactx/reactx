@@ -8,7 +8,6 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
 
 export interface CardImagePropsType
   extends React.ImgHTMLAttributes<HTMLImageElement> {}
@@ -26,8 +25,6 @@ const CardImage = forwardRef<HTMLImageElement, CardImagePropsType>(
   },
 );
 
-if (__DEV__) {
-  CardImage.displayName = 'CardImage';
-}
+CardImage.displayName = 'CardImage';
 
 export default CardImage;

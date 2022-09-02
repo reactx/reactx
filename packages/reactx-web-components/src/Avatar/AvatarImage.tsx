@@ -8,7 +8,6 @@
 
 import clsx from 'clsx';
 import React from 'react';
-import {__DEV__} from '../../../reactx-base';
 import {AvatarName} from './AvatarName';
 
 export interface AvatarImagePropsType
@@ -23,12 +22,10 @@ const AvatarImage = (props: AvatarImagePropsType) => {
   if (!src) {
     return <AvatarName name={name} letterCount={letterCount} />;
   }
-  
+
   return <img className={clsx('x-avatar__img')} src={src} alt={name} />;
 };
 
-if (__DEV__) {
-  AvatarImage.displayName = 'AvatarImage';
-}
+AvatarImage.displayName = 'AvatarImage';
 
 export {AvatarImage};

@@ -10,7 +10,7 @@ module.exports = function stripUnusedImports(pureExternalModules) {
   return {
     name: 'scripts/rollup/plugins/strip-unused-imports',
     renderChunk(code) {
-      pureExternalModules.forEach(module => {
+      pureExternalModules.forEach((module) => {
         // Ideally this would use a negative lookbehind: (?<!= *)
         // But this isn't supported by the Node <= 8.9.
         // So instead we try to handle the most common cases:
@@ -19,7 +19,7 @@ module.exports = function stripUnusedImports(pureExternalModules) {
         // 3.   require('bar');
         const regExp = new RegExp(
           `([,;]| {2})require\\(["']${module}["']\\)[,;]`,
-          'g'
+          'g',
         );
         code = code.replace(regExp, '$1');
       });

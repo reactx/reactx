@@ -53,7 +53,7 @@
   },
   "scripts": {
     "build": "npm run prettier & node ./scripts/rollup/build.js",
-    "prettier": "node ./scripts/prettier/index.js write"
+    "prettier": "prettier --config .prettierrc --write \"**/*.{js,jsx,ts,tsx,scss,css}\""
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@reactx"

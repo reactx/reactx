@@ -8,7 +8,6 @@
  */
 
 import clsx from 'clsx';
-import { __DEV__ } from '../../../reactx-base';
 
 export interface AvatarNamePropsType {
   name: string;
@@ -28,9 +27,6 @@ const AvatarName = (props: AvatarNamePropsType) => {
   );
 };
 
-if (__DEV__) {
-    AvatarName.displayName = 'AvatarName';
-}
+AvatarName.displayName = 'AvatarName';
 
-export { AvatarName };
-
+export {AvatarName};

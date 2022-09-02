@@ -8,8 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef, useCallback} from 'react';
-import {__DEV__} from '../../../reactx-base';
-import { CloseButton } from '../ReactComponents';
+import {CloseButton} from '../CloseButton/CloseButton';
 import {Variant} from '../types';
 
 export interface AlertPropsType extends React.HTMLAttributes<HTMLDivElement> {
@@ -43,11 +42,8 @@ const Alert = forwardRef<HTMLDivElement, AlertPropsType>((props, ref) => {
   );
 });
 
+Alert.displayName = 'Alert';
 Alert.defaultProps = {
   variant: 'success',
 };
-
-if (__DEV__) {
-  Alert.displayName = 'Alert';
-}
 export {Alert};

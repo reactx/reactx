@@ -22,7 +22,7 @@ const knownGlobals = Object.freeze({
   'react-datepicker': 'reactDatePicker',
   'date-fns': 'dateFNS',
   'react-transition-group': 'transitionGroup',
-  '@popperjs/core': 'popperCore'
+  '@popperjs/core': 'popperCore',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.
@@ -50,7 +50,7 @@ function getDependencies(bundleType, entry) {
     new Set([
       ...Object.keys(packageJson.dependencies || {}),
       ...Object.keys(packageJson.peerDependencies || {}),
-    ])
+    ]),
   );
 }
 

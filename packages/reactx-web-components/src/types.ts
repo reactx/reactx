@@ -17,7 +17,7 @@ export type ButtonVariant =
   | 'badge'
   | 'float';
 
-  export type SpinnerPlacement = 'start' | 'end'
+export type SpinnerPlacement = 'start' | 'end';
 
 export const typeOfComponent = (component: any): string =>
   (typeof component?.type === 'object' && component.type)?.displayName ||

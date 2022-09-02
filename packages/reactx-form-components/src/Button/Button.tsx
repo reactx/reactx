@@ -8,10 +8,9 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-
 import '../assets/elements.button.scss';
+import {Loading} from '../ReactComponents';
 import {ButtonVariant, SpinnerPlacement, Variant} from '../types';
-import {Loading} from '../../../reactx-base';
 
 export interface ButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

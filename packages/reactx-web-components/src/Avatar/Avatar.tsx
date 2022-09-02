@@ -8,9 +8,9 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {Loading, __DEV__} from '../../../reactx-base';
 import '../assets/elements.avatar.scss';
 import {AvatarImage} from './AvatarImage';
+import {Loading} from '../../../reactx-base';
 
 export interface AvatarPropsType extends React.HTMLAttributes<HTMLSpanElement> {
   letterCount?: number;
@@ -45,14 +45,11 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarPropsType>((props, ref) => {
   );
 });
 
+Avatar.displayName = 'Avatar';
 Avatar.defaultProps = {
   pill: true,
   loading: false,
   letterCount: 1,
 };
-
-if (__DEV__) {
-  Avatar.displayName = 'Avatar';
-}
 
 export {Avatar};

@@ -8,7 +8,6 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
 import '../assets/elements.card.scss';
 import {Variant} from '../types';
 import CardFooter from './CardFooter';
@@ -31,13 +30,10 @@ const Card = forwardRef<HTMLDivElement, CardPropsType>((props, ref) => {
   );
 });
 
+Card.displayName = 'Card';
 Card.defaultProps = {
   variant: 'primary',
 };
-
-if (__DEV__) {
-  Card.displayName = 'Card';
-}
 
 export default Object.assign(Card, {
   Img: CardImage,

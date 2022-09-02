@@ -8,7 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
+
 import '../assets/elements.closebutton.scss';
 
 export interface CloseButtonPropsType
@@ -30,8 +30,6 @@ const CloseButton = forwardRef<HTMLButtonElement, CloseButtonPropsType>(
   },
 );
 
-if (__DEV__) {
-  CloseButton.displayName = 'CloseButton';
-}
+CloseButton.displayName = 'CloseButton';
 
 export {CloseButton};

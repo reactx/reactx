@@ -11,7 +11,7 @@ function asyncCopyTo(from, to) {
   return asyncMkDirP(path.dirname(to)).then(
     () =>
       new Promise((resolve, reject) => {
-        ncp(from, to, error => {
+        ncp(from, to, (error) => {
           if (error) {
             // Wrap to have a useful stack trace.
             reject(new Error(error));
@@ -19,7 +19,7 @@ function asyncCopyTo(from, to) {
           }
           resolve();
         });
-      })
+      }),
   );
 }
 
@@ -31,19 +31,19 @@ function asyncExecuteCommand(command) {
         return;
       }
       resolve(stdout);
-    })
+    }),
   );
 }
 
 function asyncExtractTar(options) {
   return new Promise((resolve, reject) =>
-    targz.decompress(options, error => {
+    targz.decompress(options, (error) => {
       if (error) {
         reject(error);
         return;
       }
       resolve();
-    })
+    }),
   );
 }
 
@@ -53,13 +53,13 @@ function asyncMkDirP(filepath) {
 
 function asyncRimRaf(filepath) {
   return new Promise((resolve, reject) =>
-    rimraf(filepath, error => {
+    rimraf(filepath, (error) => {
       if (error) {
         reject(error);
         return;
       }
       resolve();
-    })
+    }),
   );
 }
 

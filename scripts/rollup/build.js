@@ -17,7 +17,6 @@ const argv = require('minimist')(process.argv.slice(2));
 const Modules = require('./modules');
 const Bundles = require('./bundles');
 const Stats = require('./stats');
-const Sync = require('./sync');
 const sizes = require('./plugins/sizes-plugin');
 const stripUnusedImports = require('./plugins/strip-unused-imports');
 const Packaging = require('./packaging');
@@ -82,7 +81,7 @@ function getBabelConfig(updateBabelOptions, bundleType, filename) {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     babelHelpers: 'bundled',
     exclude: '/**/node_modules/**',
-    presets: ["@babel/preset-react", "@babel/typescript"],
+    presets: ['@babel/preset-react', '@babel/typescript'],
     plugins: ['@babel/plugin-transform-typescript'],
   };
   if (updateBabelOptions) {
@@ -96,7 +95,7 @@ function getRollupOutputOptions(
   format,
   globals,
   globalName,
-  bundleType
+  bundleType,
 ) {
   const isProduction = isProductionBundleType(bundleType);
 
@@ -110,7 +109,7 @@ function getRollupOutputOptions(
       interop: false,
       name: globalName,
       sourcemap: false,
-    }
+    },
   );
 }
 
@@ -144,7 +143,7 @@ function forbidFBJSImports() {
       if (/^fbjs\//.test(importee)) {
         throw new Error(
           `Don't import ${importee} (found in ${importer}). ` +
-            `Use the utilities in packages/shared/ instead.`
+            `Use the utilities in packages/shared/ instead.`,
         );
       }
     },
@@ -160,7 +159,7 @@ function getPlugins(
   bundleType,
   globalName,
   moduleType,
-  pureExternalModules
+  pureExternalModules,
 ) {
   const isProduction = isProductionBundleType(bundleType);
   const isUMDBundle = bundleType === UMD_DEV || bundleType === UMD_PROD;
@@ -195,7 +194,7 @@ function getPlugins(
       __UMD__: isUMDBundle ? 'true' : 'false',
       'process.env.NODE_ENV': isProduction ? "'production'" : "'development'",
     }),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({tsconfig: './tsconfig.json'}),
     // We still need CommonJS for external deps like object-assign.
     commonjs(),
     // Apply dead code elimination and/or minification.
@@ -210,7 +209,7 @@ function getPlugins(
           // https://github.com/google/closure-compiler/pull/2707
           // and then the compiled version is released via `google-closure-compiler-js`.
           renaming: !shouldStayReadable,
-        })
+        }),
       ),
     // HACK to work around the fact that Rollup isn't removing unused, pure-module imports.
     // Note that this plugin must be called after closure applies DCE.
@@ -225,7 +224,7 @@ function getPlugins(
           bundleType,
           globalName,
           filename,
-          moduleType
+          moduleType,
         );
       },
     },
@@ -236,7 +235,7 @@ function getPlugins(
         const currentSizes = Stats.currentBuildResults.bundleSizes;
         const recordIndex = currentSizes.findIndex(
           (record) =>
-            record.filename === filename && record.bundleType === bundleType
+            record.filename === filename && record.bundleType === bundleType,
         );
         const index = recordIndex !== -1 ? recordIndex : currentSizes.length;
         currentSizes[index] = {
@@ -258,7 +257,7 @@ function shouldSkipBundle(bundle, bundleType) {
   }
   if (requestedBundleTypes.length > 0) {
     const isAskingForDifferentType = requestedBundleTypes.every(
-      (requestedType) => bundleType.indexOf(requestedType) === -1
+      (requestedType) => bundleType.indexOf(requestedType) === -1,
     );
     if (isAskingForDifferentType) {
       return true;
@@ -271,7 +270,7 @@ function shouldSkipBundle(bundle, bundleType) {
       // `react-dom` but not `react-dom/server`. Everything else is fuzzy
       // search.
       (requestedName) =>
-        (bundle.entry + '/index.ts').indexOf(requestedName) === -1
+        (bundle.entry + '/index.ts').indexOf(requestedName) === -1,
     );
     if (isAskingForDifferentNames) {
       return true;
@@ -284,7 +283,7 @@ async function createBundle(bundle, bundleType) {
   if (shouldSkipBundle(bundle, bundleType)) {
     return;
   }
-  
+
   const filename = getFilename(bundle.entry, bundle.global, bundleType);
   const logKey =
     chalk.white.bold(filename) + chalk.dim(` (${bundleType.toLowerCase()})`);
@@ -305,7 +304,7 @@ async function createBundle(bundle, bundleType) {
 
   const importSideEffects = Modules.getImportSideEffects();
   const pureExternalModules = Object.keys(importSideEffects).filter(
-    (module) => !importSideEffects[module]
+    (module) => !importSideEffects[module],
   );
 
   const rollupConfig = {
@@ -332,7 +331,7 @@ async function createBundle(bundle, bundleType) {
       bundleType,
       bundle.global,
       bundle.moduleType,
-      pureExternalModules
+      pureExternalModules,
     ),
     // We can't use getters in www.
     // legacy: false,
@@ -340,14 +339,14 @@ async function createBundle(bundle, bundleType) {
   const mainOutputPath = Packaging.getBundleOutputPaths(
     bundleType,
     filename,
-    packageName
+    packageName,
   );
   const rollupOutputOptions = getRollupOutputOptions(
     mainOutputPath,
     format,
     peerGlobals,
     bundle.global,
-    bundleType
+    bundleType,
   );
 
   console.log(`${chalk.bgYellow.black(' BUILDING ')} ${logKey}`);
@@ -367,7 +366,7 @@ function handleRollupWarning(warning) {
     const match = warning.message.match(/external module '([^']+)'/);
     if (!match || typeof match[1] !== 'string') {
       throw new Error(
-        'Could not parse a Rollup warning. ' + 'Fix this method.'
+        'Could not parse a Rollup warning. ' + 'Fix this method.',
       );
     }
     const importSideEffects = Modules.getImportSideEffects();
@@ -378,15 +377,17 @@ function handleRollupWarning(warning) {
           externalModule +
           '" is used in a DEV-only code path ' +
           'but we do not know if it is safe to omit an unused require() to it in production. ' +
-          'Please add it to the `importSideEffects` list in `scripts/rollup/modules.js`.'
+          'Please add it to the `importSideEffects` list in `scripts/rollup/modules.js`.',
       );
     }
     // Don't warn. We will remove side effectless require() in a later pass.
     return;
   }
 
-  if (warning.code === 'THIS_IS_UNDEFINED') {return;}
-  
+  if (warning.code === 'THIS_IS_UNDEFINED') {
+    return;
+  }
+
   if (typeof warning.code === 'string') {
     // This is a warning coming from Rollup itself.
     // These tend to be important (e.g. clashes in namespaced exports)
@@ -409,7 +410,7 @@ function handleRollupError(error) {
     return;
   }
   console.error(
-    `\x1b[31m-- ${error.code}${error.plugin ? ` (${error.plugin})` : ''} --`
+    `\x1b[31m-- ${error.code}${error.plugin ? ` (${error.plugin})` : ''} --`,
   );
   console.error(error.stack);
   if (error.loc && error.loc.file) {
@@ -420,7 +421,9 @@ function handleRollupError(error) {
     const rawLines = fs.readFileSync(file, 'utf-8');
     // column + 1 is required due to rollup counting column start position from 0
     // whereas babel-code-frame counts from 1
-    const frame = codeFrame(rawLines, line, column + 1, {
+    const location = {start: {line, column: column + 1}};
+
+    const frame = codeFrame.codeFrameColumns(rawLines, location, {
       highlightCode: true,
     });
     console.error(frame);
@@ -466,7 +469,7 @@ async function buildEverything() {
     console.warn(
       '\nWarning: this build was created with --extract-errors enabled.\n' +
         'this will result in extremely slow builds and should only be\n' +
-        'used when the error map needs to be rebuilt.\n'
+        'used when the error map needs to be rebuilt.\n',
     );
   }
 }

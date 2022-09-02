@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
 
 export interface BreadCrumbItemPropsType
   extends React.LiHTMLAttributes<HTMLLIElement> {
@@ -46,8 +45,6 @@ const BreadCrumbItem = forwardRef<HTMLLIElement, BreadCrumbItemPropsType>(
   },
 );
 
-if (__DEV__) {
-  BreadCrumbItem.displayName = 'BreadCrumbItem';
-}
+BreadCrumbItem.displayName = 'BreadCrumbItem';
 
 export default BreadCrumbItem;

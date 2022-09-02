@@ -26,7 +26,7 @@ function lint({format, filePatterns}) {
     {
       // Allow colors to pass through
       stdio: 'inherit',
-    }
+    },
   );
   if (result.status !== 0) {
     console.error(chalk.red(`Linting of ${format} bundles has failed.`));
@@ -39,7 +39,7 @@ function lint({format, filePatterns}) {
 
 function checkFilesExist(bundle) {
   const {format, filePatterns} = bundle;
-  filePatterns.forEach(pattern => {
+  filePatterns.forEach((pattern) => {
     console.log(`Checking if files exist in ${pattern}...`);
     const files = glob.sync(pattern);
     if (files.length === 0) {

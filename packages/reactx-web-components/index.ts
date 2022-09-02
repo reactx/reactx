@@ -8,4 +8,4 @@
  */
 'use strict';
 
-export * from './src/ReactComponents';
+export * from './src/ReactWebComponents';

@@ -8,7 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef, useEffect, useRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
+
 import '../assets/elements.skeleton.scss';
 
 export interface SkeletonPropsType
@@ -40,7 +40,5 @@ const Skeleton = forwardRef<HTMLDivElement, SkeletonPropsType>((props, ref) => {
   );
 });
 
-if (__DEV__) {
-  Skeleton.displayName = 'Icon';
-}
+Skeleton.displayName = 'Icon';
 export {Skeleton};

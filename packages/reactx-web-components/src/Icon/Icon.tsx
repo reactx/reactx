@@ -8,7 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import {__DEV__} from '../../../reactx-base';
+
 import '../assets/elements.icon.scss';
 
 export interface SvgIconPropsType
@@ -33,7 +33,5 @@ SvgIcon.defaultProps = {
   viewBox: '0 0 24 24',
 };
 
-if (__DEV__) {
-  SvgIcon.displayName = 'Icon';
-}
+SvgIcon.displayName = 'Icon';
 export {SvgIcon};

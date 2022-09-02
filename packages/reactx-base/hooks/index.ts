@@ -1,1 +1,1 @@
-export * from './useComposeHandlers'
+export * from './useComposeHandlers';

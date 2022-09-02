@@ -8,20 +8,16 @@ const bundleTypes = {
 const UMD_DEV = bundleTypes.UMD_DEV;
 const UMD_PROD = bundleTypes.UMD_PROD;
 
-const moduleTypes = {
-  COMPONENT: 'COMPONENT',
-  UI: 'UI',
-};
-
-// React Components
-const COMPONENT = moduleTypes.COMPONENT;
-const UI = moduleTypes.UI;
-
 const bundles = [
-  /******* React Components (experimental) *******/
+  /******* React Components (web-components) *******/
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
-    moduleType: COMPONENT,
+    entry: '@reactx/reactx-web-components',
+    global: 'ReactWebComponents',
+    externals: ['react', 'react-dom'],
+  },
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD],
     entry: '@reactx/reactx-components',
     global: 'ReactComponents',
     externals: [
@@ -30,7 +26,7 @@ const bundles = [
       'react-datepicker',
       '@popperjs/core',
       'date-fns',
-      'react-transition-group'
+      'react-transition-group',
     ],
   },
 ];
@@ -54,6 +50,5 @@ deepFreeze(bundles);
 
 module.exports = {
   bundleTypes,
-  moduleTypes,
   bundles,
 };
