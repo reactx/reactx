@@ -35,6 +35,10 @@ const ButtonComponent = (props: ButtonPropsType) => {
   return (
     <button
       role='button'
+      src=
+      alt=
+      width= 
+      height=
       ref={forawardedRef}
       className={clsx(
         'x-btn',
