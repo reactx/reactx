@@ -1,0 +1,37 @@
+{
+  "name": "@reactx/reactx-disclosure-components",
+  "description": "The standard React Components",
+  "version": "1.0.0",
+  "author": "Behzad Abbasi <overafaik.com>",
+  "bugs": {
+    "url": "https://github.com/reactx/reactx/issues"
+  },
+  "homepage": "https://github.com/reactx/reactx/tree/master/packages/reactx-disclosure-components#readme",
+  "keywords": [
+    "reactx",
+    "components"
+  ],
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "index.d.ts",
+    ".npmrc",
+    "reactx-disclosure-components.js",
+    "reactx-disclosure-components.css",
+    "reactx-disclosure-components.min.js",
+    "reactx-disclosure-components.min.css",
+    "src/"
+  ],
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reactx/reactx.git",
+    "directory": "packages/reactx-disclosure-components"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1"
+  }
+}

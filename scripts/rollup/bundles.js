@@ -18,6 +18,30 @@ const bundles = [
   },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
+    entry: '@reactx/reactx-disclosure-components',
+    global: 'ReactDisclosureComponents',
+    externals: ['react', 'react-dom'],
+  },
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD],
+    entry: '@reactx/reactx-overlay-components',
+    global: 'ReactOverlayComponents',
+    externals: ['react', 'react-dom'],
+  },
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD],
+    entry: '@reactx/reactx-data-components',
+    global: 'ReactDataComponents',
+    externals: ['react', 'react-dom'],
+  },
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD],
+    entry: '@reactx/reactx-feedback-components',
+    global: 'ReactFeedbackComponents',
+    externals: ['react', 'react-dom'],
+  },
+  {
+    bundleTypes: [UMD_DEV, UMD_PROD],
     entry: '@reactx/reactx-components',
     global: 'ReactComponents',
     externals: [
