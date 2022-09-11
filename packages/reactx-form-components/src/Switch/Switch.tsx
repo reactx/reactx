@@ -12,7 +12,7 @@
  import {SwitchVariant, Variant} from '../types';
 
  export interface SwitchPropsType
-   extends React.SwitchHTMLAttributes<HTMLLabelElement> {
+   extends React.InputHTMLAttributes<HTMLLabelElement> {
     variant?: SwitchVariant;
     colorVariant?: Variant;
  }
@@ -44,7 +44,6 @@
  });
  
  Switch.defaultProps = {
-   type: 'label',
    variant:'rounded',
    colorVariant:'primary'
  };
