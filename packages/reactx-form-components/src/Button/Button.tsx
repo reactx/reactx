@@ -9,7 +9,7 @@
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
 import '../assets/elements.button.scss';
-import {Loading} from '../ReactComponents';
+import {Loading} from '../Loading/Loading';
 import {ButtonVariant, SpinnerPlacement, Variant} from '../types';
 
 export interface ButtonPropsType

@@ -6,3 +6,4 @@
  *
  */
 
+export * from './Sidebar/Sidebar';

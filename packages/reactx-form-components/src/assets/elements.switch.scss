@@ -7,57 +7,56 @@
       }
     }
   }
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 20px;
-    &__input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    &__span {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  &__span {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bebebe;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    &:before {
       position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #bebebe;
-      -webkit-transition: .4s;
-      transition: .4s;
-      &:before {
-        position: absolute;
-        content: "";
-        height: 12px;
-        width: 12px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-      }
+      content: '';
+      height: 12px;
+      width: 12px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
     }
-    &__input {
-      &:checked {
-        + {
-          .x-switch__span {
-            background-color:  var(--x-black-backdrop-1);
-            &:before {
-              -webkit-transform: translateX(16px);
-              -ms-transform: translateX(16px);
-              transform: translateX(16px);
-            }
+  }
+  &__input {
+    &:checked {
+      + {
+        .x-switch__span {
+          background-color: var(--x-black-backdrop-1);
+          &:before {
+            -webkit-transform: translateX(16px);
+            -ms-transform: translateX(16px);
+            transform: translateX(16px);
           }
         }
       }
-      &:focus {
-        + {
-          .x-switch__span {
-            box-shadow: 0 0 1px var(--x-black-backdrop-1);
-          }
+    }
+    &:focus {
+      + {
+        .x-switch__span {
+          box-shadow: 0 0 1px var(--x-black-backdrop-1);
         }
       }
     }
   }
-  
+}

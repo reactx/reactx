@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React, {ForwardedRef} from 'react';
-import '../assets/elements.closebutton.scss';
 
 export interface CloseButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

@@ -17,4 +17,6 @@ export * from './Card/Card';
 export * from './Icon/Icon';
 export * from './Skeleton/Skeleton';
 export * from './CloseButton/CloseButton';
+export * from './Image/Image';
+
 export {BreadCrumb, Card};
