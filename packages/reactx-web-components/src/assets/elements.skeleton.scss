@@ -1,17 +1,17 @@
 .x-skeleton {
-  box-shadow: 'none';
-  background-clip: 'padding-box';
+  box-shadow: none;
+  background-clip: padding-box;
   cursor: 'default';
   color: 'transparent';
-  pointer-events: 'none';
-  user-select: 'none';
+  pointer-events: none;
+  user-select: none;
   opacity: 0.7;
   background: rgb(160, 174, 192);
 
   &::after,
   &::before,
   * {
-    visibility: 'hidden';
+    visibility: hidden;
   }
 
   &--animate {
