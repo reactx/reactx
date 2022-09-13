@@ -8,4 +8,4 @@
  */
 'use strict';
 
-export * from './src/ReactSwiperComponents';
+export * from './src/ReactSliderComponents';
