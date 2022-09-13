@@ -33,6 +33,6 @@ const DateTime = (props: DateTimePropsType) => {
 
 DateTime.displayName = 'DateTime';
 DateTime.defaultProps = {
-  locale: locales.faIR,
+  locale: locales.enUS,
 };
 export default DateTime;
