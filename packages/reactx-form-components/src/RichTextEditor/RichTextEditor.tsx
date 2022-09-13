@@ -13,14 +13,14 @@ import { convertToHTML } from 'draft-convert';
 import DOMPurify from "dompurify";
 
 import '../assets/elements.rich-text-editor.scss';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 export interface RTEPropsType{
-    forawardedRef?: ForwardedRef<HTMLDivElement>;
     className?:string;
 }
 
 const RTEComponent =(props:RTEPropsType) => {
-    const { forawardedRef,className, ...restProps } = props;
+    const { className, ...restProps } = props;
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
     );
@@ -54,7 +54,6 @@ const RTEComponent =(props:RTEPropsType) => {
             />
             <div
                 className="x-rte__preview"
-                dangerouslySetInnerHTML={cretaeMarkup(convertedContent)}
             >
             </div>
         </div>
@@ -62,12 +61,9 @@ const RTEComponent =(props:RTEPropsType) => {
 };
 const RTE = forwardRef<HTMLDivElement, RTEPropsType>(
     (props, ref) => {
-      return <RTEComponent {...props} forawardedRef={ref} />;
+      return <RTEComponent {...props} />;
     },
   );  
-
-RTE.defaultProps = {
-}
 
 RTE.displayName = 'RichTextEditor'
 export { RTE };
