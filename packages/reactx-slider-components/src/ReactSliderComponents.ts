@@ -6,4 +6,7 @@
  *
  */
 
-export * from './Swiper/Swiper';
+ export * from './Swiper/Swiper';
+ export * from './Carousel/Carousel';
+ 
+
