@@ -8,24 +8,20 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef} from 'react';
-
-export type FormSelectType = 'checkbox' | 'radio';
+import React, {forwardRef} from 'react';
 
 export interface SelectPropsType
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  forawardedRef?: ForwardedRef<HTMLSelectElement>;
   isInvalid?: boolean;
   isValid?: boolean;
 }
 
-const SelectComponent = (props: SelectPropsType) => {
-  const {forawardedRef, className, isInvalid, isValid, children, ...restProps} =
-    props;
+const Select = forwardRef<HTMLSelectElement, SelectPropsType>((props, ref) => {
+  const {className, isInvalid, isValid, children, ...restProps} = props;
 
   return (
     <select
-      ref={forawardedRef}
+      ref={ref}
       className={clsx(
         'x-select',
         'x-form-control',
@@ -37,11 +33,7 @@ const SelectComponent = (props: SelectPropsType) => {
       {children}
     </select>
   );
-};
-
-const Select = React.forwardRef<HTMLSelectElement, SelectPropsType>(
-  (props, ref) => <SelectComponent {...props} forawardedRef={ref} />,
-);
+});
 
 Select.displayName = 'Select';
 export default Select;

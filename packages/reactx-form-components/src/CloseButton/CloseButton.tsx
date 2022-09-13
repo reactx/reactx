@@ -8,29 +8,25 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef} from 'react';
+import React, {forwardRef} from 'react';
 
 export interface CloseButtonPropsType
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  forawardedRef?: ForwardedRef<HTMLButtonElement>;
-}
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const CloseButtonComponent = (props: CloseButtonPropsType) => {
-  const {forawardedRef, className, ...restProps} = props;
-  return (
-    <button
-      ref={forawardedRef}
-      type='button'
-      aria-label='Close'
-      className={clsx('x-btn--close', className)}
-      {...restProps}>
-      &times;
-    </button>
-  );
-};
-
-const CloseButton = React.forwardRef<HTMLButtonElement, CloseButtonPropsType>(
-  (props, ref) => <CloseButtonComponent {...props} forawardedRef={ref} />,
+const CloseButton = forwardRef<HTMLButtonElement, CloseButtonPropsType>(
+  (props, ref) => {
+    const {className, ...restProps} = props;
+    return (
+      <button
+        ref={ref}
+        type='button'
+        aria-label='Close'
+        className={clsx('x-btn--close', className)}
+        {...restProps}>
+        &times;
+      </button>
+    );
+  },
 );
 
 CloseButton.displayName = 'CloseButton';

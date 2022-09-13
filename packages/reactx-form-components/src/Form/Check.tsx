@@ -8,14 +8,13 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef} from 'react';
+import React, {forwardRef} from 'react';
 import '../assets/elements.form-check.scss';
 
 export type FormCheckType = 'checkbox' | 'radio';
 
 export interface CheckPropsType
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  forawardedRef?: ForwardedRef<HTMLInputElement>;
   inline?: boolean;
   label?: React.ReactNode;
   type?: FormCheckType;
@@ -23,18 +22,9 @@ export interface CheckPropsType
   isValid?: boolean;
 }
 
-const CheckComponent = (props: CheckPropsType) => {
-  const {
-    forawardedRef,
-    className,
-    type,
-    inline,
-    label,
-    isInvalid,
-    isValid,
-    id,
-    ...restProps
-  } = props;
+const Check = forwardRef<HTMLInputElement, CheckPropsType>((props, ref) => {
+  const {className, type, inline, label, isInvalid, isValid, id, ...restProps} =
+    props;
 
   const hasLabel = label != null && label !== false;
 
@@ -51,7 +41,7 @@ const CheckComponent = (props: CheckPropsType) => {
         className='x-check__input'
         id={id}
         type={type}
-        ref={forawardedRef}
+        ref={ref}
         {...restProps}></input>
       {hasLabel && (
         <label className='x-check__label' htmlFor={id}>
@@ -60,11 +50,7 @@ const CheckComponent = (props: CheckPropsType) => {
       )}
     </div>
   );
-};
-
-const Check = React.forwardRef<HTMLInputElement, CheckPropsType>(
-  (props, ref) => <CheckComponent {...props} forawardedRef={ref} />,
-);
+});
 
 Check.displayName = 'Check';
 Check.defaultProps = {

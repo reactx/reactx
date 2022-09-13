@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import * as locales from 'date-fns/locale';
-import React from 'react';
 import DatePicker, {
   ReactDatePickerProps,
   registerLocale,

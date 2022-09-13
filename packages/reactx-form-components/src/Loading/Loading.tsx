@@ -8,28 +8,19 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef, forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 
-export interface LoadingPropsType extends React.HTMLAttributes<HTMLDivElement> {
-  forawardedRef?: ForwardedRef<HTMLDivElement>;
-}
+export interface LoadingPropsType
+  extends React.HTMLAttributes<HTMLDivElement> {}
 
-const LoadingComponent = (props: LoadingPropsType) => {
-  const {forawardedRef, className, ...restProps} = props;
+const Loading = forwardRef<HTMLDivElement, LoadingPropsType>((props, ref) => {
+  const {className, ...restProps} = props;
 
   return (
-    <div
-      ref={forawardedRef}
-      className={clsx('x-loading', className)}
-      {...restProps}>
+    <div ref={ref} className={clsx('x-loading', className)} {...restProps}>
       <span className='x-loading-circle'></span>
     </div>
   );
-};
-
-const Loading = forwardRef<HTMLDivElement, LoadingPropsType>((props, ref) => {
-  return <LoadingComponent {...props} forawardedRef={ref} />;
 });
-
 Loading.displayName = 'Loading';
 export {Loading};

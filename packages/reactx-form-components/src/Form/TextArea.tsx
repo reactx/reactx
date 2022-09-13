@@ -8,28 +8,24 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef} from 'react';
+import React, {forwardRef} from 'react';
 import '../assets/elements.form-control.scss';
 
 export interface TextAreaPropsType
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  forawardedRef?: ForwardedRef<HTMLTextAreaElement>;
-}
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-const TextAreaComponent = (props: TextAreaPropsType) => {
-  const {forawardedRef, className, children, ...restProps} = props;
-  return (
-    <textarea
-      ref={forawardedRef}
-      className={clsx('x-form-control', className)}
-      {...restProps}>
-      {children}
-    </textarea>
-  );
-};
-
-const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
-  (props, ref) => <TextAreaComponent {...props} forawardedRef={ref} />,
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
+  (props, ref) => {
+    const {className, children, ...restProps} = props;
+    return (
+      <textarea
+        ref={ref}
+        className={clsx('x-form-control', className)}
+        {...restProps}>
+        {children}
+      </textarea>
+    );
+  },
 );
 TextArea.defaultProps = {
   rows: 10,

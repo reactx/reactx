@@ -8,29 +8,17 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef} from 'react';
+import React, {forwardRef} from 'react';
 
 export interface SwitchPropsType
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  forawardedRef?: ForwardedRef<HTMLInputElement>;
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
   isInvalid?: boolean;
   isValid?: boolean;
 }
 
-const SwitchComponent = (props: SwitchPropsType) => {
-  const {
-    forawardedRef,
-    className,
-    label,
-    isInvalid,
-    isValid,
-    children,
-    id,
-    ...restProps
-  } = props;
-
-  const hasLabel = label != null && label !== false;
+const Switch = forwardRef<HTMLInputElement, SwitchPropsType>((props, ref) => {
+  const {className, label, isInvalid, isValid, id, ...restProps} = props;
 
   return (
     <div
@@ -45,22 +33,18 @@ const SwitchComponent = (props: SwitchPropsType) => {
           className='x-switch__input'
           id={id}
           type='checkbox'
-          ref={forawardedRef}
+          ref={ref}
           {...restProps}></input>
         <span className='x-switch__slider' />
       </label>
-      {hasLabel && (
+      {label !== null && label !== false && (
         <label className='x-switch__label' htmlFor={id}>
           {label}
         </label>
       )}
     </div>
   );
-};
-
-const Switch = React.forwardRef<HTMLInputElement, SwitchPropsType>(
-  (props, ref) => <SwitchComponent {...props} forawardedRef={ref} />,
-);
+});
 
 Switch.displayName = 'Switch';
 export default Switch;

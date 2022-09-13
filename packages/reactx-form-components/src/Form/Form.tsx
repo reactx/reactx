@@ -8,7 +8,7 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef, useCallback} from 'react';
+import React, {forwardRef, useCallback} from 'react';
 import '../assets/elements.form.scss';
 import Check from './Check';
 import Control from './Control';
@@ -19,17 +19,16 @@ import TextArea from './TextArea';
 
 export interface FormPropsType
   extends React.FormHTMLAttributes<HTMLFormElement> {
-  forawardedRef?: ForwardedRef<HTMLFormElement>;
   validated?: boolean;
   preventDfaultAction?: boolean;
 }
 
-const FormComponent = (props: FormPropsType) => {
+const Form = forwardRef<HTMLFormElement, FormPropsType>((props, ref) => {
   const {
-    forawardedRef,
     className,
     validated,
     preventDfaultAction,
+    children,
     onSubmit,
     ...restProps
   } = props;
@@ -44,18 +43,16 @@ const FormComponent = (props: FormPropsType) => {
   );
   return (
     <form
-      ref={forawardedRef}
+      ref={ref}
       onSubmit={handleSubmit}
       className={clsx('x-form', className, {
         'x-form--validate': validated,
       })}
-      {...restProps}></form>
+      {...restProps}>
+      {children}
+    </form>
   );
-};
-
-const Form = React.forwardRef<HTMLFormElement, FormPropsType>((props, ref) => (
-  <FormComponent {...props} forawardedRef={ref} />
-));
+});
 
 Form.defaultProps = {
   validated: true,
