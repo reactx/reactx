@@ -7,7 +7,7 @@
  */
 
 import clsx from 'clsx';
-import React, { ForwardedRef,forwardRef, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Editor, EditorState } from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from "dompurify";
@@ -19,7 +19,7 @@ export interface RTEPropsType{
     className?:string;
 }
 
-const RTEComponent =(props:RTEPropsType) => {
+const RTE = forwardRef<HTMLDivElement, RTEPropsType>((props, ref) => {
     const { className, ...restProps } = props;
     const [editorState, setEditorState] = useState(() =>
         EditorState.createEmpty()
@@ -40,7 +40,7 @@ const RTEComponent =(props:RTEPropsType) => {
     };
 
     return (
-        <div ref={forawardedRef} className={clsx(
+        <div ref={ref} className={clsx(
             'x-rte',
             className,
         )}
@@ -58,12 +58,7 @@ const RTEComponent =(props:RTEPropsType) => {
             </div>
         </div>
     );
-};
-const RTE = forwardRef<HTMLDivElement, RTEPropsType>(
-    (props, ref) => {
-      return <RTEComponent {...props} />;
-    },
-  );  
+});
 
 RTE.displayName = 'RichTextEditor'
-export { RTE };
+export {RTE};
