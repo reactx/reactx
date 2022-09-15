@@ -16,6 +16,7 @@ import DateTime from './DateTime';
 import Select from './Select';
 import Switch from './Switch';
 import TextArea from './TextArea';
+import Range from './Range';
 
 export interface FormPropsType
   extends React.FormHTMLAttributes<HTMLFormElement> {
@@ -66,4 +67,5 @@ export default Object.assign(Form, {
   Select,
   TextArea,
   DatePicker: DateTime,
+  Range
 });
