@@ -6,5 +6,4 @@
  *
  */
 
-const A = 1;
-export {A};
+export * from './Tag/Tags'
