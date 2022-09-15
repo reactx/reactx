@@ -36,7 +36,7 @@ function Tag(props: TagPropsType) {
 
   return (
     <div
-      className={clsx('x-tag__item',className)}
+      className={clsx('x-tag__item', className)}
       onKeyDown={onClickHandler}
       onClick={onClickHandler}>
       <span> {tag}</span>

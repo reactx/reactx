@@ -21,9 +21,7 @@ const bundles = [
       '@popperjs/core',
       'date-fns',
       'react-transition-group',
-      'dompurify',
-      'draft-convert',
-      'draft-js'
+      'draft-js',
     ],
   },
   {
@@ -48,7 +46,7 @@ const bundles = [
     bundleTypes: [UMD_DEV, UMD_PROD],
     entry: '@reactx/reactx-slider-components',
     global: 'ReactSliderComponents',
-    externals: ['react', 'react-dom','swiper'],
+    externals: ['react', 'react-dom', 'swiper'],
   },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],

@@ -23,6 +23,7 @@ const knownGlobals = Object.freeze({
   'date-fns': 'dateFNS',
   'react-transition-group': 'transitionGroup',
   '@popperjs/core': 'popperCore',
+  'draft-js': 'draft',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.

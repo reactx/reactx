@@ -6,59 +6,28 @@
  *
  */
 
-import clsx from 'clsx';
-import React, { forwardRef, useState } from 'react';
-import { Editor, EditorState } from 'draft-js';
-import { convertToHTML } from 'draft-convert';
-import DOMPurify from "dompurify";
+import {Editor, EditorProps, EditorState} from 'draft-js';
+import {forwardRef, useState} from 'react';
 
+import 'draft-js/dist/Draft.css';
 import '../assets/elements.rich-text-editor.scss';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-export interface RTEPropsType{
-    className?:string;
-}
+export interface RTEPropsType extends EditorProps {}
 
-const RTE = forwardRef<HTMLDivElement, RTEPropsType>((props, ref) => {
-    const { className, ...restProps } = props;
-    const [editorState, setEditorState] = useState(() =>
-        EditorState.createEmpty()
-    );
-    const [convertedContent, setConvertedContent] = useState(null);
-    const handleEditorChange = (state) => {
-        setEditorState(state);
-        convertedContentToHTML();
-    }
-    const convertedContentToHTML = () => {
-        let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(currentContentAsHTML);
-    }
-    const cretaeMarkup = (html) => {
-        return {
-            __html: DOMPurify.sanitize(html)
-        };
-    };
+const RTE = forwardRef<Editor, RTEPropsType>((props, ref) => {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty(),
+  );
 
-    return (
-        <div ref={ref} className={clsx(
-            'x-rte',
-            className,
-        )}
-            {...restProps}>
-            <Editor
-                editorState={editorState}
-                onEditorStateChange={handleEditorChange}
-                wrapperClassName="x-rte__wrapper"
-                editorClassName="x-rte__editor"
-                toolbarClassName="x-rte__toolbar"
-            />
-            <div
-                className="x-rte__preview"
-            >
-            </div>
-        </div>
-    );
+  return (
+    <Editor
+      {...props}
+      ref={ref}
+      editorState={editorState}
+      onChange={(state) => setEditorState(state)}
+    />
+  );
 });
 
-RTE.displayName = 'RichTextEditor'
+RTE.displayName = 'RichTextEditor';
 export {RTE};

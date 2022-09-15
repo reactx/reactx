@@ -20,7 +20,7 @@ const Range = forwardRef<HTMLInputElement, RangePropsType>((props, ref) => {
     <input
       ref={ref}
       type={'range'}
-      className={clsx('x-form-control','x-range', className)}
+      className={clsx('x-form-control', 'x-range', className)}
       {...restProps}></input>
   );
 });

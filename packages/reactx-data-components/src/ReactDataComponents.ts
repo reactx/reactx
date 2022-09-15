@@ -6,4 +6,4 @@
  *
  */
 
-export * from './Tag/Tags'
+export * from './Tag/Tags';

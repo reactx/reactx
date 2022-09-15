@@ -67,5 +67,5 @@ export default Object.assign(Form, {
   Select,
   TextArea,
   DatePicker: DateTime,
-  Range
+  Range,
 });
