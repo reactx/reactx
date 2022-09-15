@@ -7,27 +7,31 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
 
-import {Swiper, SwiperSlide} from 'swiper/react';
+import {Swiper as SwipperCP, SwiperSlide, SwiperSlideProps} from 'swiper/react';
+import {SwiperOptions} from 'swiper/types';
 
-import '../assets/elements.swiper.scss';
 import 'swiper/css';
+import '../assets/elements.swiper.scss';
 
-export interface SwiperPropsType {
-  variant?: SwiperVariant;
+export interface SwiperPropsType extends SwiperOptions {
+  className?: string;
+  children: React.ReactElement<SwiperSlideProps, typeof SwiperSlide>[];
 }
 
-const Swiper = forwardRef<HTMLDivElement, SwiperPropsType>((props, ref) => {
-  const {className, children, variant, ...restProps} = props;
+const Swiper = (props: SwiperPropsType) => {
+  const {className, children, ...restProps} = props;
 
   return (
-    <Swiper
-      clssName={clsx('x-swiper', 'x-swiper' + variant)}
-      spaceBetween={50}
-      slidesPerview={3}
-      {...restProps}>
-      <SwiperSlide>{children}</SwiperSlide>
-    </Swiper>
+    <SwipperCP className={clsx('x-swiper', className)} {...restProps}>
+      {children}
+    </SwipperCP>
   );
-});
+};
+
+Swiper.defaultProps = {
+  spaceBetween: 50,
+  slidesPerView: 3,
+};
+
+export {Swiper};

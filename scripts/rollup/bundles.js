@@ -42,12 +42,12 @@ const bundles = [
     global: 'ReactOverlayComponents',
     externals: ['react', 'react-dom'],
   },
-  {
-    bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx/reactx-slider-components',
-    global: 'ReactSliderComponents',
-    externals: ['react', 'react-dom', 'swiper'],
-  },
+  // {
+  //   bundleTypes: [UMD_DEV, UMD_PROD],
+  //   entry: '@reactx/reactx-slider-components',
+  //   global: 'ReactSliderComponents',
+  //   externals: ['react', 'react-dom', 'swiper'],
+  // },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
     entry: '@reactx/reactx-data-components',

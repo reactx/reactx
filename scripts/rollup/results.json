@@ -312,15 +312,15 @@
       "filename": "reactx-form-components.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-form-components",
-      "size": 38021,
-      "gzip": 9047
+      "size": 35479,
+      "gzip": 8694
     },
     {
       "filename": "reactx-form-components.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-form-components",
-      "size": 27113,
-      "gzip": 6541
+      "size": 19289,
+      "gzip": 5966
     },
     {
       "filename": "reactx-overlay-components.js",
@@ -335,6 +335,20 @@
       "packageName": "reactx-overlay-components",
       "size": 1982,
       "gzip": 938
+    },
+    {
+      "filename": "reactx-data-components.js",
+      "bundleType": "UMD_DEV",
+      "packageName": "reactx-data-components",
+      "size": 5223,
+      "gzip": 1986
+    },
+    {
+      "filename": "reactx-data-components.min.js",
+      "bundleType": "UMD_PROD",
+      "packageName": "reactx-data-components",
+      "size": 2772,
+      "gzip": 1225
     }
   ]
 }

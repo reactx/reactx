@@ -24,6 +24,7 @@ const knownGlobals = Object.freeze({
   'react-transition-group': 'transitionGroup',
   '@popperjs/core': 'popperCore',
   'draft-js': 'draft',
+  swiper: 'swiperCP',
 });
 
 // Given ['react'] in bundle externals, returns { 'react': 'React' }.
