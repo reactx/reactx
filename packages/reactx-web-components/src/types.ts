@@ -16,7 +16,7 @@ export type ButtonVariant =
   | 'upload'
   | 'badge'
   | 'float';
-
+export type AccordionVariant = 'checkbox' | 'radio';
 export type SpinnerPlacement = 'start' | 'end';
 
 export const typeOfComponent = (component: any): string =>
