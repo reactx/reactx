@@ -7,6 +7,18 @@
       position: absolute;
       opacity: 0;
       z-index: -1;
+      &:checked {
+        + .x-accordion__label {
+          background: #000;
+          &::after {
+            transform: rotate(90deg);
+          }
+        }
+        ~ .x-accordion__content {
+          max-height: 100vh;
+          padding: 1em;
+        }
+      }  
     }  
     &__label {
       display: flex;
@@ -30,17 +42,4 @@
       background: white;
       transition: all .35s;
     }
-  }
-
-  input:checked {
-    + .x-accordion__label {
-      background: darken(#000, 10%);
-      &::after {
-        transform: rotate(90deg);
-      }
-    }
-    ~ .x-accordion__content {
-      max-height: 100vh;
-      padding: 1em;
-    }
-  }  
+}
