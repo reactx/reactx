@@ -1,0 +1,45 @@
+
+.x-accordion {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+    &__input {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+      &:checked {
+        + .x-accordion__label {
+          background: #000;
+          &::after {
+            transform: rotate(90deg);
+          }
+        }
+        ~ .x-accordion__content {
+          max-height: 100vh;
+          padding: 1em;
+        }
+      }  
+    }  
+    &__label {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+      background: #000;
+      font-weight: bold;
+      cursor: pointer;
+      &::after {
+        content: "\276F";
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        transition: all .35s;
+      }
+    }
+    &__content {
+      max-height: 0;
+      padding: 0 1em;
+      color: #000;
+      background: white;
+      transition: all .35s;
+    }
+}
