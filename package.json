@@ -21,6 +21,9 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.3",
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.1.2",
+    "@testing-library/jest-dom": "^5.14.1",
     "@types/react": "^18.0.14",
     "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "^18.0.5",
@@ -53,6 +56,12 @@
   "scripts": {
     "build": "npm run prettier & node ./scripts/rollup/build.js",
     "prettier": "prettier --config .prettierrc --write \"**/*.{js,jsx,ts,tsx,scss,css}\""
+  },
+  "eslintConfig": {
+    "extends":[
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@reactx"
