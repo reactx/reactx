@@ -8,11 +8,10 @@
  */
 
 import clsx from 'clsx';
-import React, { forwardRef } from 'react';
+import React, {forwardRef} from 'react';
 
 import '../assets/elements.accordion.scss';
-import { AccordionVariant, Variant } from '../types';
-
+import {AccordionVariant, Variant} from '../types';
 
 export interface AccordionPropsType
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -23,31 +22,38 @@ export interface AccordionPropsType
   id?: string;
 }
 
-const Accordion = forwardRef<HTMLInputElement, AccordionPropsType>((props, ref) => {
-  const { className, variant, colorVariant, label, id,name, children, ...restProps } = props;
-  return (
-    <div
-      ref={ref}
-      className={clsx(
-        'x-accordion',
-        'x-accordion' + colorVariant,
-        className,
-      )}
-      {...restProps}>
-      <input
-        className='x-accordion__input'
-        name={name}
-        type={variant}
-        id={id} />
-      <label
-        className='x-accordion__label'
-        htmlFor={id}>{label}</label>
-      <div className='x-accordion__content'>
-        {children}
+const Accordion = forwardRef<HTMLInputElement, AccordionPropsType>(
+  (props, ref) => {
+    const {
+      className,
+      variant,
+      colorVariant,
+      label,
+      id,
+      name,
+      children,
+      ...restProps
+    } = props;
+    return (
+      <div
+        ref={ref}
+        className={clsx('x-accordion', 'x-accordion' + colorVariant, className)}
+        {...restProps}>
+        <input
+          className='x-accordion__input'
+          name={name}
+          type={variant}
+          id={id}
+        />
+        <label className='x-accordion__label' htmlFor={id}>
+          {label}
+        </label>
+        <div className='x-accordion__content'>{children}</div>
       </div>
-    </div>
-  )
-})
+    );
+  },
+);
 
 Accordion.displayName = 'Accordion';
-export default Accordion;
+
+export {Accordion};
