@@ -66,10 +66,10 @@ describe('<Button />', () => {
       expect(handleClick).toBeCalledTimes(0);
     });
   });
-  describe('accessibility',()=>{
-    it('sets aria-disabled="true" when componenet is disabled',()=>{
-        const {getByRole} = render(<Button disabled></Button>);
-        expect(getByRole('button')).toHaveAttribute('aria-disabled');
-    })
-  })
+  describe('accessibility', () => {
+    it('sets aria-disabled="true" when componenet is disabled', () => {
+      const {getByRole} = render(<Button disabled></Button>);
+      expect(getByRole('button')).toHaveAttribute('aria-disabled');
+    });
+  });
 });
