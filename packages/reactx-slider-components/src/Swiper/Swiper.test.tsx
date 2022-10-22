@@ -25,7 +25,7 @@ describe('<SwiperSlide/>', () => {
     it('should show current image in slider', () => {
       const {container} = render(<SwiperSlide />);
       const root = container.firstChild;
-      // TODO:add current image in slider 
+      // TODO:add current image in slider
     });
   });
 });

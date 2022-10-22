@@ -14,7 +14,7 @@ import {Variant} from '../types';
 export interface BadgePropsType extends React.HTMLAttributes<HTMLElement> {
   variant?: Variant;
   forawardedRef?: ForwardedRef<HTMLElement>;
-  text: string;
+  text?: string;
   pill?: boolean;
 }
 

@@ -21,7 +21,7 @@ describe('<Image />', () => {
     });
 
     it('prop: multiple attributes', () => {
-      const {container} = render(<Image alt='' src='' id='1'/>);
+      const {container} = render(<Image alt='' src='' id='1' />);
       const root = container.firstChild;
       expect(root).toHaveAttribute('id');
       expect(root).toHaveAttribute('src');

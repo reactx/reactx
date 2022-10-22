@@ -18,7 +18,6 @@ export interface AccordionPropsType
   variant?: AccordionVariant;
   colorVariant?: Variant;
   label?: React.ReactNode;
-  name: string;
   id?: string;
 }
 
