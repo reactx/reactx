@@ -18,7 +18,7 @@ const Dropdown = forwardRef<HTMLElement, DropdownPropsType>((props, ref) => {
     setOpen(!open);
   };
   return (
-    <div className={clsx('x-dropdown')}>
+    <div className={clsx('x-dropdown')} {...restProps}>
       <button onClick={handleOpen}></button>
       {open ? (
         <ul className='x-dropdown__menu'>
