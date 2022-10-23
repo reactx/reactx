@@ -8,6 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef, useState} from 'react';
+import {Button} from '../Button/Button';
 
 export interface DropdownPropsType extends React.HTMLAttributes<HTMLElement> {}
 
@@ -19,11 +20,11 @@ const Dropdown = forwardRef<HTMLElement, DropdownPropsType>((props, ref) => {
   };
   return (
     <div className={clsx('x-dropdown')} {...restProps}>
-      <button onClick={handleOpen}></button>
+      <Button onClick={handleOpen}></Button>
       {open ? (
         <ul className='x-dropdown__menu'>
           <li className='x-dropdown__menu-item'>
-            <button>{children}</button>
+            <Button>{children}</Button>
           </li>
         </ul>
       ) : null}
