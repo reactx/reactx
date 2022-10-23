@@ -7,13 +7,13 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useState} from 'react';
 
 export interface DropdownPropsType extends React.HTMLAttributes<HTMLElement> {}
 
 const Dropdown = forwardRef<HTMLElement, DropdownPropsType>((props, ref) => {
   const {className, children, ...restProps} = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
