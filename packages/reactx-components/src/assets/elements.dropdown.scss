@@ -1,10 +1,11 @@
 .x-dropdown {
+  list-style: none;
     position: relative;
   }
   
   &__menu {
     position: absolute;
-  
+    z-index: 99999;
     list-style-type: none;
     margin: 5px 0;
     padding: 0;
