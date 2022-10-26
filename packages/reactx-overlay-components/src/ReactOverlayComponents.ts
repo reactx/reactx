@@ -7,3 +7,4 @@
  */
 
 export * from './Sidebar/Sidebar';
+export * from './Wizard/Wizard';
