@@ -8,27 +8,18 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef, forwardRef, useCallback} from 'react';
+import React, {forwardRef, useCallback} from 'react';
 import '../assets/elements.tab.scss';
 
 export interface TabPropsType
   extends Omit<React.LiHTMLAttributes<HTMLLIElement>, 'onChange'> {
-  forawardedRef?: ForwardedRef<HTMLLIElement>;
   selected?: boolean;
   name: any;
   onChange?: (name: any) => void;
 }
 
-const TabComponent = (props: TabPropsType) => {
-  const {
-    forawardedRef,
-    className,
-    children,
-    selected,
-    name,
-    onChange,
-    ...restProps
-  } = props;
+const Tab = forwardRef<HTMLLIElement, TabPropsType>((props, ref) => {
+  const {className, children, selected, name, onChange, ...restProps} = props;
 
   const handleClick = useCallback(() => {
     if (onChange) onChange(name);
@@ -36,18 +27,15 @@ const TabComponent = (props: TabPropsType) => {
 
   return (
     <li
-      ref={forawardedRef}
+      ref={ref}
       onClick={handleClick}
       className={clsx('x-tab', className, {'x-tab--selected': selected})}
       {...restProps}>
       {children}
     </li>
   );
-};
-
-const Tab = forwardRef<HTMLLIElement, TabPropsType>((props, ref) => {
-  return <TabComponent {...props} forawardedRef={ref} />;
 });
+
 Tab.defaultProps = {
   role: 'tab',
 };

@@ -8,29 +8,21 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef, forwardRef} from 'react';
+import React, {forwardRef} from 'react';
 
-export interface TabPanePropsType
+export interface TabPanelPropsType
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'hidden'> {
-  forawardedRef?: ForwardedRef<HTMLDivElement>;
   hidden: boolean;
   unmountOnExit?: boolean;
 }
 
-const TabPanelComponent = (props: TabPanePropsType) => {
-  const {
-    forawardedRef,
-    className,
-    children,
-    hidden,
-    unmountOnExit,
-    ...restProps
-  } = props;
+const TabPanel = forwardRef<HTMLDivElement, TabPanelPropsType>((props, ref) => {
+  const {className, children, hidden, unmountOnExit, ...restProps} = props;
 
   return unmountOnExit ? (
     !hidden ? (
       <div
-        ref={forawardedRef}
+        ref={ref}
         role='tabpanel'
         className={clsx('x-tab-panel', className)}
         {...restProps}>
@@ -39,7 +31,7 @@ const TabPanelComponent = (props: TabPanePropsType) => {
     ) : null
   ) : (
     <div
-      ref={forawardedRef}
+      ref={ref}
       hidden={hidden}
       role='tabpanel'
       className={clsx('x-tab-panel', className)}
@@ -47,11 +39,8 @@ const TabPanelComponent = (props: TabPanePropsType) => {
       {children}
     </div>
   );
-};
-
-const TabPanel = forwardRef<HTMLDivElement, TabPanePropsType>((props, ref) => {
-  return <TabPanelComponent {...props} forawardedRef={ref} />;
 });
+
 TabPanel.defaultProps = {
   hidden: true,
   unmountOnExit: false,
