@@ -26,4 +26,4 @@ export * from './Modal/Modal';
 export * from './Tooltip/Tooltip';
 export * from './Wizard/Wizard';
 
-export {BreadCrumb, Card, Form, TabList, Wizard};
+export {BreadCrumb, Card, Form, Wizard};
