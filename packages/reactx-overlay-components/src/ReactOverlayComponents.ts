@@ -6,5 +6,12 @@
  *
  */
 
+ import TabList from './Tab/TabList';
+
+
 export * from './Sidebar/Sidebar';
+export * from './Tab/Tab';
 export * from './Wizard/Wizard';
+
+
+export {TabList};

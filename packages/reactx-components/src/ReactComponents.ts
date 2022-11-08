@@ -9,7 +9,6 @@
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import Card from './Card/Card';
 import Form from './Form/Form';
-import TabList from './Tab/TabList';
 import Wizard from './Wizard/Wizard';
 
 export * from './Alert/Alert';
@@ -24,7 +23,6 @@ export * from './Form/Form';
 export * from './Header/Header';
 export * from './Loading/Loading';
 export * from './Modal/Modal';
-export * from './Tab/Tab';
 export * from './Tooltip/Tooltip';
 export * from './Wizard/Wizard';
 
