@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+import Wizard from './Wizard/Wizard';
 
 export * from './Sidebar/Sidebar';
 export * from './Wizard/Wizard';
+export {Wizard};
