@@ -5,8 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+
 import Wizard from './Wizard/Wizard';
+import TabList from './Tab/TabList';
 
 export * from './Sidebar/Sidebar';
+export * from './Tab/Tab';
 export * from './Wizard/Wizard';
-export {Wizard};
+
+export {TabList, Wizard};

@@ -8,20 +8,18 @@
  */
 
 import clsx from 'clsx';
-import React, {ForwardedRef, forwardRef, useCallback} from 'react';
+import React, {forwardRef, useCallback} from 'react';
 import Tab from './Tab';
 import TabPanel from './TabPanel';
 
 export interface TabListPropsType
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'onChange'> {
-  forawardedRef?: ForwardedRef<HTMLUListElement>;
   value?: string | number;
   onChange: (name: string | number) => void;
 }
 
-const TabListComponent = (props: TabListPropsType) => {
-  const {forawardedRef, className, children, value, onChange, ...restProps} =
-    props;
+const TabList = forwardRef<HTMLUListElement, TabListPropsType>((props, ref) => {
+  const {className, children, value, onChange, ...restProps} = props;
 
   const getChildrens = useCallback(() => {
     const childrens = React.Children.map(children, (child) => {
@@ -37,18 +35,12 @@ const TabListComponent = (props: TabListPropsType) => {
   }, [value, onChange, children]);
 
   return (
-    <ul
-      ref={forawardedRef}
-      className={clsx('x-tab-list', className)}
-      {...restProps}>
+    <ul ref={ref} className={clsx('x-tab-list', className)} {...restProps}>
       {getChildrens()}
     </ul>
   );
-};
-
-const TabList = forwardRef<HTMLUListElement, TabListPropsType>((props, ref) => {
-  return <TabListComponent {...props} forawardedRef={ref} />;
 });
+
 TabList.defaultProps = {
   role: 'tablist',
 };
