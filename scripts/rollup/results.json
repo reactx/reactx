@@ -326,15 +326,15 @@
       "filename": "reactx-overlay-components.js",
       "bundleType": "UMD_DEV",
       "packageName": "reactx-overlay-components",
-      "size": 82574,
-      "gzip": 20022
+      "size": 152347,
+      "gzip": 36702
     },
     {
       "filename": "reactx-overlay-components.min.js",
       "bundleType": "UMD_PROD",
       "packageName": "reactx-overlay-components",
-      "size": 14106,
-      "gzip": 4394
+      "size": 39899,
+      "gzip": 12491
     },
     {
       "filename": "reactx-data-components.js",

@@ -10,6 +10,7 @@ import Wizard from './Wizard/Wizard';
 import TabList from './Tab/TabList';
 
 export * from './Sidebar/Sidebar';
+export * from './Tooltip/Tooltip';
 export * from './Tab/Tab';
 export * from './Wizard/Wizard';
 
