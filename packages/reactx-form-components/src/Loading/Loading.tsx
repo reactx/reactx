@@ -18,8 +18,10 @@ const Loading = forwardRef<HTMLDivElement, LoadingPropsType>((props, ref) => {
   const {className, ...restProps} = props;
 
   return (
-    <div ref={ref} className={clsx('x-loading', className)} {...restProps}>
-    </div>
+    <div
+      ref={ref}
+      className={clsx('x-loading', className)}
+      {...restProps}></div>
   );
 });
 Loading.displayName = 'Loading';
