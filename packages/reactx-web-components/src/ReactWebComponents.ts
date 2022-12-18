@@ -6,17 +6,10 @@
  *
  */
 import BreadCrumb from './BreadCrumb/BreadCrumb';
-import Card from './Card/Card';
 
-export * from './Alert/Alert';
-export * from './Avatar/Avatar';
 export * from './Badge/Badge';
 export * from './BreadCrumb/BreadCrumb';
-export * from './Button/Button';
 export * from './Card/Card';
-export * from './Icon/Icon';
 export * from './Skeleton/Skeleton';
-export * from './CloseButton/CloseButton';
-export * from './Image/Image';
 
-export {BreadCrumb, Card};
+export {BreadCrumb};

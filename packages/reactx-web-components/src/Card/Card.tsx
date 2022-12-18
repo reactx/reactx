@@ -7,36 +7,24 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
-import '../assets/elements.card.scss';
-import {Variant} from '../types';
-import CardFooter from './CardFooter';
-import CardHeader from './CardHeader';
-import CardImage from './CardImage';
+import React from 'react';
 
-export interface CardPropsType extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: Variant;
+interface CardPropsType extends React.HTMLAttributes<HTMLDivElement> {
+  header?: React.ReactNode | string;
+  footer?: React.ReactNode | string;
 }
-
-const Card = forwardRef<HTMLDivElement, CardPropsType>((props, ref) => {
-  const {className, children, variant, ...restProps} = props;
+export const Card: React.FC<CardPropsType> = ({
+  className,
+  children,
+  header,
+  footer,
+  ...restProps
+}) => {
   return (
-    <div
-      ref={ref}
-      className={clsx('x-card', 'x-card--' + variant, className)}
-      {...restProps}>
-      {children}
+    <div className={clsx('x-card', className)} {...restProps}>
+      {header && <div className='x-card__header'>{header}</div>}
+      <div className='x-card__body'>{children}</div>
+      {footer && <div className='x-card__footer'>{footer}</div>}
     </div>
   );
-});
-
-Card.displayName = 'Card';
-Card.defaultProps = {
-  variant: 'primary',
 };
-
-export default Object.assign(Card, {
-  Img: CardImage,
-  Header: CardHeader,
-  Footer: CardFooter,
-});

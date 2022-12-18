@@ -7,38 +7,23 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef, useEffect, useRef} from 'react';
+import React from 'react';
 
-import '../assets/elements.skeleton.scss';
-
-export interface SkeletonPropsType
-  extends React.HTMLAttributes<HTMLDivElement> {}
-
-const useIsFirstRender = () => {
-  const isFirstRender = useRef(true);
-
-  useEffect(() => {
-    isFirstRender.current = false;
-  }, []);
-
-  return isFirstRender.current;
-};
-
-const Skeleton = forwardRef<HTMLDivElement, SkeletonPropsType>((props, ref) => {
-  const {className, children, ...restProps} = props;
-  const isFirstRender = useIsFirstRender();
-
+interface SkeletonPropsType extends React.HTMLAttributes<HTMLDivElement> {
+  lines?: number;
+}
+const Skeleton: React.FC<SkeletonPropsType> = ({
+  className,
+  children,
+  lines = 1,
+  ...restProps
+}) => {
   return (
-    <div
-      ref={ref}
-      className={clsx(
-        'x-skeleton',
-        className,
-        isFirstRender && 'x-skeleton--animate',
-      )}
-      {...restProps}></div>
+    <div className={clsx('x-skeleton', className)} {...restProps}>
+      {Array.from({length: lines}).map((_, index) => (
+        <div key={index} className='x-skeleton--line' />
+      ))}
+    </div>
   );
-});
-
-Skeleton.displayName = 'Icon';
+};
 export {Skeleton};

@@ -7,36 +7,28 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
-
-import '../assets/elements.badge.scss';
-import {Variant} from '../types';
+import React from 'react';
+import {Colors} from '../types';
 
 export interface BadgePropsType extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: Variant;
-  text?: string;
+  color?: Colors;
   pill?: boolean;
 }
 
-const Badge = forwardRef<HTMLSpanElement, BadgePropsType>((props, ref) => {
-  const {className, text, variant, pill, ...restProps} = props;
+export const Badge: React.FC<BadgePropsType> = ({
+  className,
+  pill = false,
+  color = 'primary',
+  children,
+  ...restProps
+}) => {
   return (
     <span
-      ref={ref}
-      className={clsx('x-badge', 'x-badge--' + variant, className, {
+      className={clsx('x-badge', 'x-badge--' + color, className, {
         'x-badge--pill': pill,
       })}
       {...restProps}>
-      {text}
+      {children}
     </span>
   );
-});
-
-Badge.defaultProps = {
-  variant: 'primary',
-  pill: false,
 };
-
-Badge.displayName = 'Badge';
-
-export {Badge};

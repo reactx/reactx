@@ -1,20 +1,23 @@
-import {fireEvent, render, screen} from '@testing-library/react';
+import React from 'react';
+import {render, cleanup} from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import {Badge} from './Badge';
 
-describe('<Badge />', () => {
-  describe('inital state', () => {
-    it('should have default class', () => {
-      const {container} = render(<Badge />);
-      const root = container.firstChild;
+afterEach(cleanup);
 
-      expect(root).toHaveClass('x-badge');
-      expect(root).not.toHaveClass('undefined');
-    });
-    it('should badge type', () => {
-      const {container} = render(<Badge />);
-      const root = container.firstChild;
+describe('Badge', () => {
+  it('renders the correct class for the color prop', () => {
+    const {getByText} = render(<Badge color='primary'>New</Badge>);
+    expect(getByText('New')).toHaveClass('badge--primary');
+  });
 
-      expect(root).toHaveAttribute('type');
-    });
+  it('renders the pill class when the pill prop is true', () => {
+    const {getByText} = render(<Badge pill>2</Badge>);
+    expect(getByText('2')).toHaveClass('badge--pill');
+  });
+
+  it('renders the children', () => {
+    const {getByText} = render(<Badge>Hello</Badge>);
+    expect(getByText('Hello')).toBeInTheDocument();
   });
 });

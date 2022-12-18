@@ -8,7 +8,7 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
+import React from 'react';
 
 export interface BreadCrumbItemPropsType
   extends React.LiHTMLAttributes<HTMLLIElement> {
@@ -17,34 +17,26 @@ export interface BreadCrumbItemPropsType
   isLastChild?: boolean;
 }
 
-const BreadCrumbItem = forwardRef<HTMLLIElement, BreadCrumbItemPropsType>(
-  (props, ref) => {
-    const {
-      className,
-      isLastChild,
-      separator,
-      active,
-      children,
-      title,
-      ...restProps
-    } = props;
-
-    return (
-      <li
-        ref={ref}
-        className={clsx('x-breadcrumb__item', className, {
-          'x-active': active,
-        })}
-        {...restProps}>
-        <>
-          {children}
-          {!isLastChild && {separator}}
-        </>
-      </li>
-    );
-  },
-);
-
-BreadCrumbItem.displayName = 'BreadCrumbItem';
-
+const BreadCrumbItem: React.FC<BreadCrumbItemPropsType> = ({
+  className,
+  isLastChild,
+  separator,
+  active,
+  children,
+  title,
+  ...restProps
+}) => {
+  return (
+    <li
+      className={clsx('x-breadcrumb__item', className, {
+        'x-active': active,
+      })}
+      {...restProps}>
+      <>
+        {children}
+        {!isLastChild && {separator}}
+      </>
+    </li>
+  );
+};
 export default BreadCrumbItem;

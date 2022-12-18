@@ -53,26 +53,7 @@ const bundles = [
     entry: '@reactx/reactx-data-components',
     global: 'ReactDataComponents',
     externals: ['react', 'react-dom'],
-  },
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   entry: '@reactx/reactx-feedback-components',
-  //   global: 'ReactFeedbackComponents',
-  //   externals: ['react', 'react-dom'],
-  // },
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   entry: '@reactx/reactx-components',
-  //   global: 'ReactComponents',
-  //   externals: [
-  //     'react',
-  //     'react-dom',
-  //     'react-datepicker',
-  //     '@popperjs/core',
-  //     'date-fns',
-  //     'react-transition-group',
-  //   ],
-  // },
+  },  
 ];
 // Based on deep-freeze by substack (public domain)
 function deepFreeze(o) {
