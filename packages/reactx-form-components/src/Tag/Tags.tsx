@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React, {forwardRef, useCallback, useMemo, useState} from 'react';
-import '../assets/elements.tag.scss';
 import Tag from './Tag';
 
 interface TagsPropsType extends React.InputHTMLAttributes<HTMLInputElement> {

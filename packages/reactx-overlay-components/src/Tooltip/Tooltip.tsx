@@ -11,7 +11,6 @@ import {createPopper, Placement} from '@popperjs/core';
 import clsx from 'clsx';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
-import '../assets/elements.tooltip.scss';
 
 export interface TooltipPropsType
   extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'children'> {

@@ -9,7 +9,6 @@
 
 import clsx from 'clsx';
 import React, {forwardRef, useCallback} from 'react';
-import '../assets/elements.tab.scss';
 
 export interface TabPropsType
   extends Omit<React.LiHTMLAttributes<HTMLLIElement>, 'onChange'> {

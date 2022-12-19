@@ -12,7 +12,6 @@ import {Swiper as SwipperCP, SwiperSlide, SwiperSlideProps} from 'swiper/react';
 import {SwiperOptions} from 'swiper/types';
 
 import 'swiper/css';
-import '../assets/elements.swiper.scss';
 
 export interface SwiperPropsType extends SwiperOptions {
   className?: string;

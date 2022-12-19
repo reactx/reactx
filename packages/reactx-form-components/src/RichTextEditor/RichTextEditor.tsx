@@ -8,9 +8,7 @@
 
 import {Editor, EditorProps, EditorState} from 'draft-js';
 import {forwardRef, useState} from 'react';
-
 import 'draft-js/dist/Draft.css';
-import '../assets/elements.rich-text-editor.scss';
 
 export interface RTEPropsType extends EditorProps {}
 

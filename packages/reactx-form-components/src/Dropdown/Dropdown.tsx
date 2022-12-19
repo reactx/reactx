@@ -6,30 +6,42 @@
  *
  */
 
-import clsx from 'clsx';
-import React, {forwardRef, useState} from 'react';
-import {Button} from '../Button/Button';
+import React, {useState} from 'react';
 
-export interface DropdownPropsType extends React.HTMLAttributes<HTMLElement> {}
+type Option = {
+  value: string;
+  label: string;
+};
 
-const Dropdown = forwardRef<HTMLElement, DropdownPropsType>((props, ref) => {
-  const {className, children, ...restProps} = props;
+type Props = {
+  options: Option[];
+  value: string;
+  onChange: (value: string) => void;
+};
+
+export const Dropdown: React.FC<Props> = ({options, value, onChange}) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(!open);
-  };
+
   return (
-    <div className={clsx('x-dropdown')} {...restProps}>
-      <Button onClick={handleOpen}></Button>
-      {open ? (
-        <ul className='x-dropdown__menu'>
-          <li className='x-dropdown__menu-item'>
-            <Button>{children}</Button>
-          </li>
+    <div className='x-dropdown'>
+      <button className='x-dropdown-button' onClick={() => setOpen(!open)}>
+        {options.find((option) => option.value === value)?.label}
+      </button>
+      {open && (
+        <ul className='x-dropdown-menu'>
+          {options.map((option) => (
+            <li
+              key={option.value}
+              className={option.value === value ? 'selected' : ''}
+              onClick={() => {
+                onChange(option.value);
+                setOpen(false);
+              }}>
+              {option.label}
+            </li>
+          ))}
         </ul>
-      ) : null}
+      )}
     </div>
   );
-});
-
-Dropdown.displayName = 'Dropdown';
+};

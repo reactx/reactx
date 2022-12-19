@@ -7,7 +7,6 @@
  */
 import clsx from 'clsx';
 import React, {forwardRef, ReactNode, useState} from 'react';
-import '../assets/elements.sidebar.scss';
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   // sidebar content to render

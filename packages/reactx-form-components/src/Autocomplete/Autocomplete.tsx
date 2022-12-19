@@ -17,7 +17,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import '../assets/elements.autocomplete.scss';
 
 export interface AutocompletePropsType
   extends Omit<
@@ -370,7 +369,9 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
     return (
       <div ref={ref} className={clsx('x-autocomplete', className)}>
         {showArrow && (
-          <button className='x-autocomplete__arrow' onClick={handleArrowClick}>
+          <button
+            className='x-btn x-autocomplete__arrow'
+            onClick={handleArrowClick}>
             <i
               className={clsx(
                 'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
@@ -378,7 +379,9 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
           </button>
         )}
         {showClear && (
-          <button className='x-autocomplete__clear' onClick={handleClearClick}>
+          <button
+            className='x-btn x-autocomplete__clear'
+            onClick={handleClearClick}>
             <i>&times;</i>
           </button>
         )}
