@@ -8,14 +8,13 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import '../assets/elements.button.scss';
-import {Loading} from '../Loading/Loading';
-import {ButtonVariant, SpinnerPlacement, Variant} from '../types';
+import { Loading } from '../Loading/Loading';
+import {ButtonVariant, SpinnerPlacement, Colors} from '../types';
 
 export interface ButtonPropsType
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  colorVariant?: Variant;
+  color?: Colors;
   loadingText?: string;
   spinnerPlacement?: SpinnerPlacement;
   loading?: boolean | React.ReactNode;
@@ -25,11 +24,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
   const {
     loading,
     className,
-    spinnerPlacement,
     children,
     loadingText,
-    variant,
-    colorVariant,
+    type = 'button',
+    variant = 'normal',
+    color = 'primary',
+    spinnerPlacement = 'start',
     ...restProps
   } = props;
 
@@ -40,7 +40,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
       className={clsx(
         'x-btn',
         'x-btn--' + variant,
-        'x-btn--' + colorVariant,
+        'x-btn--' + color,
         className,
       )}
       {...restProps}>
@@ -52,14 +52,5 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
     </button>
   );
 });
-
-Button.defaultProps = {
-  type: 'button',
-  variant: 'normal',
-  colorVariant: 'primary',
-  spinnerPlacement: 'start',
-};
-
-Button.displayName = 'Button';
 
 export {Button};

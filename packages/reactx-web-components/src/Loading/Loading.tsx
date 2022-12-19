@@ -8,21 +8,15 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
-import '../assets/elements.loading.scss';
+import React from 'react';
 
 export interface LoadingPropsType
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Loading = forwardRef<HTMLDivElement, LoadingPropsType>((props, ref) => {
+const Loading: React.FC<LoadingPropsType> = (props) => {
   const {className, ...restProps} = props;
 
-  return (
-    <div
-      ref={ref}
-      className={clsx('x-loading', className)}
-      {...restProps}></div>
-  );
-});
-Loading.displayName = 'Loading';
+  return <div className={clsx('x-loading', className)} {...restProps}></div>;
+};
+
 export {Loading};

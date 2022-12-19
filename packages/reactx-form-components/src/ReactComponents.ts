@@ -6,12 +6,8 @@
  *
  */
 
-import Form from './Form/Form';
 
 export * from './Autocomplete/Autocomplete';
-export * from './Button/Button';
-export * from './CloseButton/CloseButton';
-export * from './Form/Form';
-export * from './Loading/Loading';
-
-export {Form};
+export * from './RichTextEditor/RichTextEditor';
+export * from './Dropdown/Dropdown';
+export * from './Tag/Tags';

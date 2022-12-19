@@ -48,12 +48,6 @@ const bundles = [
   //   global: 'ReactSliderComponents',
   //   externals: ['react', 'react-dom', 'swiper'],
   // },
-  {
-    bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx/reactx-data-components',
-    global: 'ReactDataComponents',
-    externals: ['react', 'react-dom'],
-  },  
 ];
 // Based on deep-freeze by substack (public domain)
 function deepFreeze(o) {

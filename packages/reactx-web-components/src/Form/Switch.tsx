@@ -8,32 +8,27 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
+import React from 'react';
 
 export interface SwitchPropsType
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
-  isInvalid?: boolean;
-  isValid?: boolean;
 }
 
-const Switch = forwardRef<HTMLInputElement, SwitchPropsType>((props, ref) => {
-  const {className, label, isInvalid, isValid, id, ...restProps} = props;
-
+const Switch: React.FC<SwitchPropsType> = ({
+  className,
+  label,
+  id,
+  ...restProps
+}) => {
+  
   return (
-    <div
-      className={clsx(
-        'x-switch',
-        className,
-        {'x-is-valid': isValid},
-        {'x-is-invalid': isInvalid},
-      )}>
+    <div className={clsx('x-switch', className)}>
       <label>
         <input
           className='x-switch__input'
           id={id}
           type='checkbox'
-          ref={ref}
           {...restProps}></input>
         <span className='x-switch__slider' />
       </label>
@@ -44,7 +39,5 @@ const Switch = forwardRef<HTMLInputElement, SwitchPropsType>((props, ref) => {
       )}
     </div>
   );
-});
-
-Switch.displayName = 'Switch';
+};
 export default Switch;

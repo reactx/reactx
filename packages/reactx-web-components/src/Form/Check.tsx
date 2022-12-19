@@ -8,8 +8,7 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
-import '../assets/elements.form-check.scss';
+import React from 'react';
 
 export type FormCheckType = 'checkbox' | 'radio';
 
@@ -22,9 +21,17 @@ export interface CheckPropsType
   isValid?: boolean;
 }
 
-const Check = forwardRef<HTMLInputElement, CheckPropsType>((props, ref) => {
-  const {className, type, inline, label, isInvalid, isValid, id, ...restProps} =
-    props;
+const Check: React.FC<CheckPropsType> = (props) => {
+  const {
+    className,
+    inline,
+    label,
+    isInvalid,
+    isValid,
+    id,
+    type = 'checkbox',
+    ...restProps
+  } = props;
 
   const hasLabel = label != null && label !== false;
 
@@ -32,6 +39,7 @@ const Check = forwardRef<HTMLInputElement, CheckPropsType>((props, ref) => {
     <div
       className={clsx(
         'x-check',
+        'x-form--control',
         className,
         {'x-check--inline': inline},
         {'x-is-valid': isValid},
@@ -41,7 +49,6 @@ const Check = forwardRef<HTMLInputElement, CheckPropsType>((props, ref) => {
         className='x-check__input'
         id={id}
         type={type}
-        ref={ref}
         {...restProps}></input>
       {hasLabel && (
         <label className='x-check__label' htmlFor={id}>
@@ -50,10 +57,5 @@ const Check = forwardRef<HTMLInputElement, CheckPropsType>((props, ref) => {
       )}
     </div>
   );
-});
-
-Check.displayName = 'Check';
-Check.defaultProps = {
-  type: 'checkbox',
 };
 export default Check;
