@@ -10,7 +10,8 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export interface ControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ControlProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   helperText?: string;

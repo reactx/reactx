@@ -8,7 +8,7 @@
 
 import clsx from 'clsx';
 import React, {forwardRef} from 'react';
-import { Loading } from '../Loading/Loading';
+import {Loading} from '../Loading/Loading';
 import {ButtonVariant, SpinnerPlacement, Colors} from '../types';
 
 export interface ButtonPropsType

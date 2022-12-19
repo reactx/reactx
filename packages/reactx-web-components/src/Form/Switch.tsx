@@ -21,7 +21,6 @@ const Switch: React.FC<SwitchPropsType> = ({
   id,
   ...restProps
 }) => {
-  
   return (
     <div className={clsx('x-switch', className)}>
       <label>

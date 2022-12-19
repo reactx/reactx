@@ -18,9 +18,6 @@ import React, {
   useState,
 } from 'react';
 import '../assets/elements.autocomplete.scss';
-import {Button} from '../Button/Button';
-import {ControlPropsType} from '../Form/Control';
-import Form from '../Form/Form';
 
 export interface AutocompletePropsType
   extends Omit<
@@ -41,7 +38,7 @@ export interface AutocompletePropsType
   className?: string;
   items: Array<any>;
   value: any;
-  inputProps?: ControlPropsType;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 type OptionsType = {
   _ignoreBlur: boolean;
@@ -51,7 +48,6 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
   (props, ref) => {
     const {
       onMenuVisibilityChange,
-      isItemSelectable,
       shouldItemRender,
       getItemValue,
       renderItem,
@@ -60,13 +56,14 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
       onSelect,
       onFocus,
       onBlur,
-      selectOnBlur,
-      showArrow,
       showClear,
       items,
-      value,
       className,
-      inputProps,
+      value = '',
+      showArrow = false,
+      isItemSelectable = () => true,
+      selectOnBlur = false,
+      inputProps = {},
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
@@ -373,23 +370,23 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
     return (
       <div ref={ref} className={clsx('x-autocomplete', className)}>
         {showArrow && (
-          <Button className='x-autocomplete__arrow' onClick={handleArrowClick}>
+          <button className='x-autocomplete__arrow' onClick={handleArrowClick}>
             <i
               className={clsx(
                 'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
               )}></i>
-          </Button>
+          </button>
         )}
         {showClear && (
-          <Button className='x-autocomplete__clear' onClick={handleClearClick}>
+          <button className='x-autocomplete__clear' onClick={handleClearClick}>
             <i>&times;</i>
-          </Button>
+          </button>
         )}
-        <Form.Control
+        <input
           role='combobox'
           aria-autocomplete='list'
           autoComplete='off'
-          className='x-autocomplete__control'
+          className={clsx('x-form-control', 'x-autocomplete__control')}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           onChange={(event) => onChange && onChange(event.target.value)}
@@ -398,19 +395,11 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
           onClick={handleInputClick}
           value={value}
           ref={inputRef}
-          {...inputProps}></Form.Control>
+          {...inputProps}></input>
         {isOpen && renderMenu()}
       </div>
     );
   },
 );
 
-Autocomplete.displayName = 'Autocomplete';
-Autocomplete.defaultProps = {
-  value: '',
-  showArrow: false,
-  isItemSelectable: () => true,
-  selectOnBlur: false,
-  inputProps: {},
-};
 export {Autocomplete};
