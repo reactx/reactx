@@ -8,4 +8,4 @@
  */
 
 export const Wrapper = ({children,condition,wrapper}: {children: React.ReactNode,condition: any,wrapper:any}) =>
-  condition? wrapper(children):children
+  condition? wrapper(children): children
