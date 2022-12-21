@@ -7,5 +7,19 @@
  *
  */
 
-export const Wrapper = ({children,condition,wrapper}: {children: React.ReactNode,condition: any,wrapper:any}) =>
-  condition? wrapper(children):children
+import React from "react";
+
+export interface WrapperPropsType extends React.HTMLAttributes<HTMLElement> {
+  condition: boolean;
+  wrapper:any;
+}
+
+export const Wrapper: React.FC<WrapperPropsType> = ({
+   children,
+   condition,
+   wrapper,
+}) => {
+  return (
+    condition ? wrapper(children) : children
+  )
+}
