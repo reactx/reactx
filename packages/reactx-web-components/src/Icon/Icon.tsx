@@ -8,10 +8,10 @@
  */
 
 import clsx from "clsx";
-
 import React from "react";
 
-export interface IconPropsType extends React.HTMLAttributes<HTMLElement>{
+export interface IconPropsType
+  extends React.HTMLAttributes<HTMLElement>{
   name:string;
 }
 
@@ -20,3 +20,4 @@ export const Icon = (props:IconPropsType) => {
 
   return <i className={clsx('icon-'+ name,className)}></i>;
 }
+
