@@ -115,7 +115,7 @@ function getRollupOutputOptions(
 
 function getFilename(name, globalName, bundleType) {
   // we do this to replace / to -, for react-dom/server
-  name = name.replace('@reactx/', '');
+  name = name.replace('@reactx-components/', '');
   name = name.replace('/', '-');
   switch (bundleType) {
     case UMD_DEV:

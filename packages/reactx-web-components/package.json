@@ -1,5 +1,5 @@
 {
-  "name": "@reactx/reactx-web-components",
+  "name": "@reactx-components/reactx-web-components",
   "description": "The standard web react components with rsc support",
   "version": "1.1.0",
   "author": "Behzad Abbasi (behzad888)",
@@ -17,7 +17,6 @@
     "README.md",
     "index.js",
     "index.d.ts",
-    ".npmrc",
     "reactx-web-components.js",
     "reactx-web-components.min.js",
     "src/"

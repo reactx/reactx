@@ -12,7 +12,7 @@ const bundles = [
   /******* React Components (web-components) *******/
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx/reactx-form-components',
+    entry: '@reactx-components/reactx-form-components',
     global: 'ReactFormComponents',
     externals: [
       'react',
@@ -26,25 +26,25 @@ const bundles = [
   },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx/reactx-web-components',
+    entry: '@reactx-components/reactx-web-components',
     global: 'ReactWebComponents',
     externals: ['react', 'react-dom'],
   },
   // {
   //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   entry: '@reactx/reactx-disclosure-components',
+  //   entry: '@reactx-components/reactx-disclosure-components',
   //   global: 'ReactDisclosureComponents',
   //   externals: ['react', 'react-dom'],
   // },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx/reactx-overlay-components',
+    entry: '@reactx-components/reactx-overlay-components',
     global: 'ReactOverlayComponents',
     externals: ['react', 'react-dom'],
   },
   // {
   //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   entry: '@reactx/reactx-slider-components',
+  //   entry: '@reactx-components/reactx-slider-components',
   //   global: 'ReactSliderComponents',
   //   externals: ['react', 'react-dom', 'swiper'],
   // },

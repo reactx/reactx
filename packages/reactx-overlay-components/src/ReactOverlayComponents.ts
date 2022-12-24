@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
+'use client';
 
 import Wizard from './Wizard/Wizard';
 import TabList from './Tab/TabList';
