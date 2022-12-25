@@ -12,7 +12,7 @@ const {
 const {UMD_DEV, UMD_PROD} = Bundles.bundleTypes;
 
 function getPackageName(name) {
-  name = name.replace('@reactx/', '');
+  name = name.replace('@reactx-components/', '');
   if (name.indexOf('/') !== -1) {
     return name.split('/')[0];
   }
@@ -47,7 +47,6 @@ async function prepareNpmPackage(name) {
     asyncCopyTo('LICENSE', `build/${name}/LICENSE`),
     asyncCopyTo(`packages/${name}/package.json`, `build/${name}/package.json`),
     asyncCopyTo(`packages/${name}/README.md`, `build/${name}/README.md`),
-    asyncCopyTo(`packages/${name}/.npmrc`, `build/${name}/.npmrc`),
     asyncCopyTo(`packages/${name}/npm`, `build/${name}`),
     asyncCopyTo(`build/${name}/${name}`, `build/${name}`),
   ]);

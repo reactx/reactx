@@ -1,5 +1,5 @@
 {
-  "name": "@reactx/reactx-overlay-components",
+  "name": "@reactx-components/reactx-overlay-components",
   "description": "The standard React Components",
   "version": "1.0.4",
   "author": "Behzad Abbasi (behzad888)",
@@ -17,7 +17,6 @@
     "README.md",
     "index.js",
     "index.d.ts",
-    ".npmrc",
     "reactx-overlay-components.js",
     "reactx-overlay-components.css",
     "reactx-overlay-components.min.js",

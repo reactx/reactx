@@ -1,5 +1,5 @@
 {
-  "name": "@reactx/reactx-form-components",
+  "name": "@reactx-components/reactx-form-components",
   "description": "React complex Components",
   "version": "1.3.0",
   "author": "Behzad Abbasi (behzad888)",
@@ -17,7 +17,6 @@
     "README.md",
     "index.js",
     "index.d.ts",
-    ".npmrc",
     "reactx-form-components.js",
     "reactx-form-components.css",
     "reactx-form-components.min.js",
