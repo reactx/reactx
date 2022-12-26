@@ -26,7 +26,6 @@ const Table: React.FC<TablePropsType> = (props) => {
 };
 
 export default Object.assign(Table, {
-
   Head,
   Body,
   Foot,
