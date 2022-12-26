@@ -10,19 +10,25 @@ import clsx from "clsx";
 
 export interface TBodyPropsType
   extends React.TableHTMLAttributes<HTMLTableSectionElement> {
-
+  items: Array<{ name: string, value: string }>
 }
 
-const TBody: React.FC<TBodyPropsType> = (props) => {
-  const {className, children, ...restProps} = props;
+const Body: React.FC<TBodyPropsType> = (props) => {
+  const {className, children, items, ...restProps} = props;
 
   return (
     <tbody className={clsx('x-tbody', className)} {...restProps}>
-    {children}
+    {items.map((item) => {
+      return (
+        <td key={item.name} className='x-tbody__data'>
+          {item.name}
+        </td>
+      )
+    })}
     </tbody>
   );
 };
 
-export default TBody
+export default Body
 
 

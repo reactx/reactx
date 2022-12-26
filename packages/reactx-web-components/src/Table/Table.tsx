@@ -8,11 +8,9 @@
 
 import React from "react";
 import clsx from "clsx";
-import TRow from './TRow';
-import TData from './TData';
-import THead from './THead';
-import TBody from './TBody';
-import TFoot from './TFoot';
+import Head from './Head';
+import Body from './Body';
+import Foot from './Foot';
 
 export interface TablePropsType
   extends React.TableHTMLAttributes<HTMLTableElement> {
@@ -28,9 +26,8 @@ const Table: React.FC<TablePropsType> = (props) => {
 };
 
 export default Object.assign(Table, {
-  TRow,
-  TData,
-  THead,
-  TBody,
-  TFoot,
+
+  Head,
+  Body,
+  Foot,
 });

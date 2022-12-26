@@ -12,7 +12,7 @@ export interface TFootPropsType extends React.TableHTMLAttributes<HTMLTableCapti
 
 }
 
-const TFoot: React.FC<TFootPropsType> = (props) => {
+const Foot: React.FC<TFootPropsType> = (props) => {
   const {children, className, ...restProps} = props;
   return (
     <tfoot className={clsx('x-tfoot', className)} {...restProps}>
@@ -21,4 +21,4 @@ const TFoot: React.FC<TFootPropsType> = (props) => {
   )
 }
 
-export default TFoot;
+export default Foot;
