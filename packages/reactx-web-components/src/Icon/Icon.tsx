@@ -7,17 +7,15 @@
  *
  */
 
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx';
+import React from 'react';
 
-export interface IconPropsType
-  extends React.HTMLAttributes<HTMLElement>{
-  name:string;
+export interface IconPropsType extends React.HTMLAttributes<HTMLElement> {
+  name: string;
 }
 
-export const Icon = (props:IconPropsType) => {
+export const Icon = (props: IconPropsType) => {
   const {name, className} = props;
 
-  return <i className={clsx('icon-'+ name,className)}></i>;
-}
-
+  return <i className={clsx('icon-' + name, className)}></i>;
+};

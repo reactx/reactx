@@ -7,19 +7,17 @@
  *
  */
 
-import React from "react";
+import React from 'react';
 
 export interface WrapperPropsType extends React.HTMLAttributes<HTMLElement> {
   condition: boolean;
-  wrapper:any;
+  wrapper: any;
 }
 
 export const Wrapper: React.FC<WrapperPropsType> = ({
-   children,
-   condition,
-   wrapper,
+  children,
+  condition,
+  wrapper,
 }) => {
-  return (
-    condition ? wrapper(children) : children
-  )
-}
+  return condition ? wrapper(children) : children;
+};

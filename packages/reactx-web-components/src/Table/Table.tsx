@@ -6,20 +6,19 @@
  *
  */
 
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 import Head from './Head';
 import Body from './Body';
 import Foot from './Foot';
 
 export interface TablePropsType
-  extends React.TableHTMLAttributes<HTMLTableElement> {
-}
+  extends React.TableHTMLAttributes<HTMLTableElement> {}
 
 const Table: React.FC<TablePropsType> = (props) => {
   const {className, children, ...restProps} = props;
   return (
-    <table className={clsx('x-table', className)}{...restProps}>
+    <table className={clsx('x-table', className)} {...restProps}>
       {children}
     </table>
   );

@@ -7,8 +7,8 @@
  *
  */
 
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx';
+import React from 'react';
 
 export interface AvatarPropsType
   extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -28,8 +28,7 @@ const Avatar: React.FC<AvatarPropsType> = (props) => {
       height={height}
       src={src}
       alt={alt}
-      {...restProps}>
-    </img>
-  )
-}
+      {...restProps}></img>
+  );
+};
 export default Avatar;

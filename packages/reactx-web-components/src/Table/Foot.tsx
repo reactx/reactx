@@ -5,20 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
-export interface TFootPropsType extends React.TableHTMLAttributes<HTMLTableCaptionElement> {
-
-}
+export interface TFootPropsType
+  extends React.TableHTMLAttributes<HTMLTableCaptionElement> {}
 
 const Foot: React.FC<TFootPropsType> = (props) => {
   const {children, className, ...restProps} = props;
   return (
     <tfoot className={clsx('x-tfoot', className)} {...restProps}>
-    {children}
+      {children}
     </tfoot>
-  )
-}
+  );
+};
 
 export default Foot;

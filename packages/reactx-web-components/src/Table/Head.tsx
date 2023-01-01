@@ -6,31 +6,29 @@
  *
  *
  */
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
-export interface THeadPropsType extends React.TableHTMLAttributes<HTMLTableHeaderCellElement> {
-  items: Array<{ name: string, rowspan: number }>
+export interface THeadPropsType
+  extends React.TableHTMLAttributes<HTMLTableHeaderCellElement> {
+  items: Array<{ name: string; rowspan: number }>;
 }
 
 const Head: React.FC<THeadPropsType> = (props) => {
-  const {children, className, items, ...restProps} = props
+  const {children, className, items} = props;
   return (
-    <thead className={clsx('x-thead', className)} {...restProps}>
+    <thead className={clsx('x-thead', className)}>
     <tr>
       {items.map((item) => {
         return (
-          <td className='x-thead__data'
-              rowSpan={item.rowspan}
-              key={item.name}
-          >
+          <td className='x-thead__data' rowSpan={item.rowspan} key={item.name}>
             {item.name}
           </td>
         );
       })}
     </tr>
     </thead>
-  )
-}
+  );
+};
 
 export default Head;

@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  *
  */
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
 export interface TBodyPropsType
   extends React.TableHTMLAttributes<HTMLTableSectionElement> {
-  items: Array<{ name: string, rowspan: number }>
-  rows: Array<{ name: string }>
+  items: Array<{name: string; rowspan: number}>;
+  rows: Array<{name: string}>;
 }
 
 const Body: React.FC<TBodyPropsType> = (props) => {
@@ -19,25 +19,24 @@ const Body: React.FC<TBodyPropsType> = (props) => {
 
   return (
     <tbody className={clsx('x-tbody', className)} {...restProps}>
-    {rows.map((row) => {
-      return (
-        <tr key={row.name} className='x-tbody__data'>
-          {items.map((item) => {
-            return (
-              <td className='x-thead__data'
+      {rows.map((row) => {
+        return (
+          <tr key={row.name} className='x-tbody__data'>
+            {items.map((item) => {
+              return (
+                <td
+                  className='x-thead__data'
                   rowSpan={item.rowspan}
                   key={item.name}>
-                {item.name}
-              </td>
-            )
-          })}
-        </tr>
-      )
-    })}
+                  {item.name}
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
     </tbody>
   );
 };
 
-export default Body
-
-
+export default Body;
