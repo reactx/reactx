@@ -11,22 +11,25 @@ import clsx from 'clsx';
 
 export interface THeadPropsType
   extends React.TableHTMLAttributes<HTMLTableHeaderCellElement> {
-  items: Array<{ name: string; rowspan: number }>;
+  items: Array<{name: string; rowspan: number}>;
 }
 
 const Head: React.FC<THeadPropsType> = (props) => {
   const {children, className, items} = props;
   return (
     <thead className={clsx('x-thead', className)}>
-    <tr>
-      {items.map((item) => {
-        return (
-          <td className='x-thead__data' rowSpan={item.rowspan} key={item.name}>
-            {item.name}
-          </td>
-        );
-      })}
-    </tr>
+      <tr>
+        {items.map((item) => {
+          return (
+            <td
+              className='x-thead__data'
+              rowSpan={item.rowspan}
+              key={item.name}>
+              {item.name}
+            </td>
+          );
+        })}
+      </tr>
     </thead>
   );
 };
