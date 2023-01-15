@@ -43,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
         'x-btn--' + color,
         className,
       )}
+      type={type}
       {...restProps}>
       {loading && spinnerPlacement === 'start' && <Loading />}
       {loading
