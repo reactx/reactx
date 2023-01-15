@@ -7,7 +7,7 @@
  */
 
 import clsx from 'clsx';
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useCallback} from 'react';
 import {Loading} from '../Loading/Loading';
 import {ButtonVariant, SpinnerPlacement, Colors} from '../types';
 
@@ -30,8 +30,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
     variant = 'normal',
     color = 'primary',
     spinnerPlacement = 'start',
+    onClick,
     ...restProps
   } = props;
+
+  const OnClickHandler = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (loading) return;
+
+      if (onClick) onClick(event);
+    },
+    [loading, onClick],
+  );
 
   return (
     <button
@@ -43,6 +53,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
         'x-btn--' + color,
         className,
       )}
+      onClick={OnClickHandler}
       type={type}
       {...restProps}>
       {loading && spinnerPlacement === 'start' && <Loading />}
