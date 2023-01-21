@@ -7,7 +7,7 @@
  *
  */
 
-import {createPopper} from '@popperjs/core';
+import {createPopper, Modifier} from '@popperjs/core';
 import clsx from 'clsx';
 import React, {
   forwardRef,
@@ -37,6 +37,7 @@ export interface AutocompletePropsType
   className?: string;
   items: Array<any>;
   value: any;
+  modifiers?: Partial<Modifier<any, any>>[]
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 type OptionsType = {
@@ -55,6 +56,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
       onSelect,
       onFocus,
       onBlur,
+      modifiers,
       showClear,
       items,
       className,
@@ -335,7 +337,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
       });
       const menu = <div className='x-autocomplete__menu' children={items} />;
 
-      const modifiers = [
+      const modifs: Partial<Modifier<any, any>>[] =modifiers || [
         {
           name: 'offset',
           options: {
@@ -355,7 +357,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
             menuRef.current = e;
             createPopper(inputRef.current, e, {
               placement: 'bottom-start',
-              modifiers,
+              modifiers: modifs,
             });
           }
         },
