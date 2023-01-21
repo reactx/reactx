@@ -8,7 +8,6 @@
 
 import {Editor, EditorProps, EditorState} from 'draft-js';
 import {forwardRef, useState} from 'react';
-import 'draft-js/dist/Draft.css';
 
 export interface RTEPropsType extends EditorProps {}
 

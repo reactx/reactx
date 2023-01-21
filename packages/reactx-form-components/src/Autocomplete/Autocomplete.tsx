@@ -148,7 +148,6 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
             inputRef.current &&
               inputRef.current.setSelectionRange(value.length, value.length);
             if (onSelect) onSelect(value, item);
-            if (onChange) onChange(value);
           }
         },
         Escape() {
@@ -247,7 +246,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
         inputRef.current.focus();
       }
       onChange && onChange('');
-    }, [isOpen, inputRef]);
+    }, [isOpen, inputRef, onChange]);
 
     const handleKeyDown = useCallback(
       (event: React.KeyboardEvent): void => {
@@ -269,7 +268,6 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
         setIsOpen(false);
         setHighlightedIndex(null);
         if (onSelect) onSelect(value, item);
-        if (onChange) onChange(value);
       },
       [
         options,
