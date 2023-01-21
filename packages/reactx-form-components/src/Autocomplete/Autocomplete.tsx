@@ -244,9 +244,10 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
     const handleClearClick = useCallback(() => {
       if (!isOpen && inputRef.current) {
         inputRef.current.focus();
+        setIsOpen(true);
       }
       onChange && onChange('');
-    }, [isOpen, inputRef, onChange]);
+    }, [isOpen, inputRef, onChange, setIsOpen]);
 
     const handleKeyDown = useCallback(
       (event: React.KeyboardEvent): void => {
