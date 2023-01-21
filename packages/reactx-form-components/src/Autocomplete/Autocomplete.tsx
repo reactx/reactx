@@ -37,7 +37,7 @@ export interface AutocompletePropsType
   className?: string;
   items: Array<any>;
   value: any;
-  modifiers?: Partial<Modifier<any, any>>[]
+  modifiers?: Partial<Modifier<any, any>>[];
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 type OptionsType = {
@@ -337,7 +337,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
       });
       const menu = <div className='x-autocomplete__menu' children={items} />;
 
-      const modifs: Partial<Modifier<any, any>>[] =modifiers || [
+      const modifs: Partial<Modifier<any, any>>[] = modifiers || [
         {
           name: 'offset',
           options: {
