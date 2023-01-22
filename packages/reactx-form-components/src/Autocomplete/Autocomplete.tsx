@@ -247,6 +247,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
         setIsOpen(true);
       }
       onChange && onChange('');
+      onSelect && onSelect(null, null);
     }, [isOpen, inputRef, onChange, setIsOpen]);
 
     const handleKeyDown = useCallback(
