@@ -28,7 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
     loadingText,
     type = 'button',
     variant = 'normal',
-    color = 'primary',
+    color,
     spinnerPlacement = 'start',
     onClick,
     ...restProps
@@ -50,7 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonPropsType>((props, ref) => {
       className={clsx(
         'x-btn',
         'x-btn--' + variant,
-        'x-btn--' + color,
+        color ? 'x-btn--' + color : '',
         className,
       )}
       onClick={OnClickHandler}

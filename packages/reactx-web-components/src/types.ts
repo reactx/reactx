@@ -6,6 +6,7 @@ export type Colors =
   | 'warning'
   | 'info'
   | 'light'
+  | 'ghost'
   | 'dark';
 export type AccordionVariant = 'checkbox' | 'radio';
 export type SpinnerPlacement = 'start' | 'end';
