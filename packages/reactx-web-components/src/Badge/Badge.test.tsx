@@ -7,8 +7,8 @@ afterEach(cleanup);
 
 describe('Badge', () => {
   it('renders the correct class for the color prop', () => {
-    const {getByText} = render(<Badge color='primary'>New</Badge>);
-    expect(getByText('New')).toHaveClass('badge--primary');
+    const {getByText} = render(<Badge color='solid'>New</Badge>);
+    expect(getByText('New')).toHaveClass('badge--solid');
   });
 
   it('renders the pill class when the pill prop is true', () => {

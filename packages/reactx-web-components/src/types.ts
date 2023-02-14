@@ -1,13 +1,4 @@
-export type Colors =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'danger'
-  | 'warning'
-  | 'info'
-  | 'light'
-  | 'ghost'
-  | 'dark';
+export type Colors = 'solid' | 'outline' | 'link';
 export type AccordionVariant = 'checkbox' | 'radio';
 export type SpinnerPlacement = 'start' | 'end';
 export type ButtonVariant =

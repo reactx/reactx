@@ -18,7 +18,7 @@ export interface BadgePropsType extends React.HTMLAttributes<HTMLSpanElement> {
 export const Badge: React.FC<BadgePropsType> = ({
   className,
   pill = false,
-  color = 'primary',
+  color = 'solid',
   children,
   ...restProps
 }) => {
