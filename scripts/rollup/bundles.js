@@ -10,26 +10,26 @@ const UMD_PROD = bundleTypes.UMD_PROD;
 
 const bundles = [
   /******* React Components (web-components) *******/
-  // {
-  //   bundleTypes: [UMD_DEV, UMD_PROD],
-  //   entry: '@reactx-components/reactx-form-components',
-  //   global: 'ReactFormComponents',
-  //   externals: [
-  //     'react',
-  //     'react-dom',
-  //     'react-datepicker',
-  //     '@popperjs/core',
-  //     'date-fns',
-  //     'react-transition-group',
-  //     'draft-js',
-  //   ],
-  // },
   {
     bundleTypes: [UMD_DEV, UMD_PROD],
-    entry: '@reactx-components/reactx-web-components',
-    global: 'ReactWebComponents',
-    externals: ['react', 'react-dom'],
+    entry: '@reactx-components/reactx-form-components',
+    global: 'ReactFormComponents',
+    externals: [
+      'react',
+      'react-dom',
+      'react-datepicker',
+      '@popperjs/core',
+      'date-fns',
+      'react-transition-group',
+      'draft-js',
+    ],
   },
+  // {
+  //   bundleTypes: [UMD_DEV, UMD_PROD],
+  //   entry: '@reactx-components/reactx-web-components',
+  //   global: 'ReactWebComponents',
+  //   externals: ['react', 'react-dom'],
+  // },
   // {
   //   bundleTypes: [UMD_DEV, UMD_PROD],
   //   entry: '@reactx-components/reactx-disclosure-components',

@@ -31,8 +31,8 @@ export interface AutocompletePropsType
   onMenuVisibilityChange?: (e: any) => void;
   getItemValue: (e: any) => string;
   isItemSelectable?: (e: any) => boolean;
-  renderArrow?: () => React.ReactElement<any>;
-  renderClear?: () => React.ReactElement<any>;
+  renderArrow?: (onClick: () => void) => React.ReactElement<any>;
+  renderClear?: (onClick: () => void) => React.ReactElement<any>;
   selectOnBlur?: boolean;
   showArrow?: boolean;
   showClear?: boolean;
@@ -377,7 +377,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
         {showArrow && (
           <>
             {renderArrow ? (
-              renderArrow()
+              renderArrow(handleArrowClick)
             ) : (
               <button
                 className='x-btn x-autocomplete__arrow'
@@ -393,7 +393,7 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
         {showClear && (
           <>
             {renderClear ? (
-              renderClear()
+              renderClear(handleClearClick)
             ) : (
               <button
                 className='x-btn x-autocomplete__clear'
