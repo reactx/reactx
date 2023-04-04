@@ -31,6 +31,8 @@ export interface AutocompletePropsType
   onMenuVisibilityChange?: (e: any) => void;
   getItemValue: (e: any) => string;
   isItemSelectable?: (e: any) => boolean;
+  renderArrow?: () => React.ReactElement<any>;
+  renderClear?: () => React.ReactElement<any>;
   selectOnBlur?: boolean;
   showArrow?: boolean;
   showClear?: boolean;
@@ -56,6 +58,8 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
       onSelect,
       onFocus,
       onBlur,
+      renderArrow,
+      renderClear,
       modifiers,
       showClear,
       items,
@@ -371,21 +375,33 @@ const Autocomplete = forwardRef<HTMLDivElement, AutocompletePropsType>(
     return (
       <div ref={ref} className={clsx('x-autocomplete', className)}>
         {showArrow && (
-          <button
-            className='x-btn x-autocomplete__arrow'
-            onClick={handleArrowClick}>
-            <i
-              className={clsx(
-                'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
-              )}></i>
-          </button>
+          <>
+            {renderArrow ? (
+              renderArrow()
+            ) : (
+              <button
+                className='x-btn x-autocomplete__arrow'
+                onClick={handleArrowClick}>
+                <i
+                  className={clsx(
+                    'x-autocomplete__arrow--' + (isOpen ? 'down' : 'up'),
+                  )}></i>
+              </button>
+            )}
+          </>
         )}
         {showClear && (
-          <button
-            className='x-btn x-autocomplete__clear'
-            onClick={handleClearClick}>
-            <i>&times;</i>
-          </button>
+          <>
+            {renderClear ? (
+              renderClear()
+            ) : (
+              <button
+                className='x-btn x-autocomplete__clear'
+                onClick={handleClearClick}>
+                <i>&times;</i>
+              </button>
+            )}
+          </>
         )}
         <input
           role='combobox'
