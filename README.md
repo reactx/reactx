@@ -1,4 +1,4 @@
-# Reactx
+# ReactX
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/reactx/reactx/blob/master/LICENSE)
 [![Coverage Status](https://coveralls.io/repos/github/reactx/reactx/badge.svg)](https://coveralls.io/github/reactx/reactx)
 [![CircleCI](https://circleci.com/gh/reactx/reactx.svg?style=svg)](https://circleci.com/gh/reactx/reactx)
